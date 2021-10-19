@@ -1,0 +1,26 @@
+include: package:pedantic/analysis_options.yaml
+
+analyzer:
+  errors:
+    prefer_final_locals: error
+    iterable_contains_unrelated_type: error
+    list_remove_unrelated_type: error
+    curly_braces_in_flow_control_structures: error
+    directives_ordering: error
+    avoid_print: warning
+    prefer_const_declarations: warning
+  exclude:
+    - exapmles/main.dart
+
+linter:
+  rules:
+    camel_case_types: true
+    prefer_double_quotes: true
+    prefer_const_declarations: true
+    prefer_final_locals: true
+    avoid_print: true
+    iterable_contains_unrelated_type: true
+    list_remove_unrelated_type: true
+    curly_braces_in_flow_control_structures: true
+    directives_ordering: true
+    prefer_single_quotes: false

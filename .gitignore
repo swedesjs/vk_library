@@ -1,0 +1,7 @@
+# directory
+.dart_tool
+test
+
+# files
+.packages
+pubspec.lock
