@@ -10,7 +10,7 @@ analyzer:
     avoid_print: warning
     prefer_const_declarations: warning
   exclude:
-    - exapmles/main.dart
+    - exapmle/main.dart
 
 linter:
   rules:
