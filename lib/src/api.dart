@@ -15,7 +15,10 @@ class API {
     messages = Messages(this);
   }
 
-  Future<Map<String, dynamic>> call(String methodName, Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> call(
+    String methodName,
+    Map<String, dynamic> data,
+  ) async {
     final response = await _dio.post<Map<String, dynamic>>(
       baseUrl.replace(path: "method/$methodName/").toString(),
       queryParameters: {
@@ -34,7 +37,8 @@ class API {
       throw APIException(
         code: error["error_code"],
         message: error["error_msg"],
-        request_params: (error["request_params"] as List).cast<Map<String, dynamic>>(),
+        request_params:
+            (error["request_params"] as List).cast<Map<String, dynamic>>(),
       );
     }
 
