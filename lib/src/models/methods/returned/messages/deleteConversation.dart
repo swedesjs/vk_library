@@ -1,7 +1,7 @@
 part of vk_library;
 
 class ReturnedMessagesDeleteConversation {
-  final Map<String, dynamic> object;
+  final Json object;
 
   const ReturnedMessagesDeleteConversation(this.object);
 

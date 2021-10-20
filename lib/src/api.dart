@@ -17,9 +17,9 @@ class API {
 
   Future<Call> call(
     String methodName,
-    Map<String, dynamic> data,
+    Json data,
   ) async {
-    final response = await _dio.post<Map<String, dynamic>>(
+    final response = await _dio.post<Json>(
       baseUrl.replace(path: "method/$methodName/").toString(),
       queryParameters: {
         "access_token": _token,
@@ -37,8 +37,7 @@ class API {
       throw APIException(
         code: error["error_code"],
         message: error["error_msg"],
-        request_params:
-            (error["request_params"] as List).cast<Map<String, dynamic>>(),
+        request_params: (error["request_params"] as List).cast<Json>(),
       );
     }
 

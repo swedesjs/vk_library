@@ -1,7 +1,7 @@
 part of vk_library;
 
 class ReturnedMessagesDeleteChatPhoto {
-  final Map<String, dynamic> object;
+  final Json object;
 
   const ReturnedMessagesDeleteChatPhoto(this.object);
 

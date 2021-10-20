@@ -1,7 +1,7 @@
 part of vk_library;
 
 class PushSettings {
-  final Map<String, dynamic> object;
+  final Json object;
 
   const PushSettings(this.object);
 
@@ -10,7 +10,7 @@ class PushSettings {
 }
 
 class ChatObjects {
-  final Map<String, dynamic> object;
+  final Json object;
 
   const ChatObjects(this.object);
 

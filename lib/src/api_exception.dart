@@ -4,7 +4,7 @@ class APIException implements Exception {
   final String message;
   final int code;
 
-  final List<Map<String, dynamic>> request_params;
+  final List<Json> request_params;
 
   const APIException({
     required this.code,
