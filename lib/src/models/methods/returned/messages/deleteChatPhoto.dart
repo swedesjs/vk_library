@@ -1,9 +1,9 @@
 part of vk_library;
 
-class ReturnedDeleteChatPhoto {
+class ReturnedMessagesDeleteChatPhoto {
   final Map<String, dynamic> object;
 
-  const ReturnedDeleteChatPhoto(this.object);
+  const ReturnedMessagesDeleteChatPhoto(this.object);
 
   int get messageId => object["message_id"];
 
