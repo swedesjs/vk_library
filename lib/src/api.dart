@@ -44,6 +44,6 @@ class API {
     return Call(responseData);
   }
 
-  Future<Call> Function(String subMethodName, Json data,) callMethod(String methodName) =>
+  CallMethodType callMethod(String methodName) =>
       (String subMethodName, Json data) => call("$methodName.$subMethodName", data);
 }
