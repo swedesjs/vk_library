@@ -15,7 +15,7 @@ class API {
     messages = Messages(this);
   }
 
-  Future<Map<String, dynamic>> call(
+  Future<Call> call(
     String methodName,
     Map<String, dynamic> data,
   ) async {
@@ -42,6 +42,6 @@ class API {
       );
     }
 
-    return responseData;
+    return Call(responseData);
   }
 }

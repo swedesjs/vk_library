@@ -11,3 +11,4 @@ part "src/language.dart";
 part "src/models/api/messages.dart";
 part "src/models/method_params/messages/forward.dart";
 part "src/vk.dart";
+part "src/models/call.dart";
