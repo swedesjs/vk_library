@@ -45,5 +45,6 @@ class API {
   }
 
   CallMethodType callMethod(String methodName) =>
-      (String subMethodName, Json data) => call("$methodName.$subMethodName", data);
+      (String subMethodName, Json data) =>
+          call("$methodName.$subMethodName", data);
 }

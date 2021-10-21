@@ -15,7 +15,8 @@ class Messages {
     final data = await callMethod("addChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,
-      if (visibleMessagesCount != null) "visible_messages_count": visibleMessagesCount
+      if (visibleMessagesCount != null)
+        "visible_messages_count": visibleMessagesCount
     });
 
     return data.response as int == 1;
@@ -61,7 +62,8 @@ class Messages {
       if (groupId != null) "group_id": groupId,
       if (deleteForAll != null) "delete_for_all": deleteForAll,
       if (peerId != null) "peer_id": peerId,
-      if (conversationMessageIds != null) "conversation_message_ids": conversationMessageIds
+      if (conversationMessageIds != null)
+        "conversation_message_ids": conversationMessageIds
     });
   }
 
@@ -92,7 +94,8 @@ class Messages {
   }
 
   Future<bool> denyMessagesFromGroup({required int groupId}) async {
-    final data = await callMethod("denyMessagesFromGroup", {"group_id": groupId});
+    final data =
+        await callMethod("denyMessagesFromGroup", {"group_id": groupId});
 
     return data.response == 1;
   }
@@ -118,12 +121,14 @@ class Messages {
       if (lat != null) "lat": lat,
       if (long != null) "long": long,
       if (attachment != null) "attachment": attachment.join(","),
-      if (keepForwardMessages != null) "keep_forward_messages": keepForwardMessages,
+      if (keepForwardMessages != null)
+        "keep_forward_messages": keepForwardMessages,
       if (keepSnippets != null) "keep_snippets": keepSnippets,
       if (groupId != null) "group_id": groupId,
       if (dontParseLinks != null) "dont_parse_links": dontParseLinks,
       if (messageId != null) "message_id": messageId,
-      if (conversationMessageId != null) "conversation_message_id": conversationMessageId,
+      if (conversationMessageId != null)
+        "conversation_message_id": conversationMessageId,
       if (template != null) "template": template,
       if (keyboard != null) "keyboard": keyboard,
     });
@@ -347,7 +352,8 @@ class Messages {
     return data.response;
   }
 
-  Future<Json> getInviteLink({required int peerId, bool? reset, int? groupId}) async {
+  Future<Json> getInviteLink(
+      {required int peerId, bool? reset, int? groupId}) async {
     final data = await callMethod("getInviteLink", {
       "peer_id": peerId,
       if (reset != null) "reset": reset,
@@ -409,7 +415,8 @@ class Messages {
     return data.response;
   }
 
-  Future<Json> isMessagesFromGroupAllowed({required int groupId, required int userId}) async {
+  Future<Json> isMessagesFromGroupAllowed(
+      {required int groupId, required int userId}) async {
     final data = await callMethod("isMessagesFromGroupAllowed", {
       "group_id": groupId,
       "user_id": userId,
@@ -438,7 +445,8 @@ class Messages {
     return data.response as int == 1;
   }
 
-  Future<List<int>> markAsImportant({List<int>? messageIds, bool? important}) async {
+  Future<List<int>> markAsImportant(
+      {List<int>? messageIds, bool? important}) async {
     final data = await callMethod("markAsImportant", {
       if (messageIds != null) "message_ids": messageIds.join(","),
       if (important != null) "important": important ? 1 : 0,
@@ -473,7 +481,8 @@ class Messages {
       if (peerId != null) "peer_id": peerId,
       if (startMessageId != null) "start_message_id": startMessageId,
       if (groupId != null) "group_id": groupId,
-      if (markConversationAsRead != null) "mark_conversation_as_read": markConversationAsRead,
+      if (markConversationAsRead != null)
+        "mark_conversation_as_read": markConversationAsRead,
     });
 
     return data.response as int == 1;
@@ -487,13 +496,15 @@ class Messages {
     final data = await callMethod("pin", {
       "peer_id": peerId,
       if (messageId != null) "message_id": messageId,
-      if (conversationMessageId != null) "conversation_message_id": conversationMessageId,
+      if (conversationMessageId != null)
+        "conversation_message_id": conversationMessageId,
     });
 
     return data.response;
   }
 
-  Future<bool> removeChatUser({required int chatId, int? userId, int? memberId}) async {
+  Future<bool> removeChatUser(
+      {required int chatId, int? userId, int? memberId}) async {
     final data = await callMethod("removeChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,

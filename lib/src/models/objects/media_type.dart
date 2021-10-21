@@ -3,7 +3,7 @@ part of vk_library;
 class MediaType {
   /// Photographs
   static const PHOTO = MediaType("photo");
-  
+
   /// Videos
   static const VIDEO = MediaType("video");
 
