@@ -195,7 +195,7 @@ class Messages {
   }
 
   /// Returns information about the conversation.
-  Future<Json> getChat({
+  Future<ReturnedMessagesGetChat> getChat({
     int? chatId,
     List<int>? chatIds,
     List<String>? fields,
@@ -208,7 +208,7 @@ class Messages {
       if (nameCase != null) "name_case": nameCase
     });
 
-    return data.response;
+    return ReturnedMessagesGetChat(data.response);
   }
 
   /// Gets data for a chat preview with a link invitation.
