@@ -16,7 +16,8 @@ class Messages {
     final data = await callMethod("addChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,
-      if (visibleMessagesCount != null) "visible_messages_count": visibleMessagesCount
+      if (visibleMessagesCount != null)
+        "visible_messages_count": visibleMessagesCount
     });
 
     return data.response as int == 1;
@@ -65,7 +66,8 @@ class Messages {
       if (groupId != null) "group_id": groupId,
       if (deleteForAll != null) "delete_for_all": deleteForAll,
       if (peerId != null) "peer_id": peerId,
-      if (conversationMessageIds != null) "conversation_message_ids": conversationMessageIds
+      if (conversationMessageIds != null)
+        "conversation_message_ids": conversationMessageIds
     });
   }
 
@@ -99,7 +101,8 @@ class Messages {
 
   /// Allows you to prevent sending messages from the community to the current user.
   Future<bool> denyMessagesFromGroup({required int groupId}) async {
-    final data = await callMethod("denyMessagesFromGroup", {"group_id": groupId});
+    final data =
+        await callMethod("denyMessagesFromGroup", {"group_id": groupId});
 
     return data.response == 1;
   }
@@ -126,12 +129,14 @@ class Messages {
       if (lat != null) "lat": lat,
       if (long != null) "long": long,
       if (attachment != null) "attachment": attachment.join(","),
-      if (keepForwardMessages != null) "keep_forward_messages": keepForwardMessages,
+      if (keepForwardMessages != null)
+        "keep_forward_messages": keepForwardMessages,
       if (keepSnippets != null) "keep_snippets": keepSnippets,
       if (groupId != null) "group_id": groupId,
       if (dontParseLinks != null) "dont_parse_links": dontParseLinks,
       if (messageId != null) "message_id": messageId,
-      if (conversationMessageId != null) "conversation_message_id": conversationMessageId,
+      if (conversationMessageId != null)
+        "conversation_message_id": conversationMessageId,
       if (template != null) "template": template,
       if (keyboard != null) "keyboard": keyboard,
     });
@@ -370,9 +375,9 @@ class Messages {
   }
 
   /// Gets a link to invite a user to a conversation.
-  /// 
-/// Only the creator of the conversation has access to the conversation link.
-  
+  ///
+  /// Only the creator of the conversation has access to the conversation link.
+
   Future<Json> getInviteLink({
     required int peerId,
     bool? reset,
@@ -395,8 +400,8 @@ class Messages {
   }
 
   /// Returns updates to the user's private messages.
-///
-/// You can learn more about working with Long Poll server on [`this page`](https://vk.com/dev/using_longpoll).
+  ///
+  /// You can learn more about working with Long Poll server on [`this page`](https://vk.com/dev/using_longpoll).
   Future<Json> getLongPollHistory({
     int? ts,
     int? pts,
@@ -430,8 +435,8 @@ class Messages {
   }
 
   /// Returns data required to connect to the Long Poll server.
-///
-/// Long Poll will allow you to instantly learn about the arrival of new messages and other events.
+  ///
+  /// Long Poll will allow you to instantly learn about the arrival of new messages and other events.
   Future<Json> getLongPollServer({
     bool? needPts,
     int? groupId,
@@ -447,7 +452,8 @@ class Messages {
   }
 
   /// Returns information about whether the user is allowed to send messages from the community.
-  Future<Json> isMessagesFromGroupAllowed({required int groupId, required int userId}) async {
+  Future<Json> isMessagesFromGroupAllowed(
+      {required int groupId, required int userId}) async {
     final data = await callMethod("isMessagesFromGroupAllowed", {
       "group_id": groupId,
       "user_id": userId,
@@ -479,7 +485,8 @@ class Messages {
   }
 
   /// Marks messages as important or unchecks them.
-  Future<List<int>> markAsImportant({List<int>? messageIds, bool? important}) async {
+  Future<List<int>> markAsImportant(
+      {List<int>? messageIds, bool? important}) async {
     final data = await callMethod("markAsImportant", {
       if (messageIds != null) "message_ids": messageIds.join(","),
       if (important != null) "important": important ? 1 : 0,
@@ -516,7 +523,8 @@ class Messages {
       if (peerId != null) "peer_id": peerId,
       if (startMessageId != null) "start_message_id": startMessageId,
       if (groupId != null) "group_id": groupId,
-      if (markConversationAsRead != null) "mark_conversation_as_read": markConversationAsRead,
+      if (markConversationAsRead != null)
+        "mark_conversation_as_read": markConversationAsRead,
     });
 
     return data.response as int == 1;
@@ -531,16 +539,18 @@ class Messages {
     final data = await callMethod("pin", {
       "peer_id": peerId,
       if (messageId != null) "message_id": messageId,
-      if (conversationMessageId != null) "conversation_message_id": conversationMessageId,
+      if (conversationMessageId != null)
+        "conversation_message_id": conversationMessageId,
     });
 
     return data.response;
   }
 
   /// Excludes a user from a multi-conversation if the current user or community is the administrator of the conversation, or the current user has invited the excluded user.
-///
-/// It can also be used to log the current user out of the conversation they are in. In order for the user to return to the conversation, it is enough to send a message to it (if there are free spaces).
-  Future<bool> removeChatUser({required int chatId, int? userId, int? memberId}) async {
+  ///
+  /// It can also be used to log the current user out of the conversation they are in. In order for the user to return to the conversation, it is enough to send a message to it (if there are free spaces).
+  Future<bool> removeChatUser(
+      {required int chatId, int? userId, int? memberId}) async {
     final data = await callMethod("removeChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,
@@ -658,9 +668,9 @@ class Messages {
   }
 
   /// Sends a message.
-  /// 
+  ///
   /// Note:
-  /// 
+  ///
   /// You do not need to specify the [randomId] parameter, the library can do it for you, but if you don’t want the library to decide it for you, then specify
   Future<Call> send({
     int? userId,

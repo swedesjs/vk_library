@@ -1,7 +1,7 @@
 part of vk_library;
 
 /// Class with enumerations for the mediaType parameter in the `messages.getHistoryAttachments` method
-/// 
+///
 /// *Example*:
 /// ```dart
 /// await vk.api.messages.getHistoryAttachments(peerId: 1, mediaType: MediaType.PHOTO);

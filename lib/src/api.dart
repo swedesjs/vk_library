@@ -79,5 +79,6 @@ class API {
   ///
   /// Well, in [data] we give the data that needs to be sent to VK
   CallMethodType callMethod(String methodName) =>
-      (String subMethodName, Json data) => call("$methodName.$subMethodName", data);
+      (String subMethodName, Json data) =>
+          call("$methodName.$subMethodName", data);
 }

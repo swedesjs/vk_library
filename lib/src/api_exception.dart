@@ -1,7 +1,7 @@
 part of vk_library;
 
 /// A class for displaying exceptions in case of an error in working with api vk
-/// 
+///
 class APIException implements Exception {
   /// Error description
   final String message;
