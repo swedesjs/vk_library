@@ -1,5 +1,5 @@
 name: vk_library
-version: 1.0.0-rc.1
+version: 1.0.1
 homepage: https://github.com/swedesjs/vk_library
 description: "Library for interacting with VKAPI"
 
