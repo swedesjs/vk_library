@@ -22,5 +22,6 @@ part "src/models/objects/media_type.dart";
 part "src/models/objects/message_object.dart";
 part "src/models/objects/messages_set_activity.dart";
 part "src/models/objects/namecase.dart";
+part "src/models/objects/photo_object.dart";
 part "src/typedef.dart";
 part "src/vk.dart";
