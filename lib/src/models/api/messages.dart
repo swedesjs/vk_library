@@ -176,7 +176,7 @@ class Messages {
   }
 
   /// Returns messages by their IDs.
-  Future<Json> getById({
+  Future<ReturnedMessagesGetById> getById({
     required List<int> messageIds,
     int? previewLength,
     bool? extended,
@@ -191,7 +191,7 @@ class Messages {
       if (groupId != null) "group_id": groupId
     });
 
-    return data.response;
+    return ReturnedMessagesGetById(data.response);
   }
 
   /// Returns information about the conversation.

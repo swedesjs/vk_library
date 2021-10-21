@@ -14,6 +14,7 @@ part "src/models/methods/params/messages/forward.dart";
 part "src/models/methods/returned/messages/deleteChatPhoto.dart";
 part "src/models/methods/returned/messages/deleteConversation.dart";
 part "src/models/methods/returned/messages/getByConversationMessageId.dart";
+part "src/models/methods/returned/messages/getById.dart";
 part "src/models/objects/chat.dart";
 part "src/models/objects/intent.dart";
 part "src/models/objects/media_type.dart";
