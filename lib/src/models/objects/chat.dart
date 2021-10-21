@@ -33,7 +33,8 @@ class ChatObjects {
   int get adminId => object["admin_id"];
 
   /// A list of the IDs of the participants in the conversation.
-  List<Map> get users => object["users"];
+  // TODO: Implement a union for a sheet with intengers and user objects
+  List<dynamic> get users => object["users"];
 
   /// Dialogue alert settings.
   PushSettings get pushSettings => PushSettings(object["push_settings"]);
