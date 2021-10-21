@@ -10,6 +10,6 @@
 
 - Added support for all `messages` methods
 
-# v1.0.1-doc
+# v1.0.1-doc.1
 
 - Added documentation version v1.0.1
