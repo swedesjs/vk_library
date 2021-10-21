@@ -9,3 +9,7 @@
 # v1.0.1
 
 - Added support for all `messages` methods
+
+# v1.0.1-doc
+
+- Added documentation version v1.0.1
