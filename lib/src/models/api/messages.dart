@@ -155,7 +155,8 @@ class Messages {
   }
 
   /// Returns messages by conversation_message_id.
-  Future<Json> getByConversationMessageId({
+  Future<ReturnedMessagesGetByConversationMessageId>
+      getByConversationMessageId({
     required int peerId,
     List<int>? conversationMessageIds,
     bool? extended,
@@ -171,7 +172,7 @@ class Messages {
       if (groupId != null) "group_id": groupId
     });
 
-    return data.response;
+    return ReturnedMessagesGetByConversationMessageId(data.response);
   }
 
   /// Returns messages by their IDs.
