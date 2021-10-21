@@ -5,3 +5,7 @@
 # v1.0.0-rc.1
 
 - Not so important changes
+
+# v1.0.1
+
+- Added support for all `messages` methods
