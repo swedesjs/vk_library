@@ -1,5 +1,11 @@
 part of vk_library;
 
+/// Class with enumerations for the mediaType parameter in the `messages.getHistoryAttachments` method
+/// 
+/// *Example*:
+/// ```dart
+/// await vk.api.messages.getHistoryAttachments(peerId: 1, mediaType: MediaType.PHOTO);
+/// ```
 class MediaType {
   /// Photographs
   static const PHOTO = MediaType("photo");
@@ -25,7 +31,10 @@ class MediaType {
   /// Links, products and posts
   static const SHARE = MediaType("share");
 
+  /// Original type
   final String type;
+
+  /// It is not advisable to create an instance
   const MediaType(this.type);
 
   @override

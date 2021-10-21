@@ -20,3 +20,4 @@ part "src/models/objects/messages_set_activity.dart";
 part "src/models/objects/namecase.dart";
 part "src/typedef.dart";
 part "src/vk.dart";
+part "src/models/objects/message_object.dart";

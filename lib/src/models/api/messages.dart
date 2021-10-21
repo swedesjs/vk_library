@@ -7,6 +7,7 @@ class Messages {
 
   Messages(this._api) : callMethod = _api.callMethod("messages");
 
+  /// Adds a new user to the multi-dialog.
   Future<bool> addChatUser({
     required int chatId,
     int? userId,
@@ -21,6 +22,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Allows you to allow the current user to send messages from the community.
   Future<bool> allowMessagesFromGroup({
     required int groupId,
     String? key,
@@ -33,6 +35,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Creates a conversation with multiple participants.
   Future<int> createChat({
     List<int>? userIds,
     String? title,
@@ -47,6 +50,7 @@ class Messages {
     return data.response as int;
   }
 
+  /// Deletes the message.
   Future<Call> delete({
     List<int>? messagesIds,
     bool? spam,
@@ -65,6 +69,7 @@ class Messages {
     });
   }
 
+  /// Allows you to delete a photo of a multi-dialogue.
   Future<ReturnedMessagesDeleteChatPhoto> deleteChatPhoto({
     required int chatId,
     int? groupId,
@@ -77,6 +82,7 @@ class Messages {
     return ReturnedMessagesDeleteChatPhoto(data.response);
   }
 
+  /// Deletes the conversation.
   Future<ReturnedMessagesDeleteConversation> deleteConversation({
     int? userId,
     int? peerId,
@@ -91,12 +97,14 @@ class Messages {
     return ReturnedMessagesDeleteConversation(data.response);
   }
 
+  /// Allows you to prevent sending messages from the community to the current user.
   Future<bool> denyMessagesFromGroup({required int groupId}) async {
     final data = await callMethod("denyMessagesFromGroup", {"group_id": groupId});
 
     return data.response == 1;
   }
 
+  /// Edits the message.
   Future<bool> edit({
     required int peerId,
     String? message,
@@ -131,6 +139,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Changes the name of the conversation.
   Future<bool> editChat({required int chatId, String? title}) async {
     final data = await callMethod("editChat", {
       "chat_id": chatId,
@@ -140,6 +149,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Returns messages by conversation_message_id.
   Future<Json> getByConversationMessageId({
     required int peerId,
     List<int>? conversationMessageIds,
@@ -159,6 +169,7 @@ class Messages {
     return data.response;
   }
 
+  /// Returns messages by their IDs.
   Future<Json> getById({
     required List<int> messageIds,
     int? previewLength,
@@ -177,6 +188,7 @@ class Messages {
     return data.response;
   }
 
+  /// Returns information about the conversation.
   Future<Json> getChat({
     int? chatId,
     List<int>? chatIds,
@@ -193,6 +205,7 @@ class Messages {
     return data.response;
   }
 
+  /// Gets data for a chat preview with a link invitation.
   Future<Json> getChatPreview({
     int? peerId,
     String? link,
@@ -207,6 +220,7 @@ class Messages {
     return data.response;
   }
 
+  /// Lets you get a list of the participants in the conversation.
   Future<Json> getConversationMembers({
     required int peerId,
     int? offset,
@@ -227,6 +241,7 @@ class Messages {
     return data.response;
   }
 
+  /// Returns a list of the user's conversations.
   Future<Json> getConversations({List<String>? fields}) async {
     final data = await callMethod("getConversations", {
       if (fields != null) "fields": fields.join(","),
@@ -235,6 +250,7 @@ class Messages {
     return data.response;
   }
 
+  /// Allows you to get a conversation by its ID.
   Future<Json> getConversationsById({
     required List<int> peerIds,
     bool? extended,
@@ -251,6 +267,7 @@ class Messages {
     return data.response;
   }
 
+  /// Returns the message history for the specified conversation.
   Future<Json> getHistory({
     int? offset,
     int? count,
@@ -277,6 +294,7 @@ class Messages {
     return data.response;
   }
 
+  /// Returns the materials of a dialogue or conversation.
   Future<Json> getHistoryAttachments({
     required int peerId,
     MediaType? mediaType,
@@ -303,6 +321,7 @@ class Messages {
     return data.response;
   }
 
+  /// Returns a list of the user's important messages.
   Future<Json> getImportantMessages({
     int? count,
     int? offset,
@@ -325,6 +344,9 @@ class Messages {
     return data.object;
   }
 
+  /// The method returns users who have subscribed to certain intents.
+  ///
+  /// https://vk.com/dev/bots_reply_rules
   Future<Json> getIntentUsers({
     required Intent intent,
     int? subscribeId,
@@ -347,6 +369,10 @@ class Messages {
     return data.response;
   }
 
+  /// Gets a link to invite a user to a conversation.
+  /// 
+/// Only the creator of the conversation has access to the conversation link.
+  
   Future<Json> getInviteLink({
     required int peerId,
     bool? reset,
@@ -361,12 +387,16 @@ class Messages {
     return data.response;
   }
 
+  /// Returns the current status and last activity date of the specified user.
   Future<Json> getLastActivity({required int userId}) async {
     final data = await callMethod("getLastActivity", {"user_id": userId});
 
     return data.response;
   }
 
+  /// Returns updates to the user's private messages.
+///
+/// You can learn more about working with Long Poll server on [`this page`](https://vk.com/dev/using_longpoll).
   Future<Json> getLongPollHistory({
     int? ts,
     int? pts,
@@ -399,6 +429,9 @@ class Messages {
     return data.response;
   }
 
+  /// Returns data required to connect to the Long Poll server.
+///
+/// Long Poll will allow you to instantly learn about the arrival of new messages and other events.
   Future<Json> getLongPollServer({
     bool? needPts,
     int? groupId,
@@ -413,6 +446,7 @@ class Messages {
     return data.response;
   }
 
+  /// Returns information about whether the user is allowed to send messages from the community.
   Future<Json> isMessagesFromGroupAllowed({required int groupId, required int userId}) async {
     final data = await callMethod("isMessagesFromGroupAllowed", {
       "group_id": groupId,
@@ -422,12 +456,14 @@ class Messages {
     return data.response;
   }
 
+  /// Allows you to join a chat by an invitation link.
   Future<Json> joinChatByInviteLink({required String link}) async {
     final data = await callMethod("joinChatByInviteLink", {"link": link});
 
     return data.response;
   }
 
+  /// Marks the conversation as answered or unchecks the mark.
   Future<bool> markAsAnsweredConversation({
     required int peerId,
     bool? answered,
@@ -442,6 +478,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Marks messages as important or unchecks them.
   Future<List<int>> markAsImportant({List<int>? messageIds, bool? important}) async {
     final data = await callMethod("markAsImportant", {
       if (messageIds != null) "message_ids": messageIds.join(","),
@@ -451,6 +488,7 @@ class Messages {
     return data.response;
   }
 
+  /// Marks the conversation as important or unchecks the mark.
   Future<bool> markAsImportantConversation({
     required int peerId,
     bool? important,
@@ -465,6 +503,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Marks messages as read.
   Future<bool> markAsRead({
     List<int>? messageIds,
     int? peerId,
@@ -483,6 +522,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Anchors the message.
   Future<Json> pin({
     required int peerId,
     int? messageId,
@@ -497,6 +537,9 @@ class Messages {
     return data.response;
   }
 
+  /// Excludes a user from a multi-conversation if the current user or community is the administrator of the conversation, or the current user has invited the excluded user.
+///
+/// It can also be used to log the current user out of the conversation they are in. In order for the user to return to the conversation, it is enough to send a message to it (if there are free spaces).
   Future<bool> removeChatUser({required int chatId, int? userId, int? memberId}) async {
     final data = await callMethod("removeChatUser", {
       "chat_id": chatId,
@@ -507,6 +550,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Recovers deleted message.
   Future<bool> restore({required int messageId, int? groupId}) async {
     final data = await callMethod("restore", {
       "message_id": messageId,
@@ -516,6 +560,7 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Returns a list of found private messages of the current user based on the entered search string.
   Future<Json> search({
     String? q,
     int? peerId,
@@ -542,6 +587,7 @@ class Messages {
     return data.response;
   }
 
+  /// Allows you to search for dialogues.
   Future<Json> searchConversations({
     String? q,
     int? count,
@@ -560,6 +606,7 @@ class Messages {
     return data.response;
   }
 
+  /// Dispatches an event with an action that will occur when the callback button is clicked.
   Future<Json> sendMessageEventAnswer({
     required String eventId,
     required int userId,
@@ -576,6 +623,7 @@ class Messages {
     return data.response;
   }
 
+  /// Changes the status of the user's typing in the dialog.
   Future<bool> setActivity({
     int? userId,
     MessagesSetActivityType? type,
@@ -592,12 +640,14 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Allows to set a multi-dialog photo uploaded using the [photos.getChatUploadServer](https://vk.com/dev/photos.getChatUploadServer) method.
   Future<Json> setChatPhoto({required String file}) async {
     final data = await callMethod("setChatPhoto", {"file": file});
 
     return data.response;
   }
 
+  /// Detaches the message.
   Future<bool> unpin({required int peerId, int? groupId}) async {
     final data = await callMethod("unpin", {
       "peer_id": peerId,
@@ -607,6 +657,11 @@ class Messages {
     return data.response as int == 1;
   }
 
+  /// Sends a message.
+  /// 
+  /// Note:
+  /// 
+  /// You do not need to specify the [randomId] parameter, the library can do it for you, but if you don’t want the library to decide it for you, then specify
   Future<Call> send({
     int? userId,
     int? peerId,
