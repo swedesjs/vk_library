@@ -227,7 +227,7 @@ class Messages {
   }
 
   /// Lets you get a list of the participants in the conversation.
-  Future<Json> getConversationMembers({
+  Future<ReturnedMessagesGetConversationMembers> getConversationMembers({
     required int peerId,
     int? offset,
     int? count,
@@ -244,7 +244,7 @@ class Messages {
       if (groupId != null) "group_id": groupId,
     });
 
-    return data.response;
+    return ReturnedMessagesGetConversationMembers(data.response);
   }
 
   /// Returns a list of the user's conversations.
