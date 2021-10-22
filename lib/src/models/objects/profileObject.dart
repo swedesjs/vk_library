@@ -1,5 +1,6 @@
 part of vk_library;
 
+/// Enum for the field [ProfileObject.deactivated]
 enum DeactivatedProfile {
   /// User profile deleted
   DELETED,
@@ -8,8 +9,29 @@ enum DeactivatedProfile {
   BANNED,
 }
 
+/// Enum for the field [ProfileObject.friendStatus]
+enum FriendStatus {
+  /// Is not a friend
+  IS_NOT,
+
+  /// An application / subscription was sent to the user
+  SUBMITTED,
+
+  /// There is an incoming request / subscription from the user
+  THERE_IS,
+
+  /// Is a friend
+  IS_AN
+}
+
+bool? _switchCase(dynamic value) {
+  switch (value.runtimeType) {
+    case int:
+      return value == 1;
+  }
+}
+
 /// The object contains information about the user VKontakte
-// TODO: Finish work
 class ProfileObject {
   /// The object that is used for the interface
   final Json object;
@@ -53,34 +75,30 @@ class ProfileObject {
   String? get bdate => object["bdate"];
 
   /// Information about whether the current user is blacklisted.
-  bool? get blacklisted {
-    final value = object["blacklisted"];
-    switch (value.runtimeType) {
-      case int:
-        return value == 1;
-    }
-  }
+  bool? get blacklisted => _switchCase(object["blacklisted"]);
 
   /// Information about whether the user is blacklisted by the current user.
-  bool? get blacklistedByMe => object["blacklisted_by_me"] == 1;
+  bool? get blacklistedByMe => _switchCase(object["blacklisted_by_me"]);
 
   /// Content of the field `Favorite books` from the user profile.
   String? get books => object["books"];
 
   /// Information about whether the current user can post on the wall
-  bool? get canPost => object["can_post"] == 1;
+  bool? get canPost => _switchCase(object["can_post"]);
 
   /// Information about whether the current user can see other people's posts on the wall.
-  bool? get canSeeAllPosts => object["can_see_all_posts"] == 1;
+  bool? get canSeeAllPosts => _switchCase(object["can_see_all_posts"]);
 
   /// Information about whether the current user can see audio recordings.
-  bool? get canSeeAudio => object["can_see_audio"] == 1;
+  bool? get canSeeAudio => _switchCase(object["can_see_audio"]);
 
   /// Information about whether a notification will be sent to the user about a friend request from the current user.
-  bool? get canSendFriendRequest => object["can_send_friend_request"] == 1;
+  bool? get canSendFriendRequest =>
+      _switchCase(object["can_send_friend_request"]);
 
   /// Information about whether the current user can send a private message.
-  bool? get canWritePrivateMessage => object["can_write_private_message"] == 1;
+  bool? get canWritePrivateMessage =>
+      _switchCase(object["can_write_private_message"]);
 
   /// Information about the user's career.
   // TODO: Implement an interface for this field
@@ -132,4 +150,47 @@ class ProfileObject {
 
   /// The number of user subscribers.
   int? get followersCount => object["followers_count"];
+
+  /// Friendship status with the user.
+  ///
+  /// Returns enum [FriendStatus]
+  FriendStatus? get friendStatus {
+    switch (object["friend_status"]) {
+      case 0:
+        return FriendStatus.IS_NOT;
+      case 1:
+        return FriendStatus.SUBMITTED;
+      case 2:
+        return FriendStatus.THERE_IS;
+      case 3:
+        return FriendStatus.IS_AN;
+    }
+  }
+
+  /// Content of the `Favorite games` field from the profile.
+  String? get games => object["games"];
+
+  /// Information about whether the user's mobile phone number is known.
+  bool? get hasMobile => _switchCase(object["has_mobile"]);
+
+  /// Information about whether the user has set a profile photo.
+  bool? get hasPhoto => _switchCase(object["has_photo"]);
+
+  /// Hometown name.
+  String? get homeTown => object["home_town"];
+
+  /// Content of the field `Interests` from the profile.
+  String? get interests => object["interests"];
+
+  /// Information about whether the user is bookmarked by the current user.
+  bool? get isFavorite => _switchCase(object["is_favorite"]);
+
+  /// Information about whether the user is a friend of the current user.
+  bool? get isFriend => _switchCase(object["is_friend"]);
+
+  /// Information about whether the user is hidden from the current user's news feed.
+  bool? get isHiddenFromFeed => _switchCase(object["is_hidden_from_feed"]);
+
+  /// Whether the profile is indexed by search sites.
+  bool? get isNoIndex => _switchCase(object["is_no_index"]);
 }

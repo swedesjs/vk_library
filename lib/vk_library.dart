@@ -2,7 +2,6 @@ library vk_library;
 
 import "dart:convert";
 import "dart:math";
-
 import "package:dio/dio.dart";
 
 part "src/api.dart";
