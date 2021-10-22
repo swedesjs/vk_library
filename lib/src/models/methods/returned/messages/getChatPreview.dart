@@ -15,7 +15,7 @@ class ReturnedMessagesGetChatPreview {
   List<Json> get profiles => object["profiles"];
 
   /// Array of objects [communities](https://vk.com/dev/objects/group).
-  /// TODO: Write an object describing the VK community
+  // TODO: Write an object describing the VK community
   List<Json> get groups => object["groups"];
 
   /// An array of objects describing e-mail.
