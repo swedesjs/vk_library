@@ -40,8 +40,10 @@ class ReturnedMessagesGetConversations {
   int get unreadCount => object["unread_count"];
 
   /// Array of objects [users](https://vk.com/dev/objects/user).
-  // TODO: Write a class for a user object
-  List<Json> get profiles => object["profiles"];
+  List<ProfileObject> get profiles => (object["profiles"] as List)
+      .cast<Json>()
+      .map((e) => ProfileObject(e))
+      .toList();
 
   /// Array of objects [communities](https://vk.com/dev/objects/group).
   // TODO: Write an object describing the VK community
