@@ -26,5 +26,17 @@
     "scope": "dart",
     "prefix": "addmethod",
     "body": ["\tFuture<${2:Json}> $1($0) async {", "\t\tfinal data = await callMethod(\"$1\", {});", "", "\t\treturn data.response;", "\t}", ""]
+  },
+
+  "add object": {
+    "scope": "dart",
+    "prefix": "addObjectClass",
+    "body": ["part of vk_library;", "", "class ${1:Object} {", "", "\t/// The object that is used for the interface", "\tfinal Json object;", "", "\tconst $1(this.object);", "", "\t$0", "", "}"]
+  },
+
+  "add getter": {
+    "scope": "dart",
+    "prefix": "addGetter",
+    "body": "$0 get $1 => object[\"$1\"];"
   }
 }
