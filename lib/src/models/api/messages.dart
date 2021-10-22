@@ -248,12 +248,14 @@ class Messages {
   }
 
   /// Returns a list of the user's conversations.
-  Future<Json> getConversations({List<String>? fields}) async {
+  Future<ReturnedMessagesGetConversations> getConversations({
+    List<String>? fields,
+  }) async {
     final data = await callMethod("getConversations", {
       if (fields != null) "fields": fields.join(","),
     });
 
-    return data.response;
+    return ReturnedMessagesGetConversations(data.response);
   }
 
   /// Allows you to get a conversation by its ID.
