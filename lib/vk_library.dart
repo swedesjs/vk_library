@@ -16,6 +16,7 @@ part "src/models/methods/returned/messages/deleteConversation.dart";
 part "src/models/methods/returned/messages/getByConversationMessageId.dart";
 part "src/models/methods/returned/messages/getById.dart";
 part "src/models/methods/returned/messages/getChat.dart";
+part "src/models/methods/returned/messages/getChatPreview.dart";
 part "src/models/objects/chat.dart";
 part "src/models/objects/intent.dart";
 part "src/models/objects/media_type.dart";

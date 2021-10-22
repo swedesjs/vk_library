@@ -212,7 +212,7 @@ class Messages {
   }
 
   /// Gets data for a chat preview with a link invitation.
-  Future<Json> getChatPreview({
+  Future<ReturnedMessagesGetChatPreview> getChatPreview({
     int? peerId,
     String? link,
     List<String>? fields,
@@ -223,7 +223,7 @@ class Messages {
       if (fields != null) "fields": fields.join(","),
     });
 
-    return data.response;
+    return ReturnedMessagesGetChatPreview(data.response);
   }
 
   /// Lets you get a list of the participants in the conversation.
