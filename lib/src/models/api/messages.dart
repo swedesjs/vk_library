@@ -384,7 +384,7 @@ class Messages {
   /// Gets a link to invite a user to a conversation.
   ///
   /// Only the creator of the conversation has access to the conversation link.
-  Future<Json> getInviteLink({
+  Future<ReturnedMessagesGetInviteLink> getInviteLink({
     required int peerId,
     bool? reset,
     int? groupId,
@@ -395,7 +395,7 @@ class Messages {
       if (groupId != null) "group_id": groupId,
     });
 
-    return data.response;
+    return ReturnedMessagesGetInviteLink(data.response);
   }
 
   /// Returns the current status and last activity date of the specified user.
