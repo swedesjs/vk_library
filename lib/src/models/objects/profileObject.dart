@@ -25,10 +25,7 @@ enum FriendStatus {
 }
 
 bool? _switchCase(dynamic value) {
-  switch (value.runtimeType) {
-    case int:
-      return value == 1;
-  }
+  if (value != null) return value == 1;
 }
 
 /// The object contains information about the user VKontakte
