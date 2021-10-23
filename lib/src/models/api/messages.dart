@@ -399,10 +399,12 @@ class Messages {
   }
 
   /// Returns the current status and last activity date of the specified user.
-  Future<Json> getLastActivity({required int userId}) async {
+  Future<ReturnedMessagesGetLastActivity> getLastActivity({
+    required int userId,
+  }) async {
     final data = await callMethod("getLastActivity", {"user_id": userId});
 
-    return data.response;
+    return ReturnedMessagesGetLastActivity(data.response);
   }
 
   /// Returns updates to the user's private messages.
