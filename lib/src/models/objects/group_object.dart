@@ -111,6 +111,53 @@ class GroupObjectCountry {
   String? get title => object["title"];
 }
 
+/// Interface for the [GroupObject.cropPhoto] field
+class GroupObjectCropPhoto extends ProfileObjectCropPhoto {
+  const GroupObjectCropPhoto(Json object) : super(object);
+
+  /// Cropped out photo of the community.
+  @override
+  GroupObjectCropPhotoFieldCrop get crop =>
+      GroupObjectCropPhotoFieldCrop(object["crop"]);
+}
+
+/// Interface for the [GroupObjectCropPhoto.crop] field
+class GroupObjectCropPhotoFieldCrop extends ProfileObjectCropPhotoFieldCrop {
+  const GroupObjectCropPhotoFieldCrop(Json object) : super(object);
+}
+
+/// Interface for the [GroupObject.cover] field
+class GroupObjectCover {
+  /// The object that is used for the interface
+  final Json object;
+  const GroupObjectCover(this.object);
+
+  /// Information about whether the cover is included.
+  bool get enabled => object["enabled"] == 1;
+
+  /// Copies of cover images.
+  List<GroupObjectCoverImages> get images => (object["images"] as List)
+      .cast<Json>()
+      .map((e) => GroupObjectCoverImages(e))
+      .toList();
+}
+
+/// Interface for the [GroupObjectCover.images] field
+class GroupObjectCoverImages {
+  /// The object that is used for the interface
+  final Json object;
+  const GroupObjectCoverImages(this.object);
+
+  /// Copy URL.
+  String get url => object["url"];
+
+  /// Copy width.
+  int get width => object["width"];
+
+  /// Copy height.
+  int get height => object["height"];
+}
+
 /// The interface contains information about the VK community.
 class GroupObject implements PhotoObject {
   /// The object that is used for the interface
@@ -264,12 +311,16 @@ class GroupObject implements PhotoObject {
   }
 
   /// Community cover.
-  // TODO: Implement an interface for this field
-  Json? get cover => object["cover"];
+  GroupObjectCover? get cover {
+    final cover = object["cover"];
+    if (cover != null) return GroupObjectCover(cover);
+  }
 
   /// Returns data about the points at which the profile and thumbnail photos of the community were cropped.
-  // TODO: Implement an interface for this field
-  Json? get cropPhoto => object["crop_photo"];
+  GroupObjectCropPhoto? get cropPhoto {
+    final cropPhoto = object["crop_photo"];
+    if (cropPhoto != null) return GroupObjectCropPhoto(cropPhoto);
+  }
 
   /// Community description text.
   String? get description => object["description"];
