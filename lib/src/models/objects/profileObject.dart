@@ -173,8 +173,7 @@ class ProfileObjectCropPhoto {
   const ProfileObjectCropPhoto(this.object);
 
   /// The [photo](https://vk.com/dev/photo) object of the user's photo from which the main profile photo is cut.
-  // TODO: Create a photo object (https://vk.com/dev/photo)
-  Json get photo => object["photo"];
+  PhotoObject get photo => PhotoObject(object["photo"]);
 
   /// Clipped user photo.
   ProfileObjectCropPhotoFieldCrop get crop =>
