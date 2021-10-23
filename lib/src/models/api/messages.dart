@@ -101,8 +101,9 @@ class Messages {
 
   /// Allows you to prevent sending messages from the community to the current user.
   Future<bool> denyMessagesFromGroup({required int groupId}) async {
-    final data =
-        await callMethod("denyMessagesFromGroup", {"group_id": groupId});
+    final data = await callMethod("denyMessagesFromGroup", {
+      "group_id": groupId,
+    });
 
     return data.response == 1;
   }
@@ -380,7 +381,6 @@ class Messages {
   /// Gets a link to invite a user to a conversation.
   ///
   /// Only the creator of the conversation has access to the conversation link.
-
   Future<Json> getInviteLink({
     required int peerId,
     bool? reset,
@@ -455,8 +455,10 @@ class Messages {
   }
 
   /// Returns information about whether the user is allowed to send messages from the community.
-  Future<Json> isMessagesFromGroupAllowed(
-      {required int groupId, required int userId}) async {
+  Future<Json> isMessagesFromGroupAllowed({
+    required int groupId,
+    required int userId,
+  }) async {
     final data = await callMethod("isMessagesFromGroupAllowed", {
       "group_id": groupId,
       "user_id": userId,
@@ -488,8 +490,10 @@ class Messages {
   }
 
   /// Marks messages as important or unchecks them.
-  Future<List<int>> markAsImportant(
-      {List<int>? messageIds, bool? important}) async {
+  Future<List<int>> markAsImportant({
+    List<int>? messageIds,
+    bool? important,
+  }) async {
     final data = await callMethod("markAsImportant", {
       if (messageIds != null) "message_ids": messageIds.join(","),
       if (important != null) "important": important ? 1 : 0,
@@ -552,8 +556,11 @@ class Messages {
   /// Excludes a user from a multi-conversation if the current user or community is the administrator of the conversation, or the current user has invited the excluded user.
   ///
   /// It can also be used to log the current user out of the conversation they are in. In order for the user to return to the conversation, it is enough to send a message to it (if there are free spaces).
-  Future<bool> removeChatUser(
-      {required int chatId, int? userId, int? memberId}) async {
+  Future<bool> removeChatUser({
+    required int chatId,
+    int? userId,
+    int? memberId,
+  }) async {
     final data = await callMethod("removeChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,
