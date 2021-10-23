@@ -19,6 +19,7 @@ part "src/models/methods/returned/messages/getChat.dart";
 part "src/models/methods/returned/messages/getChatPreview.dart";
 part "src/models/methods/returned/messages/getConversationMembers.dart";
 part "src/models/methods/returned/messages/getConversations.dart";
+part "src/models/methods/returned/messages/getConversationsById.dart";
 part "src/models/objects/chat.dart";
 part "src/models/objects/group_object.dart";
 part "src/models/objects/intent.dart";

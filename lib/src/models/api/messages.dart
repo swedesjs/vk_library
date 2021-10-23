@@ -260,7 +260,7 @@ class Messages {
   }
 
   /// Allows you to get a conversation by its ID.
-  Future<Json> getConversationsById({
+  Future<RetunedMessagesGetConversationsById> getConversationsById({
     required List<int> peerIds,
     bool? extended,
     List<String>? fields,
@@ -273,7 +273,7 @@ class Messages {
       if (groupId != null) "group_id": groupId,
     });
 
-    return data.response;
+    return RetunedMessagesGetConversationsById(data.response);
   }
 
   /// Returns the message history for the specified conversation.
