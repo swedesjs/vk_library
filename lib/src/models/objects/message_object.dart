@@ -146,7 +146,7 @@ class MessageObjectAction {
   String? get email => object["email"];
 
   /// Chat cover image.
-  PhotoObject get photo => PhotoObject(object["photo"]);
+  PhotoSizesObject get photo => PhotoSizesObject(object["photo"]);
 }
 
 /// Private message interface

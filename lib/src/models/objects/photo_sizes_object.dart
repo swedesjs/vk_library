@@ -1,11 +1,11 @@
 part of vk_library;
 
 /// The interface responsible for photo copies
-class PhotoObject {
+class PhotoSizesObject {
   /// The object that is used for the interface
   final Json object;
 
-  const PhotoObject(this.object);
+  const PhotoSizesObject(this.object);
 
   /// URL of a copy of a photo with a width of 50 px;
   String get photo_50 => object["photo_50"];

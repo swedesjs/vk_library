@@ -16,7 +16,7 @@ class MessagesGetChatPreview {
   String get title => object["title"];
 
   /// Chat cover.
-  PhotoObject get photo => PhotoObject(object["photo"]);
+  PhotoSizesObject get photo => PhotoSizesObject(object["photo"]);
 
   /// Chat ID for the current user.
   int get localId => object["local_id"];

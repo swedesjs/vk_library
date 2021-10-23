@@ -159,7 +159,7 @@ class GroupObjectCoverImages {
 }
 
 /// The interface contains information about the VK community.
-class GroupObject implements PhotoObject {
+class GroupObject implements PhotoSizesObject {
   /// The object that is used for the interface
   @override
   final Json object;
