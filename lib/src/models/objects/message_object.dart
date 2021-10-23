@@ -1,5 +1,154 @@
 part of vk_library;
 
+/// An interface for the [MessageObject.geo] field.
+class MessageObjectGeo {
+  /// The object that is used for the interface
+  final Json object;
+  const MessageObjectGeo(this.object);
+
+  /// Place type.
+  String get type => object["type"];
+
+  /// The coordinates of the place.
+  ///
+  /// Returns an array with instances of the [MessageObjectGeoCoordinates] class
+  List<MessageObjectGeoCoordinates> get coordinates =>
+      (object["coordinates"] as List)
+          .cast<Json>()
+          .map((e) => MessageObjectGeoCoordinates(e))
+          .toList();
+
+  /// Description of the place (if added).
+  ///
+  /// Returns an instance of the [MessageObjectGeoPlace] class
+  MessageObjectGeoPlace? get place {
+    final place = object["place"];
+    if (place != null) return MessageObjectGeoPlace(place);
+  }
+
+  /// Information about whether the map is displayed.
+  int get showmap => object["showmap"];
+}
+
+/// An interface for the [MessageObjectGeo.coordinates] field.
+class MessageObjectGeoCoordinates {
+  /// The object that is used for the interface
+  final Json object;
+  const MessageObjectGeoCoordinates(this.object);
+
+  /// Geographic latitude.
+  double get latitude => object["latitude"];
+
+  /// Geographic longitude.
+  double get longitude => object["longitude"];
+}
+
+/// An interface for the [MessageObjectGeo.place] field.
+class MessageObjectGeoPlace {
+  /// The object that is used for the interface
+  final Json object;
+  const MessageObjectGeoPlace(this.object);
+
+  /// Seat ID (if assigned).
+  int? get id => object["id"];
+
+  /// Seat name (if assigned).
+  String? get title => object["title"];
+
+  /// Geographic latitude.
+  num get latitude => object["latitude"];
+
+  /// Geographic longitude.
+  num get longitude => object["longitude"];
+
+  /// Creation date (if assigned).
+  int? get created => object["created"];
+
+  /// Icon image URL.
+  String get icon => object["icon"];
+
+  /// The name of the country.
+  String get country => object["country"];
+
+  /// City name.
+  String get city => object["city"];
+}
+
+/// Action type.
+enum MessageTypeAction {
+  /// Photo of the conversation has been updated.
+  CHAT_PHOTO_UPDATE,
+
+  /// The photo of the conversation has been removed.
+  CHAT_PHOTO_REMOVE,
+
+  /// Conversation created.
+  CHAT_CREATE,
+
+  /// The title of the conversation has been updated.
+  CHAT_TITLE_UPDATE,
+
+  /// User invited.
+  CHAT_INVITE_USER,
+
+  /// User excluded.
+  CHAT_KICK_USER,
+
+  /// The message is pinned.
+  CHAT_PIN_MESSAGE,
+
+  /// The message has been detached.
+  CHAT_UNPIN_MESSAGE,
+
+  /// The user joined the conversation using a link.
+  CHAT_INVITE_USER_BY_LINK,
+}
+
+/// An interface for the [MessageObject.action] field
+class MessageObjectAction {
+  /// The object that is used for the interface
+  final Json object;
+  const MessageObjectAction(this.object);
+
+  /// Action type.
+  MessageTypeAction? get type {
+    switch (object["type"]) {
+      case "chat_photo_update":
+        return MessageTypeAction.CHAT_PHOTO_UPDATE;
+      case "chat_photo_remove":
+        return MessageTypeAction.CHAT_PHOTO_REMOVE;
+      case "chat_create":
+        return MessageTypeAction.CHAT_CREATE;
+      case "chat_title_update":
+        return MessageTypeAction.CHAT_TITLE_UPDATE;
+      case "chat_invite_user":
+        return MessageTypeAction.CHAT_INVITE_USER;
+      case "chat_kick_user":
+        return MessageTypeAction.CHAT_KICK_USER;
+      case "chat_pin_message":
+        return MessageTypeAction.CHAT_PIN_MESSAGE;
+      case "chat_unpin_message":
+        return MessageTypeAction.CHAT_UNPIN_MESSAGE;
+      case "chat_invite_user_by_link":
+        return MessageTypeAction.CHAT_INVITE_USER_BY_LINK;
+    }
+  }
+
+  /// User ID (if > 0) or email (if < 0) who was invited or excluded (for service messages with [type] = [MessageTypeAction.CHAT_INVITE_USER] or [MessageTypeAction.CHAT_KICK_USER]).
+  ///
+  /// The ID of the user who pinned / unpinned the message for `action` = [MessageTypeAction.CHAT_PIN_MESSAGE] or [MessageTypeAction.CHAT_UNPIN_MESSAGE].
+  int? get memberId => object["member_id"];
+
+  /// The name of the conversation (for service messages with [type] = [MessageTypeAction.CHAT_CREATE] or [MessageTypeAction.CHAT_TITLE_UPDATE]).
+  String? get text => object["text"];
+
+  /// Email that was invited or excluded (for service messages with [type] = [MessageTypeAction.CHAT_INVITE_USER] or [MessageTypeAction.CHAT_KICK_USER] and negative [memberId]).
+  String? get email => object["email"];
+
+  /// Chat cover image.
+  PhotoObject get photo => PhotoObject(object["photo"]);
+}
+
 /// Private message interface
 class MessageObject {
   /// The object that is used for the interface
@@ -38,8 +187,10 @@ class MessageObject {
   bool get important => object["important"];
 
   /// Location information.
-  // TODO: Write class
-  dynamic get geo => object["geo"];
+  MessageObjectGeo? get geo {
+    final geo = object["geo"];
+    if (geo != null) return MessageObjectGeo(geo);
+  }
 
   /// Service field for messages to bots (payload).
   String get payload => object["payload"];
@@ -54,11 +205,10 @@ class MessageObject {
 
   /// The message in response to which the current one was sent.
   // TODO: Write class
-  Json get reply_message => object["reply_message"];
+  Json? get replyMessage => object["reply_message"];
 
   /// Service action information with chat.
-  // TODO: Write class
-  Json get action => object["action"];
+  MessageObjectAction get action => MessageObjectAction(object["action"]);
 
   /// For community posts only. Contains the identifier of the user (community administrator) who sent this message.
   int get adminAuthorId => object["admin_author_id"];
