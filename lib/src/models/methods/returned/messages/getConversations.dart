@@ -1,6 +1,6 @@
 part of vk_library;
 
-/// The interface of the items field of the class [ReturnedMessagesGetConversations]
+/// The interface of the items field of the class [ReturnedMessagesGetConversations.items]
 class MessagesGetConversationsItems {
   /// The object that is used for the interface
   final Json object;
