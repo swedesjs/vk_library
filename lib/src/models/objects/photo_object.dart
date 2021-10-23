@@ -11,13 +11,13 @@ class PhotoObject {
   int get id => object["id"];
 
   /// The ID of the album that contains the photo.
-  int get album_id => object["album_id"];
+  int get albumId => object["album_id"];
 
   /// Photo owner ID.
-  int get owner_id => object["owner_id"];
+  int get ownerId => object["owner_id"];
 
   /// The ID of the user who uploaded the photo (if the photo is posted in a community). For photos posted on behalf of the community, [user_id] = *100*.
-  int get user_id => object["user_id"];
+  int get userId => object["user_id"];
 
   /// Photo description text.
   String get text => object["text"];

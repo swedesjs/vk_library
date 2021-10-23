@@ -214,13 +214,13 @@ class ProfileObjectEducation {
   int get university => object["university"];
 
   /// University name.
-  String get university_name => object["university_name"];
+  String get universityName => object["university_name"];
 
   /// Faculty ID.
   int get faculty => object["faculty"];
 
   /// Faculty name.
-  String get faculty_name => object["faculty_name"];
+  String get facultyName => object["faculty_name"];
 
   /// Year of ending.
   int get graduation => object["graduation"];
