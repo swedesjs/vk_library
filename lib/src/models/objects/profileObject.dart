@@ -24,8 +24,207 @@ enum FriendStatus {
   IS_AN
 }
 
+/// An interface for the [ProfileObject.career] field
+class ProfileObjectCareer {
+  /// The object that is used for the interface
+  final Json object;
+  const ProfileObjectCareer(this.object);
+
+  /// Community ID (if available, otherwise [company]).
+  int? get groupId => object["group_id"];
+
+  /// Company name (if available, otherwise [groupId]).
+  String? get company => object["company"];
+
+  /// Country identifier.
+  int get countryId => object["country_id"];
+
+  /// City ID (if available, otherwise [cityName]).
+  int? get cityId => object["city_id"];
+
+  /// City name (if available, otherwise [cityId]).
+  String? get cityName => object["city_name"];
+
+  /// Year of commencement of work.
+  int get from => object["from"];
+
+  /// Year of completion of work.
+  int get until => object["until"];
+
+  /// Position.
+  String get position => object["position"];
+}
+
+/// An interface for the [ProfileObject.city] field
+class ProfileObjectCity {
+  /// The object that is used for the interface
+  final Json object;
+  const ProfileObjectCity(this.object);
+
+  /// A city identifier that can be used to retrieve its name using the [database.getCitiesById](https://vk.com/dev/database.getCitiesById) method.
+  int get id => object["id"];
+
+  /// City name.
+  String? get title => object["title"];
+}
+
+/// An interface for the [ProfileObject.connections] field
+class ProfileObjectConnections {
+  /// The object that is used for the interface
+  final Json object;
+  const ProfileObjectConnections(this.object);
+
+  /// User's nickname in `Skype`.
+  String? get skype => object["skype"];
+
+  /// User's nickname on `Facebook`.
+  String? get facebook => object["facebook"];
+
+  /// User's nickname on `Twitter`.
+  String? get twitter => object["twitter"];
+
+  /// User's nickname in `LiveJournal`.
+  String? get livejournal => object["livejournal"];
+
+  /// User's nickname in `Instagram`.
+  String? get instagram => object["instagram"];
+}
+
 bool? _switchCase(dynamic value) {
   if (value != null) return value == 1;
+}
+
+/// An interface for the [ProfileObject.contacts] field
+class ProfileObjectContacts {
+  /// The object that is used for the interface
+  final Json object;
+
+  const ProfileObjectContacts(this.object);
+
+  /// User's mobile phone number (`only for Standalone applications`).
+  String get mobilePhone => object["mobile_phone"];
+
+  /// Additional phone number of the user.
+  String get homePhone => object["home_phone"];
+}
+
+/// An interface for the [ProfileObject.counters] field
+class ProfileObjectCounters {
+  /// The object that is used for the interface
+  final Json object;
+
+  const ProfileObjectCounters(this.object);
+
+  /// Number of photo albums.
+  int get albums => object["albums"];
+
+  /// Number of videos.
+  int get videos => object["videos"];
+
+  /// The number of audio recordings.
+  int get audios => object["audios"];
+
+  /// Number of photos.
+  int get photos => object["photos"];
+
+  /// Number of notes.
+  int get notes => object["notes"];
+
+  /// The number of friends.
+  int get friends => object["friends"];
+
+  /// The number of communities.
+  int get groups => object["groups"];
+
+  /// Number of online friends.
+  int get onlineFriends => object["online_friends"];
+
+  /// The number of mutual friends.
+  int get mutualFriends => object["mutual_friends"];
+
+  /// The number of videos with the user.
+  int get userVideos => object["user_videos"];
+
+  /// The number of subscribers.
+  int get followers => object["followers"];
+
+  /// The number of objects in the block `Interesting pages`.
+  int get pages => object["pages"];
+}
+
+/// An interface for the [ProfileObject.country] field
+class ProfileObjectCountry {
+  /// The object that is used for the interface
+  final Json object;
+
+  const ProfileObjectCountry(this.object);
+
+  /// Country identifier that can be used to retrieve its name using the [database.getCountriesById](https://vk.com/dev/database.getCountriesById) method.
+  int get id => object["id"];
+
+  /// The name of the country.
+  String get title => object["title"];
+}
+
+/// An interface for the [ProfileObject.cropPhoto] field
+class ProfileObjectCropPhoto {
+  /// The object that is used for the interface
+  final Json object;
+  const ProfileObjectCropPhoto(this.object);
+
+  /// The [photo](https://vk.com/dev/photo) object of the user's photo from which the main profile photo is cut.
+  // TODO: Create a photo object (https://vk.com/dev/photo)
+  Json get photo => object["photo"];
+
+  /// Clipped user photo.
+  ProfileObjectCropPhotoFieldCrop get crop =>
+      ProfileObjectCropPhotoFieldCrop(object["crop"]);
+
+  /// Miniature square photograph cut from [crop] photograph.
+  // TODO: Parse what it is.
+  Json get rect => object["rect"];
+}
+
+/// An interface for the [ProfileObjectCropPhoto.crop] field
+class ProfileObjectCropPhotoFieldCrop {
+  /// The object that is used for the interface
+  final Json object;
+  const ProfileObjectCropPhotoFieldCrop(this.object);
+
+  /// The x-coordinate of the upper-left corner, in percent.
+  num get x => object["x"];
+
+  /// The y-coordinate of the upper-left corner, in percent.
+  num get y => object["y"];
+
+  /// The x-coordinate of the lower-right corner, in percent.
+  num get x2 => object["x2"];
+
+  /// The y-coordinate of the lower-right corner, in percent.
+  num get y2 => object["y2"];
+}
+
+/// An interface for the [ProfileObject.education] field
+class ProfileObjectEducation {
+  /// The object that is used for the interface
+  final Json object;
+
+  const ProfileObjectEducation(this.object);
+
+  /// University identifier.
+  int get university => object["university"];
+
+  /// University name.
+  String get university_name => object["university_name"];
+
+  /// Faculty ID.
+  int get faculty => object["faculty"];
+
+  /// Faculty name.
+  String get faculty_name => object["faculty_name"];
+
+  /// Year of ending.
+  int get graduation => object["graduation"];
 }
 
 /// The object contains information about the user VKontakte
@@ -98,49 +297,58 @@ class ProfileObject {
       _switchCase(object["can_write_private_message"]);
 
   /// Information about the user's career.
-  // TODO: Implement an interface for this field
-  Json? get career => object["career"];
+  ProfileObjectCareer? get career {
+    final career = object["career"];
+    if (career != null) return ProfileObjectCareer(career);
+  }
 
   /// Information about the city indicated on the user page in the section `Contacts`.
-  // TODO: Implement an interface for this field
-  Json? get city => object["city"];
+  ProfileObjectCity? get city {
+    final city = object["city"];
+    if (city != null) return ProfileObjectCity(city);
+  }
 
   /// The number of mutual friends with the current user.
   int? get commonCount => object["common_count"];
 
   /// Returns data about the user's services specified in the profile, such as: `skype`,` facebook`, `twitter`,` livejournal`, `instagram`. For each service, a separate field of type string is returned containing the user's nickname.
-  ///
-  ///  For example:
-  /// ```json
-  /// {
-  ///   "instagram": "username"
-  /// }
-  /// ```
-  // TODO: Implement an interface for this field
-  Json? get connections => object["connections"];
+  ProfileObjectConnections? get connections {
+    final connections = object["connections"];
+    if (connections != null) return ProfileObjectConnections(connections);
+  }
 
   /// Information about the user's telephone numbers.
-  // TODO: Implement an interface for this field
-  Json? get contacts => object["contacts"];
+  ProfileObjectContacts? get contacts {
+    final contacts = object["contacts"];
+    if (contacts != null) return ProfileObjectContacts(contacts);
+  }
 
   /// The number of different objects the user has. The field is returned only in the `users.get` method when requesting information about one user, passing the user's `access_token`.
-  // TODO: Implement an interface for this field
-  Json? get counters => object["counters"];
+  ProfileObjectCounters? get counters {
+    final counters = object["counters"];
+    if (counters != null) return ProfileObjectCounters(counters);
+  }
 
   /// Information about the country specified on the user page in the section `Contacts`.
-  // TODO: Implement an interface for this field
-  Json? get country => object["country"];
+  ProfileObjectCountry? get country {
+    final country = object["country"];
+    if (country != null) return ProfileObjectCountry(country);
+  }
 
   /// Returns data about the points at which the profile and thumbnail photos of the user were cut, if any.
-  // TODO: Implement an interface for this field
-  Json? get cropPhoto => object["crop_photo"];
+  ProfileObjectCropPhoto? get cropPhoto {
+    final cropPhoto = object["crop_photo"];
+    if (cropPhoto != null) return ProfileObjectCropPhoto(cropPhoto);
+  }
 
   /// Short URL of the page. A string containing the short address of the page is returned (for example, `andrew`). If it is not assigned, `"id"+ user_id` is returned, for example,`id35828305`.
   String? get domain => object["domain"];
 
   /// Information about the user's higher education institution.
-  // TODO: Implement an interface for this field
-  Json? get education => object["education"];
+  ProfileObjectEducation? get education {
+    final education = object["education"];
+    if (education != null) return ProfileObjectEducation(education);
+  }
 
   /// External services to which export from VK is configured (`twitter`,` facebook`, `livejournal`,` instagram`).
   dynamic get exports => object["exports"];
