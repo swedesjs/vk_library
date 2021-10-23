@@ -52,8 +52,10 @@ class ReturnedMessagesGetChatPreview {
       .toList();
 
   /// Array of objects [communities](https://vk.com/dev/objects/group).
-  // TODO: Write an object describing the VK community
-  List<Json> get groups => object["groups"];
+  List<GroupObject> get groups => (object["groups"] as List)
+      .cast<Json>()
+      .map((e) => GroupObject(e))
+      .toList();
 
   /// An array of objects describing e-mail.
   List<MessagesGetChatEmails> get emails => (object["emails"] as List)
