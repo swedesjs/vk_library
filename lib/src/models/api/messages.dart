@@ -277,6 +277,7 @@ class Messages {
   }
 
   /// Returns the message history for the specified conversation.
+  // TODO: Consider the implementation of this method.
   Future<Json> getHistory({
     int? offset,
     int? count,
@@ -304,6 +305,7 @@ class Messages {
   }
 
   /// Returns the materials of a dialogue or conversation.
+  // TODO: Consider the implementation of this method.
   Future<Json> getHistoryAttachments({
     required int peerId,
     MediaType? mediaType,
@@ -331,6 +333,7 @@ class Messages {
   }
 
   /// Returns a list of the user's important messages.
+  // TODO: Find out what's coming back here.
   Future<Json> getImportantMessages({
     int? count,
     int? offset,
@@ -356,7 +359,7 @@ class Messages {
   /// The method returns users who have subscribed to certain intents.
   ///
   /// https://vk.com/dev/bots_reply_rules
-  Future<Json> getIntentUsers({
+  Future<ReturnedMessagesGetIntentUsers> getIntentUsers({
     required Intent intent,
     int? subscribeId,
     int? offset,
@@ -375,7 +378,7 @@ class Messages {
       if (fields != null) "fields": fields.join(","),
     });
 
-    return data.response;
+    return ReturnedMessagesGetIntentUsers(data.response);
   }
 
   /// Gets a link to invite a user to a conversation.
