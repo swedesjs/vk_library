@@ -408,8 +408,7 @@ class Messages {
   /// Returns updates to the user's private messages.
   ///
   /// You can learn more about working with Long Poll server on [`this page`](https://vk.com/dev/using_longpoll).
-  // TODO: Implement an interface for this method
-  Future<Json> getLongPollHistory({
+  Future<ReturnedMessagesGetLongPollHistory> getLongPollHistory({
     int? ts,
     int? pts,
     int? previewLength,
@@ -438,7 +437,7 @@ class Messages {
       if (credentials != null) "credentials": credentials,
     });
 
-    return data.response;
+    return ReturnedMessagesGetLongPollHistory(data.response);
   }
 
   /// Returns data required to connect to the Long Poll server.
