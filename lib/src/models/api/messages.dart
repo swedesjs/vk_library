@@ -304,8 +304,7 @@ class Messages {
   }
 
   /// Returns the materials of a dialogue or conversation.
-  // TODO: Consider the implementation of this method.
-  Future<Json> getHistoryAttachments({
+  Future<ReturnedMessagesGetHistoryAttachments> getHistoryAttachments({
     required int peerId,
     MediaType? mediaType,
     String? startFrom,
@@ -328,7 +327,7 @@ class Messages {
       if (maxForwardsLevel != null) "max_forwards_level": maxForwardsLevel,
     });
 
-    return data.response;
+    return ReturnedMessagesGetHistoryAttachments(data.response);
   }
 
   /// Returns a list of the user's important messages.
