@@ -590,7 +590,7 @@ class Messages {
   }
 
   /// Returns a list of found private messages of the current user based on the entered search string.
-  Future<Json> search({
+  Future<ReturnedMessagesSearch> search({
     String? q,
     int? peerId,
     String? date,
@@ -613,7 +613,7 @@ class Messages {
       if (groupId != null) "group_id": groupId,
     });
 
-    return data.response;
+    return ReturnedMessagesSearch(data.response);
   }
 
   /// Allows you to search for dialogues.
