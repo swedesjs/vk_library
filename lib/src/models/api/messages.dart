@@ -410,6 +410,7 @@ class Messages {
   /// Returns updates to the user's private messages.
   ///
   /// You can learn more about working with Long Poll server on [`this page`](https://vk.com/dev/using_longpoll).
+  // TODO: Implement an interface for this method
   Future<Json> getLongPollHistory({
     int? ts,
     int? pts,
@@ -445,7 +446,7 @@ class Messages {
   /// Returns data required to connect to the Long Poll server.
   ///
   /// Long Poll will allow you to instantly learn about the arrival of new messages and other events.
-  Future<Json> getLongPollServer({
+  Future<ReturnedMessagesGetLongPollServer> getLongPollServer({
     bool? needPts,
     int? groupId,
     int? lpVersion,
@@ -456,7 +457,7 @@ class Messages {
       if (lpVersion != null) "lp_version": lpVersion,
     });
 
-    return data.response;
+    return ReturnedMessagesGetLongPollServer(data.response);
   }
 
   /// Returns information about whether the user is allowed to send messages from the community.
