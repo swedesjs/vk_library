@@ -547,7 +547,7 @@ class Messages {
   }
 
   /// Anchors the message.
-  Future<Json> pin({
+  Future<PinnedMessageObject> pin({
     required int peerId,
     int? messageId,
     int? conversationMessageId,
@@ -559,7 +559,7 @@ class Messages {
         "conversation_message_id": conversationMessageId,
     });
 
-    return data.response;
+    return PinnedMessageObject(data.response);
   }
 
   /// Excludes a user from a multi-conversation if the current user or community is the administrator of the conversation, or the current user has invited the excluded user.

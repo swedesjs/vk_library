@@ -36,5 +36,6 @@ part "src/models/objects/namecase.dart";
 part "src/models/objects/photo_object.dart";
 part "src/models/objects/photo_sizes_object.dart";
 part "src/models/objects/profileObject.dart";
+part "src/models/objects/pinned_message_object.dart";
 part "src/typedef.dart";
 part "src/vk.dart";

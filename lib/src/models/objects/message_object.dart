@@ -1,6 +1,6 @@
 part of vk_library;
 
-/// An interface for the [MessageObject.geo] field.
+/// An interface for the [MessageObject.geo], [PinnedMessageObject.geo] field.
 class MessageObjectGeo {
   /// The object that is used for the interface
   final Json object;
