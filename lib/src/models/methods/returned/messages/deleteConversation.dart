@@ -1,6 +1,6 @@
 part of vk_library;
 
-/// The class positions itself as the response of the `messages.deleteConversation` method
+/// The class positions itself as the response of the [Messages.deleteConversation] method
 class ReturnedMessagesDeleteConversation {
   /// The object that is used for the interface
   final Json object;

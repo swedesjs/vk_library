@@ -17,7 +17,7 @@ class MessagesGetConversationsItems {
   MessageObject get lastMessage => MessageObject(object["last_message"]);
 }
 
-/// Interface for the `messages.getConversations` method
+/// Interface for the [Messages.getConversations] method
 class ReturnedMessagesGetConversations {
   /// The object that is used for the interface
   final Json object;

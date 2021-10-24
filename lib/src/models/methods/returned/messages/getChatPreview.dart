@@ -35,7 +35,7 @@ class MessagesGetChatEmails {
   String get address => object["address"];
 }
 
-/// Interface for the `messages.getChatPreview` method
+/// Interface for the [Messages.getChatPreview] method
 class ReturnedMessagesGetChatPreview {
   /// The object that is used for the interface
   final Json object;

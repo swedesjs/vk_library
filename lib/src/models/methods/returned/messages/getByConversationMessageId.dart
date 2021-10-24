@@ -1,6 +1,6 @@
 part of vk_library;
 
-/// The result interface of the `messages.getByConversationMessageId` method
+/// The result interface of the [Messages.getByConversationMessageId] method
 class ReturnedMessagesGetByConversationMessageId {
   /// The object that is used for the interface
   final Json object;

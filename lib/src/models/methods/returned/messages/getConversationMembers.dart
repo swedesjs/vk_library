@@ -22,7 +22,7 @@ class MessagesGetConversationMembersItems {
   bool get canKick => object["can_kick"];
 }
 
-/// Interface for the `messages.getConversationMembers` method
+/// Interface for the [Messages.getConversationMembers] method
 class ReturnedMessagesGetConversationMembers {
   /// The object that is used for the interface
   final Json object;
