@@ -617,7 +617,7 @@ class Messages {
   }
 
   /// Allows you to search for dialogues.
-  Future<Json> searchConversations({
+  Future<ReturnedMessagesSearchConversations> searchConversations({
     String? q,
     int? count,
     bool? extended,
@@ -632,7 +632,7 @@ class Messages {
       if (group_id != null) "group_id": group_id
     });
 
-    return data.response;
+    return ReturnedMessagesSearchConversations(data.response);
   }
 
   /// Dispatches an event with an action that will occur when the callback button is clicked.
