@@ -727,10 +727,12 @@ class Messages {
   }
 
   /// Allows to set a multi-dialog photo uploaded using the [photos.getChatUploadServer](https://vk.com/dev/photos.getChatUploadServer) method.
-  Future<Json> setChatPhoto({required String file}) async {
+  Future<ReturnedMessagesSetChatPhoto> setChatPhoto({
+    required String file,
+  }) async {
     final data = await callMethod("setChatPhoto", {"file": file});
 
-    return data.response;
+    return ReturnedMessagesSetChatPhoto(data.response);
   }
 
   /// Detaches the message.

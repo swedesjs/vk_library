@@ -28,6 +28,7 @@ part "src/models/methods/returned/messages/isMessagesFromGroupAllowed.dart";
 part "src/models/methods/returned/messages/joinChatByInviteLink.dart";
 part "src/models/methods/returned/messages/search.dart";
 part "src/models/methods/returned/messages/searchConversations.dart";
+part "src/models/methods/returned/messages/setChatPhoto.dart";
 part "src/models/objects/group_object.dart";
 part "src/models/objects/intent.dart";
 part "src/models/objects/media_type.dart";
