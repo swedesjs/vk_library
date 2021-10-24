@@ -8,9 +8,8 @@ class MessagesGetConversationsItems {
   const MessagesGetConversationsItems(this.object);
 
   /// Object [conversation](https://vk.com/dev/objects/conversation).
-  ///
-  /// Returns an instance of the [ChatObjects] class
-  ChatObjects get conversation => ChatObjects(object["conversation"]);
+  // TODO: Implement the conversation object
+  Json get conversation => object["conversation"];
 
   /// An object describing the [last message in the conversation](https://vk.com/dev/objects/message).
   ///

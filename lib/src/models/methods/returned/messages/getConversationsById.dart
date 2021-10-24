@@ -9,9 +9,9 @@ class RetunedMessagesGetConversationsById {
   /// The total number of results.
   int get count => object["count"];
 
-  /// An array of [ChatObjects] interfaces.
-  List<ChatObjects> get items => (object["items"] as List)
+  /// An array of [MultiDialogueObject] interfaces.
+  List<MultiDialogueObject> get items => (object["items"] as List)
       .cast<Json>()
-      .map((e) => ChatObjects(e))
+      .map((e) => MultiDialogueObject(e))
       .toList();
 }

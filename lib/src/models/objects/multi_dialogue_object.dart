@@ -14,11 +14,11 @@ class PushSettings {
   int get disabledUntil => object["disabled_until"];
 }
 
-class ChatObjects {
+class MultiDialogueObject {
   /// The object that is used for the interface
   final Json object;
 
-  const ChatObjects(this.object);
+  const MultiDialogueObject(this.object);
 
   /// Conversation ID.
   int get id => object["id"];

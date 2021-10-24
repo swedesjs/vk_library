@@ -10,6 +10,6 @@ class ReturnedMessagesDeleteChatPhoto {
   /// Sent system message ID
   int get messageId => object["message_id"];
 
-  /// [multi dialog object](https://vk.com/dev/objects/chat). Returns the [ChatObjects] class
-  ChatObjects get chat => ChatObjects(object["chat"]);
+  /// [multi dialog object](https://vk.com/dev/objects/chat). Returns the [MultiDialogueObject] class
+  MultiDialogueObject get chat => MultiDialogueObject(object["chat"]);
 }
