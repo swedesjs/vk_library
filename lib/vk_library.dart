@@ -24,6 +24,7 @@ part "src/models/methods/returned/messages/getIntentUsers.dart";
 part "src/models/methods/returned/messages/getInviteLink.dart";
 part "src/models/methods/returned/messages/getLastActivity.dart";
 part "src/models/methods/returned/messages/getLongPollServer.dart";
+part "src/models/methods/returned/messages/isMessagesFromGroupAllowed.dart";
 part "src/models/objects/chat.dart";
 part "src/models/objects/group_object.dart";
 part "src/models/objects/intent.dart";

@@ -461,7 +461,8 @@ class Messages {
   }
 
   /// Returns information about whether the user is allowed to send messages from the community.
-  Future<Json> isMessagesFromGroupAllowed({
+  Future<ReturnedMessagesIsMessagesFromGroupAllowed>
+      isMessagesFromGroupAllowed({
     required int groupId,
     required int userId,
   }) async {
@@ -470,7 +471,7 @@ class Messages {
       "user_id": userId,
     });
 
-    return data.response;
+    return ReturnedMessagesIsMessagesFromGroupAllowed(data.response);
   }
 
   /// Allows you to join a chat by an invitation link.
