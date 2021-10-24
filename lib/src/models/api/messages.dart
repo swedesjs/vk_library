@@ -475,10 +475,12 @@ class Messages {
   }
 
   /// Allows you to join a chat by an invitation link.
-  Future<Json> joinChatByInviteLink({required String link}) async {
+  Future<ReturnedMessagesJoinChatByInviteLink> joinChatByInviteLink({
+    required String link,
+  }) async {
     final data = await callMethod("joinChatByInviteLink", {"link": link});
 
-    return data.response;
+    return ReturnedMessagesJoinChatByInviteLink(data.response);
   }
 
   /// Marks the conversation as answered or unchecks the mark.
