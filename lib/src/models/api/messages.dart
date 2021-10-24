@@ -277,8 +277,7 @@ class Messages {
   }
 
   /// Returns the message history for the specified conversation.
-  // TODO: Consider the implementation of this method.
-  Future<Json> getHistory({
+  Future<ReturnedMessagesGetHistory> getHistory({
     int? offset,
     int? count,
     int? userId,
@@ -301,7 +300,7 @@ class Messages {
       if (groupId != null) "group_id": groupId,
     });
 
-    return data.response;
+    return ReturnedMessagesGetHistory(data.response);
   }
 
   /// Returns the materials of a dialogue or conversation.
