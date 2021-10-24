@@ -635,57 +635,6 @@ class Messages {
     return ReturnedMessagesSearchConversations(data.response);
   }
 
-  /// Dispatches an event with an action that will occur when the callback button is clicked.
-  Future<Json> sendMessageEventAnswer({
-    required String eventId,
-    required int userId,
-    required int peerId,
-    dynamic eventData,
-  }) async {
-    final data = await callMethod("sendMessageEventAnswer", {
-      "event_id": eventId,
-      "user_id": userId,
-      "peer_id": peerId,
-      if (eventData != null) "event_data": eventData,
-    });
-
-    return data.response;
-  }
-
-  /// Changes the status of the user's typing in the dialog.
-  Future<bool> setActivity({
-    int? userId,
-    MessagesSetActivityType? type,
-    int? peerId,
-    int? groupId,
-  }) async {
-    final data = await callMethod("setActivity", {
-      if (userId != null) "user_id": userId,
-      if (type != null) "type": type,
-      if (peerId != null) "peer_id": peerId,
-      if (groupId != null) "group_id": groupId,
-    });
-
-    return data.response as int == 1;
-  }
-
-  /// Allows to set a multi-dialog photo uploaded using the [photos.getChatUploadServer](https://vk.com/dev/photos.getChatUploadServer) method.
-  Future<Json> setChatPhoto({required String file}) async {
-    final data = await callMethod("setChatPhoto", {"file": file});
-
-    return data.response;
-  }
-
-  /// Detaches the message.
-  Future<bool> unpin({required int peerId, int? groupId}) async {
-    final data = await callMethod("unpin", {
-      "peer_id": peerId,
-      if (groupId != null) "group_id": groupId,
-    });
-
-    return data.response as int == 1;
-  }
-
   /// Sends a message.
   ///
   /// Note:
@@ -741,5 +690,56 @@ class Messages {
       if (subscribeId != null) "substribe_id": subscribeId,
       "random_id": randomId ?? Random().nextInt(4294967296)
     });
+  }
+
+  /// Dispatches an event with an action that will occur when the callback button is clicked.
+  Future<bool> sendMessageEventAnswer({
+    required String eventId,
+    required int userId,
+    required int peerId,
+    dynamic eventData,
+  }) async {
+    final data = await callMethod("sendMessageEventAnswer", {
+      "event_id": eventId,
+      "user_id": userId,
+      "peer_id": peerId,
+      if (eventData != null) "event_data": eventData,
+    });
+
+    return data.response == 1;
+  }
+
+  /// Changes the status of the user's typing in the dialog.
+  Future<bool> setActivity({
+    int? userId,
+    MessagesSetActivityType? type,
+    int? peerId,
+    int? groupId,
+  }) async {
+    final data = await callMethod("setActivity", {
+      if (userId != null) "user_id": userId,
+      if (type != null) "type": type,
+      if (peerId != null) "peer_id": peerId,
+      if (groupId != null) "group_id": groupId,
+    });
+
+    return data.response as int == 1;
+  }
+
+  /// Allows to set a multi-dialog photo uploaded using the [photos.getChatUploadServer](https://vk.com/dev/photos.getChatUploadServer) method.
+  Future<Json> setChatPhoto({required String file}) async {
+    final data = await callMethod("setChatPhoto", {"file": file});
+
+    return data.response;
+  }
+
+  /// Detaches the message.
+  Future<bool> unpin({required int peerId, int? groupId}) async {
+    final data = await callMethod("unpin", {
+      "peer_id": peerId,
+      if (groupId != null) "group_id": groupId,
+    });
+
+    return data.response as int == 1;
   }
 }
