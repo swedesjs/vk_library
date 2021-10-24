@@ -10,6 +10,8 @@ class ReturnedMessagesSearchConversations {
   int get count => object["count"];
 
   /// Array of [dialogues](https://vk.com/dev/objects/conversation).
-  // TODO: Implement dialog object - https://vk.com/dev/objects/conversation
-  List<Json> get items => object["items"];
+  List<ConversationObject> get items => (object["items"] as List)
+      .cast<Json>()
+      .map((e) => ConversationObject(e))
+      .toList();
 }
