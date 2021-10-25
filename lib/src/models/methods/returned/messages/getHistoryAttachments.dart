@@ -60,8 +60,10 @@ class MessagesGetHistoryAttachmentsAttachment {
   }
 
   /// Object describing [audio recording](https://vk.com/dev/objects/audio).
-  // TODO: Implement audio recording object - https://vk.com/dev/objects/audio.
-  Json? get audio => object["audio"];
+  AudioObject? get audio {
+    final audio = object["audio"];
+    if (audio != null) return AudioObject(audio);
+  }
 
   /// Object describing [document](https://vk.com/dev/objects/doc).
   // TODO: Implement document object - https://vk.com/dev/objects/doc.
