@@ -17,12 +17,89 @@ class ReturnedMessagesGetHistoryAttachments {
   List<Json> get items => object["items"];
 
   /// Attachment information.
-  // TODO: Implement the interface. And behind it, the interfaces describing:
-  //  Video recording - https://vk.com/dev/objects/video
-  //  Audio recording - https://vk.com/dev/objects/audio
-  //  Document - https://vk.com/dev/objects/doc
-  //  Link - https://vk.com/dev/objects/link
-  //  Product - https://vk.com/dev/objects/market
-  //  Wall post - https://vk.com/dev/objects/post
-  Json get attachment => object["attachment"];
+  MessagesGetHistoryAttachmentsAttachment get attachment =>
+      MessagesGetHistoryAttachmentsAttachment(object["attachment"]);
+}
+
+/// Interface for the [ReturnedMessagesGetHistoryAttachments.attachment] field
+class MessagesGetHistoryAttachmentsAttachment {
+  /// The object that is used for the interface
+  final Json object;
+  const MessagesGetHistoryAttachmentsAttachment(this.object);
+
+  /// Attachment type.
+  AttachmentType? get type {
+    switch (object["type"]) {
+      case "photo":
+        return AttachmentType.PHOTO;
+      case "video":
+        return AttachmentType.VIDEO;
+      case "audio":
+        return AttachmentType.AUDIO;
+      case "doc":
+        return AttachmentType.DOC;
+      case "link":
+        return AttachmentType.LINK;
+      case "market":
+        return AttachmentType.MARKET;
+      case "wall":
+        return AttachmentType.WALL;
+    }
+  }
+
+  /// An object describing the [photograph](https://vk.com/dev/objects/photo).
+  PhotoObject? get photo {
+    final photo = object["photo"];
+    if (photo != null) return PhotoObject(photo);
+  }
+
+  /// The object describing the [video](https://vk.com/dev/objects/video).
+  VideoObject? get video {
+    final video = object["video"];
+    if (video != null) return VideoObject(video);
+  }
+
+  /// Object describing [audio recording](https://vk.com/dev/objects/audio).
+  // TODO: Implement audio recording object - https://vk.com/dev/objects/audio.
+  Json? get audio => object["audio"];
+
+  /// Object describing [document](https://vk.com/dev/objects/doc).
+  // TODO: Implement document object - https://vk.com/dev/objects/doc.
+  Json? get doc => object["doc"];
+
+  /// Object describing [link](https://vk.com/dev/objects/link).
+  // TODO: Implement a reference object - https://vk.com/dev/objects/link.
+  Json? get link => object["link"];
+
+  /// Object describing [product](https://vk.com/dev/objects/market).
+  // TODO: Implement a product object - https://vk.com/dev/objects/market.
+  Json? get market => object["market"];
+
+  /// Object describing [writing on the wall](https://vk.com/dev/objects/post).
+  // TODO: Implement a wall post object - https://vk.com/dev/objects/post.
+  Json? get wall => object["wall"];
+}
+
+/// Enum describing the type of VK attachments.
+enum AttachmentType {
+  /// The photo.
+  PHOTO,
+
+  /// Video.
+  VIDEO,
+
+  /// Audio recording.
+  AUDIO,
+
+  /// Document.
+  DOC,
+
+  /// Link.
+  LINK,
+
+  /// Product.
+  MARKET,
+
+  /// Recording.
+  WALL
 }
