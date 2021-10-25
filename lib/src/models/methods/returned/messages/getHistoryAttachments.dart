@@ -66,8 +66,10 @@ class MessagesGetHistoryAttachmentsAttachment {
   }
 
   /// Object describing [document](https://vk.com/dev/objects/doc).
-  // TODO: Implement document object - https://vk.com/dev/objects/doc.
-  Json? get doc => object["doc"];
+  DocumentObject? get doc {
+    final doc = object["doc"];
+    if (doc != null) return DocumentObject(doc);
+  }
 
   /// Object describing [link](https://vk.com/dev/objects/link).
   // TODO: Implement a reference object - https://vk.com/dev/objects/link.

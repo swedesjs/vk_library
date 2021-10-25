@@ -35,6 +35,7 @@ part "src/models/methods/returned/messages/searchConversations.dart";
 part "src/models/methods/returned/messages/setChatPhoto.dart";
 part "src/models/objects/audio_object.dart";
 part "src/models/objects/conversation_object.dart";
+part "src/models/objects/document_object.dart";
 part "src/models/objects/group_object.dart";
 part "src/models/objects/intent.dart";
 part "src/models/objects/media_type.dart";
