@@ -1,3 +1,4 @@
+/// Library for working with VK api. In the future, there will be support for LongPoll, Uploading documents, and all sorts of different utilities.
 library vk_library;
 
 import "dart:convert";
