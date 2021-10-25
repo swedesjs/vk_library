@@ -1,6 +1,7 @@
 # directory
 .dart_tool
 test
+doc 
 
 # files
 .packages
