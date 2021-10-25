@@ -75,7 +75,7 @@ class API {
   /// ```
   /// The method returns a function to call.
   ///
-  /// In the [methodName] parameter we specify the first part of the method, after the response in the [subMethodName] parameter we give the second part of the method
+  /// In the [methodName] parameter we specify the first part of the method, after the response in the `subMethodName` parameter we give the second part of the method
   ///
   /// Well, in [data] we give the data that needs to be sent to VK
   CallMethodType callMethod(String methodName) =>

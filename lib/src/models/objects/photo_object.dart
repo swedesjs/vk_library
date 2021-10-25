@@ -16,7 +16,7 @@ class PhotoObject {
   /// Photo owner ID.
   int get ownerId => object["owner_id"];
 
-  /// The ID of the user who uploaded the photo (if the photo is posted in a community). For photos posted on behalf of the community, [user_id] = *100*.
+  /// The ID of the user who uploaded the photo (if the photo is posted in a community). For photos posted on behalf of the community, [userId] = *100*.
   int get userId => object["user_id"];
 
   /// Photo description text.
