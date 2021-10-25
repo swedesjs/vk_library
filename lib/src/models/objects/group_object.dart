@@ -45,7 +45,7 @@ enum CommunityType {
   EVENT,
 }
 
-/// Enum for the field [GroupObject.age_limits]
+/// Enum for the field [GroupObject.ageLimits]
 enum AgeLimits {
   /// No restrictions
   NO,
