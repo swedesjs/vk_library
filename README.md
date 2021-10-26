@@ -1,9 +1,9 @@
 <h1 align="center">vk_library</h1>
 <p align="center">
- <img src="https://img.shields.io/github/languages/code-size/swedesjs/vk_library?style=for-the-badge"/>
- <img src="https://img.shields.io/github/license/swedesjs/vk_library?color=blue&style=for-the-badge" />
- <img src="https://img.shields.io/tokei/lines/github/swedesjs/vk_library?style=for-the-badge"/>
- <br>Library for the Dart programming language to interact with the VK api</br>
+
+  ![Code size](https://img.shields.io/github/languages/code-size/swedesjs/vk_library?style=for-the-badge)
+  [![License](https://img.shields.io/github/license/swedesjs/vk_library?color=blue&style=for-the-badge)](https://github.com/swedesjs/vk_library/blob/master/LICENSE)
+  ![Total lines](https://img.shields.io/tokei/lines/github/swedesjs/vk_library?style=for-the-badge)
 </p>
 
 # Example
