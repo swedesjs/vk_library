@@ -72,8 +72,10 @@ class MessagesGetHistoryAttachmentsAttachment {
   }
 
   /// Object describing [link](https://vk.com/dev/objects/link).
-  // TODO: Implement a reference object - https://vk.com/dev/objects/link.
-  Json? get link => object["link"];
+  LinkObject? get link {
+    final link = object["link"];
+    if (link != null) return LinkObject(link);
+  }
 
   /// Object describing [product](https://vk.com/dev/objects/market).
   // TODO: Implement a product object - https://vk.com/dev/objects/market.

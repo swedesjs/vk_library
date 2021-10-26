@@ -38,6 +38,7 @@ part "src/models/objects/conversation_object.dart";
 part "src/models/objects/document_object.dart";
 part "src/models/objects/group_object.dart";
 part "src/models/objects/intent.dart";
+part "src/models/objects/link_object.dart";
 part "src/models/objects/media_type.dart";
 part "src/models/objects/message_object.dart";
 part "src/models/objects/messages_set_activity.dart";
