@@ -119,15 +119,6 @@ class VK {
   }
 }
 
-/// Enum is intended for specifying the type in the factory constructor [VK.configFile]
-enum VKConfigFileType {
-  /// The data format is `json`.
-  JSON,
-
-  /// The `yaml` data format.
-  YAML
-}
-
 /// The class is designed to throw exceptions in the factory constructor [VK.configFile].
 class VKConfigFileException implements Exception {
   /// Message.
