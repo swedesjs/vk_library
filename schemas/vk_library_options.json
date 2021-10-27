@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "title": "Vk_library options",
+  "description": "Options for using the vk_library library to avoid specifying parameters in the source code.",
+  "type": "object",
+  "properties": {
+    "token": {
+      "description": "Token for accessing the VK API. It is recommended to get a token from KateModile if you are using a user api.\nYou can get the token here - https://vkhost.github.io/",
+      "type": "string",
+      "minLength": 85,
+      "maxLength": 85
+    },
+    "language": {
+      "description": "Determines the language in which various data will be returned, for example, the names of countries and cities.",
+      "enum": ["ru", "uk", "be", "en", "es", "fi", "de", "it"],
+      "default": "ru"
+    },
+    "version": {
+      "description": "The version of the API to use. Using this parameter applies some changes to the response format of the various methods.",
+      "type": "number",
+      "minimum": 4,
+      "maximum": 5.131,
+      "default": 5.131
+    }
+  },
+  "required": ["token"]
+}

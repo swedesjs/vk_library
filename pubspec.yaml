@@ -12,3 +12,5 @@ dev_dependencies:
 
 dependencies:
   dio: ^4.0.0
+  path: ^1.8.0
+  yaml: ^3.1.0
