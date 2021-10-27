@@ -156,8 +156,7 @@ class Messages {
   }
 
   /// Returns messages by conversation_message_id.
-  Future<Json>
-      getByConversationMessageId({
+  Future<Json> getByConversationMessageId({
     required int peerId,
     List<int>? conversationMessageIds,
     bool? extended,
@@ -200,13 +199,13 @@ class Messages {
     int? chatId,
     List<int>? chatIds,
     List<String>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) async {
     final data = await callMethod("getChat", {
       if (chatId != null) "chat_id": chatId,
       if (chatIds != null) "chat_ids": chatIds,
       if (fields != null) "fields": fields,
-      if (nameCase != null) "name_case": nameCase
+      if (nameCase != null) "name_case": _nameCaseString[nameCase]
     });
 
     return data.response;
@@ -362,8 +361,7 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
-    /// TODO: Implement the enum.
-    String? nameCase,
+    NameCase? nameCase,
     List<String>? fields,
   }) async {
     final data = await callMethod("getIntentUsers", {
@@ -372,7 +370,7 @@ class Messages {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
-      if (nameCase != null) "name_case": nameCase,
+      if (nameCase != null) "name_case": _nameCaseString[nameCase],
       if (fields != null) "fields": fields.join(","),
     });
 
@@ -458,8 +456,7 @@ class Messages {
   }
 
   /// Returns information about whether the user is allowed to send messages from the community.
-  Future<Json>
-      isMessagesFromGroupAllowed({
+  Future<Json> isMessagesFromGroupAllowed({
     required int groupId,
     required int userId,
   }) async {

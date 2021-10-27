@@ -11,10 +11,11 @@ import "package:yaml/yaml.dart";
 
 part "src/api.dart";
 // Enums
+part "src/enums/intent.dart";
 part "src/enums/language.dart";
 part "src/enums/media_type.dart";
+part "src/enums/name_case.dart";
 part "src/enums/vk_config_file_type.dart";
-part "src/enums/intent.dart";
 // Exceptions
 part "src/exceptions/api_exception.dart";
 part "src/exceptions/vk_config_file_exception.dart";
@@ -22,6 +23,6 @@ part "src/exceptions/vk_config_file_exception.dart";
 part "src/models/api/messages.dart";
 part "src/models/call.dart";
 part "src/models/methods/params/messages/forward.dart";
-// 
+//
 part "src/typedef.dart";
 part "src/vk.dart";
