@@ -1,11 +1,10 @@
 part of vk_library;
 
+/// Class for addressing api, that is, `messages` submethods.
 class Messages {
-  final API _api;
-
   final _CallMethodType _callMethod;
 
-  Messages(this._api) : _callMethod = _api._callMethod("messages");
+  Messages(API api) : _callMethod = api._callMethod("messages");
 
   /// Adds a new user to the multi-dialog.
   Future<bool> addChatUser({
