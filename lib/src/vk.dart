@@ -71,9 +71,11 @@ class VK {
     if (token == null) {
       throw const VKConfigFileException("Token not specified!");
     }
+    
     if (token is! String) {
       throw const VKConfigFileException("The token is not of type String.");
     }
+
     if (token.length != 85) {
       throw const VKConfigFileException(
         "The token must contain 85 characters!",
@@ -96,14 +98,23 @@ class VK {
     }
 
     final language = result["language"];
-    if(language != null) {
-      
+    if (language != null) {
+      if (language is! String) {
+        throw const VKConfigFileException(
+          "The language parameter must be of type String!",
+        );
+      }
+      if (_languageString[language] == null) {
+        throw const VKConfigFileException(
+          "Indicate the languages ​​that exist for use in VK.",
+        );
+      }
     }
 
     return VK(
       token: token,
       version: result["version"]?.toString() ?? "5.131",
-      language: Language.RU,
+      language: _languageString[language]!,
     );
   }
 }
