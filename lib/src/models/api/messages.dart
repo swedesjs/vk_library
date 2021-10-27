@@ -651,7 +651,7 @@ class Messages {
     List<String>? attachment,
     int? replyTo,
     List<int>? forwardMessages,
-    ForwardParamSend? forward,
+    ForwardMessagesSend? forward,
     int? stickerId,
     int? groupId,
     dynamic keyboard,
