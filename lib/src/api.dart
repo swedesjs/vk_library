@@ -46,7 +46,7 @@ class API {
       queryParameters: {
         "access_token": _token,
         "v": _version,
-        "language": _language.toString(),
+        "language": _languageEnum[_language],
         ...data,
       },
     );
