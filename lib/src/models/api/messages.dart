@@ -316,7 +316,7 @@ class Messages {
   }) async {
     final data = await _callMethod("getHistoryAttachments", {
       "peer_id": peerId,
-      if (mediaType != null) "media_type": mediaTypeString[mediaType],
+      if (mediaType != null) "media_type": _mediaTypeString[mediaType],
       if (startFrom != null) "start_from": startFrom,
       if (count != null) "count": count,
       if (photoSizes != null) "photo_sizes": photoSizes,
