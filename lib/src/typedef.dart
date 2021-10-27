@@ -4,4 +4,4 @@ part of vk_library;
 typedef Json = Map<String, dynamic>;
 
 /// The response type of the callMethod method in the [API] class
-typedef CallMethodType = Future<Call> Function(String subMethodName, Json data);
+typedef _CallMethodType = Future<Call> Function(String subMethodName, Json data);

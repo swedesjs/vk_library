@@ -78,7 +78,7 @@ class API {
   /// In the [methodName] parameter we specify the first part of the method, after the response in the `subMethodName` parameter we give the second part of the method
   ///
   /// Well, in [data] we give the data that needs to be sent to VK
-  CallMethodType callMethod(String methodName) =>
+  _CallMethodType _callMethod(String methodName) =>
       (String subMethodName, Json data) =>
           call("$methodName.$subMethodName", data);
 }

@@ -3,9 +3,9 @@ part of vk_library;
 class Messages {
   final API _api;
 
-  final CallMethodType callMethod;
+  final _CallMethodType _callMethod;
 
-  Messages(this._api) : callMethod = _api.callMethod("messages");
+  Messages(this._api) : _callMethod = _api._callMethod("messages");
 
   /// Adds a new user to the multi-dialog.
   Future<bool> addChatUser({
@@ -13,7 +13,7 @@ class Messages {
     int? userId,
     int? visibleMessagesCount,
   }) async {
-    final data = await callMethod("addChatUser", {
+    final data = await _callMethod("addChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,
       if (visibleMessagesCount != null)
@@ -28,7 +28,7 @@ class Messages {
     required int groupId,
     String? key,
   }) async {
-    final data = await callMethod("allowMessagesFromGroup", {
+    final data = await _callMethod("allowMessagesFromGroup", {
       "group_id": groupId,
       if (key != null) "key": key,
     });
@@ -42,7 +42,7 @@ class Messages {
     String? title,
     int? groupId,
   }) async {
-    final data = await callMethod("createChat", {
+    final data = await _callMethod("createChat", {
       if (userIds != null) "user_ids": userIds.join(","),
       if (title != null) "title": title,
       if (groupId != null) "group_id": groupId
@@ -60,7 +60,7 @@ class Messages {
     int? peerId,
     List<int>? conversationMessageIds,
   }) {
-    return callMethod("delete", {
+    return _callMethod("delete", {
       if (messagesIds != null) "messages_ids": messagesIds.join(","),
       if (spam != null) "spam": spam,
       if (groupId != null) "group_id": groupId,
@@ -76,7 +76,7 @@ class Messages {
     required int chatId,
     int? groupId,
   }) async {
-    final data = await callMethod("deleteChatPhoto", {
+    final data = await _callMethod("deleteChatPhoto", {
       "chat_id": chatId,
       if (groupId != null) "group_id": groupId,
     });
@@ -90,7 +90,7 @@ class Messages {
     int? peerId,
     int? groupId,
   }) async {
-    final data = await callMethod("deleteConversation", {
+    final data = await _callMethod("deleteConversation", {
       if (userId != null) "user_id": userId,
       if (peerId != null) "peer_id": peerId,
       if (groupId != null) "group_id": groupId
@@ -101,7 +101,7 @@ class Messages {
 
   /// Allows you to prevent sending messages from the community to the current user.
   Future<bool> denyMessagesFromGroup({required int groupId}) async {
-    final data = await callMethod("denyMessagesFromGroup", {
+    final data = await _callMethod("denyMessagesFromGroup", {
       "group_id": groupId,
     });
 
@@ -124,7 +124,7 @@ class Messages {
     dynamic template,
     dynamic keyboard,
   }) async {
-    final data = await callMethod("edit", {
+    final data = await _callMethod("edit", {
       "peer_id": peerId,
       if (message != null) "message": message,
       if (lat != null) "lat": lat,
@@ -147,7 +147,7 @@ class Messages {
 
   /// Changes the name of the conversation.
   Future<bool> editChat({required int chatId, String? title}) async {
-    final data = await callMethod("editChat", {
+    final data = await _callMethod("editChat", {
       "chat_id": chatId,
       if (title != null) "title": title,
     });
@@ -163,7 +163,7 @@ class Messages {
     List<String>? fields,
     int? groupId,
   }) async {
-    final data = await callMethod("getByConversationMessageId", {
+    final data = await _callMethod("getByConversationMessageId", {
       "peer_id": peerId,
       if (conversationMessageIds != null)
         "conversation_message_ids": conversationMessageIds.join(","),
@@ -183,7 +183,7 @@ class Messages {
     List<String>? fields,
     int? groupId,
   }) async {
-    final data = await callMethod("getById", {
+    final data = await _callMethod("getById", {
       "message_ids": messageIds,
       if (previewLength != null) "preview_length": previewLength,
       if (extended != null) "extended": extended,
@@ -201,7 +201,7 @@ class Messages {
     List<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await callMethod("getChat", {
+    final data = await _callMethod("getChat", {
       if (chatId != null) "chat_id": chatId,
       if (chatIds != null) "chat_ids": chatIds,
       if (fields != null) "fields": fields,
@@ -217,7 +217,7 @@ class Messages {
     String? link,
     List<String>? fields,
   }) async {
-    final data = await callMethod("getChatPreview", {
+    final data = await _callMethod("getChatPreview", {
       if (peerId != null) "peer_id": peerId,
       if (link != null) "link": link,
       if (fields != null) "fields": fields.join(","),
@@ -235,7 +235,7 @@ class Messages {
     List<String>? fields,
     int? groupId,
   }) async {
-    final data = await callMethod("getConversationMembers", {
+    final data = await _callMethod("getConversationMembers", {
       "peer_id": peerId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -251,7 +251,7 @@ class Messages {
   Future<Json> getConversations({
     List<String>? fields,
   }) async {
-    final data = await callMethod("getConversations", {
+    final data = await _callMethod("getConversations", {
       if (fields != null) "fields": fields.join(","),
     });
 
@@ -265,7 +265,7 @@ class Messages {
     List<String>? fields,
     int? groupId,
   }) async {
-    final data = await callMethod("getConversationsById", {
+    final data = await _callMethod("getConversationsById", {
       "peer_ids": peerIds,
       if (extended != null) "extended": extended,
       if (fields != null) "fields": fields.join(","),
@@ -287,7 +287,7 @@ class Messages {
     List<String>? fields,
     int? groupId,
   }) async {
-    final data = await callMethod("getHistory", {
+    final data = await _callMethod("getHistory", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (userId != null) "user_id": userId,
@@ -314,7 +314,7 @@ class Messages {
     bool? preserveOrder,
     int? maxForwardsLevel,
   }) async {
-    final data = await callMethod("getHistoryAttachments", {
+    final data = await _callMethod("getHistoryAttachments", {
       "peer_id": peerId,
       if (mediaType != null) "media_type": mediaTypeString[mediaType],
       if (startFrom != null) "start_from": startFrom,
@@ -339,7 +339,7 @@ class Messages {
     bool? extended,
     int? groupId,
   }) async {
-    final data = await callMethod("getImportantMessages", {
+    final data = await _callMethod("getImportantMessages", {
       if (count != null) "count": count,
       if (offset != null) "offset": offset,
       if (startMessageId != null) "start_message_id": startMessageId,
@@ -364,7 +364,7 @@ class Messages {
     NameCase? nameCase,
     List<String>? fields,
   }) async {
-    final data = await callMethod("getIntentUsers", {
+    final data = await _callMethod("getIntentUsers", {
       "intent": _intentString[intent],
       if (subscribeId != null) "subscribe_id": subscribeId,
       if (offset != null) "offset": offset,
@@ -385,7 +385,7 @@ class Messages {
     bool? reset,
     int? groupId,
   }) async {
-    final data = await callMethod("getInviteLink", {
+    final data = await _callMethod("getInviteLink", {
       "peer_id": peerId,
       if (reset != null) "reset": reset,
       if (groupId != null) "group_id": groupId,
@@ -398,7 +398,7 @@ class Messages {
   Future<Json> getLastActivity({
     required int userId,
   }) async {
-    final data = await callMethod("getLastActivity", {"user_id": userId});
+    final data = await _callMethod("getLastActivity", {"user_id": userId});
 
     return data.response;
   }
@@ -420,7 +420,7 @@ class Messages {
     int? lastN,
     bool? credentials,
   }) async {
-    final data = await callMethod("getLongPollHistory", {
+    final data = await _callMethod("getLongPollHistory", {
       if (ts != null) "ts": ts,
       if (pts != null) "pts": pts,
       if (previewLength != null) "preview_length": previewLength,
@@ -446,7 +446,7 @@ class Messages {
     int? groupId,
     int? lpVersion,
   }) async {
-    final data = await callMethod("getLongPollServer", {
+    final data = await _callMethod("getLongPollServer", {
       if (needPts != null) "need_pts": needPts,
       if (groupId != null) "group_id": groupId,
       if (lpVersion != null) "lp_version": lpVersion,
@@ -460,7 +460,7 @@ class Messages {
     required int groupId,
     required int userId,
   }) async {
-    final data = await callMethod("isMessagesFromGroupAllowed", {
+    final data = await _callMethod("isMessagesFromGroupAllowed", {
       "group_id": groupId,
       "user_id": userId,
     });
@@ -472,7 +472,7 @@ class Messages {
   Future<Json> joinChatByInviteLink({
     required String link,
   }) async {
-    final data = await callMethod("joinChatByInviteLink", {"link": link});
+    final data = await _callMethod("joinChatByInviteLink", {"link": link});
 
     return data.response;
   }
@@ -483,7 +483,7 @@ class Messages {
     bool? answered,
     int? groupId,
   }) async {
-    final data = await callMethod("markAsAnsweredConversation", {
+    final data = await _callMethod("markAsAnsweredConversation", {
       "peer_id": peerId,
       if (answered != null) "answered": answered,
       if (groupId != null) "group_id": groupId,
@@ -497,7 +497,7 @@ class Messages {
     List<int>? messageIds,
     bool? important,
   }) async {
-    final data = await callMethod("markAsImportant", {
+    final data = await _callMethod("markAsImportant", {
       if (messageIds != null) "message_ids": messageIds.join(","),
       if (important != null) "important": important ? 1 : 0,
     });
@@ -511,7 +511,7 @@ class Messages {
     bool? important,
     int? groupId,
   }) async {
-    final data = await callMethod("markAsImportantConversation", {
+    final data = await _callMethod("markAsImportantConversation", {
       "peer_id": peerId,
       if (important != null) "important": important,
       if (groupId != null) "group_id": groupId,
@@ -528,7 +528,7 @@ class Messages {
     int? groupId,
     bool? markConversationAsRead,
   }) async {
-    final data = await callMethod("markAsRead", {
+    final data = await _callMethod("markAsRead", {
       if (messageIds != null) "message_ids": messageIds.join(","),
       if (peerId != null) "peer_id": peerId,
       if (startMessageId != null) "start_message_id": startMessageId,
@@ -546,7 +546,7 @@ class Messages {
     int? messageId,
     int? conversationMessageId,
   }) async {
-    final data = await callMethod("pin", {
+    final data = await _callMethod("pin", {
       "peer_id": peerId,
       if (messageId != null) "message_id": messageId,
       if (conversationMessageId != null)
@@ -564,7 +564,7 @@ class Messages {
     int? userId,
     int? memberId,
   }) async {
-    final data = await callMethod("removeChatUser", {
+    final data = await _callMethod("removeChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,
       if (memberId != null) "member_id": memberId,
@@ -575,7 +575,7 @@ class Messages {
 
   /// Recovers deleted message.
   Future<bool> restore({required int messageId, int? groupId}) async {
-    final data = await callMethod("restore", {
+    final data = await _callMethod("restore", {
       "message_id": messageId,
       if (groupId != null) "group_id": groupId,
     });
@@ -595,7 +595,7 @@ class Messages {
     List<String>? fields,
     int? groupId,
   }) async {
-    final data = await callMethod("search", {
+    final data = await _callMethod("search", {
       if (q != null) "q": q,
       if (peerId != null) "peer_id": peerId,
       if (date != null) "date": date,
@@ -618,7 +618,7 @@ class Messages {
     List<String>? fields,
     int? group_id,
   }) async {
-    final data = await callMethod("searchConversations", {
+    final data = await _callMethod("searchConversations", {
       if (q != null) "q": q,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
@@ -659,7 +659,7 @@ class Messages {
     int? subscribeId,
     int? randomId,
   }) {
-    return callMethod("send", {
+    return _callMethod("send", {
       if (userId != null) "user_id": userId,
       if (peerId != null) "peer_id": peerId,
       if (peerIds != null) "peer_ids": peerIds,
@@ -693,7 +693,7 @@ class Messages {
     required int peerId,
     dynamic eventData,
   }) async {
-    final data = await callMethod("sendMessageEventAnswer", {
+    final data = await _callMethod("sendMessageEventAnswer", {
       "event_id": eventId,
       "user_id": userId,
       "peer_id": peerId,
@@ -710,7 +710,7 @@ class Messages {
     int? peerId,
     int? groupId,
   }) async {
-    final data = await callMethod("setActivity", {
+    final data = await _callMethod("setActivity", {
       if (userId != null) "user_id": userId,
       if (type != null) "type": _messagesSetActivityType[type],
       if (peerId != null) "peer_id": peerId,
@@ -724,14 +724,14 @@ class Messages {
   Future<Json> setChatPhoto({
     required String file,
   }) async {
-    final data = await callMethod("setChatPhoto", {"file": file});
+    final data = await _callMethod("setChatPhoto", {"file": file});
 
     return data.response;
   }
 
   /// Detaches the message.
   Future<bool> unpin({required int peerId, int? groupId}) async {
-    final data = await callMethod("unpin", {
+    final data = await _callMethod("unpin", {
       "peer_id": peerId,
       if (groupId != null) "group_id": groupId,
     });
