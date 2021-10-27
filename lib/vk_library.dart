@@ -11,7 +11,10 @@ import "package:yaml/yaml.dart";
 
 part "src/api.dart";
 part "src/api_exception.dart";
+// Enums
+part "src/enums/media_type.dart";
 part "src/language.dart";
+// Models
 part "src/models/api/messages.dart";
 part "src/models/call.dart";
 part "src/models/methods/params/messages/forward.dart";

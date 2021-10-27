@@ -306,8 +306,7 @@ class Messages {
   /// Returns the materials of a dialogue or conversation.
   Future<Json> getHistoryAttachments({
     required int peerId,
-    /// TODO: Implement the enum.
-    String? mediaType,
+    MediaType? mediaType,
     String? startFrom,
     int? count,
     bool? photoSizes,
@@ -318,7 +317,7 @@ class Messages {
   }) async {
     final data = await callMethod("getHistoryAttachments", {
       "peer_id": peerId,
-      if (mediaType != null) "media_type": mediaType,
+      if (mediaType != null) "media_type": mediaTypeString[mediaType],
       if (startFrom != null) "start_from": startFrom,
       if (count != null) "count": count,
       if (photoSizes != null) "photo_sizes": photoSizes,
