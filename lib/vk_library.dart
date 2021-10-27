@@ -10,11 +10,13 @@ import "package:path/path.dart" as p;
 import "package:yaml/yaml.dart";
 
 part "src/api.dart";
-part "src/api_exception.dart";
 // Enums
 part "src/enums/language.dart";
 part "src/enums/media_type.dart";
 part "src/enums/vk_config_file_type.dart";
+// Exceptions
+part "src/exceptions/api_exception.dart";
+part "src/exceptions/vk_config_file_exception.dart";
 // Models
 part "src/models/api/messages.dart";
 part "src/models/call.dart";
