@@ -159,6 +159,7 @@ class Messages {
     required int peerId,
     List<int>? conversationMessageIds,
     bool? extended,
+    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
     List<String>? fields,
     int? groupId,
   }) async {
@@ -179,6 +180,7 @@ class Messages {
     required List<int> messageIds,
     int? previewLength,
     bool? extended,
+    // TODO: Make enum for this parameter, sources - https://vk.com/dev/objects/user and https://vk.com/dev/objects/group (only additional fields)
     List<String>? fields,
     int? groupId,
   }) async {
@@ -197,6 +199,7 @@ class Messages {
   Future<Json> getChat({
     int? chatId,
     List<int>? chatIds,
+    // TODO: Implement enum, source - https://vk.com/dev/messages.getChat
     List<String>? fields,
     NameCase? nameCase,
   }) async {
@@ -214,6 +217,7 @@ class Messages {
   Future<Json> getChatPreview({
     int? peerId,
     String? link,
+    // TODO: Implement enum, source - https://vk.com/dev/objects/user
     List<String>? fields,
   }) async {
     final data = await _callMethod("getChatPreview", {
@@ -231,6 +235,7 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
+    // TODO: Implement enum, sources in the `messages.getById` method
     List<String>? fields,
     int? groupId,
   }) async {
@@ -248,6 +253,7 @@ class Messages {
 
   /// Returns a list of the user's conversations.
   Future<Json> getConversations({
+    // TODO: Implement enum, sources in the `messages.getById` method
     List<String>? fields,
   }) async {
     final data = await _callMethod("getConversations", {
@@ -261,6 +267,7 @@ class Messages {
   Future<Json> getConversationsById({
     required List<int> peerIds,
     bool? extended,
+    // TODO: Implement enum, sources in the `messages.getById` method
     List<String>? fields,
     int? groupId,
   }) async {
@@ -283,6 +290,7 @@ class Messages {
     int? startMessageId,
     int? rev,
     bool? extended,
+    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
     List<String>? fields,
     int? groupId,
   }) async {
@@ -308,6 +316,7 @@ class Messages {
     String? startFrom,
     int? count,
     bool? photoSizes,
+    // TODO: Implement enum, sources in the `messages.getById` method
     List<String>? fields,
     int? groupId,
     bool? preserveOrder,
@@ -334,6 +343,7 @@ class Messages {
     int? offset,
     int? startMessageId,
     int? previewLength,
+    // TODO: Implement enum, sources in the `messages.getById` method
     List<String>? fields,
     bool? extended,
     int? groupId,
@@ -361,6 +371,7 @@ class Messages {
     int? count,
     bool? extended,
     NameCase? nameCase,
+    // TODO: Implement enum, the same as in the `messages.getChatPreview` method. Well, or here - https://vk.com/dev/messages.getIntentUsers
     List<String>? fields,
   }) async {
     final data = await _callMethod("getIntentUsers", {
@@ -410,6 +421,7 @@ class Messages {
     int? pts,
     int? previewLength,
     bool? onlines,
+    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
     List<String>? fields,
     int? eventsLimit,
     int? msgsLimit,
@@ -591,6 +603,7 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
+    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
     List<String>? fields,
     int? groupId,
   }) async {
@@ -614,6 +627,7 @@ class Messages {
     String? q,
     int? count,
     bool? extended,
+    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
     List<String>? fields,
     int? group_id,
   }) async {
