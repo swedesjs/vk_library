@@ -357,8 +357,7 @@ class Messages {
   ///
   /// https://vk.com/dev/bots_reply_rules
   Future<Json> getIntentUsers({
-    /// TODO: Implement the enum.
-    required String intent,
+    required Intent intent,
     int? subscribeId,
     int? offset,
     int? count,
@@ -368,7 +367,7 @@ class Messages {
     List<String>? fields,
   }) async {
     final data = await callMethod("getIntentUsers", {
-      "intent": intent,
+      "intent": _intentString[intent],
       if (subscribeId != null) "subscribe_id": subscribeId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,

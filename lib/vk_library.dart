@@ -14,6 +14,7 @@ part "src/api.dart";
 part "src/enums/language.dart";
 part "src/enums/media_type.dart";
 part "src/enums/vk_config_file_type.dart";
+part "src/enums/intent.dart";
 // Exceptions
 part "src/exceptions/api_exception.dart";
 part "src/exceptions/vk_config_file_exception.dart";
