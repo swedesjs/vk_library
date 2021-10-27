@@ -14,6 +14,7 @@ part "src/api.dart";
 part "src/enums/intent.dart";
 part "src/enums/language.dart";
 part "src/enums/media_type.dart";
+part "src/enums/messages_set_activity_type.dart";
 part "src/enums/name_case.dart";
 part "src/enums/vk_config_file_type.dart";
 // Exceptions

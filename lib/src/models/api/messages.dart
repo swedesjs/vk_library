@@ -706,14 +706,13 @@ class Messages {
   /// Changes the status of the user's typing in the dialog.
   Future<bool> setActivity({
     int? userId,
-    // TODO: Implement the enum.
-    String? type,
+    MessagesSetActivityType? type,
     int? peerId,
     int? groupId,
   }) async {
     final data = await callMethod("setActivity", {
       if (userId != null) "user_id": userId,
-      if (type != null) "type": type,
+      if (type != null) "type": _messagesSetActivityType[type],
       if (peerId != null) "peer_id": peerId,
       if (groupId != null) "group_id": groupId,
     });
