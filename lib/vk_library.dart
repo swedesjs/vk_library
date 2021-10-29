@@ -23,6 +23,7 @@ part "src/exceptions/vk_config_file_exception.dart";
 /// Fields
 part "src/fields/community_object_fields.dart";
 part "src/fields/fields.dart";
+part "src/fields/messages_get_chat_fields.dart";
 part "src/fields/user_object_fields.dart";
 part "src/fields/user_or_community_object_fields.dart";
 // Models

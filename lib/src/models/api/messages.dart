@@ -197,8 +197,7 @@ class Messages {
   Future<Json> getChat({
     int? chatId,
     List<int>? chatIds,
-    // TODO: Implement enum, source - https://vk.com/dev/messages.getChat
-    List<String>? fields,
+    List<MessagesGetChatFields>? fields,
     NameCase? nameCase,
   }) async {
     final data = await _callMethod("getChat", {
