@@ -204,5 +204,37 @@ class UserObjectFields extends Fields implements UserOrCommunityObjectFields {
   /// Family status.
   static const RELATIO = UserObjectFields._("relatio");
 
+  /// List of schools the user attended.
+  static const SCHOOLS = UserObjectFields._("schools");
+
+  /// The short name of the page.
+  static const SCREEN_NAME = UserObjectFields._("screen_name");
+
+  /// User gender.
+  static const SEX = UserObjectFields._("sex");
+
+  /// The site address specified in the profile.
+  static const SITE = UserObjectFields._("site");
+
+  /// User status.
+  static const STATUS = UserObjectFields._("status");
+
+  /// Time zone.
+  static const TIMEZONE = UserObjectFields._("timezone");
+
+  /// Information about whether there is a `light` on the user's page.
+  static const TRENDING = UserObjectFields._("trending");
+
+  /// Favorite TV shows.
+  static const TV = UserObjectFields._("tv");
+
+  /// List of universities where the user studied.
+  static const UNIVERSITIES = UserObjectFields._("universities");
+
+  /// Does the user have verification?
+  static const VERIFIED = UserObjectFields._("verified");
+
+  /// Default wall mode.
+  static const WALL_DEFAULT = UserObjectFields._("wall_default");
   const UserObjectFields._(String fields) : super._(fields);
 }
