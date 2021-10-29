@@ -1,7 +1,7 @@
 part of vk_library;
 
 /// The class is an enumeration of optional fields from the [user](https://vk.com/dev/objects/user) object.
-class UserObjectFields extends Fields {
+class UserObjectFields extends Fields implements UserOrCommunityObjectFields {
   /// Content of the field `About me` from the profile.
   static const ABOUT = UserObjectFields._("about");
 

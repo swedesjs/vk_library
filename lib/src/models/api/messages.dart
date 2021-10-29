@@ -179,8 +179,7 @@ class Messages {
     required List<int> messageIds,
     int? previewLength,
     bool? extended,
-    // TODO: Make enum for this parameter, sources - https://vk.com/dev/objects/user and https://vk.com/dev/objects/group (only additional fields)
-    List<String>? fields,
+    List<UserOrCommunityObjectFields>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getById", {
@@ -233,8 +232,7 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
-    // TODO: Implement enum, sources in the `messages.getById` method
-    List<String>? fields,
+    List<UserOrCommunityObjectFields>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getConversationMembers", {
@@ -251,8 +249,7 @@ class Messages {
 
   /// Returns a list of the user's conversations.
   Future<Json> getConversations({
-    // TODO: Implement enum, sources in the `messages.getById` method
-    List<String>? fields,
+    List<UserOrCommunityObjectFields>? fields,
   }) async {
     final data = await _callMethod("getConversations", {
       if (fields != null) "fields": fields.join(","),
@@ -265,8 +262,7 @@ class Messages {
   Future<Json> getConversationsById({
     required List<int> peerIds,
     bool? extended,
-    // TODO: Implement enum, sources in the `messages.getById` method
-    List<String>? fields,
+    List<UserOrCommunityObjectFields>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getConversationsById", {
@@ -313,8 +309,7 @@ class Messages {
     String? startFrom,
     int? count,
     bool? photoSizes,
-    // TODO: Implement enum, sources in the `messages.getById` method
-    List<String>? fields,
+    List<UserOrCommunityObjectFields>? fields,
     int? groupId,
     bool? preserveOrder,
     int? maxForwardsLevel,
@@ -340,8 +335,7 @@ class Messages {
     int? offset,
     int? startMessageId,
     int? previewLength,
-    // TODO: Implement enum, sources in the `messages.getById` method
-    List<String>? fields,
+    List<UserOrCommunityObjectFields>? fields,
     bool? extended,
     int? groupId,
   }) async {
@@ -368,8 +362,7 @@ class Messages {
     int? count,
     bool? extended,
     NameCase? nameCase,
-    // TODO: Implement enum, the same as in the `messages.getChatPreview` method. Well, or here - https://vk.com/dev/messages.getIntentUsers
-    List<String>? fields,
+    List<UserObjectFields>? fields,
   }) async {
     final data = await _callMethod("getIntentUsers", {
       "intent": _intentString[intent],
