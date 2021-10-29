@@ -20,6 +20,9 @@ part "src/enums/vk_config_file_type.dart";
 // Exceptions
 part "src/exceptions/api_exception.dart";
 part "src/exceptions/vk_config_file_exception.dart";
+/// Fields
+part "src/fields/fields.dart";
+part "src/fields/user_object_fields.dart";
 // Models
 part "src/models/api/messages.dart";
 part "src/models/call.dart";

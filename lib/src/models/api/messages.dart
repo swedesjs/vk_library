@@ -159,8 +159,7 @@ class Messages {
     required int peerId,
     List<int>? conversationMessageIds,
     bool? extended,
-    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
-    List<String>? fields,
+    List<UserObjectFields>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getByConversationMessageId", {
@@ -217,8 +216,7 @@ class Messages {
   Future<Json> getChatPreview({
     int? peerId,
     String? link,
-    // TODO: Implement enum, source - https://vk.com/dev/objects/user
-    List<String>? fields,
+    List<UserObjectFields>? fields,
   }) async {
     final data = await _callMethod("getChatPreview", {
       if (peerId != null) "peer_id": peerId,
@@ -290,8 +288,7 @@ class Messages {
     int? startMessageId,
     int? rev,
     bool? extended,
-    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
-    List<String>? fields,
+    List<UserObjectFields>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getHistory", {
@@ -421,8 +418,7 @@ class Messages {
     int? pts,
     int? previewLength,
     bool? onlines,
-    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
-    List<String>? fields,
+    List<UserObjectFields>? fields,
     int? eventsLimit,
     int? msgsLimit,
     int? maxMsgId,
@@ -603,8 +599,7 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
-    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
-    List<String>? fields,
+    List<UserObjectFields>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("search", {
@@ -627,8 +622,7 @@ class Messages {
     String? q,
     int? count,
     bool? extended,
-    // TODO: Implement enum, the same as in the `messages.getChatPreview` method
-    List<String>? fields,
+    List<UserObjectFields>? fields,
     int? group_id,
   }) async {
     final data = await _callMethod("searchConversations", {
