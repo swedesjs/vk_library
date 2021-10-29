@@ -9,7 +9,6 @@ enum MessagesSetActivityType {
   AUDIOMESSAGE
 }
 
-const _messagesSetActivityType = <MessagesSetActivityType, String>{
-  MessagesSetActivityType.TYPING: "typing",
-  MessagesSetActivityType.AUDIOMESSAGE: "audiomessage"
-};
+extension _MessagesSetActivityType on MessagesSetActivityType {
+  String stringValue() => _stringValue(this);
+}

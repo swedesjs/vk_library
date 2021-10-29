@@ -21,11 +21,6 @@ enum NameCase {
   ABL
 }
 
-const _nameCaseString = <NameCase, String>{
-  NameCase.NOM: "nom",
-  NameCase.GEN: "gen",
-  NameCase.DAT: "dat",
-  NameCase.ACC: "acc",
-  NameCase.INS: "ins",
-  NameCase.ABL: "abl"
-};
+extension _NameCase on NameCase {
+  String stringValue() => _stringValue(this);
+}

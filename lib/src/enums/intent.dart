@@ -12,8 +12,6 @@ enum Intent {
   CONFIRMED_NOTIFICATION,
 }
 
-const _intentString = <Intent, String>{
-  Intent.PROMO_NEWSLETTER: "promo_newsletter",
-  Intent.NON_PROMO_NEWSLETTER: "non_promo_newsletter",
-  Intent.CONFIRMED_NOTIFICATION: "confirmed_notification"
-};
+extension _Intent on Intent {
+  String stringValue() => _stringValue(this);
+}

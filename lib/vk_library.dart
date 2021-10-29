@@ -33,3 +33,4 @@ part "src/models/methods/params/messages/forward.dart";
 //
 part "src/typedef.dart";
 part "src/vk.dart";
+part "src/enums/_utils.dart";
