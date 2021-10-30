@@ -29,10 +29,14 @@ class API {
   /// Field for calling methods [Users]
   late Users users;
 
+  /// Field for calling methods [Utils]
+  late Utils utils;
+
   /// Will create an instance of the [API] class by which you can access the api, specifying the token, api version and language
   API(this._token, this._version, this._language) {
     messages = Messages(this);
     users = Users(this);
+    utils = Utils(this);
   }
 
   /// The method sends a request to VK, and in case of an error, throws an exception [APIException]
@@ -74,7 +78,7 @@ class API {
   /// ```dart
   /// final users = api.callMethod("users");
   ///
-  /// final response = await users("get",const {"user_id": 1});
+  /// final response = await users("get", const {"user_id": 1});
   /// print(response);
   /// ```
   /// The method returns a function to call.
