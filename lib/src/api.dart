@@ -97,4 +97,12 @@ class API {
   _CallMethodType _callMethod(String methodName) =>
       (String subMethodName, Json data) =>
           call("$methodName.$subMethodName", data);
+
+  /// A generic method that allows you to run a sequence of other methods, storing and filtering intermediate results.
+  Future<Call> execute({String? code, int? func_v}) async {
+    return call("execute", {
+      if (code != null) "code": code,
+      if (func_v != null) "func_v": func_v,
+    });
+  }
 }
