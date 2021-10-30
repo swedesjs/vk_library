@@ -28,6 +28,7 @@ part "src/fields/user_object_fields.dart";
 part "src/fields/user_or_community_object_fields.dart";
 // Models
 part "src/models/api/messages.dart";
+part "src/models/api/users.dart";
 part "src/models/call.dart";
 part "src/models/methods/params/messages/forward.dart";
 //
