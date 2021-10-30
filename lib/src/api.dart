@@ -35,12 +35,16 @@ class API {
   /// Field for calling methods [Status]
   late Status status;
 
+  /// Field for calling methods [Store]
+  late Store store;
+
   /// Will create an instance of the [API] class by which you can access the api, specifying the token, api version and language
   API(this._token, this._version, this._language) {
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
     status = Status(this);
+    store = Store(this);
   }
 
   /// The method sends a request to VK, and in case of an error, throws an exception [APIException]
