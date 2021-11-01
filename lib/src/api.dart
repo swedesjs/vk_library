@@ -22,9 +22,12 @@ class API {
 
   /// Language
   final Language _language;
-  
+
   /// Field for calling methods [Account]
   late Account account;
+
+  /// Field for calling methods [Ads]
+  late Ads ads;
 
   /// Field for calling methods [Messages]
   late Messages messages;
@@ -44,6 +47,7 @@ class API {
   /// Will create an instance of the [API] class by which you can access the api, specifying the token, api version and language
   API(this._token, this._version, this._language) {
     account = Account(this);
+    ads = Ads(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
