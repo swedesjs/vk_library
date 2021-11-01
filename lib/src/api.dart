@@ -28,7 +28,8 @@ class API {
 
   /// Field for calling methods [Ads]
   late Ads ads;
-
+  /// Field for calling methods [Apps]
+late Apps apps;
   /// Field for calling methods [Messages]
   late Messages messages;
 
@@ -48,6 +49,7 @@ class API {
   API(this._token, this._version, this._language) {
     account = Account(this);
     ads = Ads(this);
+    apps = Apps(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
