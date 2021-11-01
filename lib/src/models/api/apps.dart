@@ -16,23 +16,23 @@ class Apps {
 
   /// Returns data about the requested application.
   Future<Json> get({
-    int? app_id,
-    List<int>? app_ids,
+    int? appId,
+    List<int>? appIds,
     // TODO: Implement the enum - https://vk.com/dev/apps.get
     String? platform,
     bool? extended,
-    bool? return_friends,
+    bool? returnFriends,
     Set<UserObjectFields>? fields,
-    NameCase? name_case,
+    NameCase? nameCase,
   }) async {
     final data = await _callMethod("get", {
-      if (app_id != null) "app_id": app_id,
-      if (app_ids != null) "app_ids": app_ids.join(","),
+      if (appId != null) "app_id": appId,
+      if (appIds != null) "app_ids": appIds.join(","),
       if (platform != null) "platform": platform,
       if (extended != null) "extended": extended,
-      if (return_friends != null) "return_friends": return_friends,
+      if (returnFriends != null) "return_friends": returnFriends,
       if (fields != null) "fields": fields.join(","),
-      if (name_case != null) "name_case": name_case.stringValue()
+      if (nameCase != null) "name_case": nameCase.stringValue()
     });
 
     return data.response;
@@ -47,11 +47,11 @@ class Apps {
     // TODO: Implement the enum - https://vk.com/dev/apps.getCatalog
     String? platform,
     bool? extended,
-    bool? return_friends,
+    bool? returnFriends,
     Set<UserObjectFields>? fields,
-    NameCase? name_case,
+    NameCase? nameCase,
     String? q,
-    int? genre_id,
+    int? genreId,
     // TODO: Implement the enum - https://vk.com/dev/apps.getCatalog
     String? filter,
   }) async {
@@ -61,11 +61,11 @@ class Apps {
       if (count != null) "count": count,
       if (platform != null) "platform": platform,
       if (extended != null) "extended": extended,
-      if (return_friends != null) "return_friends": return_friends,
+      if (returnFriends != null) "return_friends": returnFriends,
       if (fields != null) "fields": fields.join(","),
-      if (name_case != null) "name_case": name_case.stringValue(),
+      if (nameCase != null) "name_case": nameCase.stringValue(),
       if (q != null) "q": q,
-      if (genre_id != null) "genre_id": genre_id,
+      if (genreId != null) "genre_id": genreId,
       if (filter != null) "filter": filter,
     });
 
@@ -108,8 +108,8 @@ class Apps {
     return data.response;
   }
 
-  Future<Json> getMiniAppPolicies({required int app_id}) async {
-    final data = await _callMethod("getMiniAppPolicies", {"app_id": app_id});
+  Future<Json> getMiniAppPolicies({required int appId}) async {
+    final data = await _callMethod("getMiniAppPolicies", {"app_id": appId});
     return data.response;
   }
 
@@ -125,9 +125,9 @@ class Apps {
   }
 
   /// The method returns the number of points the user has in this game.
-  Future<int> getScore({int? user_id}) async {
+  Future<int> getScore({int? userId}) async {
     final data = await _callMethod("getScore", {
-      if (user_id != null) "user_id": user_id,
+      if (userId != null) "user_id": userId,
     });
 
     return data.response;
@@ -136,10 +136,10 @@ class Apps {
   /// Check if the user has a gift in the game.
   ///
   /// Using this method, you can check if the user has a gift in your game, received in one and the platform's promotions
-  Future<bool> promoHasActiveGift({required int promo_id, int? user_id}) async {
+  Future<bool> promoHasActiveGift({required int promoId, int? userId}) async {
     final data = await _callMethod("promoHasActiveGift", {
-      "promo_id": promo_id,
-      if (user_id != null) "user_id": user_id,
+      "promo_id": promoId,
+      if (userId != null) "user_id": userId,
     });
 
     return data.response == 1;
@@ -148,10 +148,10 @@ class Apps {
   /// Use the gift the user received in the promotion.
   ///
   /// This method must be called after issuing an in-game gift to the user, if a positive result was obtained when calling the [promoHasActiveGift] method. (i.e., in one of the mechanics, the user received a gift in your game)
-  Future<bool> promoUseGift({required int promo_id, int? user_id}) async {
+  Future<bool> promoUseGift({required int promoId, int? userId}) async {
     final data = await _callMethod("promoUseGift", {
-      "promo_id": promo_id,
-      if (user_id != null) "user_id": user_id,
+      "promo_id": promoId,
+      if (userId != null) "user_id": userId,
     });
 
     return data.response == 1;
@@ -161,7 +161,7 @@ class Apps {
   ///
   /// The method requires the use of a confirmation window. Sending requests in applications not published in the Mobile Catalog is available only to application administrators.
   Future<int> sendRequest({
-    required int user_id,
+    required int userId,
     String? text,
     // TODO: Implement the enum - https://vk.com/dev/apps.sendRequest
     String? type,
@@ -170,7 +170,7 @@ class Apps {
     bool? separate,
   }) async {
     final data = await _callMethod("sendRequest", {
-      "user_id": user_id,
+      "user_id": userId,
       if (text != null) "text": text,
       if (type != null) "type": type,
       if (name != null) "name": name,
