@@ -28,8 +28,13 @@ class API {
 
   /// Field for calling methods [Ads]
   late Ads ads;
+
   /// Field for calling methods [Apps]
-late Apps apps;
+  late Apps apps;
+
+  /// Field for calling methods [Auth]
+  late Auth auth;
+
   /// Field for calling methods [Messages]
   late Messages messages;
 
@@ -50,6 +55,7 @@ late Apps apps;
     account = Account(this);
     ads = Ads(this);
     apps = Apps(this);
+    auth = Auth(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
