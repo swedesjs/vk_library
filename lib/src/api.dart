@@ -24,31 +24,31 @@ class API {
   final Language _language;
 
   /// Field for calling methods [Account]
-  late Account account;
+  late final Account account;
 
   /// Field for calling methods [Ads]
-  late Ads ads;
+  late final Ads ads;
 
   /// Field for calling methods [Apps]
-  late Apps apps;
+  late final Apps apps;
 
   /// Field for calling methods [Auth]
-  late Auth auth;
+  late final Auth auth;
 
   /// Field for calling methods [Messages]
-  late Messages messages;
+  late final Messages messages;
 
   /// Field for calling methods [Users]
-  late Users users;
+  late final Users users;
 
   /// Field for calling methods [Utils]
-  late Utils utils;
+  late final Utils utils;
 
   /// Field for calling methods [Status]
-  late Status status;
+  late final Status status;
 
   /// Field for calling methods [Store]
-  late Store store;
+  late final Store store;
 
   /// Will create an instance of the [API] class by which you can access the api, specifying the token, api version and language
   API(this._token, this._version, this._language) {
