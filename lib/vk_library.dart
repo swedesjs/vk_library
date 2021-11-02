@@ -40,6 +40,7 @@ part "src/models/api/apps.dart";
 part "src/models/api/auth.dart";
 part "src/models/api/board.dart";
 part "src/models/api/database.dart";
+part "src/models/api/docs.dart";
 part "src/models/api/messages.dart";
 part "src/models/api/status.dart";
 part "src/models/api/store.dart";

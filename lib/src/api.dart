@@ -41,6 +41,9 @@ class API {
   /// Field for calling methods [Database]
   late final Database database;
 
+  /// Field for calling methods [Docs]
+  late final Docs docs;
+
   /// Field for calling methods [Messages]
   late final Messages messages;
 
@@ -64,6 +67,7 @@ class API {
     auth = Auth(this);
     board = Board(this);
     database = Database(this);
+    docs = Docs(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
