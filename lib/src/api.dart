@@ -43,6 +43,8 @@ class API {
 
   /// Field for calling methods [Docs]
   late final Docs docs;
+  /// Field for calling methods [Donut]
+  late final Donut donut;
 
   /// Field for calling methods [Messages]
   late final Messages messages;
@@ -68,6 +70,7 @@ class API {
     board = Board(this);
     database = Database(this);
     docs = Docs(this);
+    donut = Donut(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
