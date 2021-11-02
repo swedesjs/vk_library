@@ -38,6 +38,9 @@ class API {
   /// Field for calling methods [Board]
   late final Board board;
 
+  /// Field for calling methods [Database]
+  late final Database database;
+
   /// Field for calling methods [Messages]
   late final Messages messages;
 
@@ -60,6 +63,7 @@ class API {
     apps = Apps(this);
     auth = Auth(this);
     board = Board(this);
+    database = Database(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
