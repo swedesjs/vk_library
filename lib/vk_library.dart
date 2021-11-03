@@ -37,6 +37,7 @@ part "src/fields/user_or_community_object_fields.dart";
 part "src/models/api/account.dart";
 part "src/models/api/ads.dart";
 part "src/models/api/apps.dart";
+part "src/models/api/appWidgets.dart";
 part "src/models/api/auth.dart";
 part "src/models/api/board.dart";
 part "src/models/api/database.dart";

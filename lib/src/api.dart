@@ -32,6 +32,9 @@ class API {
   /// Field for calling methods [Apps]
   late final Apps apps;
 
+  /// Field for calling methods [AppWidgets]
+  late final AppWidgets appWidgets;
+
   /// Field for calling methods [Auth]
   late final Auth auth;
 
@@ -70,6 +73,7 @@ class API {
     account = Account(this);
     ads = Ads(this);
     apps = Apps(this);
+    appWidgets = AppWidgets(this);
     auth = Auth(this);
     board = Board(this);
     database = Database(this);
