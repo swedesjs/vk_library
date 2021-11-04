@@ -105,7 +105,6 @@ class Friends {
     int? listId,
     int? count,
     int? offset,
-    // TODO: Implement the class fields this parameter - https://vk.com/dev/friends.get
     Set<String>? fields,
     NameCase? nameCase,
     String? ref,
@@ -134,7 +133,6 @@ class Friends {
   /// Returns a list of the user's friends whose phone numbers, validated or specified in the profile, are included in the specified list.
   Future<List<Json>> getByPhones({
     List<String>? phones,
-    // TODO: Implement the class fields this parameter - https://vk.com/dev/friends.getByPhones
     Set<String>? fields,
   }) async {
     final data = await _callMethod("getByPhones", {
@@ -221,7 +219,6 @@ class Friends {
     bool? needViewed,
     bool? suggested,
     String? ref,
-    // TODO: Implement a field class, and figure it out for undocumented bullshit.
     Set<String>? fields,
   }) async {
     final data = await _callMethod("getRequests", {
@@ -245,7 +242,6 @@ class Friends {
     List<String>? filter,
     int? offset,
     int? count,
-    // TODO: implement a field class - https://vk.com/dev/fields.getSuggestions
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
@@ -264,7 +260,6 @@ class Friends {
   Future<Json> search({
     required int userId,
     String? q,
-    // TODO: Implement the field class this parameter - https://vk.com/dev/friends.search
     Set<String>? fields,
     NameCase? nameCase,
     int? offset,

@@ -11,7 +11,7 @@ class Users {
   Future<List<Json>> get({
     int? userId,
     List<int>? userIds,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
     NameCase? nameCase,
   }) async {
     final data = await _callMethod("get", {
@@ -29,7 +29,7 @@ class Users {
     int? userId,
     int? offset,
     int? count,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
     NameCase? nameCase,
   }) async {
     final data = await _callMethod("getFollowers", {
@@ -49,7 +49,7 @@ class Users {
     bool? extended,
     int? offset,
     int? count,
-    List<UserOrCommunityObjectFields>? fields,
+    Set<String>? fields,
   }) async {
     final data = await _callMethod("getSubscriptions", {
       if (userId != null) "user_id": userId,
@@ -85,7 +85,7 @@ class Users {
     int? sort,
     int? offset,
     int? count,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
     int? city,
     int? country,
     String? hometown,

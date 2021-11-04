@@ -111,7 +111,7 @@ class Fave {
     int? tagId,
     int? offset,
     int? count,
-    Set<UserObjectFields>? fields,
+    Set<String>? fields,
     bool? isFromSnackbar,
   }) async {
     final data = await _callMethod("get", {
@@ -133,7 +133,7 @@ class Fave {
     int? count,
     // TODO: Implement the enum this parameter - https://vk.com/dev/fave.getPages
     String? type,
-    Set<UserOrCommunityObjectFields>? fields,
+    Set<String>? fields,
     int? tagId,
   }) async {
     final data = await _callMethod("getPages", {

@@ -159,7 +159,7 @@ class Messages {
     required int peerId,
     List<int>? conversationMessageIds,
     bool? extended,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getByConversationMessageId", {
@@ -179,7 +179,7 @@ class Messages {
     required List<int> messageIds,
     int? previewLength,
     bool? extended,
-    List<UserOrCommunityObjectFields>? fields,
+    Set<String>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getById", {
@@ -197,7 +197,7 @@ class Messages {
   Future<Json> getChat({
     int? chatId,
     List<int>? chatIds,
-    List<MessagesGetChatFields>? fields,
+    Set<String>? fields,
     NameCase? nameCase,
   }) async {
     final data = await _callMethod("getChat", {
@@ -214,7 +214,7 @@ class Messages {
   Future<Json> getChatPreview({
     int? peerId,
     String? link,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
   }) async {
     final data = await _callMethod("getChatPreview", {
       if (peerId != null) "peer_id": peerId,
@@ -231,7 +231,7 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
-    List<UserOrCommunityObjectFields>? fields,
+    Set<String>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getConversationMembers", {
@@ -248,7 +248,7 @@ class Messages {
 
   /// Returns a list of the user's conversations.
   Future<Json> getConversations({
-    List<UserOrCommunityObjectFields>? fields,
+    Set<String>? fields,
   }) async {
     final data = await _callMethod("getConversations", {
       if (fields != null) "fields": fields.join(","),
@@ -261,7 +261,7 @@ class Messages {
   Future<Json> getConversationsById({
     required List<int> peerIds,
     bool? extended,
-    List<UserOrCommunityObjectFields>? fields,
+    Set<String>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getConversationsById", {
@@ -283,7 +283,7 @@ class Messages {
     int? startMessageId,
     int? rev,
     bool? extended,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("getHistory", {
@@ -308,7 +308,7 @@ class Messages {
     String? startFrom,
     int? count,
     bool? photoSizes,
-    List<UserOrCommunityObjectFields>? fields,
+    Set<String>? fields,
     int? groupId,
     bool? preserveOrder,
     int? maxForwardsLevel,
@@ -334,7 +334,7 @@ class Messages {
     int? offset,
     int? startMessageId,
     int? previewLength,
-    List<UserOrCommunityObjectFields>? fields,
+    Set<String>? fields,
     bool? extended,
     int? groupId,
   }) async {
@@ -361,7 +361,7 @@ class Messages {
     int? count,
     bool? extended,
     NameCase? nameCase,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
   }) async {
     final data = await _callMethod("getIntentUsers", {
       "intent": intent.stringValue(),
@@ -410,7 +410,7 @@ class Messages {
     int? pts,
     int? previewLength,
     bool? onlines,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
     int? eventsLimit,
     int? msgsLimit,
     int? maxMsgId,
@@ -591,7 +591,7 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
     int? groupId,
   }) async {
     final data = await _callMethod("search", {
@@ -614,7 +614,7 @@ class Messages {
     String? q,
     int? count,
     bool? extended,
-    List<UserObjectFields>? fields,
+    Set<String>? fields,
     int? group_id,
   }) async {
     final data = await _callMethod("searchConversations", {

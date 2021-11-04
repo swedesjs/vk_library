@@ -25,14 +25,6 @@ part "src/enums/vk_config_file_type.dart";
 part "src/exceptions/api_exception.dart";
 part "src/exceptions/vk_config_file_exception.dart";
 
-/// Fields
-part "src/fields/account/get_info.dart";
-part "src/fields/community_object_fields.dart";
-part "src/fields/fields.dart";
-part "src/fields/messages_get_chat_fields.dart";
-part "src/fields/user_object_fields.dart";
-part "src/fields/user_or_community_object_fields.dart";
-
 // Models
 part "src/models/api/account.dart";
 part "src/models/api/ads.dart";

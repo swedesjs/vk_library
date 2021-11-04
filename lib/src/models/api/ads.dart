@@ -301,7 +301,6 @@ class Ads {
     int? clientId,
     bool? includeDeleted,
     List<int>? campaignIds,
-    // TODO: Implement the class fields this parameter - https://vk.com/dev/ads.getCampaigns
     Set<String>? fields,
   }) async {
     final data = await _callMethod("getCampaigns", {

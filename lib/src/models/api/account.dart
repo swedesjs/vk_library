@@ -76,7 +76,7 @@ class Account {
   }
 
   /// Returns information about the current account.
-  Future<Json> getInfo({List<AccountGetInfoFields>? fields}) async {
+  Future<Json> getInfo({Set<String>? fields}) async {
     final data = await _callMethod("getInfo", {
       if (fields != null) "fields": fields.join(","),
     });

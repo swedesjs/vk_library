@@ -22,7 +22,7 @@ class Apps {
     String? platform,
     bool? extended,
     bool? returnFriends,
-    Set<UserObjectFields>? fields,
+    Set<String>? fields,
     NameCase? nameCase,
   }) async {
     final data = await _callMethod("get", {
@@ -48,7 +48,7 @@ class Apps {
     String? platform,
     bool? extended,
     bool? returnFriends,
-    Set<UserObjectFields>? fields,
+    Set<String>? fields,
     NameCase? nameCase,
     String? q,
     int? genreId,
@@ -79,7 +79,7 @@ class Apps {
     int? offset,
     // TODO: Implement the enum - https://vk.com/dev/apps.getFriendsList
     String? type,
-    Set<UserObjectFields>? fields,
+    Set<String>? fields,
   }) async {
     final data = await _callMethod("getFriendsList", {
       if (extended != null) "extended": extended,

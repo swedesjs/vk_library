@@ -12,7 +12,7 @@ class Donut {
     required int ownerId,
     int? offset,
     int? count,
-    Set<UserObjectFields>? fields,
+    Set<String>? fields,
   }) async {
     final data = await _callMethod("getFriends", {
       "owner_id": ownerId,
@@ -33,7 +33,7 @@ class Donut {
 
   /// Returns information about the user's subscriptions.
   Future<Json> getSubscriptions({
-    Set<UserObjectFields>? fields,
+    Set<String>? fields,
     int? offset,
     int? count,
   }) async {
