@@ -45,6 +45,7 @@ part "src/models/api/docs.dart";
 part "src/models/api/donut.dart";
 part "src/models/api/downloadedGames.dart";
 part "src/models/api/fave.dart";
+part "src/models/api/friends.dart";
 part "src/models/api/messages.dart";
 part "src/models/api/status.dart";
 part "src/models/api/store.dart";
