@@ -53,6 +53,9 @@ class API {
   /// Field for calling methods [DownloadedGames]
   late final DownloadedGames downloadedGames;
 
+  /// Field for calling methods [Fave]
+  late final Fave fave;
+
   /// Field for calling methods [Messages]
   late final Messages messages;
 
@@ -80,6 +83,7 @@ class API {
     docs = Docs(this);
     donut = Donut(this);
     downloadedGames = DownloadedGames(this);
+    fave = Fave(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
