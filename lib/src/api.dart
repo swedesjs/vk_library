@@ -58,8 +58,12 @@ class API {
 
   /// Field for calling methods [Friends]
   late final Friends friends;
+
   /// Field for calling methods [Gifts]
   late final Gifts gifts;
+
+  /// Field for calling methods [Groups]
+  late final Groups groups;
 
   /// Field for calling methods [Messages]
   late final Messages messages;
@@ -91,6 +95,7 @@ class API {
     fave = Fave(this);
     friends = Friends(this);
     gifts = Gifts(this);
+    groups = Groups(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
