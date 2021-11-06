@@ -42,6 +42,7 @@ part "src/models/api/gifts.dart";
 part "src/models/api/groups.dart";
 part "src/models/api/leadForms.dart";
 part "src/models/api/likes.dart";
+part "src/models/api/market.dart";
 part "src/models/api/messages.dart";
 part "src/models/api/status.dart";
 part "src/models/api/store.dart";

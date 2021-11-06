@@ -67,8 +67,13 @@ class API {
 
   /// Field for calling methods [LeadForms]
   late final LeadForms leadForms;
-/// Field for calling methods [Likes]
-late final Likes likes;
+
+  /// Field for calling methods [Likes]
+  late final Likes likes;
+
+  /// Field for calling methods [Market]
+  late final Market market;
+
   /// Field for calling methods [Messages]
   late final Messages messages;
 
@@ -102,6 +107,7 @@ late final Likes likes;
     groups = Groups(this);
     leadForms = LeadForms(this);
     likes = Likes(this);
+    market = Market(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
