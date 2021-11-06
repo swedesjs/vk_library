@@ -65,6 +65,9 @@ class API {
   /// Field for calling methods [Groups]
   late final Groups groups;
 
+  /// Field for calling methods [LeadForms]
+  late final LeadForms leadForms;
+
   /// Field for calling methods [Messages]
   late final Messages messages;
 
@@ -96,6 +99,7 @@ class API {
     friends = Friends(this);
     gifts = Gifts(this);
     groups = Groups(this);
+    leadForms = LeadForms(this);
     messages = Messages(this);
     users = Users(this);
     utils = Utils(this);
