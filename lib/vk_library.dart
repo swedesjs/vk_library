@@ -45,6 +45,7 @@ part "src/models/api/likes.dart";
 part "src/models/api/market.dart";
 part "src/models/api/messages.dart";
 part "src/models/api/newsfeed.dart";
+part "src/models/api/notes.dart";
 part "src/models/api/status.dart";
 part "src/models/api/store.dart";
 part "src/models/api/users.dart";

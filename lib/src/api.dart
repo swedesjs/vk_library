@@ -79,7 +79,8 @@ class API {
 
   /// Field for calling methods [Newsfeed]
   late final Newsfeed newsfeed;
-
+/// Field for calling methods [Notes]
+late final Notes notes;
   /// Field for calling methods [Users]
   late final Users users;
 
@@ -113,6 +114,7 @@ class API {
     market = Market(this);
     messages = Messages(this);
     newsfeed = Newsfeed(this);
+    notes = Notes(this);
     users = Users(this);
     utils = Utils(this);
     status = Status(this);
