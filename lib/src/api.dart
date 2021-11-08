@@ -98,6 +98,9 @@ class API {
   /// Field for calling methods [Podcasts]
   late final Podcasts podcasts;
 
+  /// Field for calling methods [Polls]
+  late final Polls polls;
+
   /// Field for calling methods [Users]
   late final Users users;
 
@@ -137,6 +140,7 @@ class API {
     pages = Pages(this);
     photos = Photos(this);
     podcasts = Podcasts(this);
+    polls = Polls(this);
     users = Users(this);
     utils = Utils(this);
     status = Status(this);
