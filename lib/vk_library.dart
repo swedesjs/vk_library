@@ -52,6 +52,7 @@ part "src/models/api/pages.dart";
 part "src/models/api/photos.dart";
 part "src/models/api/podcasts.dart";
 part "src/models/api/polls.dart";
+part "src/models/api/prettyCards.dart";
 part "src/models/api/status.dart";
 part "src/models/api/store.dart";
 part "src/models/api/users.dart";
