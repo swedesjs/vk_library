@@ -92,13 +92,18 @@ class API {
   /// Field for calling methods [Pages]
   late final Pages pages;
 
+  /// Field for calling methods [Photos]
+  late final Photos photos;
+
+  /// Field for calling methods [Podcasts]
+  late final Podcasts podcasts;
+
   /// Field for calling methods [Users]
   late final Users users;
 
   /// Field for calling methods [Utils]
   late final Utils utils;
-/// Field for calling methods [Photos]
-late final Photos photos;
+
   /// Field for calling methods [Status]
   late final Status status;
 
@@ -131,6 +136,7 @@ late final Photos photos;
     orders = Orders(this);
     pages = Pages(this);
     photos = Photos(this);
+    podcasts = Podcasts(this);
     users = Users(this);
     utils = Utils(this);
     status = Status(this);
