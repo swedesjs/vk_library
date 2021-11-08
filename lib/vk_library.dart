@@ -48,6 +48,7 @@ part "src/models/api/newsfeed.dart";
 part "src/models/api/notes.dart";
 part "src/models/api/notifications.dart";
 part "src/models/api/orders.dart";
+part "src/models/api/pages.dart";
 part "src/models/api/status.dart";
 part "src/models/api/store.dart";
 part "src/models/api/users.dart";
