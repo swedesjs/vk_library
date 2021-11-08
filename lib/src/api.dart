@@ -97,7 +97,8 @@ class API {
 
   /// Field for calling methods [Utils]
   late final Utils utils;
-
+/// Field for calling methods [Photos]
+late final Photos photos;
   /// Field for calling methods [Status]
   late final Status status;
 
@@ -129,6 +130,7 @@ class API {
     notifications = Notifications(this);
     orders = Orders(this);
     pages = Pages(this);
+    photos = Photos(this);
     users = Users(this);
     utils = Utils(this);
     status = Status(this);
