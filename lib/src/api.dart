@@ -104,6 +104,9 @@ class API {
   /// Field for calling methods [PrettyCards]
   late final PrettyCards prettyCards;
 
+  /// Field for calling methods [Search]
+  late final Search search;
+
   /// Field for calling methods [Users]
   late final Users users;
 
@@ -145,6 +148,7 @@ class API {
     podcasts = Podcasts(this);
     polls = Polls(this);
     prettyCards = PrettyCards(this);
+    search = Search(this);
     users = Users(this);
     utils = Utils(this);
     status = Status(this);
