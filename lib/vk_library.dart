@@ -57,6 +57,7 @@ part "src/models/api/search.dart";
 part "src/models/api/secure.dart";
 part "src/models/api/stats.dart";
 part "src/models/api/status.dart";
+part "src/models/api/storage.dart";
 part "src/models/api/store.dart";
 part "src/models/api/users.dart";
 part "src/models/api/utils.dart";

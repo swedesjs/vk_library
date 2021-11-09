@@ -113,14 +113,17 @@ class API {
   /// Field for calling methods [Stats]
   late final Stats stats;
 
+  /// Field for calling methods [Status]
+  late final Status status;
+
+  /// Field for calling methods [Storage]
+  late final Storage storage;
+
   /// Field for calling methods [Users]
   late final Users users;
 
   /// Field for calling methods [Utils]
   late final Utils utils;
-
-  /// Field for calling methods [Status]
-  late final Status status;
 
   /// Field for calling methods [Store]
   late final Store store;
@@ -157,9 +160,10 @@ class API {
     search = Search(this);
     secure = Secure(this);
     stats = Stats(this);
+    status = Status(this);
+    storage = Storage(this);
     users = Users(this);
     utils = Utils(this);
-    status = Status(this);
     store = Store(this);
   }
 
