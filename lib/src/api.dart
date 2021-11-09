@@ -107,6 +107,9 @@ class API {
   /// Field for calling methods [Search]
   late final Search search;
 
+  /// Field for calling methods [Secure]
+  late final Secure secure;
+
   /// Field for calling methods [Users]
   late final Users users;
 
@@ -149,6 +152,7 @@ class API {
     polls = Polls(this);
     prettyCards = PrettyCards(this);
     search = Search(this);
+    secure = Secure(this);
     users = Users(this);
     utils = Utils(this);
     status = Status(this);
