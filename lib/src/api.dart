@@ -125,6 +125,9 @@ class API {
   /// Field for calling methods [Stories]
   late final Stories stories;
 
+  /// Field for calling methods [Streaming]
+  late final Streaming streaming;
+
   /// Field for calling methods [Users]
   late final Users users;
 
@@ -167,6 +170,7 @@ class API {
     storage = Storage(this);
     store = Store(this);
     stories = Stories(this);
+    streaming = Streaming(this);
     users = Users(this);
     utils = Utils(this);
   }
