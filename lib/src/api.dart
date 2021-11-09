@@ -119,14 +119,17 @@ class API {
   /// Field for calling methods [Storage]
   late final Storage storage;
 
+  /// Field for calling methods [Store]
+  late final Store store;
+
+  /// Field for calling methods [Stories]
+  late final Stories stories;
+
   /// Field for calling methods [Users]
   late final Users users;
 
   /// Field for calling methods [Utils]
   late final Utils utils;
-
-  /// Field for calling methods [Store]
-  late final Store store;
 
   /// Will create an instance of the [API] class by which you can access the api, specifying the token, api version and language
   API(this._token, this._version, this._language) {
@@ -162,9 +165,10 @@ class API {
     stats = Stats(this);
     status = Status(this);
     storage = Storage(this);
+    store = Store(this);
+    stories = Stories(this);
     users = Users(this);
     utils = Utils(this);
-    store = Store(this);
   }
 
   /// The method sends a request to VK, and in case of an error, throws an exception [APIException]

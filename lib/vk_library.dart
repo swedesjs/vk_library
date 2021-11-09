@@ -59,6 +59,7 @@ part "src/models/api/stats.dart";
 part "src/models/api/status.dart";
 part "src/models/api/storage.dart";
 part "src/models/api/store.dart";
+part "src/models/api/stories.dart";
 part "src/models/api/users.dart";
 part "src/models/api/utils.dart";
 part "src/models/call.dart";
