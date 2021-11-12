@@ -64,6 +64,7 @@ part "src/models/api/streaming.dart";
 part "src/models/api/users.dart";
 part "src/models/api/utils.dart";
 part "src/models/api/video.dart";
+part "src/models/api/wall.dart";
 part "src/models/call.dart";
 part "src/models/methods/params/messages/forward.dart";
 //
