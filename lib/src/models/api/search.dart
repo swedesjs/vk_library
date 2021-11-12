@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`search`](https://vk.com/dev/search) methods.
 class Search {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Search(this._api);
 

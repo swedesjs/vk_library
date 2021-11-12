@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`notifications`](https://vk.com/dev/notifications) methods.
 class Notifications {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Notifications(this._api);
 

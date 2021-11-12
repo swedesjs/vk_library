@@ -71,7 +71,7 @@ class VK {
     if (token == null) {
       throw const VKConfigFileException("Token not specified!");
     }
-    
+
     if (token is! String) {
       throw const VKConfigFileException("The token is not of type String.");
     }

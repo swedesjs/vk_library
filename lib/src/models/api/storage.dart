@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`storage`](https://vk.com/dev/storage) methods.
 class Storage {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Storage(this._api);
 

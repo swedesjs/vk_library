@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`polls`](https://vk.com/dev/polls) methods.
 class Polls {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Polls(this._api);
 
@@ -165,7 +165,8 @@ class Polls {
 
   /// Saves a photo downloaded to the survey.
   Future<int> savePhoto({required String photo, required String hash}) async {
-    final data = await _api.call("polls.savePhoto", {"photo": photo, "hash": hash});
+    final data =
+        await _api.call("polls.savePhoto", {"photo": photo, "hash": hash});
 
     return data.response;
   }

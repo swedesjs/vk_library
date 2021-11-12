@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`photos`](https://vk.com/dev/photos) methods.
 class Photos {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Photos(this._api);
 

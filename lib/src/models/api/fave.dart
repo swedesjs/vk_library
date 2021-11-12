@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`fave`](https://vk.com/dev/fave) methods.
 class Fave {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Fave(this._api);
 

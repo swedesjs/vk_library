@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`store`](https://vk.com/dev/store) methods.
 class Store {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Store(this._api);
 

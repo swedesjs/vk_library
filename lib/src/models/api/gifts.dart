@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`gifts`](https://vk.com/dev/gifts) methods.
 class Gifts {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Gifts(this._api);
 

@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`likes`](https://vk.com/dev/likes) methods.
 class Likes {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Likes(this._api);
 

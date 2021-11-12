@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`messages`](https://vk.com/dev/messages) methods.
 class Messages {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Messages(this._api);
 
@@ -398,7 +398,8 @@ class Messages {
   Future<Json> getLastActivity({
     required int userId,
   }) async {
-    final data = await _api.call("messages.getLastActivity", {"user_id": userId});
+    final data =
+        await _api.call("messages.getLastActivity", {"user_id": userId});
 
     return data.response;
   }
@@ -472,7 +473,8 @@ class Messages {
   Future<Json> joinChatByInviteLink({
     required String link,
   }) async {
-    final data = await _api.call("messages.joinChatByInviteLink", {"link": link});
+    final data =
+        await _api.call("messages.joinChatByInviteLink", {"link": link});
 
     return data.response;
   }
@@ -580,7 +582,7 @@ class Messages {
       if (groupId != null) "group_id": groupId,
     });
 
-    return data.response  == 1;
+    return data.response == 1;
   }
 
   /// Returns a list of found private messages of the current user based on the entered search string.

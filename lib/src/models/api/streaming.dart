@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`streaming`](https://vk.com/dev/streaming) methods.
 class Streaming {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Streaming(this._api);
 

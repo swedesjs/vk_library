@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`leadForms`](https://vk.com/dev/leadForms) methods.
 class LeadForms {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const LeadForms(this._api);
 

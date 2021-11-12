@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`groups`](https://vk.com/dev/groups) methods.
 class Groups {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Groups(this._api);
 
@@ -577,7 +577,8 @@ class Groups {
 
   /// Returns data for connecting to the Bots Longpoll API.
   Future<Json> getLongPollServer({required int groupId}) async {
-    final data = await _api.call("groups.getLongPollServer", {"group_id": groupId});
+    final data =
+        await _api.call("groups.getLongPollServer", {"group_id": groupId});
 
     return data.response;
   }
@@ -616,7 +617,8 @@ class Groups {
 
   /// Gets information about the `online` status of the community.
   Future<Json> getOnlineStatus({required int groupId}) async {
-    final data = await _api.call("groups.getOnlineStatus", {"group_id": groupId});
+    final data =
+        await _api.call("groups.getOnlineStatus", {"group_id": groupId});
 
     return data.response;
   }

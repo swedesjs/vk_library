@@ -1,4 +1,5 @@
 part of vk_library;
+
 /// Enum for the `filter' parameter in the [Account.getCounters] method.
 enum AccountGetCountersFilter {
   /// New friend requests.

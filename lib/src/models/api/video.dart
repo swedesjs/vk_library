@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`video`](https://vk.com/dev/video) methods.
 class Video {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Video(this._api);
 

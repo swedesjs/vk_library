@@ -46,7 +46,8 @@ class Account {
 
   /// Gets the settings of the current user in this application.
   Future<int> getAppPermissions({required int userId}) async {
-    final data = await _api.call("account.getAppPermissions", {"user_id": userId});
+    final data =
+        await _api.call("account.getAppPermissions", {"user_id": userId});
 
     return data.response;
   }
@@ -67,8 +68,7 @@ class Account {
     int? userId,
   }) async {
     final data = await _api.call("account.getCounters", {
-      if (filter != null)
-        "filter": filter.map((e) => e.value).join(","),
+      if (filter != null) "filter": filter.map((e) => e.value).join(","),
       if (userId != null) "user_id": userId,
     });
 

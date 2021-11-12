@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`wall`](https://vk.com/dev/wall) methods.
 class Wall {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Wall(this._api);
 

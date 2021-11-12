@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`secure`](https://vk.com/dev/secure) methods.
 class Secure {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const Secure(this._api);
 

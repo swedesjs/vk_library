@@ -3,7 +3,7 @@ part of vk_library;
 /// A class for using the [`prettyCards`](https://vk.com/dev/prettyCards) methods.
 class PrettyCards {
   final API _api;
-  
+
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
   const PrettyCards(this._api);
 
