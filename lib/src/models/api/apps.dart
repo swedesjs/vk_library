@@ -2,14 +2,14 @@ part of vk_library;
 
 /// A class for using the [`apps`](https://vk.com/dev/apps) methods.
 class Apps {
-  final _CallMethodType _callMethod;
+  final API _api;
 
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Apps(API api) : _callMethod = api._callMethod("apps");
+  const Apps(this._api);
 
   /// Clears all notifications for requests sent from the current application.
   Future<bool> deleteAppRequests() async {
-    final data = await _callMethod("deleteAppRequests", const {});
+    final data = await _api.call("apps.deleteAppRequests", const {});
 
     return data.response == 1;
   }
@@ -25,7 +25,7 @@ class Apps {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("apps.get", {
       if (appId != null) "app_id": appId,
       if (appIds != null) "app_ids": appIds.join(","),
       if (platform != null) "platform": platform,
@@ -55,7 +55,7 @@ class Apps {
     // TODO: Implement the enum - https://vk.com/dev/apps.getCatalog
     String? filter,
   }) async {
-    final data = await _callMethod("getCatalog", {
+    final data = await _api.call("apps.getCatalog", {
       if (sort != null) "sort": sort,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -81,7 +81,7 @@ class Apps {
     String? type,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getFriendsList", {
+    final data = await _api.call("apps.getFriendsList", {
       if (extended != null) "extended": extended,
       if (count != null) "count": count,
       if (offset != null) "offset": offset,
@@ -99,7 +99,7 @@ class Apps {
     bool? global,
     bool? extended,
   }) async {
-    final data = await _callMethod("getLeaderboard", {
+    final data = await _api.call("apps.getLeaderboard", {
       "type": type,
       if (global != null) "global": global,
       if (extended != null) "extended": extended,
@@ -109,7 +109,7 @@ class Apps {
   }
 
   Future<Json> getMiniAppPolicies({required int appId}) async {
-    final data = await _callMethod("getMiniAppPolicies", {"app_id": appId});
+    final data = await _api.call("apps.getMiniAppPolicies", {"app_id": appId});
     return data.response;
   }
 
@@ -117,7 +117,7 @@ class Apps {
     // TODO: Implement the enum - https://vk.com/dev/apps.getScopes
     String? type,
   }) async {
-    final data = await _callMethod("getScopes", {
+    final data = await _api.call("apps.getScopes", {
       if (type != null) "type": type,
     });
 
@@ -126,7 +126,7 @@ class Apps {
 
   /// The method returns the number of points the user has in this game.
   Future<int> getScore({int? userId}) async {
-    final data = await _callMethod("getScore", {
+    final data = await _api.call("apps.getScore", {
       if (userId != null) "user_id": userId,
     });
 
@@ -137,7 +137,7 @@ class Apps {
   ///
   /// Using this method, you can check if the user has a gift in your game, received in one and the platform's promotions
   Future<bool> promoHasActiveGift({required int promoId, int? userId}) async {
-    final data = await _callMethod("promoHasActiveGift", {
+    final data = await _api.call("apps.promoHasActiveGift", {
       "promo_id": promoId,
       if (userId != null) "user_id": userId,
     });
@@ -149,7 +149,7 @@ class Apps {
   ///
   /// This method must be called after issuing an in-game gift to the user, if a positive result was obtained when calling the [promoHasActiveGift] method. (i.e., in one of the mechanics, the user received a gift in your game)
   Future<bool> promoUseGift({required int promoId, int? userId}) async {
-    final data = await _callMethod("promoUseGift", {
+    final data = await _api.call("apps.promoUseGift", {
       "promo_id": promoId,
       if (userId != null) "user_id": userId,
     });
@@ -169,7 +169,7 @@ class Apps {
     String? key,
     bool? separate,
   }) async {
-    final data = await _callMethod("sendRequest", {
+    final data = await _api.call("apps.sendRequest", {
       "user_id": userId,
       if (text != null) "text": text,
       if (type != null) "type": type,

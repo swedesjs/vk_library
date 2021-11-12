@@ -222,22 +222,6 @@ class API {
     return Call(responseData);
   }
 
-  /// The method for accessing the api vk with this approach:
-  /// ```dart
-  /// final users = api.callMethod("users");
-  ///
-  /// final response = await users("get", const {"user_id": 1});
-  /// print(response);
-  /// ```
-  /// The method returns a function to call.
-  ///
-  /// In the [methodName] parameter we specify the first part of the method, after the response in the `subMethodName` parameter we give the second part of the method
-  ///
-  /// Well, in [data] we give the data that needs to be sent to VK
-  _CallMethodType _callMethod(String methodName) =>
-      (String subMethodName, Json data) =>
-          call("$methodName.$subMethodName", data);
-
   /// A generic method that allows you to run a sequence of other methods, storing and filtering intermediate results.
   Future<Call> execute({String? code, int? func_v}) async {
     return call("execute", {

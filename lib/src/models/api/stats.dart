@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`stats`](https://vk.com/dev/stats) methods.
 class Stats {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Stats(API api) : _callMethod = api._callMethod("stats");
+  const Stats(this._api);
 
   /// Returns community statistics or applications.
   Future<Json> get({
@@ -21,7 +21,7 @@ class Stats {
     List<String>? statsGroups,
     bool? extended,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("stats.get", {
       if (groupId != null) "group_id": groupId,
       if (appId != null) "app_id": appId,
       if (timestampFrom != null) "timestamp_from": timestampFrom,
@@ -41,7 +41,7 @@ class Stats {
     required int ownerId,
     required List<int> postIds,
   }) async {
-    final data = await _callMethod("getPostReach", {
+    final data = await _api.call("stats.getPostReach", {
       "owner_id": ownerId,
       "post_ids": postIds.join(","),
     });
@@ -51,7 +51,7 @@ class Stats {
 
   /// Adds data on the current session to the statistics of the application attendance.
   Future<bool> trackVisitor() async {
-    final data = await _callMethod("trackVisitor", const {});
+    final data = await _api.call("stats.trackVisitor", const {});
 
     return data.response == 1;
   }

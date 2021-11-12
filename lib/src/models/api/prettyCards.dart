@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`prettyCards`](https://vk.com/dev/prettyCards) methods.
 class PrettyCards {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  PrettyCards(API api) : _callMethod = api._callMethod("prettyCards");
+  const PrettyCards(this._api);
 
   /// Creates a carousel card.
   Future<Json> create({
@@ -18,7 +18,7 @@ class PrettyCards {
     // TODO: Implement the enum - https://vk.com/dev/prettyCards.create
     String? button,
   }) async {
-    final data = await _callMethod("create", {
+    final data = await _api.call("prettyCards.create", {
       "owner_id": ownerId,
       "photo": photo,
       "title": title,
@@ -33,7 +33,7 @@ class PrettyCards {
 
   /// Removes a card.
   Future<Json> delete({required int ownerId, required String cardId}) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("prettyCards.delete", {
       "owner_id": ownerId,
       "card_id": cardId,
     });
@@ -52,7 +52,7 @@ class PrettyCards {
     String? priceOld,
     String? button,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("prettyCards.edit", {
       "owner_id": ownerId,
       "card_id": cardId,
       if (photo != null) "photo": photo,
@@ -72,7 +72,7 @@ class PrettyCards {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("prettyCards.get", {
       "owner_id": ownerId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -86,7 +86,7 @@ class PrettyCards {
     required int ownerId,
     required List<int> cardIds,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("prettyCards.getById", {
       "owner_id": ownerId,
       "card_ids": cardIds.join(","),
     });
@@ -96,7 +96,7 @@ class PrettyCards {
 
   /// Returns the URL to download the photo for the card.
   Future<Json> getUploadURL() async {
-    final data = await _callMethod("getUploadURL", const {});
+    final data = await _api.call("prettyCards.getUploadURL", const {});
 
     return data.response;
   }

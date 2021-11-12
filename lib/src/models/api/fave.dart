@@ -2,28 +2,28 @@ part of vk_library;
 
 /// A class for using the [`fave`](https://vk.com/dev/fave) methods.
 class Fave {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Fave(API api) : _callMethod = api._callMethod("fave");
+  const Fave(this._api);
 
   /// Bookmarks the article.
   Future<bool> addArticle({required String url}) async {
-    final data = await _callMethod("addArticle", {"url": url});
+    final data = await _api.call("fave.addArticle", {"url": url});
 
     return data.response == 1;
   }
 
   /// Adds a link to bookmarks.
   Future<bool> addLink({required String link}) async {
-    final data = await _callMethod("addLink", {"link": link});
+    final data = await _api.call("fave.addLink", {"link": link});
 
     return data.response == 1;
   }
 
   /// Add community or user to bookmarks.
   Future<bool> addPage({int? userId, int? groupId}) async {
-    final data = await _callMethod("addPage", {
+    final data = await _api.call("fave.addPage", {
       if (userId != null) "user_id": userId,
       if (groupId != null) "group_id": groupId,
     });
@@ -40,7 +40,7 @@ class Fave {
     String? trackCode,
     String? source,
   }) async {
-    final data = await _callMethod("addPost", {
+    final data = await _api.call("fave.addPost", {
       "owner_id": ownerId,
       "id": id,
       if (accessKey != null) "access_key": accessKey,
@@ -58,7 +58,7 @@ class Fave {
     required int id,
     String? accessKey,
   }) async {
-    final data = await _callMethod("addProduct", {
+    final data = await _api.call("fave.addProduct", {
       "owner_id": ownerId,
       "id": id,
       if (accessKey != null) "access_key": accessKey,
@@ -73,7 +73,7 @@ class Fave {
     // TODO: Implement the enum this parameter - https://vk.com/dev/fave.addTag
     String? position,
   }) async {
-    final data = await _callMethod("addTag", {
+    final data = await _api.call("fave.addTag", {
       if (name != null) "name": name,
       if (position != null) "position": position,
     });
@@ -87,7 +87,7 @@ class Fave {
     required int id,
     String? accessKey,
   }) async {
-    final data = await _callMethod("addVideo", {
+    final data = await _api.call("fave.addVideo", {
       "owner_id": ownerId,
       "id": id,
       if (accessKey != null) "access_key": accessKey,
@@ -98,7 +98,7 @@ class Fave {
 
   /// Edits a label.
   Future<bool> editTag({required int id, required String name}) async {
-    final data = await _callMethod("editTag", {"id": id, "name": name});
+    final data = await _api.call("fave.editTag", {"id": id, "name": name});
 
     return data.response == 1;
   }
@@ -114,7 +114,7 @@ class Fave {
     Set<String>? fields,
     bool? isFromSnackbar,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("fave.get", {
       if (extended != null) "extended": extended,
       if (itemType != null) "item_type": itemType,
       if (tagId != null) "tag_id": tagId,
@@ -136,7 +136,7 @@ class Fave {
     Set<String>? fields,
     int? tagId,
   }) async {
-    final data = await _callMethod("getPages", {
+    final data = await _api.call("fave.getPages", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (type != null) "type": type,
@@ -149,14 +149,14 @@ class Fave {
 
   /// Returns a list of placemarks in bookmarks.
   Future<Json> getTags() async {
-    final data = await _callMethod("getTags", const {});
+    final data = await _api.call("fave.getTags", const {});
 
     return data.response;
   }
 
   /// Marks bookmarks as viewed.
   Future<bool> markSeen() async {
-    final data = await _callMethod("markSeen", const {});
+    final data = await _api.call("fave.markSeen", const {});
 
     return data.response == 1;
   }
@@ -167,7 +167,7 @@ class Fave {
     required int articleId,
     String? ref,
   }) async {
-    final data = await _callMethod("removeArticle", {
+    final data = await _api.call("fave.removeArticle", {
       "owner_id": ownerId,
       "article_id": articleId,
       if (ref != null) "ref": ref,
@@ -178,14 +178,14 @@ class Fave {
 
   /// Removes a link from the user's bookmark list.
   Future<bool> removeLink({int? linkId}) async {
-    final data = await _callMethod("removeLink", {"link_id": linkId});
+    final data = await _api.call("fave.removeLink", {"link_id": linkId});
 
     return data.response == 1;
   }
 
   /// Removes the community or user page from bookmarks.
   Future<bool> removePage({int? userId, int? groupId}) async {
-    final data = await _callMethod("removePage", {
+    final data = await _api.call("fave.removePage", {
       if (userId != null) "user_id": userId,
       if (groupId != null) "group_id": groupId,
     });
@@ -195,7 +195,7 @@ class Fave {
 
   /// Removes an entry on a user's or community's wall from bookmarks.
   Future<bool> removePost({required int ownerId, required int id}) async {
-    final data = await _callMethod("removePost", {
+    final data = await _api.call("fave.removePost", {
       "owner_id": ownerId,
       "id": id,
     });
@@ -205,7 +205,7 @@ class Fave {
 
   /// Removes an item from bookmarks.
   Future<bool> removeProduct({required int ownerId, required int id}) async {
-    final data = await _callMethod("removeProduct", {
+    final data = await _api.call("fave.removeProduct", {
       "owner_id": ownerId,
       "id": id,
     });
@@ -215,14 +215,14 @@ class Fave {
 
   /// Removes the bookmark mark.
   Future<bool> removeTag({required int id}) async {
-    final data = await _callMethod("removeTag", {"id": id});
+    final data = await _api.call("fave.removeTag", {"id": id});
 
     return data.response == 1;
   }
 
   /// Removes the video from the bookmark list.
   Future<bool> removeVideo({required int ownerId, required int id}) async {
-    final data = await _callMethod("removeVideo", {
+    final data = await _api.call("fave.removeVideo", {
       "owner_id": ownerId,
       "id": id,
     });
@@ -232,7 +232,7 @@ class Fave {
 
   /// Changes the order of the bookmark labels in the list.
   Future<bool> reorderTags({required List<int> ids}) async {
-    final data = await _callMethod("reorderTags", {"ids": ids.join(",")});
+    final data = await _api.call("fave.reorderTags", {"ids": ids.join(",")});
 
     return data.response == 1;
   }
@@ -243,7 +243,7 @@ class Fave {
     int? groupId,
     List<int>? tagIds,
   }) async {
-    final data = await _callMethod("setPageTags", {
+    final data = await _api.call("fave.setPageTags", {
       if (userId != null) "user_id": userId,
       if (groupId != null) "group_id": groupId,
       if (tagIds != null) "tag_ids": tagIds.join(","),
@@ -262,7 +262,7 @@ class Fave {
     int? linkId,
     String? linkUrl,
   }) async {
-    final data = await _callMethod("setTags", {
+    final data = await _api.call("fave.setTags", {
       if (itemType != null) "item_type": itemType,
       if (itemOwnerId != null) "item_owner_id": itemOwnerId,
       if (itemId != null) "item_id": itemId,
@@ -276,7 +276,7 @@ class Fave {
 
   /// Sets a user's or community's page to the top bookmarks.
   Future<bool> trackPageInteraction({int? userId, int? groupId}) async {
-    final data = await _callMethod("trackPageInteraction", {
+    final data = await _api.call("fave.trackPageInteraction", {
       if (userId != null) "user_id": userId,
       if (groupId != null) "group_id": groupId,
     });

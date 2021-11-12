@@ -2,14 +2,14 @@ part of vk_library;
 
 /// A class for using the [`pages`](https://vk.com/dev/pages) methods.
 class Pages {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Pages(API api) : _callMethod = api._callMethod("pages");
+  const Pages(this._api);
 
   /// Allows you to clear the cache of individual external pages that can be attached to VKontakte records. After cleaning the cache upon subsequent attachment of the recording link, the page data will be updated.
   Future<bool> clearCache({required String url}) async {
-    final data = await _callMethod("clearCache", {"url": url});
+    final data = await _api.call("pages.clearCache", {"url": url});
 
     return data.response == 1;
   }
@@ -24,7 +24,7 @@ class Pages {
     bool? needSource,
     bool? needHtml,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("pages.get", {
       if (ownerId != null) "owner_id": ownerId,
       if (pageId != null) "page_id": pageId,
       if (global != null) "global": global,
@@ -43,7 +43,7 @@ class Pages {
     int? groupId,
     int? userId,
   }) async {
-    final data = await _callMethod("getHistory", {
+    final data = await _api.call("pages.getHistory", {
       "page_id": pageId,
       if (groupId != null) "group_id": groupId,
       if (userId != null) "user_id": userId,
@@ -54,7 +54,7 @@ class Pages {
 
   /// Returns a list of wiki-pages in the group.
   Future<List<Json>> getTitles({int? groupId}) async {
-    final data = await _callMethod("getTitles", {
+    final data = await _api.call("pages.getTitles", {
       if (groupId != null) "group_id": groupId,
     });
 
@@ -68,7 +68,7 @@ class Pages {
     int? userId,
     bool? needHtml,
   }) async {
-    final data = await _callMethod("getVersion", {
+    final data = await _api.call("pages.getVersion", {
       "version_id": versionId,
       if (groupId != null) "group_id": groupId,
       if (userId != null) "user_id": userId,
@@ -80,7 +80,7 @@ class Pages {
 
   /// Returns the HTML representation of the wikie markup.
   Future<String> parseWiki({required String text, int? groupId}) async {
-    final data = await _callMethod("parseWiki", {
+    final data = await _api.call("pages.parseWiki", {
       "text": text,
       if (groupId != null) "group_id": groupId,
     });
@@ -96,7 +96,7 @@ class Pages {
     int? userId,
     String? title,
   }) async {
-    final data = await _callMethod("save", {
+    final data = await _api.call("pages.save", {
       if (text != null) "text": text,
       if (pageId != null) "page_id": pageId,
       if (groupId != null) "group_id": groupId,
@@ -117,7 +117,7 @@ class Pages {
     // TODO: Implement the enum - https://vk.com/dev/pages.saveAccess
     int? edit,
   }) async {
-    final data = await _callMethod("saveAccess", {
+    final data = await _api.call("pages.saveAccess", {
       "page_id": pageId,
       if (groupId != null) "group_id": groupId,
       if (userId != null) "user_id": userId,

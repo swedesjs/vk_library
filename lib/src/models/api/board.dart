@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`board`](https://vk.com/dev/board) methods.
 class Board {
-  final _CallMethodType _callMethod;
+  final API _api;
 
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Board(API api) : _callMethod = api._callMethod("board");
+  const Board(this._api);
 
   /// Creates a new topic in the group's discussion list.
   Future<int> addTopic({
@@ -15,7 +15,7 @@ class Board {
     bool? fromGroup,
     List<String>? attachments,
   }) async {
-    final data = await _callMethod("addTopic", {
+    final data = await _api.call("board.addTopic", {
       "group_id": groupId,
       "title": title,
       if (text != null) "text": text,
@@ -31,7 +31,7 @@ class Board {
     required int groupId,
     required int topicId,
   }) async {
-    final data = await _callMethod("closeTopic", {
+    final data = await _api.call("board.closeTopic", {
       "group_id": groupId,
       "topic_id": topicId,
     });
@@ -49,7 +49,7 @@ class Board {
     int? stickerId,
     String? guid,
   }) async {
-    final data = await _callMethod("createComment", {
+    final data = await _api.call("board.createComment", {
       "group_id": groupId,
       "topic_id": topicId,
       if (message != null) "message": message,
@@ -68,7 +68,7 @@ class Board {
     required int topicId,
     required int commentId,
   }) async {
-    final data = await _callMethod("deleteComment", {
+    final data = await _api.call("board.deleteComment", {
       "group_id": groupId,
       "topic_id": topicId,
       "comment_id": commentId,
@@ -82,7 +82,7 @@ class Board {
     required int groupId,
     required int topicId,
   }) async {
-    final data = await _callMethod("deleteTopic", {
+    final data = await _api.call("board.deleteTopic", {
       "group_id": groupId,
       "topic_id": topicId,
     });
@@ -98,7 +98,7 @@ class Board {
     String? message,
     List<String>? attachments,
   }) async {
-    final data = await _callMethod("editComment", {
+    final data = await _api.call("board.editComment", {
       "group_id": groupId,
       "topic_id": topicId,
       "comment_id": commentId,
@@ -115,7 +115,7 @@ class Board {
     required int topicId,
     required String title,
   }) async {
-    final data = await _callMethod("editTopic", {
+    final data = await _api.call("board.editTopic", {
       "group_id": groupId,
       "topic_id": topicId,
       "title": title,
@@ -129,7 +129,7 @@ class Board {
     required int groupId,
     required int topicId,
   }) async {
-    final data = await _callMethod("fixTopic", {
+    final data = await _api.call("board.fixTopic", {
       "group_id": groupId,
       "topic_id": topicId,
     });
@@ -149,7 +149,7 @@ class Board {
     // TODO: Implement the enum this parameter - https://vk.com/dev/board.getComments
     String? sort,
   }) async {
-    final data = await _callMethod("getComments", {
+    final data = await _api.call("board.getComments", {
       "group_id": groupId,
       "topic_id": topicId,
       if (needLikes != null) "need_likes": needLikes,
@@ -176,7 +176,7 @@ class Board {
     int? preview,
     int? previewLength,
   }) async {
-    final data = await _callMethod("getTopics", {
+    final data = await _api.call("board.getTopics", {
       "group_id": groupId,
       if (topicIds != null) "topic_ids": topicIds.join(","),
       if (order != null) "order": order,
@@ -195,7 +195,7 @@ class Board {
     required int groupId,
     required int topicId,
   }) async {
-    final data = await _callMethod("openTopic", {
+    final data = await _api.call("board.openTopic", {
       "group_id": groupId,
       "topic_id": topicId,
     });
@@ -209,7 +209,7 @@ class Board {
     required int topicId,
     required int commentId,
   }) async {
-    final data = await _callMethod("restoreComment", {
+    final data = await _api.call("board.restoreComment", {
       "group_id": groupId,
       "topic_id": topicId,
       "comment_id": commentId,
@@ -223,7 +223,7 @@ class Board {
     required int groupId,
     required int topicId,
   }) async {
-    final data = await _callMethod("unfixTopic", {
+    final data = await _api.call("board.unfixTopic", {
       "group_id": groupId,
       "topic_id": topicId,
     });

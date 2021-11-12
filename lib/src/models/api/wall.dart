@@ -2,16 +2,16 @@ part of vk_library;
 
 /// A class for using the [`wall`](https://vk.com/dev/wall) methods.
 class Wall {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Wall(API api) : _callMethod = api._callMethod("wall");
+  const Wall(this._api);
 
   /// Checks the link to indicate the source.
   Future<bool> checkCopyrightLink({
     required String link,
   }) async {
-    final data = await _callMethod("checkCopyrightLink", {
+    final data = await _api.call("wall.checkCopyrightLink", {
       "link": link,
     });
 
@@ -21,7 +21,7 @@ class Wall {
   /// Turns off recording comment
   Future<bool> closeComments(
       {required int ownerId, required int postId}) async {
-    final data = await _callMethod("closeComments", {
+    final data = await _api.call("wall.closeComments", {
       "owner_id": ownerId,
       "post_id": postId,
     });
@@ -40,7 +40,7 @@ class Wall {
     int? stickerId,
     String? guid,
   }) async {
-    final data = await _callMethod("createComment", {
+    final data = await _api.call("wall.createComment", {
       if (ownerId != null) "owner_id": ownerId,
       "post_id": postId,
       if (fromGroup != null) "from_group": fromGroup,
@@ -56,7 +56,7 @@ class Wall {
 
   /// Removes a record from the wall.
   Future<bool> delete({int? ownerId, int? postId}) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("wall.delete", {
       if (ownerId != null) "owner_id": ownerId,
       if (postId != null) "post_id": postId,
     });
@@ -69,7 +69,7 @@ class Wall {
     int? ownerId,
     required int commentId,
   }) async {
-    final data = await _callMethod("deleteComment", {
+    final data = await _api.call("wall.deleteComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
     });
@@ -98,7 +98,7 @@ class Wall {
     String? posterBkgAccessHash,
     String? copyright,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("wall.edit", {
       if (ownerId != null) "owner_id": ownerId,
       "post_id": postId,
       if (friendsOnly != null) "friends_only": friendsOnly,
@@ -138,7 +138,7 @@ class Wall {
     String? linkImage,
     String? linkVideo,
   }) async {
-    final data = await _callMethod("editAdsStealth", {
+    final data = await _api.call("wall.editAdsStealth", {
       if (ownerId != null) "owner_id": ownerId,
       "post_id": postId,
       if (message != null) "message": message,
@@ -163,7 +163,7 @@ class Wall {
     String? message,
     List<String>? attachments,
   }) async {
-    final data = await _callMethod("editComment", {
+    final data = await _api.call("wall.editComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
       if (message != null) "message": message,
@@ -184,7 +184,7 @@ class Wall {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("wall.get", {
       if (ownerId != null) "owner_id": ownerId,
       if (domain != null) "domain": domain,
       if (offset != null) "offset": offset,
@@ -204,7 +204,7 @@ class Wall {
     int? copyHistoryDepth,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("wall.getById", {
       "posts": posts.join(","),
       if (extended != null) "extended": extended,
       if (copyHistoryDepth != null) "copy_history_depth": copyHistoryDepth,
@@ -221,7 +221,7 @@ class Wall {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getComment", {
+    final data = await _api.call("wall.getComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
       if (extended != null) "extended": extended,
@@ -246,7 +246,7 @@ class Wall {
     int? commentId,
     int? threadItemsCount,
   }) async {
-    final data = await _callMethod("getComments", {
+    final data = await _api.call("wall.getComments", {
       if (ownerId != null) "owner_id": ownerId,
       if (postId != null) "post_id": postId,
       if (needLikes != null) "need_likes": needLikes,
@@ -271,7 +271,7 @@ class Wall {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getReposts", {
+    final data = await _api.call("wall.getReposts", {
       if (ownerId != null) "owner_id": ownerId,
       if (postId != null) "post_id": postId,
       if (offset != null) "offset": offset,
@@ -286,7 +286,7 @@ class Wall {
     required int ownerId,
     required int postId,
   }) async {
-    final data = await _callMethod("openComments", {
+    final data = await _api.call("wall.openComments", {
       "owner_id": ownerId,
       "post_id": postId,
     });
@@ -299,7 +299,7 @@ class Wall {
     int? ownerId,
     required int postId,
   }) async {
-    final data = await _callMethod("pin", {
+    final data = await _api.call("wall.pin", {
       if (ownerId != null) "owner_id": ownerId,
       "post_id": postId,
     });
@@ -329,7 +329,7 @@ class Wall {
     String? copyright,
     int? topicId,
   }) async {
-    final data = await _callMethod("post", {
+    final data = await _api.call("wall.post", {
       if (ownerId != null) "owner_id": ownerId,
       if (friendsOnly != null) "friends_only": friendsOnly,
       if (fromGroup != null) "from_group": fromGroup,
@@ -370,7 +370,7 @@ class Wall {
     String? linkImage,
     String? linkVideo,
   }) async {
-    final data = await _callMethod("postAdsStealth", {
+    final data = await _api.call("wall.postAdsStealth", {
       "owner_id": ownerId,
       if (message != null) "message": message,
       if (attachments != null) "attachments": attachments.join(","),
@@ -394,7 +394,7 @@ class Wall {
     required int commentId,
     int? reason,
   }) async {
-    final data = await _callMethod("reportComment", {
+    final data = await _api.call("wall.reportComment", {
       "owner_id": ownerId,
       "comment_id": commentId,
       if (reason != null) "reason": reason,
@@ -409,7 +409,7 @@ class Wall {
     required int postId,
     int? reason,
   }) async {
-    final data = await _callMethod("reportPost", {
+    final data = await _api.call("wall.reportPost", {
       "owner_id": ownerId,
       "post_id": postId,
       if (reason != null) "reason": reason,
@@ -426,7 +426,7 @@ class Wall {
     bool? markAsAds,
     bool? muteNotifications,
   }) async {
-    final data = await _callMethod("repost", {
+    final data = await _api.call("wall.repost", {
       "object": object,
       if (message != null) "message": message,
       if (groupId != null) "group_id": groupId,
@@ -442,7 +442,7 @@ class Wall {
     int? ownerId,
     int? postId,
   }) async {
-    final data = await _callMethod("restore", {
+    final data = await _api.call("wall.restore", {
       if (ownerId != null) "owner_id": ownerId,
       if (postId != null) "post_id": postId,
     });
@@ -455,7 +455,7 @@ class Wall {
     int? ownerId,
     required int commentId,
   }) async {
-    final data = await _callMethod("restoreComment", {
+    final data = await _api.call("wall.restoreComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
     });
@@ -474,7 +474,7 @@ class Wall {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("wall.search", {
       if (ownerId != null) "owner_id": ownerId,
       if (domain != null) "domain": domain,
       if (query != null) "query": query,
@@ -490,7 +490,7 @@ class Wall {
 
   /// Cancels consolidation on the wall.
   Future<bool> unpin({int? ownerId, required int postId}) async {
-    final data = await _callMethod("unpin", {
+    final data = await _api.call("wall.unpin", {
       if (ownerId != null) "owner_id": ownerId,
       "post_id": postId,
     });

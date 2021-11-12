@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`donut`](https://vk.com/dev/donut) methods.
 class Donut {
-  final _CallMethodType _callMethod;
+  final API _api;
 
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Donut(API api) : _callMethod = api._callMethod("donut");
+  const Donut(this._api);
 
   /// Returns a list of dons that are subscribed to certain communities from among the user's friends.
   Future<Json> getFriends({
@@ -14,7 +14,7 @@ class Donut {
     int? count,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getFriends", {
+    final data = await _api.call("donut.getFriends", {
       "owner_id": ownerId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -26,7 +26,8 @@ class Donut {
 
   /// Returns information about the VK Donut subscription.
   Future<Json> getSubscription({required int ownerId}) async {
-    final data = await _callMethod("getSubscription", {"owner_id": ownerId});
+    final data =
+        await _api.call("donut.getSubscription", {"owner_id": ownerId});
 
     return data.response;
   }
@@ -37,7 +38,7 @@ class Donut {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getSubscriptions", {
+    final data = await _api.call("donut.getSubscriptions", {
       if (fields != null) "fields": fields.join(","),
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -48,7 +49,7 @@ class Donut {
 
   /// Returns information about whether the user is subscribed to paid content (is a don).
   Future<bool> isDon({required int ownerId}) async {
-    final data = await _callMethod("isDon", {"owner_id": ownerId});
+    final data = await _api.call("donut.isDon", {"owner_id": ownerId});
     return data.response;
   }
 }

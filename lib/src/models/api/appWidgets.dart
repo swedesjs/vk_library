@@ -2,17 +2,17 @@ part of vk_library;
 
 /// A class for using the [`appWidgets`](https://vk.com/dev/appWidgets) methods.
 class AppWidgets {
-  final _CallMethodType _callMethod;
+  final API _api;
 
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  AppWidgets(API api) : _callMethod = api._callMethod("appWidgets");
+  const AppWidgets(this._api);
 
   /// Get the URL to upload a photo to the application collection for [community app widgets](https://vk.com/dev/apps_widgets).
   Future<Json> getAppImageUploadServer({
     // TODO: Implement the enum. - https://vk.com/dev/appWidgets.getAppImageUploadServer
     required String imageType,
   }) async {
-    final data = await _callMethod("getAppImageUploadServer", {
+    final data = await _api.call("appWidgets.getAppImageUploadServer", {
       "image_type": imageType,
     });
 
@@ -26,7 +26,7 @@ class AppWidgets {
     // TODO: Implement the enum - https://vk.com/dev/appWidgets.getAppImages
     String? imageType,
   }) async {
-    final data = await _callMethod("getAppImages", {
+    final data = await _api.call("appWidgets.getAppImages", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (imageType != null) "image_type": imageType,
@@ -40,7 +40,7 @@ class AppWidgets {
     // TODO: Implement the enum - https://vk.com/dev/apps.getAppImages
     required String imageType,
   }) async {
-    final data = await _callMethod("getGroupImageUploadServer", {
+    final data = await _api.call("appWidgets.getGroupImageUploadServer", {
       "image_type": imageType,
     });
 
@@ -54,7 +54,7 @@ class AppWidgets {
     // TODO: Implement the enum - https://vk.com/dev/appWidgets.getAppImages
     String? imageType,
   }) async {
-    final data = await _callMethod("getGroupImages", {
+    final data = await _api.call("appWidgets.getGroupImages", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (imageType != null) "image_type": imageType,
@@ -65,7 +65,7 @@ class AppWidgets {
 
   /// Retrieves an image for [community app widgets](https://vk.com/dev/apps_widgets) by its id.
   Future<Json> getImagesById({List<int>? images}) async {
-    final data = await _callMethod("getImagesById", {
+    final data = await _api.call("appWidgets.getImagesById", {
       if (images != null) "images": images.join(","),
     });
 
@@ -77,7 +77,7 @@ class AppWidgets {
     required String hash,
     required String image,
   }) async {
-    final data = await _callMethod("saveAppImage", {
+    final data = await _api.call("appWidgets.saveAppImage", {
       "hash": hash,
       "image": image,
     });
@@ -90,7 +90,7 @@ class AppWidgets {
     required String hash,
     required String image,
   }) async {
-    final data = await _callMethod("saveGroupImage", {
+    final data = await _api.call("appWidgets.saveGroupImage", {
       "hash": hash,
       "image": image,
     });
@@ -104,7 +104,7 @@ class AppWidgets {
     // TODO: Implement the enum - https://vk.com/dev/appWidgets.update
     String? type,
   }) async {
-    final data = await _callMethod("update", {
+    final data = await _api.call("appWidgets.update", {
       if (code != null) "code": code,
       if (type != null) "type": type,
     });

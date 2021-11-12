@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`notes`](https://vk.com/dev/notes) methods.
 class Notes {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Notes(API api) : _callMethod = api._callMethod("notes");
+  const Notes(this._api);
 
   /// Creates a new note at the current user.
   Future<int> add({
@@ -16,7 +16,7 @@ class Notes {
     // TODO: Implement the enum - https://vk.com/dev/privacy_setting
     List<String>? privacyComment,
   }) async {
-    final data = await _callMethod("add", {
+    final data = await _api.call("notes.add", {
       "title": title,
       "text": text,
       if (privacyView != null) "privacy_view": privacyView.join(","),
@@ -34,7 +34,7 @@ class Notes {
     required String message,
     String? guid,
   }) async {
-    final data = await _callMethod("createComment", {
+    final data = await _api.call("notes.createComment", {
       "note_id": noteId,
       if (ownerId != null) "owner_id": ownerId,
       if (replyTo != null) "reply_to": replyTo,
@@ -47,7 +47,7 @@ class Notes {
 
   /// Removes the note of the current user.
   Future<bool> delete({required int noteId}) async {
-    final data = await _callMethod("delete", {"note_id": noteId});
+    final data = await _api.call("notes.delete", {"note_id": noteId});
 
     return data.response == 1;
   }
@@ -57,7 +57,7 @@ class Notes {
     required int commentId,
     int? ownerId,
   }) async {
-    final data = await _callMethod("deleteComment", {
+    final data = await _api.call("notes.deleteComment", {
       "comment_id": commentId,
       if (ownerId != null) "owner_id": ownerId,
     });
@@ -75,7 +75,7 @@ class Notes {
     // TODO: Implement the enum - https://vk.com/dev/privacy_setting
     List<String>? privacyComment,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("notes.edit", {
       "note_id": noteId,
       "title": title,
       "text": text,
@@ -92,7 +92,7 @@ class Notes {
     int? ownerId,
     String? message,
   }) async {
-    final data = await _callMethod("editComment", {
+    final data = await _api.call("notes.editComment", {
       "comment_id": commentId,
       if (ownerId != null) "owner_id": ownerId,
       if (message != null) "message": message,
@@ -110,7 +110,7 @@ class Notes {
     // TODO: Implement the enum - https://vk.com/dev/notes.get
     int? sort,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("notes.get", {
       if (noteIds != null) "note_ids": noteIds.join(","),
       if (userId != null) "user_id": userId,
       if (offset != null) "offset": offset,
@@ -127,7 +127,7 @@ class Notes {
     int? ownerId,
     bool? needWiki,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("notes.getById", {
       "note_id": noteId,
       if (ownerId != null) "owner_id": ownerId,
       if (needWiki != null) "need_wiki": needWiki,
@@ -145,7 +145,7 @@ class Notes {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getComments", {
+    final data = await _api.call("notes.getComments", {
       "note_id": noteId,
       if (ownerId != null) "owner_id": ownerId,
       if (sort != null) "sort": sort,
@@ -161,7 +161,7 @@ class Notes {
     required int commentId,
     int? ownerId,
   }) async {
-    final data = await _callMethod("restoreComment", {
+    final data = await _api.call("notes.restoreComment", {
       "comment_id": commentId,
       if (ownerId != null) "owner_id": ownerId,
     });

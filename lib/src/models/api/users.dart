@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`users`](https://vk.com/dev/users) methods.
 class Users {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Users(API api) : _callMethod = api._callMethod("users");
+  const Users(this._api);
 
   /// Returns extended information about users.
   Future<List<Json>> get({
@@ -14,7 +14,7 @@ class Users {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("users.get", {
       if (userId != null) "user_id": userId,
       if (userIds != null) "user_ids": userIds,
       if (fields != null) "fields": fields.join(","),
@@ -32,7 +32,7 @@ class Users {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("getFollowers", {
+    final data = await _api.call("users.getFollowers", {
       if (userId != null) "user_id": userId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -51,7 +51,7 @@ class Users {
     int? count,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getSubscriptions", {
+    final data = await _api.call("users.getSubscriptions", {
       if (userId != null) "user_id": userId,
       if (extended != null) "extended": extended,
       if (offset != null) "offset": offset,
@@ -69,7 +69,7 @@ class Users {
     String? type,
     String? comment,
   }) async {
-    final data = await _callMethod("report", {
+    final data = await _api.call("users.report", {
       "user_id": userId,
       if (type != null) "type": type,
       if (comment != null) "comment": comment,
@@ -119,7 +119,7 @@ class Users {
     // TODO: Implement the enum.
     Set<String>? fromList,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("users.search", {
       if (q != null) "q": q,
       if (sort != null) "sort": sort,
       if (offset != null) "offset": offset,

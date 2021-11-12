@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`docs`](https://vk.com/dev/docs) methods.
 class Docs {
-  final _CallMethodType _callMethod;
+  final API _api;
 
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Docs(API api) : _callMethod = api._callMethod("docs");
+  const Docs(this._api);
 
   /// Copies the document to the documents of the current user.
   Future<int> add({
@@ -13,7 +13,7 @@ class Docs {
     required int docId,
     String? accessKey,
   }) async {
-    final data = await _callMethod("add", {
+    final data = await _api.call("docs.add", {
       "owner_id": ownerId,
       "doc_id": docId,
       if (accessKey != null) "access_key": accessKey,
@@ -24,7 +24,7 @@ class Docs {
 
   /// Deletes a user or group document.
   Future<bool> delete({required int ownerId, required int docId}) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("docs.delete", {
       "owner_id": ownerId,
       "doc_id": docId,
     });
@@ -39,7 +39,7 @@ class Docs {
     String? title,
     List<String>? tags,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("docs.edit", {
       "owner_id": ownerId,
       "doc_id": docId,
       if (title != null) "title": title,
@@ -58,7 +58,7 @@ class Docs {
     int? ownerId,
     bool? returnTags,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("docs.get", {
       if (count != null) "count": count,
       if (offset != null) "offset": offset,
       if (type != null) "type": type,
@@ -71,7 +71,7 @@ class Docs {
 
   /// Returns information about documents by their IDs.
   Future<Json> getById({List<String>? docs, bool? returnTags}) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("docs.getById", {
       if (docs != null) "docs": docs.join(","),
       if (returnTags != null) "return_tags": returnTags,
     });
@@ -85,7 +85,7 @@ class Docs {
     String? type,
     int? peerId,
   }) async {
-    final data = await _callMethod("getMessagesUploadServer", {
+    final data = await _api.call("docs.getMessagesUploadServer", {
       if (type != null) "type": type,
       if (peerId != null) "peer_id": peerId,
     });
@@ -95,14 +95,14 @@ class Docs {
 
   /// Returns the types of documents available to the user.
   Future<Json> getTypes({required int ownerId}) async {
-    final data = await _callMethod("getTypes", {"owner_id": ownerId});
+    final data = await _api.call("docs.getTypes", {"owner_id": ownerId});
 
     return data.response;
   }
 
   /// Returns the server address for uploading documents.
   Future<Json> getUploadServer({int? groupId}) async {
-    final data = await _callMethod("getUploadServer", {
+    final data = await _api.call("docs.getUploadServer", {
       if (groupId != null) "group_id": groupId,
     });
 
@@ -111,7 +111,7 @@ class Docs {
 
   /// Returns the server address for uploading documents to the Sent Items folder, for later sending the document to the wall or by personal message.
   Future<Json> getWallUploadServer({int? groupId}) async {
-    final data = await _callMethod("getUploadServer", {
+    final data = await _api.call("docs.getUploadServer", {
       if (groupId != null) "group_id": groupId,
     });
 
@@ -125,7 +125,7 @@ class Docs {
     String? tags,
     bool? returnTags,
   }) async {
-    final data = await _callMethod("save", {
+    final data = await _api.call("docs.save", {
       "file": file,
       if (title != null) "title": title,
       if (tags != null) "tags": tags,
@@ -143,7 +143,7 @@ class Docs {
     int? offset,
     bool? returnTags,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("docs.search", {
       "q": q,
       if (searchOwn != null) "search_own": searchOwn,
       if (count != null) "count": count,

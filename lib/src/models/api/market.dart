@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`market`](https://vk.com/dev/market) methods.
 class Market {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Market(API api) : _callMethod = api._callMethod("market");
+  const Market(this._api);
 
   /// Adds a new product.
   Future<int> add({
@@ -25,7 +25,7 @@ class Market {
     int? weight,
     String? sku,
   }) async {
-    final data = await _callMethod("add", {
+    final data = await _api.call("market.add", {
       "owner_id": ownerId,
       "name": name,
       "description": description,
@@ -54,7 +54,7 @@ class Market {
     bool? mainAlbum,
     bool? isHidden,
   }) async {
-    final data = await _callMethod("addAlbum", {
+    final data = await _api.call("market.addAlbum", {
       "owner_id": ownerId,
       "title": title,
       if (photoId != null) "photo_id": photoId,
@@ -72,7 +72,7 @@ class Market {
     List<int>? itemIds,
     required List<int> albumIds,
   }) async {
-    final data = await _callMethod("addToAlbum", {
+    final data = await _api.call("market.addToAlbum", {
       "owner_id": ownerId,
       if (itemId != null) "item_id": itemId,
       if (itemIds != null) "item_ids": itemIds.join(","),
@@ -93,7 +93,7 @@ class Market {
     int? stickerId,
     String? guid,
   }) async {
-    final data = await _callMethod("createComment", {
+    final data = await _api.call("market.createComment", {
       "owner_id": ownerId,
       "item_id": itemId,
       if (message != null) "message": message,
@@ -109,7 +109,7 @@ class Market {
 
   /// Removes the item.
   Future<bool> delete({required int ownerId, required int itemId}) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("market.delete", {
       "owner_id": ownerId,
       "item_id": itemId,
     });
@@ -119,7 +119,7 @@ class Market {
 
   /// Deletes a selection with products.
   Future<bool> deleteAlbum({required int ownerId, required int albumId}) async {
-    final data = await _callMethod("deleteAlbum", {
+    final data = await _api.call("market.deleteAlbum", {
       "owner_id": ownerId,
       "album_id": albumId,
     });
@@ -132,7 +132,7 @@ class Market {
     required int ownerId,
     required int commentId,
   }) async {
-    final data = await _callMethod("deleteComment", {
+    final data = await _api.call("market.deleteComment", {
       "owner_id": ownerId,
       "comment_id": commentId,
     });
@@ -159,7 +159,7 @@ class Market {
     int? weight,
     String? sku,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("market.edit", {
       "owner_id": ownerId,
       "item_id": itemId,
       if (name != null) "name": name,
@@ -190,7 +190,7 @@ class Market {
     bool? mainAlbum,
     bool? isHidden,
   }) async {
-    final data = await _callMethod("editAlbum", {
+    final data = await _api.call("market.editAlbum", {
       "owner_id": ownerId,
       "album_id": albumId,
       if (title != null) "title": title,
@@ -209,7 +209,7 @@ class Market {
     String? message,
     List<String>? attachments,
   }) async {
-    final data = await _callMethod("editComment", {
+    final data = await _api.call("market.editComment", {
       "owner_id": ownerId,
       "comment_id": commentId,
       if (message != null) "message": message,
@@ -237,7 +237,7 @@ class Market {
     String? commentForUser,
     String? receiptLink,
   }) async {
-    final data = await _callMethod("editOrder", {
+    final data = await _api.call("market.editOrder", {
       "user_id": userId,
       "order_id": orderId,
       if (merchantComment != null) "merchant_comment": merchantComment,
@@ -268,7 +268,7 @@ class Market {
     bool? needVariants,
     bool? withDisabled,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("market.get", {
       "owner_id": ownerId,
       if (albumId != null) "album_id": albumId,
       if (count != null) "count": count,
@@ -289,7 +289,7 @@ class Market {
     required List<int> albumIds,
     bool? needAllItemIds,
   }) async {
-    final data = await _callMethod("getAlbumById", {
+    final data = await _api.call("market.getAlbumById", {
       "owner_id": ownerId,
       "album_ids": albumIds.join(","),
       if (needAllItemIds != null) "need_all_item_ids": needAllItemIds,
@@ -304,7 +304,7 @@ class Market {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getAlbums", {
+    final data = await _api.call("market.getAlbums", {
       "owner_id": ownerId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -318,7 +318,7 @@ class Market {
     required List<String> itemIds,
     bool? extended,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("market.getById", {
       "item_ids": itemIds.join(","),
       if (extended != null) "extended": extended,
     });
@@ -328,7 +328,7 @@ class Market {
 
   /// Returns a list of categories for products.
   Future<Json> getCategories({int? count, int? offset}) async {
-    final data = await _callMethod("getCategories", {
+    final data = await _api.call("market.getCategories", {
       "count": count,
       "offset": offset,
     });
@@ -349,7 +349,7 @@ class Market {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getComments", {
+    final data = await _api.call("market.getComments", {
       "owner_id": ownerId,
       "item_id": itemId,
       if (needLikes != null) "need_likes": needLikes,
@@ -370,7 +370,7 @@ class Market {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getGroupOrders", {
+    final data = await _api.call("market.getGroupOrders", {
       "group_id": groupId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -385,7 +385,7 @@ class Market {
     required int orderId,
     bool? extended,
   }) async {
-    final data = await _callMethod("getOrderById", {
+    final data = await _api.call("market.getOrderById", {
       if (userId != null) "user_id": userId,
       "order_id": orderId,
       if (extended != null) "extended": extended,
@@ -401,7 +401,7 @@ class Market {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getOrderItems", {
+    final data = await _api.call("market.getOrderItems", {
       if (userId != null) "user_id": userId,
       "order_id": orderId,
       if (offset != null) "offset": offset,
@@ -419,7 +419,7 @@ class Market {
     String? dateFrom,
     String? dateTo,
   }) async {
-    final data = await _callMethod("getOrders", {
+    final data = await _api.call("market.getOrders", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
@@ -436,7 +436,7 @@ class Market {
     required int itemId,
     required List<int> albumIds,
   }) async {
-    final data = await _callMethod("removeFromAlbum", {
+    final data = await _api.call("market.removeFromAlbum", {
       "owner_id": ownerId,
       "item_id": itemId,
       "album_ids": albumIds.join(","),
@@ -452,7 +452,7 @@ class Market {
     int? before,
     int? after,
   }) async {
-    final data = await _callMethod("reorderAlbums", {
+    final data = await _api.call("market.reorderAlbums", {
       "owner_id": ownerId,
       "album_id": albumId,
       if (before != null) "before": before,
@@ -470,7 +470,7 @@ class Market {
     int? before,
     int? after,
   }) async {
-    final data = await _callMethod("reorderItems", {
+    final data = await _api.call("market.reorderItems", {
       "owner_id": ownerId,
       if (albumId != null) "album_id": albumId,
       "item_id": itemId,
@@ -488,7 +488,7 @@ class Market {
     // TODO: Implement the enum - https://vk.com/dev/market.report
     required int reason,
   }) async {
-    final data = await _callMethod("report", {
+    final data = await _api.call("market.report", {
       "owner_id": ownerId,
       "item_id": itemId,
       "reason": reason,
@@ -504,7 +504,7 @@ class Market {
     // TODO: Implement the enum - https://vk.com/dev/market.report
     required int reason,
   }) async {
-    final data = await _callMethod("reportComment", {
+    final data = await _api.call("market.reportComment", {
       "owner_id": ownerId,
       "comment_id": commentId,
       "reason": reason,
@@ -518,7 +518,7 @@ class Market {
     required int ownerId,
     required int itemId,
   }) async {
-    final data = await _callMethod("restore", {
+    final data = await _api.call("market.restore", {
       "owner_id": ownerId,
       "item_id": itemId,
     });
@@ -531,7 +531,7 @@ class Market {
     required int ownerId,
     required int commentId,
   }) async {
-    final data = await _callMethod("restoreComment", {
+    final data = await _api.call("market.restoreComment", {
       "owner_id": ownerId,
       "comment_id": commentId,
     });
@@ -556,7 +556,7 @@ class Market {
     List<int>? status,
     bool? needVariants,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("market.search", {
       "owner_id": ownerId,
       if (albumId != null) "album_id": albumId,
       if (q != null) "q": q,

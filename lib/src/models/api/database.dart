@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`database`](https://vk.com/dev/database) methods.
 class Database {
-  final _CallMethodType _callMethod;
+  final API _api;
 
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Database(API api) : _callMethod = api._callMethod("database");
+  const Database(this._api);
 
   /// Returns a list of university departments for the specified faculty.
   Future<Json> getChairs({
@@ -13,7 +13,7 @@ class Database {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getChairs", {
+    final data = await _api.call("database.getChairs", {
       "faculty_id": facultyId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -31,7 +31,7 @@ class Database {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getCities", {
+    final data = await _api.call("database.getCities", {
       "country_id": countryId,
       if (regionId != null) "region_id": regionId,
       if (q != null) "q": q,
@@ -45,7 +45,7 @@ class Database {
 
   /// Returns information about cities and regions by their identifiers.
   Future<List<Json>> getCitiesById({List<int>? cityIds}) async {
-    final data = await _callMethod("getCitiesById", {
+    final data = await _api.call("database.getCitiesById", {
       if (cityIds != null) "city_ids": cityIds.join(","),
     });
 
@@ -59,7 +59,7 @@ class Database {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getCountries", {
+    final data = await _api.call("database.getCountries", {
       if (needAll != null) "need_all": needAll,
       if (code != null) "code": code,
       if (offset != null) "offset": offset,
@@ -71,7 +71,7 @@ class Database {
 
   /// Returns information about countries by their identifiers.
   Future<List<Json>> getCountriesById({List<int>? countryIds}) async {
-    final data = await _callMethod("getCountriesById", {
+    final data = await _api.call("database.getCountriesById", {
       if (countryIds != null) "country_ids": countryIds.join(","),
     });
 
@@ -84,7 +84,7 @@ class Database {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getFaculties", {
+    final data = await _api.call("database.getFaculties", {
       "university_id": universityId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -100,7 +100,7 @@ class Database {
     int? count,
     bool? extended,
   }) async {
-    final data = await _callMethod("getMetroStations", {
+    final data = await _api.call("database.getMetroStations", {
       "city_id": cityId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -112,7 +112,7 @@ class Database {
 
   /// Returns information about one or more metro stations by their identifiers.
   Future<List<Json>> getMetroStationsById({List<int>? stationIds}) async {
-    final data = await _callMethod("getMetroStationsById", {
+    final data = await _api.call("database.getMetroStationsById", {
       if (stationIds != null) "station_ids": stationIds.join(","),
     });
 
@@ -126,7 +126,7 @@ class Database {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getRegions", {
+    final data = await _api.call("database.getRegions", {
       "country_id": countryId,
       if (q != null) "q": q,
       if (offset != null) "offset": offset,
@@ -138,7 +138,7 @@ class Database {
 
   /// Returns a list of classes specific to schools in a specific country.
   Future<List<List>> getSchoolClasses({int? countryId}) async {
-    final data = await _callMethod("getSchoolClasses", {
+    final data = await _api.call("database.getSchoolClasses", {
       if (countryId != null) "country_id": countryId,
     });
 
@@ -152,7 +152,7 @@ class Database {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getSchools", {
+    final data = await _api.call("database.getSchools", {
       if (q != null) "q": q,
       "city_id": cityId,
       if (offset != null) "offset": offset,
@@ -170,7 +170,7 @@ class Database {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getUniversities", {
+    final data = await _api.call("database.getUniversities", {
       if (q != null) "q": q,
       if (countryId != null) "country_id": countryId,
       if (cityId != null) "city_id": cityId,

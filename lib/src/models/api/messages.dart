@@ -1,10 +1,11 @@
 part of vk_library;
 
-/// Class for addressing api, that is, `messages` submethods.
+/// A class for using the [`messages`](https://vk.com/dev/messages) methods.
 class Messages {
-  final _CallMethodType _callMethod;
-
-  Messages(API api) : _callMethod = api._callMethod("messages");
+  final API _api;
+  
+  /// It is not recommended to create a constructor, the instance already exists in the [API] class
+  const Messages(this._api);
 
   /// Adds a new user to the multi-dialog.
   Future<bool> addChatUser({
@@ -12,14 +13,14 @@ class Messages {
     int? userId,
     int? visibleMessagesCount,
   }) async {
-    final data = await _callMethod("addChatUser", {
+    final data = await _api.call("messages.addChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,
       if (visibleMessagesCount != null)
         "visible_messages_count": visibleMessagesCount
     });
 
-    return data.response as int == 1;
+    return data.response == 1;
   }
 
   /// Allows you to allow the current user to send messages from the community.
@@ -27,12 +28,12 @@ class Messages {
     required int groupId,
     String? key,
   }) async {
-    final data = await _callMethod("allowMessagesFromGroup", {
+    final data = await _api.call("messages.allowMessagesFromGroup", {
       "group_id": groupId,
       if (key != null) "key": key,
     });
 
-    return data.response as int == 1;
+    return data.response == 1;
   }
 
   /// Creates a conversation with multiple participants.
@@ -41,13 +42,13 @@ class Messages {
     String? title,
     int? groupId,
   }) async {
-    final data = await _callMethod("createChat", {
+    final data = await _api.call("messages.createChat", {
       if (userIds != null) "user_ids": userIds.join(","),
       if (title != null) "title": title,
       if (groupId != null) "group_id": groupId
     });
 
-    return data.response as int;
+    return data.response;
   }
 
   /// Deletes the message.
@@ -59,7 +60,7 @@ class Messages {
     int? peerId,
     List<int>? conversationMessageIds,
   }) {
-    return _callMethod("delete", {
+    return _api.call("messages.delete", {
       if (messagesIds != null) "messages_ids": messagesIds.join(","),
       if (spam != null) "spam": spam,
       if (groupId != null) "group_id": groupId,
@@ -75,7 +76,7 @@ class Messages {
     required int chatId,
     int? groupId,
   }) async {
-    final data = await _callMethod("deleteChatPhoto", {
+    final data = await _api.call("messages.deleteChatPhoto", {
       "chat_id": chatId,
       if (groupId != null) "group_id": groupId,
     });
@@ -89,7 +90,7 @@ class Messages {
     int? peerId,
     int? groupId,
   }) async {
-    final data = await _callMethod("deleteConversation", {
+    final data = await _api.call("messages.deleteConversation", {
       if (userId != null) "user_id": userId,
       if (peerId != null) "peer_id": peerId,
       if (groupId != null) "group_id": groupId
@@ -100,7 +101,7 @@ class Messages {
 
   /// Allows you to prevent sending messages from the community to the current user.
   Future<bool> denyMessagesFromGroup({required int groupId}) async {
-    final data = await _callMethod("denyMessagesFromGroup", {
+    final data = await _api.call("messages.denyMessagesFromGroup", {
       "group_id": groupId,
     });
 
@@ -123,7 +124,7 @@ class Messages {
     dynamic template,
     dynamic keyboard,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("messages.edit", {
       "peer_id": peerId,
       if (message != null) "message": message,
       if (lat != null) "lat": lat,
@@ -141,17 +142,17 @@ class Messages {
       if (keyboard != null) "keyboard": keyboard,
     });
 
-    return data.response as int == 1;
+    return data.response == 1;
   }
 
   /// Changes the name of the conversation.
   Future<bool> editChat({required int chatId, String? title}) async {
-    final data = await _callMethod("editChat", {
+    final data = await _api.call("messages.editChat", {
       "chat_id": chatId,
       if (title != null) "title": title,
     });
 
-    return data.response as int == 1;
+    return data.response == 1;
   }
 
   /// Returns messages by conversation_message_id.
@@ -162,7 +163,7 @@ class Messages {
     Set<String>? fields,
     int? groupId,
   }) async {
-    final data = await _callMethod("getByConversationMessageId", {
+    final data = await _api.call("messages.getByConversationMessageId", {
       "peer_id": peerId,
       if (conversationMessageIds != null)
         "conversation_message_ids": conversationMessageIds.join(","),
@@ -182,7 +183,7 @@ class Messages {
     Set<String>? fields,
     int? groupId,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("messages.getById", {
       "message_ids": messageIds,
       if (previewLength != null) "preview_length": previewLength,
       if (extended != null) "extended": extended,
@@ -200,7 +201,7 @@ class Messages {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("getChat", {
+    final data = await _api.call("messages.getChat", {
       if (chatId != null) "chat_id": chatId,
       if (chatIds != null) "chat_ids": chatIds,
       if (fields != null) "fields": fields,
@@ -216,7 +217,7 @@ class Messages {
     String? link,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getChatPreview", {
+    final data = await _api.call("messages.getChatPreview", {
       if (peerId != null) "peer_id": peerId,
       if (link != null) "link": link,
       if (fields != null) "fields": fields.join(","),
@@ -234,7 +235,7 @@ class Messages {
     Set<String>? fields,
     int? groupId,
   }) async {
-    final data = await _callMethod("getConversationMembers", {
+    final data = await _api.call("messages.getConversationMembers", {
       "peer_id": peerId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -250,7 +251,7 @@ class Messages {
   Future<Json> getConversations({
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getConversations", {
+    final data = await _api.call("messages.getConversations", {
       if (fields != null) "fields": fields.join(","),
     });
 
@@ -264,7 +265,7 @@ class Messages {
     Set<String>? fields,
     int? groupId,
   }) async {
-    final data = await _callMethod("getConversationsById", {
+    final data = await _api.call("messages.getConversationsById", {
       "peer_ids": peerIds,
       if (extended != null) "extended": extended,
       if (fields != null) "fields": fields.join(","),
@@ -286,7 +287,7 @@ class Messages {
     Set<String>? fields,
     int? groupId,
   }) async {
-    final data = await _callMethod("getHistory", {
+    final data = await _api.call("messages.getHistory", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (userId != null) "user_id": userId,
@@ -313,7 +314,7 @@ class Messages {
     bool? preserveOrder,
     int? maxForwardsLevel,
   }) async {
-    final data = await _callMethod("getHistoryAttachments", {
+    final data = await _api.call("messages.getHistoryAttachments", {
       "peer_id": peerId,
       if (mediaType != null) "media_type": mediaType.stringValue(),
       if (startFrom != null) "start_from": startFrom,
@@ -338,7 +339,7 @@ class Messages {
     bool? extended,
     int? groupId,
   }) async {
-    final data = await _callMethod("getImportantMessages", {
+    final data = await _api.call("messages.getImportantMessages", {
       if (count != null) "count": count,
       if (offset != null) "offset": offset,
       if (startMessageId != null) "start_message_id": startMessageId,
@@ -363,7 +364,7 @@ class Messages {
     NameCase? nameCase,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getIntentUsers", {
+    final data = await _api.call("messages.getIntentUsers", {
       "intent": intent.stringValue(),
       if (subscribeId != null) "subscribe_id": subscribeId,
       if (offset != null) "offset": offset,
@@ -384,7 +385,7 @@ class Messages {
     bool? reset,
     int? groupId,
   }) async {
-    final data = await _callMethod("getInviteLink", {
+    final data = await _api.call("messages.getInviteLink", {
       "peer_id": peerId,
       if (reset != null) "reset": reset,
       if (groupId != null) "group_id": groupId,
@@ -397,7 +398,7 @@ class Messages {
   Future<Json> getLastActivity({
     required int userId,
   }) async {
-    final data = await _callMethod("getLastActivity", {"user_id": userId});
+    final data = await _api.call("messages.getLastActivity", {"user_id": userId});
 
     return data.response;
   }
@@ -419,7 +420,7 @@ class Messages {
     int? lastN,
     bool? credentials,
   }) async {
-    final data = await _callMethod("getLongPollHistory", {
+    final data = await _api.call("messages.getLongPollHistory", {
       if (ts != null) "ts": ts,
       if (pts != null) "pts": pts,
       if (previewLength != null) "preview_length": previewLength,
@@ -445,7 +446,7 @@ class Messages {
     int? groupId,
     int? lpVersion,
   }) async {
-    final data = await _callMethod("getLongPollServer", {
+    final data = await _api.call("messages.getLongPollServer", {
       if (needPts != null) "need_pts": needPts,
       if (groupId != null) "group_id": groupId,
       if (lpVersion != null) "lp_version": lpVersion,
@@ -459,7 +460,7 @@ class Messages {
     required int groupId,
     required int userId,
   }) async {
-    final data = await _callMethod("isMessagesFromGroupAllowed", {
+    final data = await _api.call("messages.isMessagesFromGroupAllowed", {
       "group_id": groupId,
       "user_id": userId,
     });
@@ -471,7 +472,7 @@ class Messages {
   Future<Json> joinChatByInviteLink({
     required String link,
   }) async {
-    final data = await _callMethod("joinChatByInviteLink", {"link": link});
+    final data = await _api.call("messages.joinChatByInviteLink", {"link": link});
 
     return data.response;
   }
@@ -482,7 +483,7 @@ class Messages {
     bool? answered,
     int? groupId,
   }) async {
-    final data = await _callMethod("markAsAnsweredConversation", {
+    final data = await _api.call("messages.markAsAnsweredConversation", {
       "peer_id": peerId,
       if (answered != null) "answered": answered,
       if (groupId != null) "group_id": groupId,
@@ -496,7 +497,7 @@ class Messages {
     List<int>? messageIds,
     bool? important,
   }) async {
-    final data = await _callMethod("markAsImportant", {
+    final data = await _api.call("messages.markAsImportant", {
       if (messageIds != null) "message_ids": messageIds.join(","),
       if (important != null) "important": important ? 1 : 0,
     });
@@ -510,7 +511,7 @@ class Messages {
     bool? important,
     int? groupId,
   }) async {
-    final data = await _callMethod("markAsImportantConversation", {
+    final data = await _api.call("messages.markAsImportantConversation", {
       "peer_id": peerId,
       if (important != null) "important": important,
       if (groupId != null) "group_id": groupId,
@@ -527,7 +528,7 @@ class Messages {
     int? groupId,
     bool? markConversationAsRead,
   }) async {
-    final data = await _callMethod("markAsRead", {
+    final data = await _api.call("messages.markAsRead", {
       if (messageIds != null) "message_ids": messageIds.join(","),
       if (peerId != null) "peer_id": peerId,
       if (startMessageId != null) "start_message_id": startMessageId,
@@ -545,7 +546,7 @@ class Messages {
     int? messageId,
     int? conversationMessageId,
   }) async {
-    final data = await _callMethod("pin", {
+    final data = await _api.call("messages.pin", {
       "peer_id": peerId,
       if (messageId != null) "message_id": messageId,
       if (conversationMessageId != null)
@@ -563,23 +564,23 @@ class Messages {
     int? userId,
     int? memberId,
   }) async {
-    final data = await _callMethod("removeChatUser", {
+    final data = await _api.call("messages.removeChatUser", {
       "chat_id": chatId,
       if (userId != null) "user_id": userId,
       if (memberId != null) "member_id": memberId,
     });
 
-    return data.response as int == 1;
+    return data.response == 1;
   }
 
   /// Recovers deleted message.
   Future<bool> restore({required int messageId, int? groupId}) async {
-    final data = await _callMethod("restore", {
+    final data = await _api.call("messages.restore", {
       "message_id": messageId,
       if (groupId != null) "group_id": groupId,
     });
 
-    return data.response as int == 1;
+    return data.response  == 1;
   }
 
   /// Returns a list of found private messages of the current user based on the entered search string.
@@ -594,7 +595,7 @@ class Messages {
     Set<String>? fields,
     int? groupId,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("messages.search", {
       if (q != null) "q": q,
       if (peerId != null) "peer_id": peerId,
       if (date != null) "date": date,
@@ -617,7 +618,7 @@ class Messages {
     Set<String>? fields,
     int? group_id,
   }) async {
-    final data = await _callMethod("searchConversations", {
+    final data = await _api.call("messages.searchConversations", {
       if (q != null) "q": q,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
@@ -658,7 +659,7 @@ class Messages {
     int? subscribeId,
     int? randomId,
   }) {
-    return _callMethod("send", {
+    return _api.call("messages.send", {
       if (userId != null) "user_id": userId,
       if (peerId != null) "peer_id": peerId,
       if (peerIds != null) "peer_ids": peerIds,
@@ -692,7 +693,7 @@ class Messages {
     required int peerId,
     dynamic eventData,
   }) async {
-    final data = await _callMethod("sendMessageEventAnswer", {
+    final data = await _api.call("messages.sendMessageEventAnswer", {
       "event_id": eventId,
       "user_id": userId,
       "peer_id": peerId,
@@ -709,7 +710,7 @@ class Messages {
     int? peerId,
     int? groupId,
   }) async {
-    final data = await _callMethod("setActivity", {
+    final data = await _api.call("messages.setActivity", {
       if (userId != null) "user_id": userId,
       if (type != null) "type": type.stringValue(),
       if (peerId != null) "peer_id": peerId,
@@ -723,14 +724,14 @@ class Messages {
   Future<Json> setChatPhoto({
     required String file,
   }) async {
-    final data = await _callMethod("setChatPhoto", {"file": file});
+    final data = await _api.call("messages.setChatPhoto", {"file": file});
 
     return data.response;
   }
 
   /// Detaches the message.
   Future<bool> unpin({required int peerId, int? groupId}) async {
-    final data = await _callMethod("unpin", {
+    final data = await _api.call("messages.unpin", {
       "peer_id": peerId,
       if (groupId != null) "group_id": groupId,
     });

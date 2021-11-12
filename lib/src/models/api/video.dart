@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`video`](https://vk.com/dev/video) methods.
 class Video {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Video(API api) : _callMethod = api._callMethod("video");
+  const Video(this._api);
 
   /// Adds a video to the user's list.
   Future<bool> add({
@@ -13,7 +13,7 @@ class Video {
     required int videoId,
     required ownerId,
   }) async {
-    final data = await _callMethod("add", {
+    final data = await _api.call("video.add", {
       if (targetId != null) "target_id": targetId,
       "video_id": videoId,
       "owner_id": ownerId,
@@ -28,7 +28,7 @@ class Video {
     String? title,
     List<String>? privacy,
   }) async {
-    final data = await _callMethod("addAlbum", {
+    final data = await _api.call("video.addAlbum", {
       if (groupId != null) "group_id": groupId,
       if (title != null) "title": title,
       if (privacy != null) "privacy": privacy.join(","),
@@ -48,7 +48,7 @@ class Video {
     int? stickerId,
     String? guid,
   }) async {
-    final data = await _callMethod("createComment", {
+    final data = await _api.call("video.createComment", {
       if (ownerId != null) "owner_id": ownerId,
       "video_id": videoId,
       if (message != null) "message": message,
@@ -68,7 +68,7 @@ class Video {
     int? ownerId,
     int? targetId,
   }) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("video.delete", {
       "video_id": videoId,
       if (ownerId != null) "owner_id": ownerId,
       if (targetId != null) "target_id": targetId,
@@ -82,7 +82,7 @@ class Video {
     int? groupId,
     required int albumId,
   }) async {
-    final data = await _callMethod("deleteAlbum", {
+    final data = await _api.call("video.deleteAlbum", {
       if (groupId != null) "group_id": groupId,
       "album_id": albumId,
     });
@@ -95,7 +95,7 @@ class Video {
     int? ownerId,
     required int commentId,
   }) async {
-    final data = await _callMethod("deleteComment", {
+    final data = await _api.call("video.deleteComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
     });
@@ -114,7 +114,7 @@ class Video {
     bool? noComments,
     bool? repeat,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("video.edit", {
       if (ownerId != null) "owner_id": ownerId,
       "video_id": videoId,
       if (name != null) "name": name,
@@ -135,7 +135,7 @@ class Video {
     required String title,
     List<String>? privacy,
   }) async {
-    final data = await _callMethod("editAlbum", {
+    final data = await _api.call("video.editAlbum", {
       if (groupId != null) "group_id": groupId,
       "album_id": albumId,
       "title": title,
@@ -152,7 +152,7 @@ class Video {
     String? message,
     List<String>? attachments,
   }) async {
-    final data = await _callMethod("editComment", {
+    final data = await _api.call("video.editComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
       if (message != null) "message": message,
@@ -172,7 +172,7 @@ class Video {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("video.get", {
       if (ownerId != null) "owner_id": ownerId,
       if (videos != null) "videos": videos.join(","),
       if (albumId != null) "album_id": albumId,
@@ -190,7 +190,7 @@ class Video {
     int? ownerId,
     required int albumId,
   }) async {
-    final data = await _callMethod("getAlbumById", {
+    final data = await _api.call("video.getAlbumById", {
       if (ownerId != null) "owner_id": ownerId,
       "album_id": albumId,
     });
@@ -206,7 +206,7 @@ class Video {
     bool? extended,
     bool? needSystem,
   }) async {
-    final data = await _callMethod("getAlbums", {
+    final data = await _api.call("video.getAlbums", {
       if (ownerId != null) "owner_id": ownerId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -224,7 +224,7 @@ class Video {
     required int videoId,
     bool? extended,
   }) async {
-    final data = await _callMethod("getAlbumsByVideo", {
+    final data = await _api.call("video.getAlbumsByVideo", {
       if (targetId != null) "target_id": targetId,
       "owner_id": ownerId,
       "video_id": videoId,
@@ -246,7 +246,7 @@ class Video {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getComments", {
+    final data = await _api.call("video.getComments", {
       if (ownerId != null) "owner_id": ownerId,
       "video_id": videoId,
       if (needLikes != null) "need_likes": needLikes,
@@ -269,7 +269,7 @@ class Video {
     required int ownerId,
     required int videoId,
   }) async {
-    final data = await _callMethod("removeFromAlbum", {
+    final data = await _api.call("video.removeFromAlbum", {
       if (targetId != null) "target_id": targetId,
       if (albumId != null) "album_id": albumId,
       if (albumIds != null) "album_ids": albumIds.join(","),
@@ -287,7 +287,7 @@ class Video {
     int? before,
     int? after,
   }) async {
-    final data = await _callMethod("reorderAlbums", {
+    final data = await _api.call("video.reorderAlbums", {
       if (ownerId != null) "owner_id": ownerId,
       "album_id": albumId,
       if (before != null) "before": before,
@@ -308,7 +308,7 @@ class Video {
     int? afterOwnerId,
     int? afterVideoId,
   }) async {
-    final data = await _callMethod("reorderVideos", {
+    final data = await _api.call("video.reorderVideos", {
       if (targetId != null) "target_id": targetId,
       if (albumId != null) "album_id": albumId,
       "owner_id": ownerId,
@@ -330,7 +330,7 @@ class Video {
     String? comment,
     String? searchQuery,
   }) async {
-    final data = await _callMethod("report", {
+    final data = await _api.call("video.report", {
       "owner_id": ownerId,
       "video_id": videoId,
       if (reason != null) "reason": reason,
@@ -347,7 +347,7 @@ class Video {
     required int commentId,
     int? reason,
   }) async {
-    final data = await _callMethod("reportComment", {
+    final data = await _api.call("video.reportComment", {
       "owner_id": ownerId,
       "comment_id": commentId,
       if (reason != null) "reason": reason,
@@ -361,7 +361,7 @@ class Video {
     required int videoId,
     int? ownerId,
   }) async {
-    final data = await _callMethod("restore", {
+    final data = await _api.call("video.restore", {
       "video_id": videoId,
       if (ownerId != null) "owner_id": ownerId,
     });
@@ -374,7 +374,7 @@ class Video {
     int? ownerId,
     required int commentId,
   }) async {
-    final data = await _callMethod("restoreComment", {
+    final data = await _api.call("video.restoreComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
     });
@@ -397,7 +397,7 @@ class Video {
     bool? repeat,
     bool? compression,
   }) async {
-    final data = await _callMethod("save", {
+    final data = await _api.call("video.save", {
       if (name != null) "name": name,
       if (description != null) "description": description,
       if (isPrivate != null) "is_private": isPrivate,
@@ -431,7 +431,7 @@ class Video {
     bool? extended,
     int? ownerId,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("video.search", {
       if (q != null) "q": q,
       if (sort != null) "sort": sort,
       if (hd != null) "hd": hd,

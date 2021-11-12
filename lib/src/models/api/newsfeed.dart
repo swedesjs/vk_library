@@ -2,14 +2,14 @@ part of vk_library;
 
 /// A class for using the [`newsfeed`](https://vk.com/dev/newsfeed) methods.
 class Newsfeed {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Newsfeed(API api) : _callMethod = api._callMethod("newsfeed");
+  const Newsfeed(this._api);
 
   /// Prevents displaying news from specified users and groups in the current user's news feed.
   Future<bool> addBan({List<int>? userIds, List<int>? groupIds}) async {
-    final data = await _callMethod("addBan", {
+    final data = await _api.call("newsfeed.addBan", {
       if (userIds != null) "user_ids": userIds.join(","),
       if (groupIds != null) "group_ids": groupIds.join(","),
     });
@@ -19,7 +19,7 @@ class Newsfeed {
 
   /// Allows displaying news from specified users and groups in the current user's news feed.
   Future<bool> deleteBan({List<int>? userIds, List<int>? groupIds}) async {
-    final data = await _callMethod("deleteBan", {
+    final data = await _api.call("newsfeed.deleteBan", {
       if (userIds != null) "user_ids": userIds.join(","),
       if (groupIds != null) "group_ids": groupIds.join(","),
     });
@@ -29,7 +29,7 @@ class Newsfeed {
 
   /// The method allows you to delete a custom news list
   Future<bool> deleteList({required int listId}) async {
-    final data = await _callMethod("deleteList", {"list_id": listId});
+    final data = await _api.call("newsfeed.deleteList", {"list_id": listId});
 
     return data.response == 1;
   }
@@ -48,7 +48,7 @@ class Newsfeed {
     Set<String>? fields,
     String? section,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("newsfeed.get", {
       if (filters != null) "filters": filters.join(","),
       if (returnBanned != null) "return_banned": returnBanned,
       if (startTime != null) "start_time": startTime,
@@ -70,7 +70,7 @@ class Newsfeed {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("getBanned", {
+    final data = await _api.call("newsfeed.getBanned", {
       if (extended != null) "extended": extended,
       if (fields != null) "fields": fields.join(","),
       if (nameCase != null) "name_case": nameCase.stringValue(),
@@ -91,7 +91,7 @@ class Newsfeed {
     String? startFrom,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getComments", {
+    final data = await _api.call("newsfeed.getComments", {
       if (count != null) "count": count,
       if (filters != null) "filters": filters.join(","),
       if (reposts != null) "reposts": reposts,
@@ -110,7 +110,7 @@ class Newsfeed {
     List<int>? listIds,
     bool? extended,
   }) async {
-    final data = await _callMethod("getLists", {
+    final data = await _api.call("newsfeed.getLists", {
       if (listIds != null) "list_ids": listIds.join(","),
       if (extended != null) "extended": extended,
     });
@@ -126,7 +126,7 @@ class Newsfeed {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getMentions", {
+    final data = await _api.call("newsfeed.getMentions", {
       if (ownerId != null) "owner_id": ownerId,
       if (startTime != null) "start_time": startTime,
       if (endTime != null) "end_time": endTime,
@@ -146,7 +146,7 @@ class Newsfeed {
     int? count,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getRecommended", {
+    final data = await _api.call("newsfeed.getRecommended", {
       if (startTime != null) "start_time": startTime,
       if (endTime != null) "end_time": endTime,
       if (maxPhotos != null) "max_photos": maxPhotos,
@@ -165,7 +165,7 @@ class Newsfeed {
     bool? shuffle,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getSuggestedSources", {
+    final data = await _api.call("newsfeed.getSuggestedSources", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (shuffle != null) "shuffle": shuffle,
@@ -182,7 +182,7 @@ class Newsfeed {
     int? ownerId,
     int? itemId,
   }) async {
-    final data = await _callMethod("ignoreItem", {
+    final data = await _api.call("newsfeed.ignoreItem", {
       "type": type,
       if (ownerId != null) "owner_id": ownerId,
       if (itemId != null) "item_id": itemId,
@@ -198,7 +198,7 @@ class Newsfeed {
     List<int>? sourceIds,
     bool? noReposts,
   }) async {
-    final data = await _callMethod("saveList", {
+    final data = await _api.call("newsfeed.saveList", {
       if (listId != null) "list_id": listId,
       "title": title,
       if (sourceIds != null) "source_ids": sourceIds.join(","),
@@ -220,7 +220,7 @@ class Newsfeed {
     String? startFrom,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("newsfeed.search", {
       if (q != null) "q": q,
       if (extended != null) "extended": extended,
       if (count != null) "count": count,
@@ -243,7 +243,7 @@ class Newsfeed {
     required int itemId,
     String? trackCode,
   }) async {
-    final data = await _callMethod("unignoreItem", {
+    final data = await _api.call("newsfeed.unignoreItem", {
       "type": type,
       "owner_id": ownerId,
       "item_id": itemId,
@@ -260,7 +260,7 @@ class Newsfeed {
     int? ownerId,
     required int itemId,
   }) async {
-    final data = await _callMethod("unsubscribe", {
+    final data = await _api.call("newsfeed.unsubscribe", {
       "type": type,
       if (ownerId != null) "owner_id": ownerId,
       "item_id": itemId,

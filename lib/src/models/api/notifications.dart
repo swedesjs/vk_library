@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`notifications`](https://vk.com/dev/notifications) methods.
 class Notifications {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Notifications(API api) : _callMethod = api._callMethod("notifications");
+  const Notifications(this._api);
 
   /// Returns a list of notifications on the responses of other users on the current user account.
   Future<Json> get({
@@ -16,7 +16,7 @@ class Notifications {
     int? startTime,
     int? endTime,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("notifications.get", {
       if (count != null) "count": count,
       if (startFrom != null) "start_from": startFrom,
       if (filters != null) "filters": filters.join(","),
@@ -29,7 +29,7 @@ class Notifications {
 
   /// Resets the counter of unparent alerts on the answers of other users on the record of the current user.
   Future<bool> markAsViewed() async {
-    final data = await _callMethod("markAsViewed", const {});
+    final data = await _api.call("notifications.markAsViewed", const {});
 
     return data.response == 1;
   }
@@ -43,7 +43,7 @@ class Notifications {
     int? randomId,
     String? sendingMode,
   }) async {
-    final data = await _callMethod("sendMessage", {
+    final data = await _api.call("notifications.sendMessage", {
       "user_ids": userIds.join(","),
       "message": message,
       if (fragment != null) "fragment": fragment,

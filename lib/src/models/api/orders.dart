@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`orders`](https://vk.com/dev/orders) methods.
 class Orders {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Orders(API api) : _callMethod = api._callMethod("orders");
+  const Orders(this._api);
 
   /// Cancels subscription.
   Future<bool> cancelSubscription({
@@ -13,7 +13,7 @@ class Orders {
     required int subscriptionId,
     bool? pendingCancel,
   }) async {
-    final data = await _callMethod("cancelSubscription", {
+    final data = await _api.call("orders.cancelSubscription", {
       "user_id": userId,
       "subscription_id": subscriptionId,
       if (pendingCancel != null) "pending_cancel": pendingCancel,
@@ -30,7 +30,7 @@ class Orders {
     int? appOrderId,
     bool? testMode,
   }) async {
-    final data = await _callMethod("changeState", {
+    final data = await _api.call("orders.changeState", {
       "order_id": orderId,
       "action": action,
       if (appOrderId != null) "app_order_id": appOrderId,
@@ -46,7 +46,7 @@ class Orders {
     int? count,
     bool? testMode,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("orders.get", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (testMode != null) "test_mode": testMode,
@@ -60,7 +60,7 @@ class Orders {
     required int userId,
     required List<String> votes,
   }) async {
-    final data = await _callMethod("getAmount", {
+    final data = await _api.call("orders.getAmount", {
       "user_id": userId,
       "votes": votes.join(","),
     });
@@ -74,7 +74,7 @@ class Orders {
     List<int>? orderIds,
     bool? testMode,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("orders.getById", {
       if (orderId != null) "order_id": orderId,
       if (orderIds != null) "order_ids": orderIds.join(","),
       if (testMode != null) "test_mode": testMode,
@@ -88,7 +88,7 @@ class Orders {
     required int userId,
     required int subscriptionId,
   }) async {
-    final data = await _callMethod("getUserSubscriptionById", {
+    final data = await _api.call("orders.getUserSubscriptionById", {
       "user_id": userId,
       "subscription_id": subscriptionId,
     });
@@ -100,7 +100,7 @@ class Orders {
   Future<Json> getUserSubscriptions({
     required int userId,
   }) async {
-    final data = await _callMethod("getUserSubscriptions", {
+    final data = await _api.call("orders.getUserSubscriptions", {
       "user_id": userId,
     });
 
@@ -113,7 +113,7 @@ class Orders {
     required int subscriptionId,
     required int price,
   }) async {
-    final data = await _callMethod("updateSubscription", {
+    final data = await _api.call("orders.updateSubscription", {
       "user_id": userId,
       "subscription_id": subscriptionId,
       "price": price,

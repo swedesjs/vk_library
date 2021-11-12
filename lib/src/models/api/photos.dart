@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`photos`](https://vk.com/dev/photos) methods.
 class Photos {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Photos(API api) : _callMethod = api._callMethod("photos");
+  const Photos(this._api);
 
   /// Confirms the photo mark.
   Future<bool> confirmTag({
@@ -13,7 +13,7 @@ class Photos {
     required int photoId,
     required int tagId,
   }) async {
-    final data = await _callMethod("confirmTag", {
+    final data = await _api.call("photos.confirmTag", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       "tag_id": tagId,
@@ -28,7 +28,7 @@ class Photos {
     required int photoId,
     String? accessKey,
   }) async {
-    final data = await _callMethod("copy", {
+    final data = await _api.call("photos.copy", {
       "owner_id": ownerId,
       "photo_id": photoId,
       if (accessKey != null) "access_key": accessKey,
@@ -49,7 +49,7 @@ class Photos {
     bool? uploadByAdminsOnly,
     bool? commentsDisabled,
   }) async {
-    final data = await _callMethod("createAlbum", {
+    final data = await _api.call("photos.createAlbum", {
       "title": title,
       if (groupId != null) "group_id": groupId,
       if (description != null) "description": description,
@@ -75,7 +75,7 @@ class Photos {
     String? accessKey,
     String? guid,
   }) async {
-    final data = await _callMethod("createComment", {
+    final data = await _api.call("photos.createComment", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       if (message != null) "message": message,
@@ -95,7 +95,7 @@ class Photos {
     int? ownerId,
     required int photoId,
   }) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("photos.delete", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
     });
@@ -108,7 +108,7 @@ class Photos {
     required int albumId,
     int? groupId,
   }) async {
-    final data = await _callMethod("deleteAlbum", {
+    final data = await _api.call("photos.deleteAlbum", {
       "album_id": albumId,
       if (groupId != null) "group_id": groupId,
     });
@@ -121,7 +121,7 @@ class Photos {
     int? ownerId,
     required int commentId,
   }) async {
-    final data = await _callMethod("deleteComment", {
+    final data = await _api.call("photos.deleteComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
     });
@@ -140,7 +140,7 @@ class Photos {
     String? foursquareId,
     bool? deletePlace,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("photos.edit", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       if (caption != null) "caption": caption,
@@ -167,7 +167,7 @@ class Photos {
     bool? uploadByAdminsOnly,
     bool? commentsDisabled,
   }) async {
-    final data = await _callMethod("editAlbum", {
+    final data = await _api.call("photos.editAlbum", {
       "album_id": albumId,
       if (title != null) "title": title,
       if (description != null) "description": description,
@@ -189,7 +189,7 @@ class Photos {
     String? message,
     List<String>? attachments,
   }) async {
-    final data = await _callMethod("editComment", {
+    final data = await _api.call("photos.editComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
       if (message != null) "message": message,
@@ -214,7 +214,7 @@ class Photos {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("photos.get", {
       if (ownerId != null) "owner_id": ownerId,
       if (albumId != null) "album_id": albumId,
       if (photoIds != null) "photo_ids": photoIds.join(","),
@@ -240,7 +240,7 @@ class Photos {
     bool? needCovers,
     bool? photoSizes,
   }) async {
-    final data = await _callMethod("getAlbums", {
+    final data = await _api.call("photos.getAlbums", {
       if (ownerId != null) "owner_id": ownerId,
       if (albumIds != null) "album_ids": albumIds.join(","),
       if (offset != null) "offset": offset,
@@ -258,7 +258,7 @@ class Photos {
     int? userId,
     int? groupId,
   }) async {
-    final data = await _callMethod("getAlbumsCount", {
+    final data = await _api.call("photos.getAlbumsCount", {
       if (userId != null) "user_id": userId,
       if (groupId != null) "group_id": groupId,
     });
@@ -277,7 +277,7 @@ class Photos {
     bool? needHidden,
     bool? skipHidden,
   }) async {
-    final data = await _callMethod("getAll", {
+    final data = await _api.call("photos.getAll", {
       if (ownerId != null) "owner_id": ownerId,
       if (extended != null) "extended": extended,
       if (offset != null) "offset": offset,
@@ -299,7 +299,7 @@ class Photos {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getAllComments", {
+    final data = await _api.call("photos.getAllComments", {
       if (ownerId != null) "owner_id": ownerId,
       if (albumId != null) "album_id": albumId,
       if (needLikes != null) "need_likes": needLikes,
@@ -316,7 +316,7 @@ class Photos {
     bool? extended,
     bool? photoSizes,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("photos.getById", {
       "photos": photos.join(","),
       if (extended != null) "extended": extended,
       if (photoSizes != null) "photo_sizes": photoSizes,
@@ -332,7 +332,7 @@ class Photos {
     int? cropY,
     int? cropWidth,
   }) async {
-    final data = await _callMethod("getChatUploadServer", {
+    final data = await _api.call("photos.getChatUploadServer", {
       "chat_id": chatId,
       if (cropX != null) "crop_x": cropX,
       if (cropY != null) "crop_y": cropY,
@@ -356,7 +356,7 @@ class Photos {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getComments", {
+    final data = await _api.call("photos.getComments", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       if (needLikes != null) "need_likes": needLikes,
@@ -374,7 +374,7 @@ class Photos {
 
   /// Returns the server address to download photos of the selection of goods in the community.
   Future<Json> getMarketAlbumUploadServer({required int groupId}) async {
-    final data = await _callMethod("getMarketAlbumUploadServer", {
+    final data = await _api.call("photos.getMarketAlbumUploadServer", {
       "group_id": groupId,
     });
 
@@ -383,7 +383,7 @@ class Photos {
 
   /// Returns the server address to download the product.
   Future<Json> getMarketUploadServer({int? groupId}) async {
-    final data = await _callMethod("getMarketUploadServer", {
+    final data = await _api.call("photos.getMarketUploadServer", {
       if (groupId != null) "group_id": groupId,
     });
 
@@ -392,7 +392,7 @@ class Photos {
 
   /// Returns the server address to download the photo to a private message.
   Future<Json> getMessagesUploadServer({int? groupId}) async {
-    final data = await _callMethod("getMessagesUploadServer", {
+    final data = await _api.call("photos.getMessagesUploadServer", {
       if (groupId != null) "group_id": groupId,
     });
 
@@ -404,7 +404,7 @@ class Photos {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getNewTags", {
+    final data = await _api.call("photos.getNewTags", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
     });
@@ -420,7 +420,7 @@ class Photos {
     int? cropX2,
     int? cropY2,
   }) async {
-    final data = await _callMethod("getOwnerCoverPhotoUploadServer", {
+    final data = await _api.call("photos.getOwnerCoverPhotoUploadServer", {
       "group_id": groupId,
       if (cropX != null) "crop_x": cropX,
       if (cropY != null) "crop_y": cropY,
@@ -433,7 +433,7 @@ class Photos {
 
   /// Returns the server address to download the main photo to the user page or community.
   Future<Json> getOwnerPhotoUploadServer({int? ownerId}) async {
-    final data = await _callMethod("getOwnerPhotoUploadServer", {
+    final data = await _api.call("photos.getOwnerPhotoUploadServer", {
       if (ownerId != null) "owner_id": ownerId,
     });
 
@@ -446,7 +446,7 @@ class Photos {
     required int photoId,
     String? accessKey,
   }) async {
-    final data = await _callMethod("getTags", {
+    final data = await _api.call("photos.getTags", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       if (accessKey != null) "access_key": accessKey,
@@ -457,7 +457,7 @@ class Photos {
 
   /// Returns the address of the server to download photos.
   Future<Json> getUploadServer({int? albumId, int? groupId}) async {
-    final data = await _callMethod("getUploadServer", {
+    final data = await _api.call("photos.getUploadServer", {
       if (albumId != null) "album_id": albumId,
       if (groupId != null) "group_id": groupId,
     });
@@ -474,7 +474,7 @@ class Photos {
     // TODO: Implement the enum - https://vk.com/dev/photos.getUserPhotos
     int? sort,
   }) async {
-    final data = await _callMethod("getUserPhotos", {
+    final data = await _api.call("photos.getUserPhotos", {
       if (userId != null) "user_id": userId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -487,7 +487,7 @@ class Photos {
 
   /// Returns the address of the server to download the photo on the wall of the user or community.
   Future<Json> getWallUploadServer({int? groupId}) async {
-    final data = await _callMethod("getWallUploadServer", {
+    final data = await _api.call("photos.getWallUploadServer", {
       if (groupId != null) "group_id": groupId,
     });
 
@@ -500,7 +500,7 @@ class Photos {
     required int photoId,
     int? albumId,
   }) async {
-    final data = await _callMethod("makeCover", {
+    final data = await _api.call("photos.makeCover", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       if (albumId != null) "album_id": albumId,
@@ -515,7 +515,7 @@ class Photos {
     required int targetAlbumId,
     required int photoId,
   }) async {
-    final data = await _callMethod("move", {
+    final data = await _api.call("photos.move", {
       if (ownerId != null) "owner_id": ownerId,
       "target_album_id": targetAlbumId,
       "photo_id": photoId,
@@ -534,7 +534,7 @@ class Photos {
     num? x2,
     num? y2,
   }) async {
-    final data = await _callMethod("putTag", {
+    final data = await _api.call("photos.putTag", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       "user_id": userId,
@@ -553,7 +553,7 @@ class Photos {
     required int photoId,
     required int tagId,
   }) async {
-    final data = await _callMethod("removeTag", {
+    final data = await _api.call("photos.removeTag", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       "tag_id": tagId,
@@ -569,7 +569,7 @@ class Photos {
     int? before,
     int? after,
   }) async {
-    final data = await _callMethod("reorderAlbums", {
+    final data = await _api.call("photos.reorderAlbums", {
       if (ownerId != null) "owner_id": ownerId,
       "album_id": albumId,
       if (before != null) "before": before,
@@ -586,7 +586,7 @@ class Photos {
     int? before,
     int? after,
   }) async {
-    final data = await _callMethod("reorderPhotos", {
+    final data = await _api.call("photos.reorderPhotos", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
       if (before != null) "before": before,
@@ -603,7 +603,7 @@ class Photos {
     // TODO: Implement the enum - https://vk.com/dev/photos.report
     int? reason,
   }) async {
-    final data = await _callMethod("report", {
+    final data = await _api.call("photos.report", {
       "owner_id": ownerId,
       "photo_id": photoId,
       if (reason != null) "reason": reason,
@@ -619,7 +619,7 @@ class Photos {
     // TODO: Implement the enum - https://vk.com/dev/photos.report
     int? reason,
   }) async {
-    final data = await _callMethod("reportComment", {
+    final data = await _api.call("photos.reportComment", {
       "owner_id": ownerId,
       "comment_id": commentId,
       if (reason != null) "reason": reason,
@@ -633,7 +633,7 @@ class Photos {
     int? ownerId,
     required int photoId,
   }) async {
-    final data = await _callMethod("restore", {
+    final data = await _api.call("photos.restore", {
       if (ownerId != null) "owner_id": ownerId,
       "photo_id": photoId,
     });
@@ -646,7 +646,7 @@ class Photos {
     int? ownerId,
     required int commentId,
   }) async {
-    final data = await _callMethod("restoreComment", {
+    final data = await _api.call("photos.restoreComment", {
       if (ownerId != null) "owner_id": ownerId,
       "comment_id": commentId,
     });
@@ -665,7 +665,7 @@ class Photos {
     num? longitude,
     String? caption,
   }) async {
-    final data = await _callMethod("save", {
+    final data = await _api.call("photos.save", {
       if (albumId != null) "album_id": albumId,
       if (groupId != null) "group_id": groupId,
       if (server != null) "server": server,
@@ -686,7 +686,7 @@ class Photos {
     required int server,
     required String hash,
   }) async {
-    final data = await _callMethod("saveMarketAlbumPhoto", {
+    final data = await _api.call("photos.saveMarketAlbumPhoto", {
       "group_id": groupId,
       "photo": photo,
       "server": server,
@@ -705,7 +705,7 @@ class Photos {
     String? cropData,
     String? cropHash,
   }) async {
-    final data = await _callMethod("saveMarketPhoto", {
+    final data = await _api.call("photos.saveMarketPhoto", {
       if (groupId != null) "group_id": groupId,
       "photo": photo,
       "server": server,
@@ -723,7 +723,7 @@ class Photos {
     int? server,
     String? hash,
   }) async {
-    final data = await _callMethod("saveMessagesPhoto", {
+    final data = await _api.call("photos.saveMessagesPhoto", {
       "photo": photo,
       if (server != null) "server": server,
       if (hash != null) "hash": hash,
@@ -737,7 +737,7 @@ class Photos {
     required String hash,
     required String photo,
   }) async {
-    final data = await _callMethod("saveOwnerCoverPhoto", {
+    final data = await _api.call("photos.saveOwnerCoverPhoto", {
       "hash": hash,
       "photo": photo,
     });
@@ -751,7 +751,7 @@ class Photos {
     String? hash,
     String? photo,
   }) async {
-    final data = await _callMethod("saveOwnerPhoto", {
+    final data = await _api.call("photos.saveOwnerPhoto", {
       if (server != null) "server": server,
       if (hash != null) "hash": hash,
       if (photo != null) "photo": photo,
@@ -771,7 +771,7 @@ class Photos {
     num? longitude,
     String? caption,
   }) async {
-    final data = await _callMethod("saveWallPhoto", {
+    final data = await _api.call("photos.saveWallPhoto", {
       if (userId != null) "user_id": userId,
       if (groupId != null) "group_id": groupId,
       "photo": photo,
@@ -798,7 +798,7 @@ class Photos {
     int? count,
     int? radius,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("photos.search", {
       if (q != null) "q": q,
       if (lat != null) "lat": lat,
       if (long != null) "long": long,

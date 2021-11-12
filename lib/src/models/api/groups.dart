@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`groups`](https://vk.com/dev/groups) methods.
 class Groups {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Groups(API api) : _callMethod = api._callMethod("groups");
+  const Groups(this._api);
 
   /// Allows you to add an address to the community.
   ///
@@ -26,7 +26,7 @@ class Groups {
     Json? timetable,
     bool? isMainAddress,
   }) async {
-    final data = await _callMethod("addAddress", {
+    final data = await _api.call("groups.addAddress", {
       "group_id": groupId,
       "title": title,
       "address": address,
@@ -52,7 +52,7 @@ class Groups {
     required String title,
     String? secretKey,
   }) async {
-    final data = await _callMethod("addCallbackServer", {
+    final data = await _api.call("groups.addCallbackServer", {
       "group_id": groupId,
       "url": url,
       "title": title,
@@ -70,7 +70,7 @@ class Groups {
     required String link,
     String? text,
   }) async {
-    final data = await _callMethod("addLink", {
+    final data = await _api.call("groups.addLink", {
       "group_id": groupId,
       "link": link,
       if (text != null) "text": text,
@@ -84,7 +84,7 @@ class Groups {
     required int userId,
     required int groupId,
   }) async {
-    final data = await _callMethod("approveRequest", {
+    final data = await _api.call("groups.approveRequest", {
       "user_id": userId,
       "group_id": groupId,
     });
@@ -102,7 +102,7 @@ class Groups {
     String? comment,
     bool? commentVisible,
   }) async {
-    final data = await _callMethod("ban", {
+    final data = await _api.call("groups.ban", {
       "group_id": groupId,
       if (ownerId != null) "owner_id": ownerId,
       if (endDate != null) "end_date": endDate,
@@ -125,7 +125,7 @@ class Groups {
     // TODO: Implement the enum this parameter - https://vk.com/dev/groups.create
     int? subtype,
   }) async {
-    final data = await _callMethod("create", {
+    final data = await _api.call("groups.create", {
       "title": title,
       if (description != null) "description": description,
       if (type != null) "type": type,
@@ -142,7 +142,7 @@ class Groups {
     required int groupId,
     required int addressId,
   }) async {
-    final data = await _callMethod("deleteAddress", {
+    final data = await _api.call("groups.deleteAddress", {
       "group_id": groupId,
       "address_id": addressId,
     });
@@ -155,7 +155,7 @@ class Groups {
     required int groupId,
     required int serverId,
   }) async {
-    final data = await _callMethod("deleteCallbackServer", {
+    final data = await _api.call("groups.deleteCallbackServer", {
       "group_id": groupId,
       "server_id": serverId,
     });
@@ -167,7 +167,7 @@ class Groups {
   ///
   /// The list of links can be obtained by the [getById] method, with the **fields** = `links` parameter.
   Future<bool> deleteLink({required int groupId, required int linkId}) async {
-    final data = await _callMethod("deleteLink", {
+    final data = await _api.call("groups.deleteLink", {
       "group_id": groupId,
       "link_id": linkId,
     });
@@ -177,7 +177,7 @@ class Groups {
 
   /// Turns off `online` status in the community.
   Future<bool> disableOnline({required int groupId}) async {
-    final data = await _callMethod("disableOnline", {"group_id": groupId});
+    final data = await _api.call("groups.disableOnline", {"group_id": groupId});
 
     return data.response == 1;
   }
@@ -243,7 +243,7 @@ class Groups {
     int? country,
     int? city,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("groups.edit", {
       "group_id": groupId,
       if (title != null) "title": title,
       if (description != null) "description": description,
@@ -316,7 +316,7 @@ class Groups {
     Json? timetable,
     bool? isMainAddress,
   }) async {
-    final data = await _callMethod("editAddress", {
+    final data = await _api.call("groups.editAddress", {
       "group_id": groupId,
       "address_id": addressId,
       if (title != null) "title": title,
@@ -344,7 +344,7 @@ class Groups {
     required String title,
     String? secretKey,
   }) async {
-    final data = await _callMethod("editCallbackServer", {
+    final data = await _api.call("groups.editCallbackServer", {
       "group_id": groupId,
       "server_id": serverId,
       "url": url,
@@ -361,7 +361,7 @@ class Groups {
     required int linkId,
     String? text,
   }) async {
-    final data = await _callMethod("editLink", {
+    final data = await _api.call("groups.editLink", {
       "group_id": groupId,
       "link_id": linkId,
       if (text != null) "text": text,
@@ -381,7 +381,7 @@ class Groups {
     String? contactPhone,
     String? contactEmail,
   }) async {
-    final data = await _callMethod("editManager", {
+    final data = await _api.call("groups.editManager", {
       "group_id": groupId,
       "user_id": userId,
       if (role != null) "role": role,
@@ -396,7 +396,7 @@ class Groups {
 
   /// Enables `online` status in the community.
   Future<bool> enableOnline({required int groupId}) async {
-    final data = await _callMethod("enableOnline", {"group_id": groupId});
+    final data = await _api.call("groups.enableOnline", {"group_id": groupId});
 
     return data.response == 1;
   }
@@ -411,7 +411,7 @@ class Groups {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("groups.get", {
       if (userId != null) "user_id": userId,
       if (extended != null) "extended": extended,
       if (filter != null) "filter": filter.join(","),
@@ -433,7 +433,7 @@ class Groups {
     int? count,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getAddresses", {
+    final data = await _api.call("groups.getAddresses", {
       "group_id": groupId,
       if (addressIds != null) "address_ids": addressIds.join(","),
       if (latitude != null) "latitude": latitude,
@@ -454,7 +454,7 @@ class Groups {
     Set<String>? fields,
     int? ownerId,
   }) async {
-    final data = await _callMethod("getBanned", {
+    final data = await _api.call("groups.getBanned", {
       "group_id": groupId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -471,7 +471,7 @@ class Groups {
     String? groupId,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("groups.getById", {
       if (groupIds != null) "group_ids": groupIds.join(","),
       if (groupId != null) "group_id": groupId,
       if (fields != null) "fields": fields.join(","),
@@ -482,7 +482,7 @@ class Groups {
 
   /// Retrieves the string required to confirm the server address in the [Callback API](https://vk.com/dev/callback_api).
   Future<String> getCallbackConfirmationCode({required int groupId}) async {
-    final data = await _callMethod("getCallbackConfirmationCode", {
+    final data = await _api.call("groups.getCallbackConfirmationCode", {
       "group_id": groupId,
     });
 
@@ -494,7 +494,7 @@ class Groups {
     required int groupId,
     List<int>? serverIds,
   }) async {
-    final data = await _callMethod("getCallbackServers", {
+    final data = await _api.call("groups.getCallbackServers", {
       "group_id": groupId,
       if (serverIds != null) "server_ids": serverIds.join(","),
     });
@@ -507,7 +507,7 @@ class Groups {
     required int groupId,
     int? serverId,
   }) async {
-    final data = await _callMethod("getCallbackSettings", {
+    final data = await _api.call("groups.getCallbackSettings", {
       "group_id": groupId,
       if (serverId != null) "server_id": serverId,
     });
@@ -520,7 +520,7 @@ class Groups {
     int? categoryId,
     int? subcategoryId,
   }) async {
-    final data = await _callMethod("getCatalog", {
+    final data = await _api.call("groups.getCatalog", {
       if (categoryId != null) "category_id": categoryId,
       if (subcategoryId != null) "subcategory_id": subcategoryId,
     });
@@ -533,7 +533,7 @@ class Groups {
     bool? extended,
     bool? subcategories,
   }) async {
-    final data = await _callMethod("getCatalogInfo", {
+    final data = await _api.call("groups.getCatalogInfo", {
       if (extended != null) "extended": extended,
       if (subcategories != null) "subcategories": subcategories,
     });
@@ -549,7 +549,7 @@ class Groups {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("getInvitedUsers", {
+    final data = await _api.call("groups.getInvitedUsers", {
       "group_id": groupId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -566,7 +566,7 @@ class Groups {
     int? count,
     bool? extended,
   }) async {
-    final data = await _callMethod("getInvites", {
+    final data = await _api.call("groups.getInvites", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
@@ -577,14 +577,14 @@ class Groups {
 
   /// Returns data for connecting to the Bots Longpoll API.
   Future<Json> getLongPollServer({required int groupId}) async {
-    final data = await _callMethod("getLongPollServer", {"group_id": groupId});
+    final data = await _api.call("groups.getLongPollServer", {"group_id": groupId});
 
     return data.response;
   }
 
   /// Gets the Bots Longpoll API settings for the community.
   Future<Json> getLongPollSettings({required int groupId}) async {
-    final data = await _callMethod("getLongPollSettings", {
+    final data = await _api.call("groups.getLongPollSettings", {
       "group_id": groupId,
     });
 
@@ -602,7 +602,7 @@ class Groups {
     // TODO: Implement the enum this parameter - https://vk.com/dev/groups.getMembers
     String? filter,
   }) async {
-    final data = await _callMethod("getMembers", {
+    final data = await _api.call("groups.getMembers", {
       if (groupId != null) "group_id": groupId,
       if (sort != null) "sort": sort,
       if (offset != null) "offset": offset,
@@ -616,7 +616,7 @@ class Groups {
 
   /// Gets information about the `online` status of the community.
   Future<Json> getOnlineStatus({required int groupId}) async {
-    final data = await _callMethod("getOnlineStatus", {"group_id": groupId});
+    final data = await _api.call("groups.getOnlineStatus", {"group_id": groupId});
 
     return data.response;
   }
@@ -628,7 +628,7 @@ class Groups {
     int? count,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getRequests", {
+    final data = await _api.call("groups.getRequests", {
       "group_id": groupId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -640,28 +640,28 @@ class Groups {
 
   /// Retrieves the data required to display the community data edit page.
   Future<Json> getSettings({required int groupId}) async {
-    final data = await _callMethod("getSettings", {"group_id": groupId});
+    final data = await _api.call("groups.getSettings", {"group_id": groupId});
 
     return data.response;
   }
 
   /// Returns a list of community tags.
   Future<List<Json>> getTagList({required int groupId}) async {
-    final data = await _callMethod("getTagList", {"group_id": groupId});
+    final data = await _api.call("groups.getTagList", {"group_id": groupId});
 
     return data.response;
   }
 
   /// Returns the rights settings for a community token.
   Future<Json> getTokenPermissions() async {
-    final data = await _callMethod("getTokenPermissions", const {});
+    final data = await _api.call("groups.getTokenPermissions", const {});
 
     return data.response;
   }
 
   /// Allows you to invite friends to the group.
   Future<bool> invite({required int groupId, required int userId}) async {
-    final data = await _callMethod("invite", {
+    final data = await _api.call("groups.invite", {
       "group_id": groupId,
       "user_id": userId,
     });
@@ -676,7 +676,7 @@ class Groups {
     List<int>? userIds,
     bool? extended,
   }) async {
-    final data = await _callMethod("isMember", {
+    final data = await _api.call("groups.isMember", {
       "group_id": groupId,
       if (userId != null) "user_id": userId,
       if (userIds != null) "user_ids": userIds.join(","),
@@ -691,7 +691,7 @@ class Groups {
     int? groupId,
     int? notSure,
   }) async {
-    final data = await _callMethod("join", {
+    final data = await _api.call("groups.join", {
       if (groupId != null) "group_id": groupId,
       if (notSure != null) "not_sure": notSure,
     });
@@ -701,14 +701,14 @@ class Groups {
 
   /// Allows you to leave the community or decline the invitation to the community.
   Future<bool> leave({required int groupId}) async {
-    final data = await _callMethod("leave", {"group_id": groupId});
+    final data = await _api.call("groups.leave", {"group_id": groupId});
 
     return data.response == 1;
   }
 
   /// Allows you to exclude a user from a group or decline an application to join.
   Future<bool> removeUser({required int groupId, required int userId}) async {
-    final data = await _callMethod("removeUser", {
+    final data = await _api.call("groups.removeUser", {
       "group_id": groupId,
       "user_id": userId,
     });
@@ -724,7 +724,7 @@ class Groups {
     required int linkId,
     int? after,
   }) async {
-    final data = await _callMethod("reorderLink", {
+    final data = await _api.call("groups.reorderLink", {
       "group_id": groupId,
       "link_id": linkId,
       if (after != null) "after": after,
@@ -747,7 +747,7 @@ class Groups {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("groups.search", {
       "q": q,
       if (type != null) "type": type,
       if (countryId != null) "country_id": countryId,
@@ -820,7 +820,7 @@ class Groups {
     bool? donutMoneyWithdraw,
     bool? donutMoneyWithdrawError,
   }) async {
-    final data = await _callMethod("setCallbackSettings", {
+    final data = await _api.call("groups.setCallbackSettings", {
       "group_id": groupId,
       if (serverId != null) "server_id": serverId,
       if (apiVersion != null) "api_version": apiVersion,
@@ -951,7 +951,7 @@ class Groups {
     bool? donutMoneyWithdraw,
     bool? donutMoneyWithdrawError,
   }) async {
-    final data = await _callMethod("setLongPollSettings", {
+    final data = await _api.call("groups.setLongPollSettings", {
       "group_id": groupId,
       if (enabled != null) "enabled": enabled,
       if (apiVersion != null) "api_version": apiVersion,
@@ -1032,7 +1032,7 @@ class Groups {
     bool? botsStartButton,
     bool? botsAddToChat,
   }) async {
-    final data = await _callMethod("setSettings", {
+    final data = await _api.call("groups.setSettings", {
       "group_id": groupId,
       if (messages != null) "messages": messages,
       if (botsCapabilities != null) "bots_capabilities": botsCapabilities,
@@ -1050,7 +1050,7 @@ class Groups {
     required int userId,
     String? note,
   }) async {
-    final data = await _callMethod("setUserNote", {
+    final data = await _api.call("groups.setUserNote", {
       "group_id": groupId,
       "user_id": userId,
       if (note != null) "note": note,
@@ -1067,7 +1067,7 @@ class Groups {
     // TODO: Implement the enum this parameter - https://vk.com/dev/groups.tagAdd
     String? tagColor,
   }) async {
-    final data = await _callMethod("tagAdd", {
+    final data = await _api.call("groups.tagAdd", {
       "group_id": groupId,
       "tag_name": tagName,
       if (tagColor != null) "tag_color": tagColor,
@@ -1085,7 +1085,7 @@ class Groups {
     // TODO: Implement the enum this parameter - https://vk.com/dev/groups.tagBind
     required String act,
   }) async {
-    final data = await _callMethod("tagBind", {
+    final data = await _api.call("groups.tagBind", {
       "group_id": groupId,
       "tag_id": tagId,
       "user_id": userId,
@@ -1103,7 +1103,7 @@ class Groups {
     required int groupId,
     required int tagId,
   }) async {
-    final data = await _callMethod("tagDelete", {
+    final data = await _api.call("groups.tagDelete", {
       "group_id": groupId,
       "tag_id": tagId,
     });
@@ -1118,7 +1118,7 @@ class Groups {
     required int tagId,
     required String tagName,
   }) async {
-    final data = await _callMethod("tagUpdate", {
+    final data = await _api.call("groups.tagUpdate", {
       "group_id": groupId,
       "tag_id": tagId,
       "tag_name": tagName,
@@ -1141,7 +1141,7 @@ class Groups {
     String? utmTerm,
     String? promocode,
   }) async {
-    final data = await _callMethod("toggleMarket", {
+    final data = await _api.call("groups.toggleMarket", {
       "group_id": groupId,
       "state": state,
       if (ref != null) "ref": ref,
@@ -1158,7 +1158,7 @@ class Groups {
 
   /// Removes a user or group from the community blacklist.
   Future<bool> unban({required int groupId, int? ownerId}) async {
-    final data = await _callMethod("unban", {
+    final data = await _api.call("groups.unban", {
       "group_id": groupId,
       if (ownerId != null) "owner_id": ownerId,
     });

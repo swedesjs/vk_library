@@ -2,14 +2,14 @@ part of vk_library;
 
 /// A class for using the [`friends`](https://vk.com/dev/friends) methods.
 class Friends {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Friends(API api) : _callMethod = api._callMethod("friends");
+  const Friends(this._api);
 
   /// Approves or creates a friend request.
   Future<int> add({int? userId, String? text, bool? follow}) async {
-    final data = await _callMethod("add", {
+    final data = await _api.call("friends.add", {
       if (userId != null) "user_id": userId,
       if (text != null) "text": text,
       if (follow != null) "follow": follow,
@@ -20,7 +20,7 @@ class Friends {
 
   /// Creates a new friend list for the current user.
   Future<Json> addList({required String name, List<int>? userIds}) async {
-    final data = await _callMethod("addList", {
+    final data = await _api.call("friends.addList", {
       "name": name,
       if (userIds != null) "user_ids": userIds.join(","),
     });
@@ -36,7 +36,7 @@ class Friends {
     bool? needSign,
     bool? extended,
   }) async {
-    final data = await _callMethod("areFriends", {
+    final data = await _api.call("friends.areFriends", {
       "user_ids": userIds,
       if (needSign != null) "need_sign": needSign,
       if (extended != null) "extended": extended,
@@ -47,7 +47,7 @@ class Friends {
 
   /// Removes a user from the friends list or rejects a friend request.
   Future<Json> delete({int? userId}) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("friends.delete", {
       if (userId != null) "user_id": userId,
     });
 
@@ -56,21 +56,21 @@ class Friends {
 
   /// Marks all incoming friend requests as viewed.
   Future<bool> deleteAllRequests() async {
-    final data = await _callMethod("deleteAllRequests", const {});
+    final data = await _api.call("friends.deleteAllRequests", const {});
 
     return data.response == 1;
   }
 
   /// Removes the current user's existing friend list.
   Future<bool> deleteList({required int listId}) async {
-    final data = await _callMethod("deleteList", {"list_id": listId});
+    final data = await _api.call("friends.deleteList", {"list_id": listId});
 
     return data.response == 1;
   }
 
   /// Edits the friends lists for the selected friend.
   Future<bool> edit({required int userId, List<int>? listIds}) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("friends.edit", {
       "user_id": userId,
       if (listIds != null) "list_ids": listIds.join(","),
     });
@@ -86,7 +86,7 @@ class Friends {
     List<int>? addUserIds,
     List<int>? deleteUserIds,
   }) async {
-    final data = await _callMethod("editList", {
+    final data = await _api.call("friends.editList", {
       if (name != null) "name": name,
       "list_id": listId,
       if (userIds != null) "user_ids": userIds.join(","),
@@ -109,7 +109,7 @@ class Friends {
     NameCase? nameCase,
     String? ref,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("friends.get", {
       if (userId != null) "user_id": userId,
       if (order != null) "order": order,
       if (listId != null) "list_id": listId,
@@ -125,7 +125,7 @@ class Friends {
 
   /// Returns a list of the current user's friend IDs who have installed this application.
   Future<List<int>> getAppUsers() async {
-    final data = await _callMethod("getAppUsers", const {});
+    final data = await _api.call("friends.getAppUsers", const {});
 
     return data.response;
   }
@@ -135,7 +135,7 @@ class Friends {
     List<String>? phones,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getByPhones", {
+    final data = await _api.call("friends.getByPhones", {
       if (phones != null) "phones": phones.join(","),
       if (fields != null) "fields": fields.join(","),
     });
@@ -145,7 +145,7 @@ class Friends {
 
   /// Returns a list of tags of the user's friends.
   Future<Json> getLists({int? userId, bool? returnSystem}) async {
-    final data = await _callMethod("getLists", {
+    final data = await _api.call("friends.getLists", {
       if (userId != null) "user_id": userId,
       if (returnSystem != null) "return_system": returnSystem
     });
@@ -165,7 +165,7 @@ class Friends {
     int? count,
     int? offset,
   }) async {
-    final data = await _callMethod("getMutual", {
+    final data = await _api.call("friends.getMutual", {
       if (sourceUid != null) "source_uid": sourceUid,
       if (targetUid != null) "target_uid": targetUid,
       if (targetUids != null) "target_uids": targetUids.join(","),
@@ -187,7 +187,7 @@ class Friends {
     int? count,
     int? offset,
   }) async {
-    final data = await _callMethod("getOnline", {
+    final data = await _api.call("friends.getOnline", {
       if (userId != null) "user_id": userId,
       if (listId != null) "list_id": listId,
       if (onlineMobile != null) "online_mobile": onlineMobile,
@@ -201,7 +201,7 @@ class Friends {
 
   /// Returns a list of recently added friends ids of the current user.
   Future<List<int>> getRecent({int? count}) async {
-    final data = await _callMethod("getRecent", {
+    final data = await _api.call("friends.getRecent", {
       if (count != null) "count": count,
     });
 
@@ -221,7 +221,7 @@ class Friends {
     String? ref,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getRequests", {
+    final data = await _api.call("friends.getRequests", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
@@ -245,7 +245,7 @@ class Friends {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("getSuggestions", {
+    final data = await _api.call("friends.getSuggestions", {
       if (filter != null) "filter": filter.join(","),
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
@@ -265,7 +265,7 @@ class Friends {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("friends.search", {
       "user_id": userId,
       if (q != null) "q": q,
       if (fields != null) "fields": fields.join(","),

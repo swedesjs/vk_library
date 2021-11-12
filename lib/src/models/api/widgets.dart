@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`widgets`](https://vk.com/dev/widgets) methods.
 class Widgets {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Widgets(API api) : _callMethod = api._callMethod("widgets");
+  const Widgets(this._api);
 
   /// Gets a list of comments to the page left through the comment widget.
   Future<Json> getComments({
@@ -17,7 +17,7 @@ class Widgets {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getComments", {
+    final data = await _api.call("widgets.getComments", {
       if (widgetApiId != null) "widget_api_id": widgetApiId,
       if (url != null) "url": url,
       if (pageId != null) "page_id": pageId,
@@ -40,7 +40,7 @@ class Widgets {
     int? offset,
     int? count,
   }) async {
-    final data = await _callMethod("getPages", {
+    final data = await _api.call("widgets.getPages", {
       if (widgetApiId != null) "widget_api_id": widgetApiId,
       if (order != null) "order": order,
       if (period != null) "period": period,

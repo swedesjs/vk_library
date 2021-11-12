@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`polls`](https://vk.com/dev/polls) methods.
 class Polls {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Polls(API api) : _callMethod = api._callMethod("polls");
+  const Polls(this._api);
 
   /// Gives the current user's voice for the selected response option in the specified survey.
   Future<int> addVote({
@@ -14,7 +14,7 @@ class Polls {
     required List<int> answerIds,
     bool? isBoard,
   }) async {
-    final data = await _callMethod("addVote", {
+    final data = await _api.call("polls.addVote", {
       if (ownerId != null) "owner_id": ownerId,
       "poll_id": pollId,
       "answer_ids": answerIds.join(","),
@@ -37,7 +37,7 @@ class Polls {
     int? backgroundId,
     bool? disableUnvote,
   }) async {
-    final data = await _callMethod("create", {
+    final data = await _api.call("polls.create", {
       if (question != null) "question": question,
       if (isAnonymous != null) "is_anonymous": isAnonymous,
       if (isMultiple != null) "is_multiple": isMultiple,
@@ -60,7 +60,7 @@ class Polls {
     required int answerId,
     bool? isBoard,
   }) async {
-    final data = await _callMethod("deleteVote", {
+    final data = await _api.call("polls.deleteVote", {
       if (ownerId != null) "owner_id": ownerId,
       "poll_id": pollId,
       "answer_id": answerId,
@@ -82,7 +82,7 @@ class Polls {
     int? photoId,
     int? backgroundId,
   }) async {
-    final data = await _callMethod("edit", {
+    final data = await _api.call("polls.edit", {
       if (ownerId != null) "owner_id": ownerId,
       "poll_id": pollId,
       if (question != null) "question": question,
@@ -99,7 +99,7 @@ class Polls {
 
   /// Returns background image options for polls.
   Future<List<Json>> getBackgrounds() async {
-    final data = await _callMethod("getBackgrounds", const {});
+    final data = await _api.call("polls.getBackgrounds", const {});
 
     return data.response;
   }
@@ -114,7 +114,7 @@ class Polls {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("polls.getById", {
       if (ownerId != null) "owner_id": ownerId,
       if (isBoard != null) "is_board": isBoard,
       "poll_id": pollId,
@@ -129,7 +129,7 @@ class Polls {
 
   /// Returns the address of the server to download the background photo to the survey.
   Future<Json> getPhotoUploadServer({int? ownerId}) async {
-    final data = await _callMethod("getPhotoUploadServer", {
+    final data = await _api.call("polls.getPhotoUploadServer", {
       if (ownerId != null) "owner_id": ownerId,
     });
 
@@ -148,7 +148,7 @@ class Polls {
     Set<String>? fields,
     NameCase? nameCase,
   }) async {
-    final data = await _callMethod("getVoters", {
+    final data = await _api.call("polls.getVoters", {
       if (ownerId != null) "owner_id": ownerId,
       "poll_id": pollId,
       "answer_ids": answerIds.join(","),
@@ -165,7 +165,7 @@ class Polls {
 
   /// Saves a photo downloaded to the survey.
   Future<int> savePhoto({required String photo, required String hash}) async {
-    final data = await _callMethod("savePhoto", {"photo": photo, "hash": hash});
+    final data = await _api.call("polls.savePhoto", {"photo": photo, "hash": hash});
 
     return data.response;
   }

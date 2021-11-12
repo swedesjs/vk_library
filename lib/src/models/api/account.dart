@@ -2,14 +2,14 @@ part of vk_library;
 
 /// A class for using the [`account`](https://vk.com/dev/account) methods.
 class Account {
-  final _CallMethodType _callMethod;
+  final API _api;
 
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Account(API api) : _callMethod = api._callMethod("account");
+  const Account(this._api);
 
   /// Adds a user or group to the blacklist.
   Future<bool> ban({int? ownerId}) async {
-    final data = await _callMethod("ban", {
+    final data = await _api.call("account.ban", {
       if (ownerId != null) "owner_id": ownerId,
     });
 
@@ -23,7 +23,7 @@ class Account {
     String? oldPassword,
     required String newPassword,
   }) async {
-    final data = await _callMethod("changePassword", {
+    final data = await _api.call("account.changePassword", {
       if (restoreSid != null) "restore_sid": restoreSid,
       if (changePasswordHash != null)
         "change_password_hash": changePasswordHash,
@@ -36,7 +36,7 @@ class Account {
 
   /// Returns a list of active advertising offers (offers), after completing which the user will be able to receive the corresponding number of votes to his account within the application.
   Future<List<Json>> getActiveOffers({int? offset, int? count}) async {
-    final data = await _callMethod("getActiveOffers", {
+    final data = await _api.call("account.getActiveOffers", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
     });
@@ -46,14 +46,14 @@ class Account {
 
   /// Gets the settings of the current user in this application.
   Future<int> getAppPermissions({required int userId}) async {
-    final data = await _callMethod("getAppPermissions", {"user_id": userId});
+    final data = await _api.call("account.getAppPermissions", {"user_id": userId});
 
     return data.response;
   }
 
   /// Returns a list of blacklisted users.
   Future<Json> getBanned({int? offset, int? count}) async {
-    final data = await _callMethod("getBanned", {
+    final data = await _api.call("account.getBanned", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
     });
@@ -66,7 +66,7 @@ class Account {
     Set<AccountGetCountersFilter>? filter,
     int? userId,
   }) async {
-    final data = await _callMethod("getCounters", {
+    final data = await _api.call("account.getCounters", {
       if (filter != null)
         "filter": filter.map((e) => e.stringValue()).join(","),
       if (userId != null) "user_id": userId,
@@ -77,7 +77,7 @@ class Account {
 
   /// Returns information about the current account.
   Future<Json> getInfo({Set<String>? fields}) async {
-    final data = await _callMethod("getInfo", {
+    final data = await _api.call("account.getInfo", {
       if (fields != null) "fields": fields.join(","),
     });
 
@@ -86,14 +86,14 @@ class Account {
 
   /// Returns information about the current profile.
   Future<Json> getProfileInfo() async {
-    final data = await _callMethod("getProfileInfo", const {});
+    final data = await _api.call("account.getProfileInfo", const {});
 
     return data.response;
   }
 
   /// Allows you to receive push-notifications.
   Future<Json> getPushSettings({String? deviceId, String? token}) async {
-    final data = await _callMethod("getPushSettings", {
+    final data = await _api.call("account.getPushSettings", {
       if (deviceId != null) "device_id": deviceId,
       if (token != null) "token": token,
     });
@@ -112,7 +112,7 @@ class Account {
     Json? settings,
     bool? sandbox,
   }) async {
-    final data = await _callMethod("registerDevice", {
+    final data = await _api.call("account.registerDevice", {
       "token": token,
       if (deviceModel != null) "device_model": deviceModel,
       if (deviceYear != null) "device_year": deviceYear,
@@ -145,7 +145,7 @@ class Account {
     int? cityId,
     String? status,
   }) async {
-    final data = await _callMethod("saveProfileInfo", {
+    final data = await _api.call("account.saveProfileInfo", {
       if (firstName != null) "first_name": firstName,
       if (lastName != null) "last_name": lastName,
       if (maidenName != null) "maiden_name": maidenName,
@@ -172,7 +172,7 @@ class Account {
     bool? ownPostsDefault,
     bool? noWallReplies,
   }) async {
-    final data = await _callMethod("setInfo", {
+    final data = await _api.call("account.setInfo", {
       if (name != null) "name": name,
       if (value != null) "value": value,
       if (intro != null) "intro": intro,
@@ -185,7 +185,7 @@ class Account {
 
   /// Sets the short name of the application (up to 17 characters), which is displayed by the user in the left menu.
   Future<bool> setNameInMenu({required int userId, String? name}) async {
-    final data = await _callMethod("setNameInMenu", {
+    final data = await _api.call("account.setNameInMenu", {
       "user_id": userId,
       if (name != null) "name": name,
     });
@@ -195,14 +195,14 @@ class Account {
 
   /// Marks the current user as offline (only in the current application).
   Future<bool> setOffline() async {
-    final data = await _callMethod("setOffline", const {});
+    final data = await _api.call("account.setOffline", const {});
 
     return data.response == 1;
   }
 
   /// Marks the current user as online for 5 minutes.
   Future<bool> setOnline({bool? voip}) async {
-    final data = await _callMethod("setOnline", {
+    final data = await _api.call("account.setOnline", {
       if (voip != null) "voip": voip,
     });
 
@@ -217,7 +217,7 @@ class Account {
     String? key,
     List<String>? value,
   }) async {
-    final data = await _callMethod("setPushSettings", {
+    final data = await _api.call("account.setPushSettings", {
       "device_id": deviceId,
       if (settings != null) "settings": settings,
       if (key != null) "key": key,
@@ -234,7 +234,7 @@ class Account {
     int? peerId,
     bool? sound,
   }) async {
-    final data = await _callMethod("setSilenceMode", {
+    final data = await _api.call("account.setSilenceMode", {
       if (deviceId != null) "device_id": deviceId,
       if (time != null) "time": time,
       if (peerId != null) "peer_id": peerId,
@@ -246,7 +246,7 @@ class Account {
 
   /// Deletes a user or group from a black list.
   Future<bool> unban({int? ownerId}) async {
-    final data = await _callMethod("unban", {
+    final data = await _api.call("account.unban", {
       if (ownerId != null) "owner_id": ownerId,
     });
 
@@ -255,7 +255,7 @@ class Account {
 
   /// Unsubscribe a device from Push notifications.
   Future<bool> unregisterDevice({String? deviceId, bool? sandbox}) async {
-    final data = await _callMethod("unregisterDevice", {
+    final data = await _api.call("account.unregisterDevice", {
       if (deviceId != null) "device_id": deviceId,
       if (sandbox != null) "sandbox": sandbox,
     });

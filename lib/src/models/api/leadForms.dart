@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`leadForms`](https://vk.com/dev/leadForms) methods.
 class LeadForms {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  LeadForms(API api) : _callMethod = api._callMethod("leadForms");
+  const LeadForms(this._api);
 
   /// Creates a form for collecting applications.
   Future<Json> create({
@@ -25,7 +25,7 @@ class LeadForms {
     List<int>? notifyAdmins,
     List<String>? notifyEmails,
   }) async {
-    final data = await _callMethod("create", {
+    final data = await _api.call("leadForms.create", {
       "group_id": groupId,
       "name": name,
       "title": title,
@@ -47,7 +47,7 @@ class LeadForms {
 
   /// Removes the application collection form.
   Future<int> delete({required int groupId, required int formId}) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("leadForms.delete", {
       "group_id": groupId,
       "form_id": formId,
     });
@@ -57,7 +57,7 @@ class LeadForms {
 
   /// Returns information about the application collection form.
   Future<Json> get({required int groupId, required int formId}) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("leadForms.get", {
       "group_id": groupId,
       "form_id": formId,
     });
@@ -72,7 +72,7 @@ class LeadForms {
     int? limit,
     String? nextPageToken,
   }) async {
-    final data = await _callMethod("getLeads", {
+    final data = await _api.call("leadForms.getLeads", {
       "group_id": groupId,
       "form_id": formId,
       if (limit != null) "limit": limit,
@@ -84,14 +84,14 @@ class LeadForms {
 
   /// Returns the URL to download the cover for the form.
   Future<String> getUploadURL() async {
-    final data = await _callMethod("getUploadURL", const {});
+    final data = await _api.call("leadForms.getUploadURL", const {});
 
     return data.response;
   }
 
   /// Returns a list of community forms.
   Future<List<Json>> list({required int groupId}) async {
-    final data = await _callMethod("list", {"group_id": groupId});
+    final data = await _api.call("leadForms.list", {"group_id": groupId});
 
     return data.response;
   }
@@ -117,7 +117,7 @@ class LeadForms {
     List<int>? notifyAdmins,
     List<String>? notifyEmails,
   }) async {
-    final data = await _callMethod("update", {
+    final data = await _api.call("leadForms.update", {
       "group_id": groupId,
       "form_id": formId,
       "name": name,

@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`secure`](https://vk.com/dev/secure) methods.
 class Secure {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Secure(API api) : _callMethod = api._callMethod("secure");
+  const Secure(this._api);
 
   /// Adds information about user achievements in the application.
   Future<T> addAppEvent<T extends Object>({
@@ -14,7 +14,7 @@ class Secure {
     required int activityId,
     int? value,
   }) async {
-    final data = await _callMethod("addAppEvent", {
+    final data = await _api.call("secure.addAppEvent", {
       "user_id": userId,
       "activity_id": activityId,
       if (value != null) "value": value,
@@ -28,7 +28,7 @@ class Secure {
     String? token,
     String? ip,
   }) async {
-    final data = await _callMethod("checkToken", {
+    final data = await _api.call("secure.checkToken", {
       if (token != null) "token": token,
       if (ip != null) "ip": ip,
     });
@@ -38,7 +38,7 @@ class Secure {
 
   /// Returns the payment balance (account) of the application in hundredths of votes.
   Future<double> getAppBalance() async {
-    final data = await _callMethod("getAppBalance", const {});
+    final data = await _api.call("secure.getAppBalance", const {});
 
     return data.response;
   }
@@ -50,7 +50,7 @@ class Secure {
     int? dateTo,
     int? limit,
   }) async {
-    final data = await _callMethod("getSMSHistory", {
+    final data = await _api.call("secure.getSMSHistory", {
       if (userId != null) "user_id": userId,
       if (dateFrom != null) "date_from": dateFrom,
       if (dateTo != null) "date_to": dateTo,
@@ -62,14 +62,14 @@ class Secure {
 
   /// Displays the history of transactions to transfer votes between users and the application.
   Future<List<Json>> getTransactionsHistory() async {
-    final data = await _callMethod("getTransactionsHistory", const {});
+    final data = await _api.call("secure.getTransactionsHistory", const {});
 
     return data.response;
   }
 
   /// Returns the previously exposed game level of one or more users in the application.
   Future<T> getUserLevel<T extends Object>({required List<int> userIds}) async {
-    final data = await _callMethod("getUserLevel", {
+    final data = await _api.call("secure.getUserLevel", {
       "user_ids": userIds.join(","),
     });
 
@@ -81,7 +81,7 @@ class Secure {
     required List<int> userIds,
     required int achievementId,
   }) async {
-    final data = await _callMethod("giveEventSticker", {
+    final data = await _api.call("secure.giveEventSticker", {
       "user_ids": userIds.join(","),
       "achievement_id": achievementId,
     });
@@ -95,7 +95,7 @@ class Secure {
     int? userId,
     required String message,
   }) async {
-    final data = await _callMethod("sendNotification", {
+    final data = await _api.call("secure.sendNotification", {
       if (userIds != null) "user_ids": userIds.join(","),
       if (userId != null) "user_id": userId,
       "message": message,
@@ -109,7 +109,7 @@ class Secure {
     required int userId,
     required String message,
   }) async {
-    final data = await _callMethod("sendSMSNotification", {
+    final data = await _api.call("secure.sendSMSNotification", {
       "user_id": userId,
       "message": message,
     });
@@ -124,7 +124,7 @@ class Secure {
     int? counter,
     bool? increment,
   }) async {
-    final data = await _callMethod("setCounter", {
+    final data = await _api.call("secure.setCounter", {
       if (counters != null) "counters": counters.join(","),
       if (userId != null) "user_id": userId,
       if (counter != null) "counter": counter,

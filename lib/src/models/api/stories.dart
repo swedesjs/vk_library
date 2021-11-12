@@ -2,14 +2,14 @@ part of vk_library;
 
 /// A class for using the [`stories`](https://vk.com/dev/stories) methods.
 class Stories {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Stories(API api) : _callMethod = api._callMethod("stories");
+  const Stories(this._api);
 
   /// Allows you to hide from the tape news of history from selected sources.
   Future<bool> banOwner({required List<int> ownersIds}) async {
-    final data = await _callMethod("banOwner", {
+    final data = await _api.call("stories.banOwner", {
       "owners_ids": ownersIds.join(","),
     });
 
@@ -22,7 +22,7 @@ class Stories {
     int? storyId,
     List<String>? stories,
   }) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("stories.delete", {
       if (ownerId != null) "owner_id": ownerId,
       if (storyId != null) "story_id": storyId,
       if (stories != null) "stories": stories.join(","),
@@ -37,7 +37,7 @@ class Stories {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("get", {
+    final data = await _api.call("stories.get", {
       if (ownerId != null) "owner_id": ownerId,
       if (extended != null) "extended": extended,
       if (fields != null) "fields": fields.join(","),
@@ -51,7 +51,7 @@ class Stories {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getBanned", {
+    final data = await _api.call("stories.getBanned", {
       if (extended != null) "extended": extended,
       if (fields != null) "fields": fields.join(","),
     });
@@ -65,7 +65,7 @@ class Stories {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getById", {
+    final data = await _api.call("stories.getById", {
       "stories": stories.join(","),
       if (extended != null) "extended": extended,
       if (fields != null) "fields": fields.join(","),
@@ -86,7 +86,7 @@ class Stories {
     // TODO: Implement the class - https://vk.com/dev/objects/clickable_stickers
     Json? clickableStickers,
   }) async {
-    final data = await _callMethod("getPhotoUploadServer", {
+    final data = await _api.call("stories.getPhotoUploadServer", {
       if (addToNews != null) "add_to_news": addToNews,
       if (userIds != null) "user_ids": userIds.join(","),
       if (replyToStory != null) "reply_to_story": replyToStory,
@@ -107,7 +107,7 @@ class Stories {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getReplies", {
+    final data = await _api.call("stories.getReplies", {
       "owner_id": ownerId,
       "story_id": storyId,
       if (accessKey != null) "access_key": accessKey,
@@ -123,7 +123,7 @@ class Stories {
     required int ownerId,
     required int storyId,
   }) async {
-    final data = await _callMethod("getStats", {
+    final data = await _api.call("stories.getStats", {
       "owner_id": ownerId,
       "story_id": storyId,
     });
@@ -143,7 +143,7 @@ class Stories {
     // TODO: Implement the class - https://vk.com/objects/clickable_stickers
     Json? clickableStickers,
   }) async {
-    final data = await _callMethod("getVideoUploadServer", {
+    final data = await _api.call("stories.getVideoUploadServer", {
       if (addToNews != null) "add_to_news": addToNews,
       if (userIds != null) "user_ids": userIds.join(","),
       if (replyToStory != null) "reply_to_story": replyToStory,
@@ -164,7 +164,7 @@ class Stories {
     int? offset,
     bool? extended,
   }) async {
-    final data = await _callMethod("getViewers", {
+    final data = await _api.call("stories.getViewers", {
       "owner_id": ownerId,
       "story_id": storyId,
       if (count != null) "count": count,
@@ -177,7 +177,7 @@ class Stories {
 
   /// Hides all the answers of the author over the past day on the history of the current user.
   Future<bool> hideAllReplies({required int ownerId, int? groupId}) async {
-    final data = await _callMethod("hideAllReplies", {
+    final data = await _api.call("stories.hideAllReplies", {
       "owner_id": ownerId,
       if (groupId != null) "group_id": groupId,
     });
@@ -187,7 +187,7 @@ class Stories {
 
   /// Hides a response to history.
   Future<bool> hideReply({required int ownerId, required int storyId}) async {
-    final data = await _callMethod("hideReply", {
+    final data = await _api.call("stories.hideReply", {
       "owner_id": ownerId,
       "story_id": storyId,
     });
@@ -201,7 +201,7 @@ class Stories {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("save", {
+    final data = await _api.call("stories.save", {
       "upload_results": uploadResults.join(","),
       if (extended != null) "extended": extended,
       if (fields != null) "fields": fields.join(","),
@@ -222,7 +222,7 @@ class Stories {
     bool? extended,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("search", {
+    final data = await _api.call("stories.search", {
       if (q != null) "q": q,
       if (placeId != null) "place_id": placeId,
       if (latitude != null) "latitude": latitude,
@@ -245,7 +245,7 @@ class Stories {
     bool? isAnonymous,
     bool? unseenMarker,
   }) async {
-    final data = await _callMethod("sendInteraction", {
+    final data = await _api.call("stories.sendInteraction", {
       "access_key": accessKey,
       if (message != null) "message": message,
       if (isBroadcast != null) "is_broadcast": isBroadcast,
@@ -258,7 +258,7 @@ class Stories {
 
   /// Allows you to return the user or community to the list of displayed stories in the tape.
   Future<bool> unbanOwner({required List<int> ownersIds}) async {
-    final data = await _callMethod("unbanOwner", {
+    final data = await _api.call("stories.unbanOwner", {
       "owners_ids": ownersIds.join(","),
     });
 

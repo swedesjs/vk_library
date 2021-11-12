@@ -2,14 +2,14 @@ part of vk_library;
 
 /// A class for using the [`store`](https://vk.com/dev/store) methods.
 class Store {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Store(API api) : _callMethod = api._callMethod("store");
+  const Store(this._api);
 
   /// Adds a sticker to favorites.
   Future<Json> addStickersToFavorite({required List<int> stickerIds}) async {
-    final data = await _callMethod("addStickersToFavorite", {
+    final data = await _api.call("store.addStickersToFavorite", {
       "sticker_ids": stickerIds.join(","),
     });
 
@@ -18,7 +18,7 @@ class Store {
 
   /// Returns a list of favorite stickers.
   Future<Json> getFavoriteStickers() async {
-    final data = await _callMethod("getFavoriteStickers", const {});
+    final data = await _api.call("store.getFavoriteStickers", const {});
     return data.response;
   }
 
@@ -34,7 +34,7 @@ class Store {
     Set<String>? filters,
     bool? extended,
   }) async {
-    final data = await _callMethod("getProducts", {
+    final data = await _api.call("store.getProducts", {
       if (type != null) "type": type,
       if (merchant != null) "merchant": merchant,
       if (section != null) "section": section,
@@ -54,7 +54,7 @@ class Store {
     bool? allProducts,
     bool? needStickers,
   }) async {
-    final data = await _callMethod("getStickersKeywords", {
+    final data = await _api.call("store.getStickersKeywords", {
       if (stickersIds != null) "stickers_ids": stickersIds.join(","),
       if (productIds != null) "product_ids": productIds.join(","),
       if (aliases != null) "aliases": aliases,
@@ -69,7 +69,7 @@ class Store {
   Future<bool> removeStickersFromFavorite({
     required List<int> stickerIds,
   }) async {
-    final data = await _callMethod("removeStickersFromFavorite", {
+    final data = await _api.call("store.removeStickersFromFavorite", {
       "stickers_ids": stickerIds.join(","),
     });
 

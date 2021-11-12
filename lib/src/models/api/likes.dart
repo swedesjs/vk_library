@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`likes`](https://vk.com/dev/likes) methods.
 class Likes {
-  final _CallMethodType _callMethod;
-
+  final API _api;
+  
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Likes(API api) : _callMethod = api._callMethod("likes");
+  const Likes(this._api);
 
   /// Adds the specified object to the `Like` list of the current user.
   Future<Json> add({
@@ -15,7 +15,7 @@ class Likes {
     required int itemId,
     String? accessKey,
   }) async {
-    final data = await _callMethod("add", {
+    final data = await _api.call("likes.add", {
       "type": type,
       if (ownerId != null) "owner_id": ownerId,
       "item_id": itemId,
@@ -33,7 +33,7 @@ class Likes {
     required int itemId,
     String? accessKey,
   }) async {
-    final data = await _callMethod("delete", {
+    final data = await _api.call("likes.delete", {
       "type": type,
       if (ownerId != null) "owner_id": ownerId,
       "item_id": itemId,
@@ -58,7 +58,7 @@ class Likes {
     int? count,
     bool? skipOwn,
   }) async {
-    final data = await _callMethod("getList", {
+    final data = await _api.call("likes.getList", {
       "type": type,
       if (ownerId != null) "owner_id": ownerId,
       if (itemId != null) "item_id": itemId,
@@ -82,7 +82,7 @@ class Likes {
     int? ownerId,
     required int itemId,
   }) async {
-    final data = await _callMethod("isLiked", {
+    final data = await _api.call("likes.isLiked", {
       if (userId != null) "user_id": userId,
       "type": type,
       if (ownerId != null) "owner_id": ownerId,

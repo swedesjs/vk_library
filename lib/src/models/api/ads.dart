@@ -2,10 +2,10 @@ part of vk_library;
 
 /// A class for using the [`ads`](https://vk.com/dev/ads) methods.
 class Ads {
-  final _CallMethodType _callMethod;
+  final API _api;
 
   /// It is not recommended to create a constructor, the instance already exists in the [API] class
-  Ads(API api) : _callMethod = api._callMethod("ads");
+  const Ads(this._api);
 
   /// Adds administrators and / or observers to the ad account.
   Future<List<Json>> addOfficeUsers({
@@ -13,7 +13,7 @@ class Ads {
     // TODO: Implement for class this parameter - https://vk.com/dev/ads.addOfficeUsers
     required List<Json> data,
   }) async {
-    final data_r = await _callMethod("addOfficeUsers", {
+    final data_r = await _api.call("ads.addOfficeUsers", {
       "account_id": accountId,
       "data": data,
     });
@@ -29,7 +29,7 @@ class Ads {
     required String linkUrl,
     int? campaignId,
   }) async {
-    final data = await _callMethod("checkLink", {
+    final data = await _api.call("ads.checkLink", {
       "account_id": accountId,
       "link_type": linkType,
       "link_url": linkUrl,
@@ -45,7 +45,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.createAds
     required List<Json> data,
   }) async {
-    final data_r = await _callMethod("createAds", {
+    final data_r = await _api.call("ads.createAds", {
       "account_id": accountId,
       "data": data,
     });
@@ -59,7 +59,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.createCampaigns
     required List<Json> data,
   }) async {
-    final data_r = await _callMethod("createCampaigns", {
+    final data_r = await _api.call("ads.createCampaigns", {
       "account_id": accountId,
       "data": data,
     });
@@ -73,7 +73,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.createClients
     required List<Json> data,
   }) async {
-    final data_r = await _callMethod("createClients", {
+    final data_r = await _api.call("ads.createClients", {
       "account_id": accountId,
       "data": data,
     });
@@ -89,7 +89,7 @@ class Ads {
     String? sourceType,
     int? retargetingGroupId,
   }) async {
-    final data = await _callMethod("createLookalikeRequest", {
+    final data = await _api.call("ads.createLookalikeRequest", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       if (sourceType != null) "source_type": sourceType,
@@ -109,7 +109,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.createTargetGroup
     List<Json>? targetPixelRules,
   }) async {
-    final data = await _callMethod("createTargetGroup", {
+    final data = await _api.call("ads.createTargetGroup", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "name": name,
@@ -129,7 +129,7 @@ class Ads {
     String? domain,
     int? categoryId,
   }) async {
-    final data = await _callMethod("createTargetPixel", {
+    final data = await _api.call("ads.createTargetPixel", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "name": name,
@@ -145,7 +145,7 @@ class Ads {
     required int accountId,
     required List<int> ids,
   }) async {
-    final data = await _callMethod("deleteAds", {
+    final data = await _api.call("ads.deleteAds", {
       "account_id": accountId,
       "ids": ids,
     });
@@ -158,7 +158,7 @@ class Ads {
     required int accountId,
     required List<int> ids,
   }) async {
-    final data = await _callMethod("deleteCampaigns", {
+    final data = await _api.call("ads.deleteCampaigns", {
       "account_id": accountId,
       "ids": ids,
     });
@@ -171,7 +171,7 @@ class Ads {
     required int accountId,
     required List<int> ids,
   }) async {
-    final data = await _callMethod("deleteClients", {
+    final data = await _api.call("ads.deleteClients", {
       "account_id": accountId,
       "ids": ids,
     });
@@ -185,7 +185,7 @@ class Ads {
     int? clientId,
     required int targetGroupId,
   }) async {
-    final data = await _callMethod("deleteTargetGroup", {
+    final data = await _api.call("ads.deleteTargetGroup", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "target_group_id": targetGroupId,
@@ -200,7 +200,7 @@ class Ads {
     int? clientId,
     required int targetGroupId,
   }) async {
-    final data = await _callMethod("deleteTargetPixel", {
+    final data = await _api.call("ads.deleteTargetPixel", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "target_group_id": targetGroupId,
@@ -211,7 +211,7 @@ class Ads {
 
   /// Returns a list of ad cabinets.
   Future<List<Json>> getAccounts() async {
-    final data = await _callMethod("getAccounts", const {});
+    final data = await _api.call("ads.getAccounts", const {});
 
     return data.response;
   }
@@ -227,7 +227,7 @@ class Ads {
     int? limit,
     int? offset,
   }) async {
-    final data = await _callMethod("getAds", {
+    final data = await _api.call("ads.getAds", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       if (onlyDeleted != null) "only_deleted": onlyDeleted,
@@ -251,7 +251,7 @@ class Ads {
     int? limit,
     int? offset,
   }) async {
-    final data = await _callMethod("getAdsLayout", {
+    final data = await _api.call("ads.getAdsLayout", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       if (onlyDeleted != null) "only_deleted": onlyDeleted,
@@ -275,7 +275,7 @@ class Ads {
     int? limit,
     int? offset,
   }) async {
-    final data = await _callMethod("getAdsTargeting", {
+    final data = await _api.call("ads.getAdsTargeting", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       if (onlyDeleted != null) "only_deleted": onlyDeleted,
@@ -290,7 +290,7 @@ class Ads {
 
   /// Returns the current ad cabinet budget.
   Future<int> getBudget({required int accountId}) async {
-    final data = await _callMethod("getBudget", {"account_id": accountId});
+    final data = await _api.call("ads.getBudget", {"account_id": accountId});
 
     return data.response;
   }
@@ -303,7 +303,7 @@ class Ads {
     List<int>? campaignIds,
     Set<String>? fields,
   }) async {
-    final data = await _callMethod("getCampaigns", {
+    final data = await _api.call("ads.getCampaigns", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       if (includeDeleted != null) "include_deleted": includeDeleted,
@@ -316,13 +316,13 @@ class Ads {
 
   /// Allows you to get the possible subject of advertisements.
   Future<Json> getCategories() async {
-    final data = await _callMethod("getCategories", const {});
+    final data = await _api.call("ads.getCategories", const {});
     return data.response;
   }
 
   /// Returns a list of clients for an advertising agency.
   Future<List<Json>> getClients({required int accountId}) async {
-    final data = await _callMethod("getClients", {"account_id": accountId});
+    final data = await _api.call("ads.getClients", {"account_id": accountId});
 
     return data.response;
   }
@@ -340,7 +340,7 @@ class Ads {
     // TODO: Implement the enum. - https://vk.com/dev/ads.getDemographics
     required String dateTo,
   }) async {
-    final data = await _callMethod("getDemographics", {
+    final data = await _api.call("ads.getDemographics", {
       "account_id": accountId,
       "ids": ids,
       "period": period,
@@ -353,7 +353,8 @@ class Ads {
 
   /// Returns information about the current state of the counter - the number of method launches remaining and the time until the next counter reset in seconds.
   Future<Json> getFloodStats({required int accountId}) async {
-    final data = await _callMethod("getFloodStats", {"account_id": accountId});
+    final data =
+        await _api.call("ads.getFloodStats", {"account_id": accountId});
 
     return data.response;
   }
@@ -368,7 +369,7 @@ class Ads {
     // TODO: Implement the enum. - https://vk.com/dev/ads.getLookalikeRequests
     String? sortBy,
   }) async {
-    final data = await _callMethod("getLookalikeRequests", {
+    final data = await _api.call("ads.getLookalikeRequests", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       if (requestsIds != null) "requests_ids": requestsIds.join(","),
@@ -382,7 +383,7 @@ class Ads {
 
   /// Returns information about musicians whose listeners can be targeted.
   Future<List<Json>> getMusicians({required String artistName}) async {
-    final data = await _callMethod("getMusicians", {
+    final data = await _api.call("ads.getMusicians", {
       "artist_name": artistName,
     });
 
@@ -391,14 +392,14 @@ class Ads {
 
   /// Returns information about musicians to listeners for whom targeting is available.
   Future<List<Json>> getMusiciansByIds({required List<int> ids}) async {
-    final data = await _callMethod("getMusiciansByIds", {"ids": ids});
+    final data = await _api.call("ads.getMusiciansByIds", {"ids": ids});
 
     return data.response;
   }
 
   /// Returns a list of ad cabinet administrators and observers.
   Future<List<Json>> getOfficeUsers({required int accountId}) async {
-    final data = await _callMethod("getOfficeUsers", {
+    final data = await _api.call("ads.getOfficeUsers", {
       "account_id": accountId,
     });
 
@@ -412,7 +413,7 @@ class Ads {
     required String idsType,
     required List<int> ids,
   }) async {
-    final data = await _callMethod("getPostsReach", {
+    final data = await _api.call("ads.getPostsReach", {
       "account_id": accountId,
       "ids_type": idsType,
       "ids": ids.join(","),
@@ -426,7 +427,7 @@ class Ads {
     required int accountId,
     required int adId,
   }) async {
-    final data = await _callMethod("getRejectionReason", {
+    final data = await _api.call("ads.getRejectionReason", {
       "account_id": accountId,
       "ad_id": adId,
     });
@@ -447,7 +448,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.getStatistics
     Set<String>? statsFields,
   }) async {
-    final data = await _callMethod("getStatistics", {
+    final data = await _api.call("ads.getStatistics", {
       "account_id": accountId,
       "ids_type": idsType,
       "ids": ids.join(","),
@@ -469,7 +470,7 @@ class Ads {
     int? country,
     List<int>? cities,
   }) async {
-    final data = await _callMethod("getSuggestions", {
+    final data = await _api.call("ads.getSuggestions", {
       "section": section,
       if (ids != null) "ids": ids.join(","),
       if (q != null) "q": q,
@@ -486,7 +487,7 @@ class Ads {
     int? clientId,
     @deprecated bool? extended,
   }) async {
-    final data = await _callMethod("getTargetGroups", {
+    final data = await _api.call("ads.getTargetGroups", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       if (extended != null) "extended": extended,
@@ -500,7 +501,7 @@ class Ads {
     required int accountId,
     int? clientId,
   }) async {
-    final data = await _callMethod("getTargetPixels", {
+    final data = await _api.call("ads.getTargetPixels", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
     });
@@ -526,7 +527,7 @@ class Ads {
     bool? needPrecise,
     int? impressionsLimitPeriod,
   }) async {
-    final data = await _callMethod("getTargetingStats", {
+    final data = await _api.call("ads.getTargetingStats", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       if (criteria != null) "criteria": criteria,
@@ -552,7 +553,7 @@ class Ads {
     int? adFormat,
     int? icon,
   }) async {
-    final data = await _callMethod("getUploadURL", {
+    final data = await _api.call("ads.getUploadURL", {
       if (adFormat != null) "ad_format": adFormat,
       if (icon != null) "icon": icon,
     });
@@ -562,7 +563,7 @@ class Ads {
 
   /// Returns the URL to download the video for the ad.
   Future<String> getVideoUploadURL() async {
-    final data = await _callMethod("getVideoUploadURL", const {});
+    final data = await _api.call("ads.getVideoUploadURL", const {});
 
     return data.response;
   }
@@ -574,7 +575,7 @@ class Ads {
     required int targetGroupId,
     required List<String> contacts,
   }) async {
-    final data = await _callMethod("importTargetContacts", {
+    final data = await _api.call("ads.importTargetContacts", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "target_group_id": targetGroupId,
@@ -589,7 +590,7 @@ class Ads {
     required int accountId,
     required List<int> ids,
   }) async {
-    final data = await _callMethod("removeOfficeUsers", {
+    final data = await _api.call("ads.removeOfficeUsers", {
       "account_id": accountId,
       "ids": ids,
     });
@@ -604,7 +605,7 @@ class Ads {
     required int targetGroupId,
     required List<String> contacts,
   }) async {
-    final data = await _callMethod("removeTargetContacts", {
+    final data = await _api.call("ads.removeTargetContacts", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "target_group_id": targetGroupId,
@@ -621,7 +622,7 @@ class Ads {
     required int requestId,
     required int level,
   }) async {
-    final data = await _callMethod("saveLookalikeRequestResult", {
+    final data = await _api.call("ads.saveLookalikeRequestResult", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "request_id": requestId,
@@ -638,7 +639,7 @@ class Ads {
     required int targetGroupId,
     int? shareWithClientId,
   }) async {
-    final data = await _callMethod("shareTargetGroup", {
+    final data = await _api.call("ads.shareTargetGroup", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "target_group_id": targetGroupId,
@@ -654,7 +655,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.updateAds
     required List<Json> data,
   }) async {
-    final data_r = await _callMethod("updateAds", {
+    final data_r = await _api.call("ads.updateAds", {
       "account_id": accountId,
       "data": data,
     });
@@ -668,7 +669,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.updateCampaigns
     required List<Json> data,
   }) async {
-    final data_r = await _callMethod("updateCampaigns", {
+    final data_r = await _api.call("ads.updateCampaigns", {
       "account_id": accountId,
       "data": data,
     });
@@ -682,7 +683,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.updateClients
     required List<Json> data,
   }) async {
-    final data_r = await _callMethod("updateClients", {
+    final data_r = await _api.call("ads.updateClients", {
       "account_id": accountId,
       "data": data,
     });
@@ -696,7 +697,7 @@ class Ads {
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.updateOfficeUsers
     required List<Json> data,
   }) async {
-    final data_r = await _callMethod("updateOfficeUsers", {
+    final data_r = await _api.call("ads.updateOfficeUsers", {
       "account_id": accountId,
       "data": data,
     });
@@ -716,7 +717,7 @@ class Ads {
     // TODO: Find out what it is and implement a class for this parameter
     List<Json>? targetPixelRules,
   }) async {
-    final data = await _callMethod("updateTargetGroup", {
+    final data = await _api.call("ads.updateTargetGroup", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "target_group_id": targetGroupId,
@@ -739,7 +740,7 @@ class Ads {
     String? domain,
     required int categoryId,
   }) async {
-    final data = await _callMethod("updateTargetPixel", {
+    final data = await _api.call("ads.updateTargetPixel", {
       "account_id": accountId,
       if (clientId != null) "client_id": clientId,
       "target_pixel_id": targetPixelId,
