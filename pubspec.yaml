@@ -1,5 +1,5 @@
 name: vk_library
-version: 1.0.1-doc.1
+version: 1.0.2
 homepage: https://github.com/swedesjs/vk_library
 description: Library for working with VK api. In the future, there will be support for LongPoll, Uploading documents, and all sorts of different utilities.
 issue_tracker: https://github.com/swedesjs/vk_library/issues

@@ -13,3 +13,8 @@
 # v1.0.1-doc.1
 
 - Added documentation version v1.0.1
+
+# v1.0.2
+
+- Added support for all VK api methods.
+- Added the ability to unload parameters from a file (`yaml` and` json` are supported) the schema is located [here](./schemas/vk_library_options.json)
