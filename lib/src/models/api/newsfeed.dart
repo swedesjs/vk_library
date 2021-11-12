@@ -73,7 +73,7 @@ class Newsfeed {
     final data = await _api.call("newsfeed.getBanned", {
       if (extended != null) "extended": extended,
       if (fields != null) "fields": fields.join(","),
-      if (nameCase != null) "name_case": nameCase.stringValue(),
+      if (nameCase != null) "name_case": nameCase.value,
     });
 
     return data.response;

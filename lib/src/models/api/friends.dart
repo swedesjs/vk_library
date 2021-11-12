@@ -116,7 +116,7 @@ class Friends {
       if (count != null) "count": count,
       if (offset != null) "offset": offset,
       if (fields != null) "fields": fields.join(","),
-      if (nameCase != null) "name_case": nameCase.stringValue(),
+      if (nameCase != null) "name_case": nameCase.value,
       if (ref != null) "ref": ref,
     });
 
@@ -250,7 +250,7 @@ class Friends {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (fields != null) "fields": fields.join(","),
-      if (nameCase != null) "name_case": nameCase.stringValue(),
+      if (nameCase != null) "name_case": nameCase.value,
     });
 
     return data.response;
@@ -269,7 +269,7 @@ class Friends {
       "user_id": userId,
       if (q != null) "q": q,
       if (fields != null) "fields": fields.join(","),
-      if (nameCase != null) "name_case": nameCase.stringValue(),
+      if (nameCase != null) "name_case": nameCase.value,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
     });

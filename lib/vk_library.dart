@@ -10,26 +10,23 @@ import "package:path/path.dart" as p;
 import "package:yaml/yaml.dart";
 
 part "src/api.dart";
-
 // Enums
-part "src/enums/_utils.dart";
 part "src/enums/account/get_counters.dart";
+part "src/enums/enum_extension.dart";
 part "src/enums/intent.dart";
 part "src/enums/language.dart";
 part "src/enums/media_type.dart";
 part "src/enums/messages_set_activity_type.dart";
 part "src/enums/name_case.dart";
 part "src/enums/vk_config_file_type.dart";
-
 // Exceptions
 part "src/exceptions/api_exception.dart";
 part "src/exceptions/vk_config_file_exception.dart";
-
 // Models
 part "src/models/api/account.dart";
 part "src/models/api/ads.dart";
-part "src/models/api/apps.dart";
 part "src/models/api/appWidgets.dart";
+part "src/models/api/apps.dart";
 part "src/models/api/auth.dart";
 part "src/models/api/board.dart";
 part "src/models/api/database.dart";

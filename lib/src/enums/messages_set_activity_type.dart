@@ -8,7 +8,3 @@ enum MessagesSetActivityType {
   /// The user records a voice message.
   AUDIOMESSAGE
 }
-
-extension _MessagesSetActivityType on MessagesSetActivityType {
-  String stringValue() => _stringValue(this);
-}

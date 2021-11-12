@@ -554,7 +554,7 @@ class Groups {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (fields != null) "fields": fields.join(","),
-      if (nameCase != null) "name_case": nameCase.stringValue(),
+      if (nameCase != null) "name_case": nameCase.value,
     });
 
     return data.response;

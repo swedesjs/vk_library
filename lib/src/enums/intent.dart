@@ -11,7 +11,3 @@ enum Intent {
   /// Confirmed notification.
   CONFIRMED_NOTIFICATION,
 }
-
-extension _Intent on Intent {
-  String stringValue() => _stringValue(this);
-}

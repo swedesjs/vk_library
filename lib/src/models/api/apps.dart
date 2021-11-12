@@ -32,7 +32,7 @@ class Apps {
       if (extended != null) "extended": extended,
       if (returnFriends != null) "return_friends": returnFriends,
       if (fields != null) "fields": fields.join(","),
-      if (nameCase != null) "name_case": nameCase.stringValue()
+      if (nameCase != null) "name_case": nameCase.value
     });
 
     return data.response;
@@ -63,7 +63,7 @@ class Apps {
       if (extended != null) "extended": extended,
       if (returnFriends != null) "return_friends": returnFriends,
       if (fields != null) "fields": fields.join(","),
-      if (nameCase != null) "name_case": nameCase.stringValue(),
+      if (nameCase != null) "name_case": nameCase.value,
       if (q != null) "q": q,
       if (genreId != null) "genre_id": genreId,
       if (filter != null) "filter": filter,

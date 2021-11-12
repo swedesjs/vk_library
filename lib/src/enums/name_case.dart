@@ -20,7 +20,3 @@ enum NameCase {
   /// Prepositional.
   ABL
 }
-
-extension _NameCase on NameCase {
-  String stringValue() => _stringValue(this);
-}

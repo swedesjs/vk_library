@@ -205,7 +205,7 @@ class Messages {
       if (chatId != null) "chat_id": chatId,
       if (chatIds != null) "chat_ids": chatIds,
       if (fields != null) "fields": fields,
-      if (nameCase != null) "name_case": nameCase.stringValue()
+      if (nameCase != null) "name_case": nameCase.value
     });
 
     return data.response;
@@ -316,7 +316,7 @@ class Messages {
   }) async {
     final data = await _api.call("messages.getHistoryAttachments", {
       "peer_id": peerId,
-      if (mediaType != null) "media_type": mediaType.stringValue(),
+      if (mediaType != null) "media_type": mediaType.value,
       if (startFrom != null) "start_from": startFrom,
       if (count != null) "count": count,
       if (photoSizes != null) "photo_sizes": photoSizes,
@@ -365,12 +365,12 @@ class Messages {
     Set<String>? fields,
   }) async {
     final data = await _api.call("messages.getIntentUsers", {
-      "intent": intent.stringValue(),
+      "intent": intent.value,
       if (subscribeId != null) "subscribe_id": subscribeId,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
-      if (nameCase != null) "name_case": nameCase.stringValue(),
+      if (nameCase != null) "name_case": nameCase.value,
       if (fields != null) "fields": fields.join(","),
     });
 
@@ -712,7 +712,7 @@ class Messages {
   }) async {
     final data = await _api.call("messages.setActivity", {
       if (userId != null) "user_id": userId,
-      if (type != null) "type": type.stringValue(),
+      if (type != null) "type": type.value,
       if (peerId != null) "peer_id": peerId,
       if (groupId != null) "group_id": groupId,
     });

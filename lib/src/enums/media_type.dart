@@ -26,7 +26,3 @@ enum MediaType {
   /// Links, products and posts on the wall.
   SHARE
 }
-
-extension _MediaType on MediaType {
-  String stringValue() => _stringValue(this);
-}

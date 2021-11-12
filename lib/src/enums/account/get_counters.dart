@@ -37,7 +37,3 @@ enum AccountGetCountersFilter {
   /// Recommendations of friends.
   FRIENDS_RECOMMENDATIONS,
 }
-
-extension _AccountGetCountersFilter on AccountGetCountersFilter {
-  String stringValue() => _stringValue(this);
-}

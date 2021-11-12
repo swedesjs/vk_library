@@ -202,7 +202,7 @@ class API {
       queryParameters: {
         "access_token": _token,
         "v": _version,
-        "language": _languageEnum[_language],
+        "language": _language.value,
         ...data,
       },
     );

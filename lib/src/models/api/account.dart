@@ -68,7 +68,7 @@ class Account {
   }) async {
     final data = await _api.call("account.getCounters", {
       if (filter != null)
-        "filter": filter.map((e) => e.stringValue()).join(","),
+        "filter": filter.map((e) => e.value).join(","),
       if (userId != null) "user_id": userId,
     });
 

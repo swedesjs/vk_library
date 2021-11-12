@@ -27,17 +27,6 @@ enum Language {
   IT
 }
 
-const _languageEnum = <Language, String>{
-  Language.RU: "ru",
-  Language.UK: "uk",
-  Language.BE: "be",
-  Language.EN: "en",
-  Language.ES: "es",
-  Language.FI: "fi",
-  Language.DE: "de",
-  Language.IT: "it"
-};
-
 const _languageString = <String, Language>{
   "ru": Language.RU,
   "uk": Language.UK,
