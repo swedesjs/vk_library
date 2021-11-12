@@ -134,6 +134,9 @@ class API {
   /// Field for calling methods [Utils]
   late final Utils utils;
 
+  /// Field for calling methods [Video]
+  late final Video video;
+
   /// Will create an instance of the [API] class by which you can access the api, specifying the token, api version and language
   API(this._token, this._version, this._language) {
     account = Account(this);
@@ -173,6 +176,7 @@ class API {
     streaming = Streaming(this);
     users = Users(this);
     utils = Utils(this);
+    video = Video(this);
   }
 
   /// The method sends a request to VK, and in case of an error, throws an exception [APIException]
