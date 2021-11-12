@@ -136,8 +136,13 @@ class API {
 
   /// Field for calling methods [Video]
   late final Video video;
-/// Field for calling methods [Wall]
-late final Wall wall;
+
+  /// Field for calling methods [Wall]
+  late final Wall wall;
+
+  /// Field for calling methods [Widgets]
+  late final Widgets widgets;
+
   /// Will create an instance of the [API] class by which you can access the api, specifying the token, api version and language
   API(this._token, this._version, this._language) {
     account = Account(this);
@@ -179,6 +184,7 @@ late final Wall wall;
     utils = Utils(this);
     video = Video(this);
     wall = Wall(this);
+    widgets = Widgets(this);
   }
 
   /// The method sends a request to VK, and in case of an error, throws an exception [APIException]
