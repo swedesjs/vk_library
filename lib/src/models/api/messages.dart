@@ -52,15 +52,15 @@ class Messages {
   }
 
   /// Deletes the message.
-  Future<Call> delete({
+  Future<T> delete<T extends Object>({
     List<int>? messagesIds,
     bool? spam,
     int? groupId,
     bool? deleteForAll,
     int? peerId,
     List<int>? conversationMessageIds,
-  }) {
-    return _api.call("messages.delete", {
+  }) async {
+    final data = await _api.call("messages.delete", {
       if (messagesIds != null) "messages_ids": messagesIds.join(","),
       if (spam != null) "spam": spam,
       if (groupId != null) "group_id": groupId,
@@ -69,6 +69,8 @@ class Messages {
       if (conversationMessageIds != null)
         "conversation_message_ids": conversationMessageIds
     });
+
+    return data.response;
   }
 
   /// Allows you to delete a photo of a multi-dialogue.
@@ -636,7 +638,7 @@ class Messages {
   /// Note:
   ///
   /// You do not need to specify the [randomId] parameter, the library can do it for you, but if you don’t want the library to decide it for you, then specify
-  Future<Call> send({
+  Future<T> send<T extends Object>({
     int? userId,
     int? peerId,
     List<int>? peerIds,
@@ -660,8 +662,8 @@ class Messages {
     String? intent,
     int? subscribeId,
     int? randomId,
-  }) {
-    return _api.call("messages.send", {
+  }) async {
+    final data = await _api.call("messages.send", {
       if (userId != null) "user_id": userId,
       if (peerId != null) "peer_id": peerId,
       if (peerIds != null) "peer_ids": peerIds,
@@ -686,6 +688,8 @@ class Messages {
       if (subscribeId != null) "substribe_id": subscribeId,
       "random_id": randomId ?? Random().nextInt(4294967296)
     });
+
+    return data.response;
   }
 
   /// Dispatches an event with an action that will occur when the callback button is clicked.
