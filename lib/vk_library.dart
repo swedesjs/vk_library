@@ -8,7 +8,7 @@ import "dart:math";
 import "package:dio/dio.dart";
 import "package:path/path.dart" as p;
 import "package:yaml/yaml.dart";
-
+part "src/models/methods/params/push_settings.dart";
 part "src/api.dart";
 // Enums
 part "src/enums/account/get_counters.dart";

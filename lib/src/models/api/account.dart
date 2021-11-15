@@ -46,8 +46,9 @@ class Account {
 
   /// Gets the settings of the current user in this application.
   Future<int> getAppPermissions({required int userId}) async {
-    final data =
-        await _api.call("account.getAppPermissions", {"user_id": userId});
+    final data = await _api.call("account.getAppPermissions", {
+      "user_id": userId,
+    });
 
     return data.response;
   }
@@ -108,8 +109,7 @@ class Account {
     int? deviceYear,
     required String deviceId,
     String? systemVersion,
-    // TODO: Implement a class for this parameter.
-    Json? settings,
+    PushSettings? settings,
     bool? sandbox,
   }) async {
     final data = await _api.call("account.registerDevice", {
@@ -212,8 +212,7 @@ class Account {
   /// Changes the configuration of Push notifications.
   Future<bool> setPushSettings({
     required String deviceId,
-    // TODO: Implement a class parameter. (https://vk.com/dev/objects/push_settings)
-    Json? settings,
+    PushSettings? settings,
     String? key,
     List<String>? value,
   }) async {
