@@ -23,14 +23,13 @@ class Ads {
   /// Checks the link to the advertised object.
   Future<Json> checkLink({
     required int accountId,
-    // TODO: Implement enum - https://vk.com/dev/ads.checkLink
-    required String linkType,
+    required LinkTypeAds linkType,
     required String linkUrl,
     int? campaignId,
   }) async {
     final data = await _api.call("ads.checkLink", {
       "account_id": accountId,
-      "link_type": linkType,
+      "link_type": linkType.value,
       "link_url": linkUrl,
       if (campaignId != null) "campaign_id": campaignId,
     });

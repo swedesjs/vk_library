@@ -13,6 +13,7 @@ part "src/api.dart";
 // Enums
 part "src/enums/account/bdate_visibility.dart";
 part "src/enums/account/get_counters.dart";
+part "src/enums/ads/link_type.dart";
 part "src/enums/enum_extension.dart";
 part "src/enums/intent.dart";
 part "src/enums/language.dart";
