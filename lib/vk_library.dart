@@ -11,6 +11,7 @@ import "package:yaml/yaml.dart";
 
 part "src/api.dart";
 // Enums
+part "src/enums/account/bdate_visibility.dart";
 part "src/enums/account/get_counters.dart";
 part "src/enums/enum_extension.dart";
 part "src/enums/intent.dart";

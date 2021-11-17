@@ -135,9 +135,8 @@ class Account {
     Sex? sex,
     MaritalStatus? relation,
     int? relationPartnerId,
-    // TODO: Implement enum with date of birth visibility.
     String? bdate,
-    int? bdateVisibility,
+    BdateVisibilityAccount? bdateVisibility,
     String? homeTown,
     int? countryId,
     int? cityId,
