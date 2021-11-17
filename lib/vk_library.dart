@@ -67,6 +67,7 @@ part "src/models/api/video.dart";
 part "src/models/api/wall.dart";
 part "src/models/api/widgets.dart";
 part "src/models/call.dart";
+part "src/models/methods/params/ads/user_specification.dart";
 part "src/models/methods/params/messages/forward.dart";
 part "src/models/methods/params/push_settings.dart";
 //

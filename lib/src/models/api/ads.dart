@@ -10,8 +10,7 @@ class Ads {
   /// Adds administrators and / or observers to the ad account.
   Future<List<Json>> addOfficeUsers({
     required int accountId,
-    // TODO: Implement for class this parameter - https://vk.com/dev/ads.addOfficeUsers
-    required List<Json> data,
+    required List<UserSpecification> data,
   }) async {
     final data_r = await _api.call("ads.addOfficeUsers", {
       "account_id": accountId,
