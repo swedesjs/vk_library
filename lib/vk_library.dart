@@ -8,7 +8,7 @@ import "dart:math";
 import "package:dio/dio.dart";
 import "package:path/path.dart" as p;
 import "package:yaml/yaml.dart";
-part "src/models/methods/params/push_settings.dart";
+
 part "src/api.dart";
 // Enums
 part "src/enums/account/get_counters.dart";
@@ -18,6 +18,7 @@ part "src/enums/language.dart";
 part "src/enums/media_type.dart";
 part "src/enums/messages_set_activity_type.dart";
 part "src/enums/name_case.dart";
+part "src/enums/sex.dart";
 part "src/enums/vk_config_file_type.dart";
 // Exceptions
 part "src/exceptions/api_exception.dart";
@@ -65,6 +66,7 @@ part "src/models/api/wall.dart";
 part "src/models/api/widgets.dart";
 part "src/models/call.dart";
 part "src/models/methods/params/messages/forward.dart";
+part "src/models/methods/params/push_settings.dart";
 //
 part "src/typedef.dart";
 part "src/vk.dart";

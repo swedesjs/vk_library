@@ -94,8 +94,7 @@ class Users {
     int? universityYear,
     int? universityFaculty,
     int? universityChair,
-    // TODO: Implement the enum.
-    int? sex,
+    Sex? sex,
     // TODO: Implement the enum.
     int? status,
     int? ageFrom,
@@ -133,7 +132,7 @@ class Users {
       if (universityYear != null) "university_year": universityYear,
       if (universityFaculty != null) "university_faculty": universityFaculty,
       if (universityChair != null) "university_chair": universityChair,
-      if (sex != null) "sex": sex,
+      if (sex != null) "sex": sex.index + 1,
       if (status != null) "status": status,
       if (ageFrom != null) "age_from": ageFrom,
       if (ageTo != null) "age_to": ageTo,
