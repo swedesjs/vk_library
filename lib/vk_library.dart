@@ -15,6 +15,7 @@ part "src/enums/account/get_counters.dart";
 part "src/enums/enum_extension.dart";
 part "src/enums/intent.dart";
 part "src/enums/language.dart";
+part "src/enums/marital_status.dart";
 part "src/enums/media_type.dart";
 part "src/enums/messages_set_activity_type.dart";
 part "src/enums/name_case.dart";

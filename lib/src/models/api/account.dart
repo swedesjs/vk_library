@@ -133,8 +133,7 @@ class Account {
     String? screenName,
     int? cancelRequestId,
     Sex? sex,
-    // TODO: Realize enum with marital status.
-    int? relation,
+    MaritalStatus? relation,
     int? relationPartnerId,
     // TODO: Implement enum with date of birth visibility.
     String? bdate,
@@ -150,7 +149,7 @@ class Account {
       if (maidenName != null) "maiden_name": maidenName,
       if (cancelRequestId != null) "cancel_request_id": cancelRequestId,
       if (sex != null) "sex": sex.index + 1,
-      if (relation != null) "relation": relation,
+      if (relation != null) "relation": relation.index,
       if (relationPartnerId != null) "relation_partner_id": relationPartnerId,
       if (bdate != null) "bdate": bdate,
       if (bdateVisibility != null) "bdate_visibility": bdateVisibility,
