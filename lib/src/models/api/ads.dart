@@ -66,8 +66,7 @@ class Ads {
   /// Creates advertising campaigns.
   Future<List<Json>> createClients({
     required int accountId,
-    // TODO: Implement class for this parameter - https://vk.com/dev/ads.createClients
-    required List<Json> data,
+    required List<ClientSpecification> data,
   }) async {
     final data_r = await _api.call("ads.createClients", {
       "account_id": accountId,

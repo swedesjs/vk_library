@@ -70,6 +70,7 @@ part "src/models/api/widgets.dart";
 part "src/models/call.dart";
 part "src/models/methods/params/ads/ad_specification.dart";
 part "src/models/methods/params/ads/campaign_specification.dart";
+part "src/models/methods/params/ads/client_specification.dart";
 part "src/models/methods/params/ads/user_specification.dart";
 part "src/models/methods/params/messages/forward.dart";
 part "src/models/methods/params/push_settings.dart";
