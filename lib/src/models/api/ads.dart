@@ -80,8 +80,7 @@ class Ads {
   Future<Json> createLookalikeRequest({
     required int accountId,
     int? clientId,
-    // TODO: Implement enum - https://vk.com/dev/ads.createLookalikeRequest
-    String? sourceType,
+    SourceTypeAds? sourceType,
     int? retargetingGroupId,
   }) async {
     final data = await _api.call("ads.createLookalikeRequest", {
