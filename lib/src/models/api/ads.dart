@@ -100,8 +100,7 @@ class Ads {
     required String name,
     required int lifetime,
     int? targetPixelId,
-    // TODO: Implement class for this parameter - https://vk.com/dev/ads.createTargetGroup
-    List<Json>? targetPixelRules,
+    List<TargetPixelRulesAds>? targetPixelRules,
   }) async {
     final data = await _api.call("ads.createTargetGroup", {
       "account_id": accountId,
