@@ -397,13 +397,12 @@ class Ads {
   /// Returns detailed statistics for the reach of ad posts from ads and campaigns to promote community posts.
   Future<List<Json>> getPostsReach({
     required int accountId,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getPostsReach
-    required String idsType,
+    required IdsTypeAds idsType,
     required List<int> ids,
   }) async {
     final data = await _api.call("ads.getPostsReach", {
       "account_id": accountId,
-      "ids_type": idsType,
+      "ids_type": idsType.value,
       "ids": ids.join(","),
     });
 
