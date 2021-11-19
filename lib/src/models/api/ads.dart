@@ -323,20 +323,16 @@ class Ads {
   /// Returns demographic statistics for advertisements or campaigns.
   Future<Json> getDemographics({
     required int accountId,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getDemographics
-    required String idsType,
+    required IdsTypeAds idsType,
     required List<int> ids,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getDemographics
-    required String period,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getDemographics
+    required PeriodAds period,
     required String dateFrom,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getDemographics
     required String dateTo,
   }) async {
     final data = await _api.call("ads.getDemographics", {
       "account_id": accountId,
-      "ids": ids,
-      "period": period,
+      "ids": idsType.value,
+      "period": period.value,
       "date_from": dateFrom,
       "date_to": dateTo,
     });

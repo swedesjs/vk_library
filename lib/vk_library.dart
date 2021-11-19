@@ -13,7 +13,9 @@ part "src/api.dart";
 // Enums
 part "src/enums/account/bdate_visibility.dart";
 part "src/enums/account/get_counters.dart";
+part "src/enums/ads/ids_type.dart";
 part "src/enums/ads/link_type.dart";
+part "src/enums/ads/period.dart";
 part "src/enums/ads/source_type.dart";
 part "src/enums/enum_extension.dart";
 part "src/enums/intent.dart";
@@ -72,8 +74,8 @@ part "src/models/call.dart";
 part "src/models/methods/params/ads/ad_specification.dart";
 part "src/models/methods/params/ads/campaign_specification.dart";
 part "src/models/methods/params/ads/client_specification.dart";
-part "src/models/methods/params/ads/user_specification.dart";
 part "src/models/methods/params/ads/target_pixel_rules.dart";
+part "src/models/methods/params/ads/user_specification.dart";
 part "src/models/methods/params/messages/forward.dart";
 part "src/models/methods/params/push_settings.dart";
 //
