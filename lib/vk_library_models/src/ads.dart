@@ -448,15 +448,14 @@ class Ads {
 
   /// Returns a set of suggestions for various targeting options.
   Future<Json> getSuggestions({
-    // TODO: Implement the enum this parameter - https://vk.com/dev/ads.getSuggestions
-    required String section,
+    required SectionAdsGetSuggestions section,
     List<int>? ids,
     String? q,
     int? country,
     List<int>? cities,
   }) async {
     final data = await _api.call("ads.getSuggestions", {
-      "section": section,
+      "section": section.value,
       if (ids != null) "ids": ids.join(","),
       if (q != null) "q": q,
       if (country != null) "country": country,
