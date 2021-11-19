@@ -1,5 +1,3 @@
-library vk_library_models;
-
 import "dart:math" show Random;
 import "package:vk_library/vk_library.dart" show Json, API;
 import "../vk_library_enums/vk_library_enums.dart";
