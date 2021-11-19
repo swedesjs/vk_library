@@ -3,6 +3,7 @@ part "src/account/get_counters.dart";
 part "src/ads/ids_type.dart";
 part "src/ads/link_type.dart";
 part "src/ads/period.dart";
+part "src/ads/sort_by.dart";
 part "src/ads/source_type.dart";
 part "src/enum_extension.dart";
 part "src/intent.dart";

@@ -355,8 +355,7 @@ class Ads {
     List<int>? requestsIds,
     int? offset,
     int? limit,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getLookalikeRequests
-    String? sortBy,
+    SortByAds? sortBy,
   }) async {
     final data = await _api.call("ads.getLookalikeRequests", {
       "account_id": accountId,
@@ -364,7 +363,7 @@ class Ads {
       if (requestsIds != null) "requests_ids": requestsIds.join(","),
       if (offset != null) "offset": offset,
       if (limit != null) "limit": limit,
-      if (sortBy != null) "sort_by": sortBy,
+      if (sortBy != null) "sort_by": sortBy.value,
     });
 
     return data.response;
