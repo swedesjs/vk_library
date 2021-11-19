@@ -9,8 +9,6 @@ analyzer:
     directives_ordering: error
     avoid_print: warning
     prefer_const_declarations: warning
-  exclude:
-    - example/main.dart
 
 linter:
   rules:

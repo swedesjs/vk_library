@@ -13,6 +13,7 @@
 
 ```dart
 import "package:vk_library/vk_library.dart";
+import "package:vk_library/vk_library_enums/vk_library_enums.dart" show Language;
 
 void main() async {
   final vk = VK(
