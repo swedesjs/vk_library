@@ -104,7 +104,7 @@ class VK {
           "The language parameter must be of type String!",
         );
       }
-      if (_languageString[language] == null) {
+      if (languageString[language] == null) {
         throw const VKConfigFileException(
           "Indicate the languages ​​that exist for use in VK.",
         );
@@ -114,7 +114,7 @@ class VK {
     return VK(
       token: token,
       version: result["version"]?.toString() ?? "5.131",
-      language: _languageString[language]!,
+      language: languageString[language]!,
     );
   }
 }

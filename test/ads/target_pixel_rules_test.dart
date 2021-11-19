@@ -1,7 +1,7 @@
 import "dart:mirrors" show reflectClass;
 
 import "package:test/test.dart" show equals, expect, test;
-import "package:vk_library/vk_library.dart"
+import "package:vk_library/vk_library_options/vk_library_options.dart"
     show TargetPixelRulesAds, TypeTargetPixelRulesAds;
 
 import "../decode.dart";
