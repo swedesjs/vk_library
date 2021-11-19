@@ -425,24 +425,22 @@ class Ads {
   /// Returns statistics on performance indicators for advertisements, campaigns, clients, or the entire cabinet.
   Future<Json> getStatistics({
     required int accountId,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getStatistics
-    required String idsType,
+    required IdsTypeAdsGetStatistics idsType,
     required List<int> ids,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getStatistics
-    required String period,
+    required PeriodAdsGetStatistics period,
     required String dateFrom,
     required String dateTo,
-    // TODO: Implement class for this parameter - https://vk.com/dev/ads.getStatistics
-    Set<String>? statsFields,
+    Set<StatsFieldsAdsGetStatistics>? statsFields,
   }) async {
     final data = await _api.call("ads.getStatistics", {
       "account_id": accountId,
-      "ids_type": idsType,
+      "ids_type": idsType.value,
       "ids": ids.join(","),
-      "period": period,
+      "period": period.value,
       "date_from": dateFrom,
       "date_to": dateTo,
-      if (statsFields != null) "stats_fields": statsFields.join(","),
+      if (statsFields != null)
+        "stats_fields": statsFields.map((e) => e.value).join(","),
     });
 
     return data.response;

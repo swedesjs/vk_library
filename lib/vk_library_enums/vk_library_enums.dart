@@ -14,3 +14,6 @@ part "src/messages_set_activity_type.dart";
 part "src/name_case.dart";
 part "src/sex.dart";
 part "src/vk_config_file_type.dart";
+part "src/ads/get_statistics/ids_type.dart";
+part "src/ads/get_statistics/period.dart";
+part "src/ads/get_statistics/stats_fields.dart";
