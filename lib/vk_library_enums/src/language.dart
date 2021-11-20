@@ -1,4 +1,4 @@
-part of "../vk_library_enums.dart";
+part of vk_library_enums;
 
 /// Enum is a list of languages ​​in which VK can provide you with data! Used in class [VK] and [API]
 enum Language {

@@ -1,4 +1,4 @@
-part of "../../vk_library_enums.dart";
+part of vk_library_enums;
 
 /// Type of the advertised object. Used in [Ads.checkLink] method
 enum LinkTypeAds {

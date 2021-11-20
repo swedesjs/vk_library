@@ -1,4 +1,4 @@
-part of "../../vk_library_enums.dart";
+part of vk_library_enums;
 
 /// Enum for the `filter' parameter in the [Account.getCounters] method.
 enum AccountGetCountersFilter {

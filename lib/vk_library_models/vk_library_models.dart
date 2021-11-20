@@ -1,7 +1,10 @@
+/// Contains classes with API methods vk.
+library vk_library_models;
+
 import "dart:math" show Random;
 import "package:vk_library/vk_library.dart" show Json, API;
-import "../vk_library_enums/vk_library_enums.dart";
-import "../vk_library_options/vk_library_options.dart";
+import "package:vk_library/vk_library_enums/vk_library_enums.dart";
+import "package:vk_library/vk_library_options/vk_library_options.dart";
 
 part "src/account.dart";
 part "src/ads.dart";

@@ -1,4 +1,4 @@
-part of "../../../vk_library_enums.dart";
+part of vk_library_enums;
 /// Additional statistics.
 enum StatsFieldsAdsGetStatistics{
   /// Distribution of the number of impressions per user.

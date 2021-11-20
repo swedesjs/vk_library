@@ -1,4 +1,4 @@
-part of "../vk_library_enums.dart";
+part of vk_library_enums;
 
 /// User gender.
 enum Sex {

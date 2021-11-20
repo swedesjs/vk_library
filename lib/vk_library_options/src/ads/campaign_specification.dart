@@ -1,4 +1,4 @@
-part of "../../vk_library_options.dart";
+part of vk_library_options;
 
 class CampaignSpecification {
   /// **For advertising agencies only.** id of the client in whose ad account the campaign will be created.

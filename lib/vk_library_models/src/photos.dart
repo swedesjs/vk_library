@@ -1,4 +1,4 @@
-part of "../vk_library_models.dart";
+part of vk_library_models;
 
 /// A class for using the [`photos`](https://vk.com/dev/photos) methods.
 class Photos {

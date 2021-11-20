@@ -1,4 +1,4 @@
-part of "../vk_library_models.dart";
+part of vk_library_models;
 
 /// A class for using the [`ads`](https://vk.com/dev/ads) methods.
 class Ads {

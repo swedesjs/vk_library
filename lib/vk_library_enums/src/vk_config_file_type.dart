@@ -1,4 +1,4 @@
-part of "../vk_library_enums.dart";
+part of vk_library_enums;
 
 /// Enum is intended for specifying the type in the factory constructor [VK.configFile]
 enum VKConfigFileType {

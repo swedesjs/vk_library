@@ -1,4 +1,4 @@
-part of "../vk_library_enums.dart";
+part of vk_library_enums;
 
 /// Enum for the [Messages.setActivity] method, accepting a `type` parameter.
 enum MessagesSetActivityType {

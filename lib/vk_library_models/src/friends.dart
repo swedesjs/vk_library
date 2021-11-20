@@ -1,4 +1,4 @@
-part of "../vk_library_models.dart";
+part of vk_library_models;
 
 /// A class for using the [`friends`](https://vk.com/dev/friends) methods.
 class Friends {

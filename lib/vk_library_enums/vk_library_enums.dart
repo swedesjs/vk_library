@@ -1,3 +1,6 @@
+/// Contains enumerations for parameters.
+library vk_library_enums;
+
 part "src/account/bdate_visibility.dart";
 part "src/account/get_counters.dart";
 part "src/ads/ids_type.dart";

@@ -1,4 +1,4 @@
-part of "../../../vk_library_enums.dart";
+part of vk_library_enums;
 
 /// The section for which prompts are requested.
 enum SectionAdsGetSuggestions {

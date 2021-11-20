@@ -1,4 +1,4 @@
-part of "../../vk_library_options.dart";
+part of vk_library_options;
 
 /// The class is designed to send messages using the [Messages.send] method as the `forward` parameter
 /// ```dart

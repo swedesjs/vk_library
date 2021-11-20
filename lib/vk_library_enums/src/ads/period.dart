@@ -1,4 +1,4 @@
-part of "../../vk_library_enums.dart";
+part of vk_library_enums;
 
 
 /// A way to group data by date. Applied in the [Ads.getDemographics] method.

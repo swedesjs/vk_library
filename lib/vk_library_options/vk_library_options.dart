@@ -1,3 +1,6 @@
+/// Contains different interfaces that are needed for some parameters in different methods.
+library vk_library_options;
+
 import "dart:convert" show jsonEncode;
 
 import "package:vk_library/vk_library_enums/vk_library_enums.dart"

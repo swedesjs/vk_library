@@ -1,4 +1,4 @@
-part of "../vk_library_models.dart";
+part of vk_library_models;
 
 /// A class for using the [`video`](https://vk.com/dev/video) methods.
 class Video {

@@ -1,4 +1,4 @@
-part of "../vk_library_enums.dart";
+part of vk_library_enums;
 
 /// Enum is for the `intent` parameter in the [Messages.getIntentUsers] method
 enum Intent {

@@ -1,4 +1,4 @@
-part of "../../vk_library_options.dart";
+part of vk_library_options;
 
 class AdSpecification {
   /// Id of the campaign in which the ad will be created.

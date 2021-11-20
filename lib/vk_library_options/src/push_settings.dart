@@ -1,4 +1,4 @@
-part of "../vk_library_options.dart";
+part of vk_library_options;
 
 /// Configuring push notifications.
 class PushSettings {
