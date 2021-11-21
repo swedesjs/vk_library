@@ -531,12 +531,11 @@ class Ads {
 
   /// Returns the URL to download the ad photo.
   Future<String> getUploadURL({
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getUploadURL
-    int? adFormat,
+    AdFormatAdsGetUploadURL? adFormat,
     int? icon,
   }) async {
     final data = await _api.call("ads.getUploadURL", {
-      if (adFormat != null) "ad_format": adFormat,
+      if (adFormat != null) "ad_format": adFormatAdsGetUploadURLMap[adFormat],
       if (icon != null) "icon": icon,
     });
 
