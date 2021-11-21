@@ -18,7 +18,7 @@ class Apps {
   Future<Json> get({
     int? appId,
     List<int>? appIds,
-    PlatformAdsGet? platform,
+    PlatformAppsGet? platform,
     bool? extended,
     bool? returnFriends,
     Set<String>? fields,
@@ -39,33 +39,30 @@ class Apps {
 
   /// Returns a list of applications available to site users through the application catalog.
   Future<Json> getCatalog({
-    // TODO: Implement the enum - https://vk.com/dev/apps.getCatalog
-    String? sort,
+    SortAppsGetCatalog? sort,
     int? offset,
     int? count,
-    // TODO: Implement the enum - https://vk.com/dev/apps.getCatalog
-    String? platform,
+    PlatformAppsGetCatalog? platform,
     bool? extended,
     bool? returnFriends,
     Set<String>? fields,
     NameCase? nameCase,
     String? q,
     int? genreId,
-    // TODO: Implement the enum - https://vk.com/dev/apps.getCatalog
-    String? filter,
+    FilterAppsGetCatalog? filter,
   }) async {
     final data = await _api.call("apps.getCatalog", {
-      if (sort != null) "sort": sort,
+      if (sort != null) "sort": sort.value,
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
-      if (platform != null) "platform": platform,
+      if (platform != null) "platform": platform.value,
       if (extended != null) "extended": extended,
       if (returnFriends != null) "return_friends": returnFriends,
       if (fields != null) "fields": fields.join(","),
       if (nameCase != null) "name_case": nameCase.value,
       if (q != null) "q": q,
       if (genreId != null) "genre_id": genreId,
-      if (filter != null) "filter": filter,
+      if (filter != null) "filter": filter.value,
     });
 
     return data.response;
