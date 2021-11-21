@@ -21,3 +21,4 @@ part "src/ads/get_statistics/ids_type.dart";
 part "src/ads/get_statistics/period.dart";
 part "src/ads/get_statistics/stats_fields.dart";
 part "src/ads/get_suggestions/section.dart";
+part "src/ads/get_targeting_stats/ad_format.dart";

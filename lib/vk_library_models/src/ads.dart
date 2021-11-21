@@ -497,13 +497,11 @@ class Ads {
   Future<Json> getTargetingStats({
     required int accountId,
     int? clientId,
-    // TODO: Implement class for this parameter - https://vk.com/dev/ads.getTargetingStats
     CriteriaAdsGetTargetingStats? criteria,
     int? adId,
+    AdFormatGetTargetingStats? adFormat,
     // TODO: Implement the enum. - https://vk.com/dev/ads.getTargetingStats
-    int? adFormat,
-    // TODO: Implement the enum. - https://vk.com/dev/ads.getTargetingStats
-    dynamic adPlatform,
+    Object? adPlatform,
     int? adPlatformNoWall,
     int? adPlatformNoAdNetwork,
     required String linkUrl,
@@ -516,7 +514,7 @@ class Ads {
       if (clientId != null) "client_id": clientId,
       if (criteria != null) "criteria": criteria,
       if (adId != null) "ad_id": adId,
-      if (adFormat != null) "ad_format": adFormat,
+      if (adFormat != null) "ad_format": adFormatGetTargetingStatsMap[adFormat],
       if (adPlatform != null) "ad_platform": adPlatform,
       if (adPlatformNoWall != null) "ad_platform_no_wall": adPlatformNoWall,
       if (adPlatformNoAdNetwork != null)
