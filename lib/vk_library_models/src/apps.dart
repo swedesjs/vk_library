@@ -18,8 +18,7 @@ class Apps {
   Future<Json> get({
     int? appId,
     List<int>? appIds,
-    // TODO: Implement the enum - https://vk.com/dev/apps.get
-    String? platform,
+    PlatformAdsGet? platform,
     bool? extended,
     bool? returnFriends,
     Set<String>? fields,
@@ -28,7 +27,7 @@ class Apps {
     final data = await _api.call("apps.get", {
       if (appId != null) "app_id": appId,
       if (appIds != null) "app_ids": appIds.join(","),
-      if (platform != null) "platform": platform,
+      if (platform != null) "platform": platform.value,
       if (extended != null) "extended": extended,
       if (returnFriends != null) "return_friends": returnFriends,
       if (fields != null) "fields": fields.join(","),
