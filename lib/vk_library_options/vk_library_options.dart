@@ -13,3 +13,4 @@ part "src/ads/target_pixel_rules.dart";
 part "src/ads/user_specification.dart";
 part "src/messages/forward.dart";
 part "src/push_settings.dart";
+part "src/ads/criteria.dart";

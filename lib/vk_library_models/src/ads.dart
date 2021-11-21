@@ -498,7 +498,7 @@ class Ads {
     required int accountId,
     int? clientId,
     // TODO: Implement class for this parameter - https://vk.com/dev/ads.getTargetingStats
-    Json? criteria,
+    CriteriaAdsGetTargetingStats? criteria,
     int? adId,
     // TODO: Implement the enum. - https://vk.com/dev/ads.getTargetingStats
     int? adFormat,
