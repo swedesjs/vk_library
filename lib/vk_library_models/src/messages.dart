@@ -124,7 +124,7 @@ class Messages {
     int? messageId,
     int? conversationMessageId,
     dynamic template,
-    dynamic keyboard,
+    Keyboard? keyboard,
   }) async {
     final data = await _api.call("messages.edit", {
       "peer_id": peerId,
@@ -653,7 +653,7 @@ class Messages {
     ForwardMessagesSend? forward,
     int? stickerId,
     int? groupId,
-    dynamic keyboard,
+    Keyboard? keyboard,
     dynamic template,
     dynamic payload,
     dynamic contentSource,
