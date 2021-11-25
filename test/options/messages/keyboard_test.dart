@@ -96,4 +96,113 @@ void main() {
       }),
     );
   });
+  test("An example from the VK documentation.", () {
+    expect(
+      jsonDecode(
+        const Keyboard(buttons: [
+          [
+            KeyboardLocation(payload: {"button": "1"})
+          ],
+          [
+            KeyboardVKApps(
+              appId: 6232540,
+              ownerId: -157525928,
+              hash: "123",
+              label: "LiveWidget",
+            )
+          ],
+          [
+            KeyboardVKPay(
+              hash: "action=transfer-to-group&group_id=181108510&aid=10",
+            )
+          ],
+          [
+            KeyboardText(
+              label: "Red",
+              payload: {"button": "1"},
+              color: KeyboardColor.NEGATIVE,
+            ),
+            KeyboardText(
+              label: "Green",
+              payload: {"button": "2"},
+              color: KeyboardColor.POSITIVE,
+            ),
+            KeyboardText(
+              label: "Blue",
+              payload: {"button": "2"},
+              color: KeyboardColor.PRIMARY,
+            ),
+            KeyboardText(label: "White", payload: {"button": "2"})
+          ]
+        ]).toString(),
+      ),
+      equals({
+        "one_time": false,
+        "buttons": [
+          [
+            {
+              "action": {
+                "type": "location",
+                "payload": {"button": "1"}
+              }
+            }
+          ],
+          [
+            {
+              "action": {
+                "type": "open_app",
+                "app_id": 6232540,
+                "owner_id": -157525928,
+                "hash": "123",
+                "label": "LiveWidget"
+              }
+            }
+          ],
+          [
+            {
+              "action": {
+                "type": "vkpay",
+                "hash": "action=transfer-to-group&group_id=181108510&aid=10"
+              }
+            }
+          ],
+          [
+            {
+              "action": {
+                "type": "text",
+                "payload": {"button": "1"},
+                "label": "Red"
+              },
+              "color": "negative"
+            },
+            {
+              "action": {
+                "type": "text",
+                "payload": {"button": "2"},
+                "label": "Green"
+              },
+              "color": "positive"
+            },
+            {
+              "action": {
+                "type": "text",
+                "payload": {"button": "2"},
+                "label": "Blue"
+              },
+              "color": "primary"
+            },
+            {
+              "action": {
+                "type": "text",
+                "payload": {"button": "2"},
+                "label": "White"
+              },
+              "color": "secondary"
+            }
+          ]
+        ],
+        "inline": false
+      }),
+    );
+  });
 }
