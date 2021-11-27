@@ -123,7 +123,7 @@ class Messages {
     bool? dontParseLinks,
     int? messageId,
     int? conversationMessageId,
-    dynamic template,
+    Template? template,
     Keyboard? keyboard,
   }) async {
     final data = await _api.call("messages.edit", {
@@ -654,7 +654,7 @@ class Messages {
     int? stickerId,
     int? groupId,
     Keyboard? keyboard,
-    dynamic template,
+    Template? template,
     dynamic payload,
     dynamic contentSource,
     bool? dontParseLinks,
