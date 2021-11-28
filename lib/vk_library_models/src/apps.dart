@@ -80,7 +80,7 @@ class Apps {
       if (extended != null) "extended": extended,
       if (count != null) "count": count,
       if (offset != null) "offset": offset,
-      if (type != null) "type": type,
+      if (type != null) "type": type.value,
       if (fields != null) "fields": fields.join(","),
     });
 
@@ -89,13 +89,12 @@ class Apps {
 
   /// Returns the rating of users in the game.
   Future<List<Json>> getLeaderboard({
-    // TODO: Implement the enum - https://vk.com/dev/apps.getLeaderboard
-    required String type,
+    required TypeAppsGetLeaderboard type,
     bool? global,
     bool? extended,
   }) async {
     final data = await _api.call("apps.getLeaderboard", {
-      "type": type,
+      "type": type.value,
       if (global != null) "global": global,
       if (extended != null) "extended": extended,
     });
