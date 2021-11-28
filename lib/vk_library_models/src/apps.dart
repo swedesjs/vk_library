@@ -73,8 +73,7 @@ class Apps {
     bool? extended,
     int? count,
     int? offset,
-    // TODO: Implement the enum - https://vk.com/dev/apps.getFriendsList
-    String? type,
+    TypeAppsGetFriendsList? type,
     Set<String>? fields,
   }) async {
     final data = await _api.call("apps.getFriendsList", {
