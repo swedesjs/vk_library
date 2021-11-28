@@ -22,8 +22,7 @@ class Groups {
     required num longitude,
     String? phone,
     String? workInfoStatus,
-    // TODO: Implement the class.
-    Json? timetable,
+    TimetableGroups? timetable,
     bool? isMainAddress,
   }) async {
     final data = await _api.call("groups.addAddress", {
@@ -312,8 +311,7 @@ class Groups {
     String? phone,
     // TODO: Implement the enum this parameter - https://vk.com/dev/groups.editAddress
     String? workInfoStatus,
-    // TODO: Implement the class. - https://vk.com/dev/groups.editAddress
-    Json? timetable,
+    TimetableGroups? timetable,
     bool? isMainAddress,
   }) async {
     final data = await _api.call("groups.editAddress", {
