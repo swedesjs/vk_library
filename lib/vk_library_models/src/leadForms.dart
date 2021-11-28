@@ -13,8 +13,7 @@ class LeadForms {
     required String name,
     required String title,
     required String description,
-    // TODO: Implement the class. - https://vk.com/dev/leadForms.create
-    required List<Json> questions,
+    required List<OptionsQuestionsLeadFormsCreate> questions,
     required String policyLinkUrl,
     String? photo,
     String? confirmation,
@@ -105,8 +104,7 @@ class LeadForms {
     required String name,
     required String title,
     required String description,
-    // TODO: Implement the class. - https://vk.com/dev/leadForms.create
-    required List<Json> questions,
+    required List<OptionsQuestionsLeadFormsCreate> questions,
     required String policyLinkUrl,
     String? photo,
     String? confirmation,
