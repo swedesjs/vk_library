@@ -97,12 +97,11 @@ class AppWidgets {
   /// Allows you to update the [community app widget](https://vk.com/dev/apps_widgets).
   Future<bool> update({
     String? code,
-    // TODO: Implement the enum - https://vk.com/dev/appWidgets.update
-    String? type,
+    TypeAppWidgetsUpdate? type,
   }) async {
     final data = await _api.call("appWidgets.update", {
       if (code != null) "code": code,
-      if (type != null) "type": type,
+      if (type != null) "type": type.value,
     });
 
     return data.response == 1;

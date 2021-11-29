@@ -31,3 +31,4 @@ part "src/apps/getFriendsList/type.dart";
 part "src/apps/getLeaderboard/type.dart";
 part "src/apps/sendRequest/type.dart";
 part "src/appWidgets/image_type.dart";
+part "src/appWidgets/update/type.dart";
