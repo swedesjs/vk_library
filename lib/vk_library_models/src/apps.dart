@@ -157,8 +157,7 @@ class Apps {
   Future<int> sendRequest({
     required int userId,
     String? text,
-    // TODO: Implement the enum - https://vk.com/dev/apps.sendRequest
-    String? type,
+    TypeAppsSendRequest? type,
     String? name,
     String? key,
     bool? separate,
