@@ -166,19 +166,17 @@ class Board {
   Future<Json> getTopics({
     required int groupId,
     List<int>? topicIds,
-    // TODO: Implement the enum - https://vk.com/dev/board.getTopics
-    int? order,
+    OrderBoardGetTopics? order,
     int? offset,
     int? count,
     bool? extended,
-    // TODO: Implement the enum - https://vk.com/dev/board.getTopics
     int? preview,
     int? previewLength,
   }) async {
     final data = await _api.call("board.getTopics", {
       "group_id": groupId,
       if (topicIds != null) "topic_ids": topicIds.join(","),
-      if (order != null) "order": order,
+      if (order != null) "order": MapOrderBoardGetTopics[order],
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
