@@ -9,11 +9,10 @@ class AppWidgets {
 
   /// Get the URL to upload a photo to the application collection for [community app widgets](https://vk.com/dev/apps_widgets).
   Future<Json> getAppImageUploadServer({
-    // TODO: Implement the enum. - https://vk.com/dev/appWidgets.getAppImageUploadServer
-    required String imageType,
+    required ImageTypeAppWidgets imageType,
   }) async {
     final data = await _api.call("appWidgets.getAppImageUploadServer", {
-      "image_type": imageType,
+      "image_type": MapImageTypeAppWidgets[imageType],
     });
 
     return data.response;
@@ -23,13 +22,12 @@ class AppWidgets {
   Future<Json> getAppImages({
     int? offset,
     int? count,
-    // TODO: Implement the enum - https://vk.com/dev/appWidgets.getAppImages
-    String? imageType,
+    ImageTypeAppWidgets? imageType,
   }) async {
     final data = await _api.call("appWidgets.getAppImages", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
-      if (imageType != null) "image_type": imageType,
+      if (imageType != null) "image_type": MapImageTypeAppWidgets[imageType],
     });
 
     return data.response;
@@ -37,11 +35,10 @@ class AppWidgets {
 
   /// Get the URL to upload a photo to the community collection for [community app widgets](https://vk.com/dev/apps_widgets).
   Future<Json> getGroupImageUploadServer({
-    // TODO: Implement the enum - https://vk.com/dev/apps.getAppImages
-    required String imageType,
+    required ImageTypeAppWidgets imageType,
   }) async {
     final data = await _api.call("appWidgets.getGroupImageUploadServer", {
-      "image_type": imageType,
+      "image_type": MapImageTypeAppWidgets[imageType],
     });
 
     return data.response;
@@ -51,13 +48,12 @@ class AppWidgets {
   Future<Json> getGroupImages({
     int? offset,
     int? count,
-    // TODO: Implement the enum - https://vk.com/dev/appWidgets.getAppImages
-    String? imageType,
+    ImageTypeAppWidgets? imageType,
   }) async {
     final data = await _api.call("appWidgets.getGroupImages", {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
-      if (imageType != null) "image_type": imageType,
+      if (imageType != null) "image_type": MapImageTypeAppWidgets[imageType],
     });
 
     return data.response;

@@ -165,7 +165,7 @@ class Apps {
     final data = await _api.call("apps.sendRequest", {
       "user_id": userId,
       if (text != null) "text": text,
-      if (type != null) "type": type,
+      if (type != null) "type": type.value,
       if (name != null) "name": name,
       if (key != null) "key": key,
       if (separate != null) "separate": separate,
