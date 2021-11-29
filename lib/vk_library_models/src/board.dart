@@ -146,8 +146,7 @@ class Board {
     int? offset,
     int? count,
     bool? extended,
-    // TODO: Implement the enum this parameter - https://vk.com/dev/board.getComments
-    String? sort,
+    SortBoardGetComments? sort,
   }) async {
     final data = await _api.call("board.getComments", {
       "group_id": groupId,
@@ -157,7 +156,7 @@ class Board {
       if (offset != null) "offset": offset,
       if (count != null) "count": count,
       if (extended != null) "extended": extended,
-      if (sort != null) "sort": sort,
+      if (sort != null) "sort": sort.value,
     });
 
     return data.response;
