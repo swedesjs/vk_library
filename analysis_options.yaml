@@ -10,3 +10,8 @@ linter:
     - prefer_is_empty
     - prefer_is_not_empty
     - prefer_iterable_whereType
+    - use_named_constants
+    - use_is_even_rather_than_modulo
+    - unnecessary_string_interpolations
+    - unnecessary_string_escapes
+    - unnecessary_lambdas
