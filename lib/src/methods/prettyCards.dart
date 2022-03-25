@@ -67,11 +67,11 @@ class PrettyCards {
 
   Future<Map<String, dynamic>> getById({
     required int ownerId,
-    required dynamic cardIds,
+    required List<int> cardIds,
   }) =>
       _api.request('prettyCards.getById', {
         'owner_id': ownerId,
-        'card_ids': cardIds,
+        'card_ids': cardIds.join(','),
       });
 
   Future<Map<String, dynamic>> getUploadURL() =>

@@ -14,7 +14,7 @@ class Market {
     num? oldPrice,
     bool? deleted,
     int? mainPhotoId,
-    dynamic photoIds,
+    List<int>? photoIds,
     String? url,
     int? dimensionWidth,
     int? dimensionHeight,
@@ -31,7 +31,7 @@ class Market {
         if (oldPrice != null) 'old_price': oldPrice,
         if (deleted != null) 'deleted': deleted,
         if (mainPhotoId != null) 'main_photo_id': mainPhotoId,
-        if (photoIds != null) 'photo_ids': photoIds,
+        if (photoIds != null) 'photo_ids': photoIds.join(','),
         if (url != null) 'url': url,
         if (dimensionWidth != null) 'dimension_width': dimensionWidth,
         if (dimensionHeight != null) 'dimension_height': dimensionHeight,
@@ -57,20 +57,20 @@ class Market {
 
   Future<Map<String, dynamic>> addToAlbum({
     required int ownerId,
-    required dynamic itemIds,
-    required dynamic albumIds,
+    required List<int> itemIds,
+    required List<int> albumIds,
   }) =>
       _api.request('market.addToAlbum', {
         'owner_id': ownerId,
-        'item_ids': itemIds,
-        'album_ids': albumIds,
+        'item_ids': itemIds.join(','),
+        'album_ids': albumIds.join(','),
       });
 
   Future<Map<String, dynamic>> createComment({
     required int ownerId,
     required int itemId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
     bool? fromGroup,
     int? replyToComment,
     int? stickerId,
@@ -80,7 +80,7 @@ class Market {
         'owner_id': ownerId,
         'item_id': itemId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (fromGroup != null) 'from_group': fromGroup,
         if (replyToComment != null) 'reply_to_comment': replyToComment,
         if (stickerId != null) 'sticker_id': stickerId,
@@ -124,7 +124,7 @@ class Market {
     num? oldPrice,
     bool? deleted,
     int? mainPhotoId,
-    dynamic photoIds,
+    List<int>? photoIds,
     String? url,
     int? dimensionWidth,
     int? dimensionHeight,
@@ -142,7 +142,7 @@ class Market {
         if (oldPrice != null) 'old_price': oldPrice,
         if (deleted != null) 'deleted': deleted,
         if (mainPhotoId != null) 'main_photo_id': mainPhotoId,
-        if (photoIds != null) 'photo_ids': photoIds,
+        if (photoIds != null) 'photo_ids': photoIds.join(','),
         if (url != null) 'url': url,
         if (dimensionWidth != null) 'dimension_width': dimensionWidth,
         if (dimensionHeight != null) 'dimension_height': dimensionHeight,
@@ -172,13 +172,13 @@ class Market {
     required int ownerId,
     required int commentId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
   }) =>
       _api.request('market.editComment', {
         'owner_id': ownerId,
         'comment_id': commentId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
       });
 
   Future<Map<String, dynamic>> editOrder({
@@ -233,11 +233,11 @@ class Market {
 
   Future<Map<String, dynamic>> getAlbumById({
     required int ownerId,
-    required dynamic albumIds,
+    required List<int> albumIds,
   }) =>
       _api.request('market.getAlbumById', {
         'owner_id': ownerId,
-        'album_ids': albumIds,
+        'album_ids': albumIds.join(','),
       });
 
   Future<Map<String, dynamic>> getAlbums({
@@ -252,11 +252,11 @@ class Market {
       });
 
   Future<Map<String, dynamic>> getById({
-    required dynamic itemIds,
+    required List<String> itemIds,
     bool? extended,
   }) =>
       _api.request('market.getById', {
-        'item_ids': itemIds,
+        'item_ids': itemIds.join(','),
         if (extended != null) 'extended': extended,
       });
 
@@ -278,7 +278,7 @@ class Market {
     int? count,
     String? sort,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('market.getComments', {
         'owner_id': ownerId,
@@ -289,7 +289,7 @@ class Market {
         if (count != null) 'count': count,
         if (sort != null) 'sort': sort,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getGroupOrders({
@@ -345,12 +345,12 @@ class Market {
   Future<Map<String, dynamic>> removeFromAlbum({
     required int ownerId,
     required int itemId,
-    required dynamic albumIds,
+    required List<int> albumIds,
   }) =>
       _api.request('market.removeFromAlbum', {
         'owner_id': ownerId,
         'item_id': itemId,
-        'album_ids': albumIds,
+        'album_ids': albumIds.join(','),
       });
 
   Future<Map<String, dynamic>> reorderAlbums({
@@ -432,7 +432,7 @@ class Market {
     int? offset,
     int? count,
     bool? extended,
-    dynamic status,
+    List<int>? status,
     bool? needVariants,
   }) =>
       _api.request('market.search', {
@@ -446,7 +446,7 @@ class Market {
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
         if (extended != null) 'extended': extended,
-        if (status != null) 'status': status,
+        if (status != null) 'status': status.join(','),
         if (needVariants != null) 'need_variants': needVariants,
       });
 

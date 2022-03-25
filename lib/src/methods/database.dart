@@ -34,10 +34,10 @@ class Database {
       });
 
   Future<Map<String, dynamic>> getCitiesById({
-    dynamic cityIds,
+    List<int>? cityIds,
   }) =>
       _api.request('database.getCitiesById', {
-        if (cityIds != null) 'city_ids': cityIds,
+        if (cityIds != null) 'city_ids': cityIds.join(','),
       });
 
   Future<Map<String, dynamic>> getCountries({
@@ -54,10 +54,10 @@ class Database {
       });
 
   Future<Map<String, dynamic>> getCountriesById({
-    dynamic countryIds,
+    List<int>? countryIds,
   }) =>
       _api.request('database.getCountriesById', {
-        if (countryIds != null) 'country_ids': countryIds,
+        if (countryIds != null) 'country_ids': countryIds.join(','),
       });
 
   Future<Map<String, dynamic>> getFaculties({
@@ -85,10 +85,10 @@ class Database {
       });
 
   Future<Map<String, dynamic>> getMetroStationsById({
-    dynamic stationIds,
+    List<int>? stationIds,
   }) =>
       _api.request('database.getMetroStationsById', {
-        if (stationIds != null) 'station_ids': stationIds,
+        if (stationIds != null) 'station_ids': stationIds.join(','),
       });
 
   Future<Map<String, dynamic>> getRegions({

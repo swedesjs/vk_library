@@ -8,13 +8,13 @@ class Polls {
   Future<Map<String, dynamic>> addVote({
     int? ownerId,
     required int pollId,
-    required dynamic answerIds,
+    required List<int> answerIds,
     bool? isBoard,
   }) =>
       _api.request('polls.addVote', {
         if (ownerId != null) 'owner_id': ownerId,
         'poll_id': pollId,
-        'answer_ids': answerIds,
+        'answer_ids': answerIds.join(','),
         if (isBoard != null) 'is_board': isBoard,
       });
 
@@ -88,7 +88,7 @@ class Polls {
     required int pollId,
     bool? extended,
     int? friendsCount,
-    dynamic fields,
+    List<String>? fields,
     String? nameCase,
   }) =>
       _api.request('polls.getById', {
@@ -97,7 +97,7 @@ class Polls {
         'poll_id': pollId,
         if (extended != null) 'extended': extended,
         if (friendsCount != null) 'friends_count': friendsCount,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
       });
 
@@ -111,23 +111,23 @@ class Polls {
   Future<Map<String, dynamic>> getVoters({
     int? ownerId,
     required int pollId,
-    required dynamic answerIds,
+    required List<int> answerIds,
     bool? isBoard,
     bool? friendsOnly,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
   }) =>
       _api.request('polls.getVoters', {
         if (ownerId != null) 'owner_id': ownerId,
         'poll_id': pollId,
-        'answer_ids': answerIds,
+        'answer_ids': answerIds.join(','),
         if (isBoard != null) 'is_board': isBoard,
         if (friendsOnly != null) 'friends_only': friendsOnly,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
       });
 

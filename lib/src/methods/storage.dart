@@ -7,12 +7,12 @@ class Storage {
 
   Future<Map<String, dynamic>> get({
     String? key,
-    dynamic keys,
+    List<String>? keys,
     int? userId,
   }) =>
       _api.request('storage.get', {
         if (key != null) 'key': key,
-        if (keys != null) 'keys': keys,
+        if (keys != null) 'keys': keys.join(','),
         if (userId != null) 'user_id': userId,
       });
 

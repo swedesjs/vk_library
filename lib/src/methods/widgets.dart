@@ -10,7 +10,7 @@ class Widgets {
     String? url,
     String? pageId,
     String? order,
-    dynamic fields,
+    List<Object>? fields,
     int? offset,
     int? count,
   }) =>
@@ -19,7 +19,7 @@ class Widgets {
         if (url != null) 'url': url,
         if (pageId != null) 'page_id': pageId,
         if (order != null) 'order': order,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
       });

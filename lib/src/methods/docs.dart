@@ -29,13 +29,13 @@ class Docs {
     required int ownerId,
     required int docId,
     required String title,
-    dynamic tags,
+    List<String>? tags,
   }) =>
       _api.request('docs.edit', {
         'owner_id': ownerId,
         'doc_id': docId,
         'title': title,
-        if (tags != null) 'tags': tags,
+        if (tags != null) 'tags': tags.join(','),
       });
 
   Future<Map<String, dynamic>> get({
@@ -54,11 +54,11 @@ class Docs {
       });
 
   Future<Map<String, dynamic>> getById({
-    required dynamic docs,
+    required List<String> docs,
     bool? returnTags,
   }) =>
       _api.request('docs.getById', {
-        'docs': docs,
+        'docs': docs.join(','),
         if (returnTags != null) 'return_tags': returnTags,
       });
 

@@ -10,20 +10,20 @@ class Apps {
 
   Future<Map<String, dynamic>> get({
     int? appId,
-    dynamic appIds,
+    List<String>? appIds,
     String? platform,
     bool? extended,
     bool? returnFriends,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
   }) =>
       _api.request('apps.get', {
         if (appId != null) 'app_id': appId,
-        if (appIds != null) 'app_ids': appIds,
+        if (appIds != null) 'app_ids': appIds.join(','),
         if (platform != null) 'platform': platform,
         if (extended != null) 'extended': extended,
         if (returnFriends != null) 'return_friends': returnFriends,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
       });
 
@@ -34,7 +34,7 @@ class Apps {
     String? platform,
     bool? extended,
     bool? returnFriends,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
     String? q,
     int? genreId,
@@ -47,7 +47,7 @@ class Apps {
         if (platform != null) 'platform': platform,
         if (extended != null) 'extended': extended,
         if (returnFriends != null) 'return_friends': returnFriends,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
         if (q != null) 'q': q,
         if (genreId != null) 'genre_id': genreId,
@@ -59,14 +59,14 @@ class Apps {
     int? count,
     int? offset,
     String? type,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('apps.getFriendsList', {
         if (extended != null) 'extended': extended,
         if (count != null) 'count': count,
         if (offset != null) 'offset': offset,
         if (type != null) 'type': type,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getLeaderboard({

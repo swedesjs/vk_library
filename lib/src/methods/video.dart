@@ -19,25 +19,25 @@ class Video {
   Future<Map<String, dynamic>> addAlbum({
     int? groupId,
     String? title,
-    dynamic privacy,
+    List<String>? privacy,
   }) =>
       _api.request('video.addAlbum', {
         if (groupId != null) 'group_id': groupId,
         if (title != null) 'title': title,
-        if (privacy != null) 'privacy': privacy,
+        if (privacy != null) 'privacy': privacy.join(','),
       });
 
   Future<Map<String, dynamic>> addToAlbum({
     int? targetId,
     int? albumId,
-    dynamic albumIds,
+    List<int>? albumIds,
     required int ownerId,
     required int videoId,
   }) =>
       _api.request('video.addToAlbum', {
         if (targetId != null) 'target_id': targetId,
         if (albumId != null) 'album_id': albumId,
-        if (albumIds != null) 'album_ids': albumIds,
+        if (albumIds != null) 'album_ids': albumIds.join(','),
         'owner_id': ownerId,
         'video_id': videoId,
       });
@@ -46,7 +46,7 @@ class Video {
     int? ownerId,
     required int videoId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
     bool? fromGroup,
     int? replyToComment,
     int? stickerId,
@@ -56,7 +56,7 @@ class Video {
         if (ownerId != null) 'owner_id': ownerId,
         'video_id': videoId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (fromGroup != null) 'from_group': fromGroup,
         if (replyToComment != null) 'reply_to_comment': replyToComment,
         if (stickerId != null) 'sticker_id': stickerId,
@@ -97,8 +97,8 @@ class Video {
     required int videoId,
     String? name,
     String? desc,
-    dynamic privacyView,
-    dynamic privacyComment,
+    List<String>? privacyView,
+    List<String>? privacyComment,
     bool? noComments,
     bool? repeat,
   }) =>
@@ -107,8 +107,8 @@ class Video {
         'video_id': videoId,
         if (name != null) 'name': name,
         if (desc != null) 'desc': desc,
-        if (privacyView != null) 'privacy_view': privacyView,
-        if (privacyComment != null) 'privacy_comment': privacyComment,
+        if (privacyView != null) 'privacy_view': privacyView.join(','),
+        if (privacyComment != null) 'privacy_comment': privacyComment.join(','),
         if (noComments != null) 'no_comments': noComments,
         if (repeat != null) 'repeat': repeat,
       });
@@ -117,45 +117,45 @@ class Video {
     int? groupId,
     required int albumId,
     required String title,
-    dynamic privacy,
+    List<String>? privacy,
   }) =>
       _api.request('video.editAlbum', {
         if (groupId != null) 'group_id': groupId,
         'album_id': albumId,
         'title': title,
-        if (privacy != null) 'privacy': privacy,
+        if (privacy != null) 'privacy': privacy.join(','),
       });
 
   Future<Map<String, dynamic>> editComment({
     int? ownerId,
     required int commentId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
   }) =>
       _api.request('video.editComment', {
         if (ownerId != null) 'owner_id': ownerId,
         'comment_id': commentId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
       });
 
   Future<Map<String, dynamic>> get({
     int? ownerId,
-    dynamic videos,
+    List<String>? videos,
     int? albumId,
     int? count,
     int? offset,
     bool? extended,
-    dynamic fields,
+    List<String>? fields,
   }) =>
       _api.request('video.get', {
         if (ownerId != null) 'owner_id': ownerId,
-        if (videos != null) 'videos': videos,
+        if (videos != null) 'videos': videos.join(','),
         if (albumId != null) 'album_id': albumId,
         if (count != null) 'count': count,
         if (offset != null) 'offset': offset,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getAlbumById({
@@ -204,7 +204,7 @@ class Video {
     int? count,
     String? sort,
     bool? extended,
-    dynamic fields,
+    List<String>? fields,
   }) =>
       _api.request('video.getComments', {
         if (ownerId != null) 'owner_id': ownerId,
@@ -215,20 +215,20 @@ class Video {
         if (count != null) 'count': count,
         if (sort != null) 'sort': sort,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> removeFromAlbum({
     int? targetId,
     int? albumId,
-    dynamic albumIds,
+    List<int>? albumIds,
     required int ownerId,
     required int videoId,
   }) =>
       _api.request('video.removeFromAlbum', {
         if (targetId != null) 'target_id': targetId,
         if (albumId != null) 'album_id': albumId,
-        if (albumIds != null) 'album_ids': albumIds,
+        if (albumIds != null) 'album_ids': albumIds.join(','),
         'owner_id': ownerId,
         'video_id': videoId,
       });
@@ -319,8 +319,8 @@ class Video {
     String? link,
     int? groupId,
     int? albumId,
-    dynamic privacyView,
-    dynamic privacyComment,
+    List<String>? privacyView,
+    List<String>? privacyComment,
     bool? noComments,
     bool? repeat,
     bool? compression,
@@ -333,8 +333,8 @@ class Video {
         if (link != null) 'link': link,
         if (groupId != null) 'group_id': groupId,
         if (albumId != null) 'album_id': albumId,
-        if (privacyView != null) 'privacy_view': privacyView,
-        if (privacyComment != null) 'privacy_comment': privacyComment,
+        if (privacyView != null) 'privacy_view': privacyView.join(','),
+        if (privacyComment != null) 'privacy_comment': privacyComment.join(','),
         if (noComments != null) 'no_comments': noComments,
         if (repeat != null) 'repeat': repeat,
         if (compression != null) 'compression': compression,
@@ -346,7 +346,7 @@ class Video {
     int? hd,
     bool? adult,
     bool? live,
-    dynamic filters,
+    List<String>? filters,
     bool? searchOwn,
     int? offset,
     int? longer,
@@ -360,7 +360,7 @@ class Video {
         if (hd != null) 'hd': hd,
         if (adult != null) 'adult': adult,
         if (live != null) 'live': live,
-        if (filters != null) 'filters': filters,
+        if (filters != null) 'filters': filters.join(','),
         if (searchOwn != null) 'search_own': searchOwn,
         if (offset != null) 'offset': offset,
         if (longer != null) 'longer': longer,

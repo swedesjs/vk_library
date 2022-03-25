@@ -18,8 +18,8 @@ class LeadForms {
     bool? active,
     bool? oncePerUser,
     String? pixelCode,
-    dynamic notifyAdmins,
-    dynamic notifyEmails,
+    List<int>? notifyAdmins,
+    List<String>? notifyEmails,
   }) =>
       _api.request('leadForms.create', {
         'group_id': groupId,
@@ -34,8 +34,8 @@ class LeadForms {
         if (active != null) 'active': active,
         if (oncePerUser != null) 'once_per_user': oncePerUser,
         if (pixelCode != null) 'pixel_code': pixelCode,
-        if (notifyAdmins != null) 'notify_admins': notifyAdmins,
-        if (notifyEmails != null) 'notify_emails': notifyEmails,
+        if (notifyAdmins != null) 'notify_admins': notifyAdmins.join(','),
+        if (notifyEmails != null) 'notify_emails': notifyEmails.join(','),
       });
 
   Future<Map<String, dynamic>> delete({
@@ -93,8 +93,8 @@ class LeadForms {
     bool? active,
     bool? oncePerUser,
     String? pixelCode,
-    dynamic notifyAdmins,
-    dynamic notifyEmails,
+    List<int>? notifyAdmins,
+    List<String>? notifyEmails,
   }) =>
       _api.request('leadForms.update', {
         'group_id': groupId,
@@ -110,7 +110,7 @@ class LeadForms {
         if (active != null) 'active': active,
         if (oncePerUser != null) 'once_per_user': oncePerUser,
         if (pixelCode != null) 'pixel_code': pixelCode,
-        if (notifyAdmins != null) 'notify_admins': notifyAdmins,
-        if (notifyEmails != null) 'notify_emails': notifyEmails,
+        if (notifyAdmins != null) 'notify_admins': notifyAdmins.join(','),
+        if (notifyEmails != null) 'notify_emails': notifyEmails.join(','),
       });
 }

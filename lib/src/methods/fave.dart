@@ -102,14 +102,14 @@ class Fave {
     int? offset,
     int? count,
     String? type,
-    dynamic fields,
+    List<Object>? fields,
     int? tagId,
   }) =>
       _api.request('fave.getPages', {
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
         if (type != null) 'type': type,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (tagId != null) 'tag_id': tagId,
       });
 
@@ -179,28 +179,28 @@ class Fave {
       });
 
   Future<Map<String, dynamic>> reorderTags({
-    required dynamic ids,
+    required List<int> ids,
   }) =>
       _api.request('fave.reorderTags', {
-        'ids': ids,
+        'ids': ids.join(','),
       });
 
   Future<Map<String, dynamic>> setPageTags({
     int? userId,
     int? groupId,
-    dynamic tagIds,
+    List<int>? tagIds,
   }) =>
       _api.request('fave.setPageTags', {
         if (userId != null) 'user_id': userId,
         if (groupId != null) 'group_id': groupId,
-        if (tagIds != null) 'tag_ids': tagIds,
+        if (tagIds != null) 'tag_ids': tagIds.join(','),
       });
 
   Future<Map<String, dynamic>> setTags({
     String? itemType,
     int? itemOwnerId,
     int? itemId,
-    dynamic tagIds,
+    List<int>? tagIds,
     String? linkId,
     String? linkUrl,
   }) =>
@@ -208,7 +208,7 @@ class Fave {
         if (itemType != null) 'item_type': itemType,
         if (itemOwnerId != null) 'item_owner_id': itemOwnerId,
         if (itemId != null) 'item_id': itemId,
-        if (tagIds != null) 'tag_ids': tagIds,
+        if (tagIds != null) 'tag_ids': tagIds.join(','),
         if (linkId != null) 'link_id': linkId,
         if (linkUrl != null) 'link_url': linkUrl,
       });

@@ -9,13 +9,13 @@ class Donut {
     required int ownerId,
     int? offset,
     int? count,
-    dynamic fields,
+    List<String>? fields,
   }) =>
       _api.request('donut.getFriends', {
         'owner_id': ownerId,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getSubscription({
@@ -26,12 +26,12 @@ class Donut {
       });
 
   Future<Map<String, dynamic>> getSubscriptions({
-    dynamic fields,
+    List<Object>? fields,
     int? offset,
     int? count,
   }) =>
       _api.request('donut.getSubscriptions', {
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
       });

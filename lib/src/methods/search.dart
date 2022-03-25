@@ -9,16 +9,16 @@ class Search {
     String? q,
     int? offset,
     int? limit,
-    dynamic filters,
-    dynamic fields,
+    List<String>? filters,
+    List<String>? fields,
     bool? searchGlobal,
   }) =>
       _api.request('search.getHints', {
         if (q != null) 'q': q,
         if (offset != null) 'offset': offset,
         if (limit != null) 'limit': limit,
-        if (filters != null) 'filters': filters,
-        if (fields != null) 'fields': fields,
+        if (filters != null) 'filters': filters.join(','),
+        if (fields != null) 'fields': fields.join(','),
         if (searchGlobal != null) 'search_global': searchGlobal,
       });
 }

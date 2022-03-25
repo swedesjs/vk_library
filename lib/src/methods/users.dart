@@ -6,13 +6,13 @@ class Users {
   Users(this._api);
 
   Future<Map<String, dynamic>> get({
-    dynamic userIds,
-    dynamic fields,
+    List<String>? userIds,
+    List<Object>? fields,
     String? nameCase,
   }) =>
       _api.request('users.get', {
-        if (userIds != null) 'user_ids': userIds,
-        if (fields != null) 'fields': fields,
+        if (userIds != null) 'user_ids': userIds.join(','),
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
       });
 
@@ -20,14 +20,14 @@ class Users {
     int? userId,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
   }) =>
       _api.request('users.getFollowers', {
         if (userId != null) 'user_id': userId,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
       });
 
@@ -36,14 +36,14 @@ class Users {
     bool? extended,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('users.getSubscriptions', {
         if (userId != null) 'user_id': userId,
         if (extended != null) 'extended': extended,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> report({
@@ -62,7 +62,7 @@ class Users {
     int? sort,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
     int? city,
     int? country,
     String? hometown,
@@ -89,14 +89,14 @@ class Users {
     String? company,
     String? position,
     int? groupId,
-    dynamic fromList,
+    List<String>? fromList,
   }) =>
       _api.request('users.search', {
         if (q != null) 'q': q,
         if (sort != null) 'sort': sort,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (city != null) 'city': city,
         if (country != null) 'country': country,
         if (hometown != null) 'hometown': hometown,
@@ -123,6 +123,6 @@ class Users {
         if (company != null) 'company': company,
         if (position != null) 'position': position,
         if (groupId != null) 'group_id': groupId,
-        if (fromList != null) 'from_list': fromList,
+        if (fromList != null) 'from_list': fromList.join(','),
       });
 }

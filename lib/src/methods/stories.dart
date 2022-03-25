@@ -6,57 +6,57 @@ class Stories {
   Stories(this._api);
 
   Future<Map<String, dynamic>> banOwner({
-    required dynamic ownersIds,
+    required List<int> ownersIds,
   }) =>
       _api.request('stories.banOwner', {
-        'owners_ids': ownersIds,
+        'owners_ids': ownersIds.join(','),
       });
 
   Future<Map<String, dynamic>> delete({
     int? ownerId,
     int? storyId,
-    dynamic stories,
+    List<String>? stories,
   }) =>
       _api.request('stories.delete', {
         if (ownerId != null) 'owner_id': ownerId,
         if (storyId != null) 'story_id': storyId,
-        if (stories != null) 'stories': stories,
+        if (stories != null) 'stories': stories.join(','),
       });
 
   Future<Map<String, dynamic>> get({
     int? ownerId,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('stories.get', {
         if (ownerId != null) 'owner_id': ownerId,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getBanned({
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('stories.getBanned', {
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getById({
-    required dynamic stories,
+    required List<String> stories,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('stories.getById', {
-        'stories': stories,
+        'stories': stories.join(','),
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getPhotoUploadServer({
     bool? addToNews,
-    dynamic userIds,
+    List<int>? userIds,
     String? replyToStory,
     String? linkText,
     String? linkUrl,
@@ -65,7 +65,7 @@ class Stories {
   }) =>
       _api.request('stories.getPhotoUploadServer', {
         if (addToNews != null) 'add_to_news': addToNews,
-        if (userIds != null) 'user_ids': userIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
         if (replyToStory != null) 'reply_to_story': replyToStory,
         if (linkText != null) 'link_text': linkText,
         if (linkUrl != null) 'link_url': linkUrl,
@@ -78,14 +78,14 @@ class Stories {
     required int storyId,
     String? accessKey,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('stories.getReplies', {
         'owner_id': ownerId,
         'story_id': storyId,
         if (accessKey != null) 'access_key': accessKey,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getStats({
@@ -99,7 +99,7 @@ class Stories {
 
   Future<Map<String, dynamic>> getVideoUploadServer({
     bool? addToNews,
-    dynamic userIds,
+    List<int>? userIds,
     String? replyToStory,
     String? linkText,
     String? linkUrl,
@@ -108,7 +108,7 @@ class Stories {
   }) =>
       _api.request('stories.getVideoUploadServer', {
         if (addToNews != null) 'add_to_news': addToNews,
-        if (userIds != null) 'user_ids': userIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
         if (replyToStory != null) 'reply_to_story': replyToStory,
         if (linkText != null) 'link_text': linkText,
         if (linkUrl != null) 'link_url': linkUrl,
@@ -122,7 +122,7 @@ class Stories {
     int? count,
     int? offset,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('stories.getViewers', {
         'owner_id': ownerId,
@@ -130,7 +130,7 @@ class Stories {
         if (count != null) 'count': count,
         if (offset != null) 'offset': offset,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> hideAllReplies({
@@ -152,14 +152,14 @@ class Stories {
       });
 
   Future<Map<String, dynamic>> save({
-    required dynamic uploadResults,
+    required List<String> uploadResults,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('stories.save', {
-        'upload_results': uploadResults,
+        'upload_results': uploadResults.join(','),
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> search({
@@ -171,7 +171,7 @@ class Stories {
     int? mentionedId,
     int? count,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('stories.search', {
         if (q != null) 'q': q,
@@ -182,7 +182,7 @@ class Stories {
         if (mentionedId != null) 'mentioned_id': mentionedId,
         if (count != null) 'count': count,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> sendInteraction({
@@ -201,9 +201,9 @@ class Stories {
       });
 
   Future<Map<String, dynamic>> unbanOwner({
-    required dynamic ownersIds,
+    required List<int> ownersIds,
   }) =>
       _api.request('stories.unbanOwner', {
-        'owners_ids': ownersIds,
+        'owners_ids': ownersIds.join(','),
       });
 }

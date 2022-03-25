@@ -18,20 +18,20 @@ class Friends {
 
   Future<Map<String, dynamic>> addList({
     required String name,
-    dynamic userIds,
+    List<int>? userIds,
   }) =>
       _api.request('friends.addList', {
         'name': name,
-        if (userIds != null) 'user_ids': userIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
       });
 
   Future<Map<String, dynamic>> areFriends({
-    required dynamic userIds,
+    required List<int> userIds,
     bool? needSign,
     bool? extended,
   }) =>
       _api.request('friends.areFriends', {
-        'user_ids': userIds,
+        'user_ids': userIds.join(','),
         if (needSign != null) 'need_sign': needSign,
         if (extended != null) 'extended': extended,
       });
@@ -55,26 +55,26 @@ class Friends {
 
   Future<Map<String, dynamic>> edit({
     required int userId,
-    dynamic listIds,
+    List<int>? listIds,
   }) =>
       _api.request('friends.edit', {
         'user_id': userId,
-        if (listIds != null) 'list_ids': listIds,
+        if (listIds != null) 'list_ids': listIds.join(','),
       });
 
   Future<Map<String, dynamic>> editList({
     String? name,
     required int listId,
-    dynamic userIds,
-    dynamic addUserIds,
-    dynamic deleteUserIds,
+    List<int>? userIds,
+    List<int>? addUserIds,
+    List<int>? deleteUserIds,
   }) =>
       _api.request('friends.editList', {
         if (name != null) 'name': name,
         'list_id': listId,
-        if (userIds != null) 'user_ids': userIds,
-        if (addUserIds != null) 'add_user_ids': addUserIds,
-        if (deleteUserIds != null) 'delete_user_ids': deleteUserIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
+        if (addUserIds != null) 'add_user_ids': addUserIds.join(','),
+        if (deleteUserIds != null) 'delete_user_ids': deleteUserIds.join(','),
       });
 
   Future<Map<String, dynamic>> get({
@@ -83,7 +83,7 @@ class Friends {
     int? listId,
     int? count,
     int? offset,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
     String? ref,
   }) =>
@@ -93,7 +93,7 @@ class Friends {
         if (listId != null) 'list_id': listId,
         if (count != null) 'count': count,
         if (offset != null) 'offset': offset,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
         if (ref != null) 'ref': ref,
       });
@@ -102,12 +102,12 @@ class Friends {
       _api.request('friends.getAppUsers');
 
   Future<Map<String, dynamic>> getByPhones({
-    dynamic phones,
-    dynamic fields,
+    List<String>? phones,
+    List<Object>? fields,
   }) =>
       _api.request('friends.getByPhones', {
-        if (phones != null) 'phones': phones,
-        if (fields != null) 'fields': fields,
+        if (phones != null) 'phones': phones.join(','),
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getLists({
@@ -122,7 +122,7 @@ class Friends {
   Future<Map<String, dynamic>> getMutual({
     int? sourceUid,
     int? targetUid,
-    dynamic targetUids,
+    List<int>? targetUids,
     String? order,
     int? count,
     int? offset,
@@ -130,7 +130,7 @@ class Friends {
       _api.request('friends.getMutual', {
         if (sourceUid != null) 'source_uid': sourceUid,
         if (targetUid != null) 'target_uid': targetUid,
-        if (targetUids != null) 'target_uids': targetUids,
+        if (targetUids != null) 'target_uids': targetUids.join(','),
         if (order != null) 'order': order,
         if (count != null) 'count': count,
         if (offset != null) 'offset': offset,
@@ -170,7 +170,7 @@ class Friends {
     bool? needViewed,
     bool? suggested,
     String? ref,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('friends.getRequests', {
         if (offset != null) 'offset': offset,
@@ -182,28 +182,28 @@ class Friends {
         if (needViewed != null) 'need_viewed': needViewed,
         if (suggested != null) 'suggested': suggested,
         if (ref != null) 'ref': ref,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getSuggestions({
-    dynamic filter,
+    List<String>? filter,
     int? count,
     int? offset,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
   }) =>
       _api.request('friends.getSuggestions', {
-        if (filter != null) 'filter': filter,
+        if (filter != null) 'filter': filter.join(','),
         if (count != null) 'count': count,
         if (offset != null) 'offset': offset,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
       });
 
   Future<Map<String, dynamic>> search({
     int? userId,
     String? q,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
     int? offset,
     int? count,
@@ -211,7 +211,7 @@ class Friends {
       _api.request('friends.search', {
         if (userId != null) 'user_id': userId,
         if (q != null) 'q': q,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,

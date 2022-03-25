@@ -27,7 +27,7 @@ class Wall {
     int? fromGroup,
     String? message,
     int? replyToComment,
-    dynamic attachments,
+    List<String>? attachments,
     int? stickerId,
     String? guid,
   }) =>
@@ -37,7 +37,7 @@ class Wall {
         if (fromGroup != null) 'from_group': fromGroup,
         if (message != null) 'message': message,
         if (replyToComment != null) 'reply_to_comment': replyToComment,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (stickerId != null) 'sticker_id': stickerId,
         if (guid != null) 'guid': guid,
       });
@@ -65,7 +65,7 @@ class Wall {
     required int postId,
     bool? friendsOnly,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
     String? services,
     bool? signed,
     int? publishDate,
@@ -86,7 +86,7 @@ class Wall {
         'post_id': postId,
         if (friendsOnly != null) 'friends_only': friendsOnly,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (services != null) 'services': services,
         if (signed != null) 'signed': signed,
         if (publishDate != null) 'publish_date': publishDate,
@@ -108,7 +108,7 @@ class Wall {
     int? ownerId,
     required int postId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
     bool? signed,
     num? lat,
     num? long,
@@ -122,7 +122,7 @@ class Wall {
         if (ownerId != null) 'owner_id': ownerId,
         'post_id': postId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (signed != null) 'signed': signed,
         if (lat != null) 'lat': lat,
         if (long != null) 'long': long,
@@ -137,13 +137,13 @@ class Wall {
     int? ownerId,
     required int commentId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
   }) =>
       _api.request('wall.editComment', {
         if (ownerId != null) 'owner_id': ownerId,
         'comment_id': commentId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
       });
 
   Future<Map<String, dynamic>> get({
@@ -153,7 +153,7 @@ class Wall {
     int? count,
     String? filter,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('wall.get', {
         if (ownerId != null) 'owner_id': ownerId,
@@ -162,33 +162,33 @@ class Wall {
         if (count != null) 'count': count,
         if (filter != null) 'filter': filter,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getById({
-    required dynamic posts,
+    required List<String> posts,
     bool? extended,
     int? copyHistoryDepth,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('wall.getById', {
-        'posts': posts,
+        'posts': posts.join(','),
         if (extended != null) 'extended': extended,
         if (copyHistoryDepth != null) 'copy_history_depth': copyHistoryDepth,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getComment({
     int? ownerId,
     required int commentId,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('wall.getComment', {
         if (ownerId != null) 'owner_id': ownerId,
         'comment_id': commentId,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getComments({
@@ -201,7 +201,7 @@ class Wall {
     String? sort,
     int? previewLength,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
     int? commentId,
     int? threadItemsCount,
   }) =>
@@ -215,7 +215,7 @@ class Wall {
         if (sort != null) 'sort': sort,
         if (previewLength != null) 'preview_length': previewLength,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (commentId != null) 'comment_id': commentId,
         if (threadItemsCount != null) 'thread_items_count': threadItemsCount,
       });
@@ -256,7 +256,7 @@ class Wall {
     bool? friendsOnly,
     bool? fromGroup,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
     String? services,
     bool? signed,
     int? publishDate,
@@ -277,7 +277,7 @@ class Wall {
         if (friendsOnly != null) 'friends_only': friendsOnly,
         if (fromGroup != null) 'from_group': fromGroup,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (services != null) 'services': services,
         if (signed != null) 'signed': signed,
         if (publishDate != null) 'publish_date': publishDate,
@@ -297,7 +297,7 @@ class Wall {
   Future<Map<String, dynamic>> postAdsStealth({
     required int ownerId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
     bool? signed,
     num? lat,
     num? long,
@@ -311,7 +311,7 @@ class Wall {
       _api.request('wall.postAdsStealth', {
         'owner_id': ownerId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (signed != null) 'signed': signed,
         if (lat != null) 'lat': lat,
         if (long != null) 'long': long,
@@ -386,7 +386,7 @@ class Wall {
     int? count,
     int? offset,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('wall.search', {
         if (ownerId != null) 'owner_id': ownerId,
@@ -396,7 +396,7 @@ class Wall {
         if (count != null) 'count': count,
         if (offset != null) 'offset': offset,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> unpin({

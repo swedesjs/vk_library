@@ -184,14 +184,14 @@ class Ads {
     int? clientId,
     bool? includeDeleted,
     String? campaignIds,
-    dynamic fields,
+    List<String>? fields,
   }) =>
       _api.request('ads.getCampaigns', {
         'account_id': accountId,
         if (clientId != null) 'client_id': clientId,
         if (includeDeleted != null) 'include_deleted': includeDeleted,
         if (campaignIds != null) 'campaign_ids': campaignIds,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getCategories({
@@ -257,10 +257,10 @@ class Ads {
       });
 
   Future<Map<String, dynamic>> getMusiciansByIds({
-    required dynamic ids,
+    required List<int> ids,
   }) =>
       _api.request('ads.getMusiciansByIds', {
-        'ids': ids,
+        'ids': ids.join(','),
       });
 
   Future<Map<String, dynamic>> getOfficeUsers({
@@ -297,7 +297,7 @@ class Ads {
     required String period,
     required String dateFrom,
     required String dateTo,
-    dynamic statsFields,
+    List<String>? statsFields,
   }) =>
       _api.request('ads.getStatistics', {
         'account_id': accountId,
@@ -306,7 +306,7 @@ class Ads {
         'period': period,
         'date_from': dateFrom,
         'date_to': dateTo,
-        if (statsFields != null) 'stats_fields': statsFields,
+        if (statsFields != null) 'stats_fields': statsFields.join(','),
       });
 
   Future<Map<String, dynamic>> getSuggestions({

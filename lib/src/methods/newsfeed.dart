@@ -6,21 +6,21 @@ class Newsfeed {
   Newsfeed(this._api);
 
   Future<Map<String, dynamic>> addBan({
-    dynamic userIds,
-    dynamic groupIds,
+    List<int>? userIds,
+    List<int>? groupIds,
   }) =>
       _api.request('newsfeed.addBan', {
-        if (userIds != null) 'user_ids': userIds,
-        if (groupIds != null) 'group_ids': groupIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
+        if (groupIds != null) 'group_ids': groupIds.join(','),
       });
 
   Future<Map<String, dynamic>> deleteBan({
-    dynamic userIds,
-    dynamic groupIds,
+    List<int>? userIds,
+    List<int>? groupIds,
   }) =>
       _api.request('newsfeed.deleteBan', {
-        if (userIds != null) 'user_ids': userIds,
-        if (groupIds != null) 'group_ids': groupIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
+        if (groupIds != null) 'group_ids': groupIds.join(','),
       });
 
   Future<Map<String, dynamic>> deleteList({
@@ -31,7 +31,7 @@ class Newsfeed {
       });
 
   Future<Map<String, dynamic>> get({
-    dynamic filters,
+    List<Object>? filters,
     bool? returnBanned,
     int? startTime,
     int? endTime,
@@ -39,11 +39,11 @@ class Newsfeed {
     String? sourceIds,
     String? startFrom,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
     String? section,
   }) =>
       _api.request('newsfeed.get', {
-        if (filters != null) 'filters': filters,
+        if (filters != null) 'filters': filters.join(','),
         if (returnBanned != null) 'return_banned': returnBanned,
         if (startTime != null) 'start_time': startTime,
         if (endTime != null) 'end_time': endTime,
@@ -51,48 +51,48 @@ class Newsfeed {
         if (sourceIds != null) 'source_ids': sourceIds,
         if (startFrom != null) 'start_from': startFrom,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (section != null) 'section': section,
       });
 
   Future<Map<String, dynamic>> getBanned({
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
   }) =>
       _api.request('newsfeed.getBanned', {
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
       });
 
   Future<Map<String, dynamic>> getComments({
     int? count,
-    dynamic filters,
+    List<Object>? filters,
     String? reposts,
     int? startTime,
     int? endTime,
     int? lastCommentsCount,
     String? startFrom,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('newsfeed.getComments', {
         if (count != null) 'count': count,
-        if (filters != null) 'filters': filters,
+        if (filters != null) 'filters': filters.join(','),
         if (reposts != null) 'reposts': reposts,
         if (startTime != null) 'start_time': startTime,
         if (endTime != null) 'end_time': endTime,
         if (lastCommentsCount != null) 'last_comments_count': lastCommentsCount,
         if (startFrom != null) 'start_from': startFrom,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getLists({
-    dynamic listIds,
+    List<int>? listIds,
     bool? extended,
   }) =>
       _api.request('newsfeed.getLists', {
-        if (listIds != null) 'list_ids': listIds,
+        if (listIds != null) 'list_ids': listIds.join(','),
         if (extended != null) 'extended': extended,
       });
 
@@ -117,7 +117,7 @@ class Newsfeed {
     int? maxPhotos,
     String? startFrom,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('newsfeed.getRecommended', {
         if (startTime != null) 'start_time': startTime,
@@ -125,20 +125,20 @@ class Newsfeed {
         if (maxPhotos != null) 'max_photos': maxPhotos,
         if (startFrom != null) 'start_from': startFrom,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getSuggestedSources({
     int? offset,
     int? count,
     bool? shuffle,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('newsfeed.getSuggestedSources', {
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
         if (shuffle != null) 'shuffle': shuffle,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> ignoreItem({
@@ -155,13 +155,13 @@ class Newsfeed {
   Future<Map<String, dynamic>> saveList({
     int? listId,
     required String title,
-    dynamic sourceIds,
+    List<int>? sourceIds,
     bool? noReposts,
   }) =>
       _api.request('newsfeed.saveList', {
         if (listId != null) 'list_id': listId,
         'title': title,
-        if (sourceIds != null) 'source_ids': sourceIds,
+        if (sourceIds != null) 'source_ids': sourceIds.join(','),
         if (noReposts != null) 'no_reposts': noReposts,
       });
 
@@ -174,7 +174,7 @@ class Newsfeed {
     int? startTime,
     int? endTime,
     String? startFrom,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('newsfeed.search', {
         if (q != null) 'q': q,
@@ -185,7 +185,7 @@ class Newsfeed {
         if (startTime != null) 'start_time': startTime,
         if (endTime != null) 'end_time': endTime,
         if (startFrom != null) 'start_from': startFrom,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> unignoreItem({

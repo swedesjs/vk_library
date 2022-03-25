@@ -10,14 +10,14 @@ class Board {
     required String title,
     String? text,
     bool? fromGroup,
-    dynamic attachments,
+    List<String>? attachments,
   }) =>
       _api.request('board.addTopic', {
         'group_id': groupId,
         'title': title,
         if (text != null) 'text': text,
         if (fromGroup != null) 'from_group': fromGroup,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
       });
 
   Future<Map<String, dynamic>> closeTopic({
@@ -33,7 +33,7 @@ class Board {
     required int groupId,
     required int topicId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
     bool? fromGroup,
     int? stickerId,
     String? guid,
@@ -42,7 +42,7 @@ class Board {
         'group_id': groupId,
         'topic_id': topicId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (fromGroup != null) 'from_group': fromGroup,
         if (stickerId != null) 'sticker_id': stickerId,
         if (guid != null) 'guid': guid,
@@ -73,14 +73,14 @@ class Board {
     required int topicId,
     required int commentId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
   }) =>
       _api.request('board.editComment', {
         'group_id': groupId,
         'topic_id': topicId,
         'comment_id': commentId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
       });
 
   Future<Map<String, dynamic>> editTopic({
@@ -126,7 +126,7 @@ class Board {
 
   Future<Map<String, dynamic>> getTopics({
     required int groupId,
-    dynamic topicIds,
+    List<int>? topicIds,
     int? order,
     int? offset,
     int? count,
@@ -136,7 +136,7 @@ class Board {
   }) =>
       _api.request('board.getTopics', {
         'group_id': groupId,
-        if (topicIds != null) 'topic_ids': topicIds,
+        if (topicIds != null) 'topic_ids': topicIds.join(','),
         if (order != null) 'order': order,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,

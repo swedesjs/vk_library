@@ -52,19 +52,19 @@ class Account {
       });
 
   Future<Map<String, dynamic>> getCounters({
-    dynamic filter,
+    List<String>? filter,
     int? userId,
   }) =>
       _api.request('account.getCounters', {
-        if (filter != null) 'filter': filter,
+        if (filter != null) 'filter': filter.join(','),
         if (userId != null) 'user_id': userId,
       });
 
   Future<Map<String, dynamic>> getInfo({
-    dynamic fields,
+    List<String>? fields,
   }) =>
       _api.request('account.getInfo', {
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getProfileInfo() =>
@@ -152,13 +152,13 @@ class Account {
     required String deviceId,
     String? settings,
     String? key,
-    dynamic value,
+    List<String>? value,
   }) =>
       _api.request('account.setPushSettings', {
         'device_id': deviceId,
         if (settings != null) 'settings': settings,
         if (key != null) 'key': key,
-        if (value != null) 'value': value,
+        if (value != null) 'value': value.join(','),
       });
 
   Future<Map<String, dynamic>> setSilenceMode({

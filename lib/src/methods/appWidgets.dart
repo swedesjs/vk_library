@@ -42,10 +42,10 @@ class AppWidgets {
       });
 
   Future<Map<String, dynamic>> getImagesById({
-    required dynamic images,
+    required List<String> images,
   }) =>
       _api.request('appWidgets.getImagesById', {
-        'images': images,
+        'images': images.join(','),
       });
 
   Future<Map<String, dynamic>> saveAppImage({

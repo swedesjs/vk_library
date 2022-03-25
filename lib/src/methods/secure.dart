@@ -59,28 +59,28 @@ class Secure {
       });
 
   Future<Map<String, dynamic>> getUserLevel({
-    required dynamic userIds,
+    required List<int> userIds,
   }) =>
       _api.request('secure.getUserLevel', {
-        'user_ids': userIds,
+        'user_ids': userIds.join(','),
       });
 
   Future<Map<String, dynamic>> giveEventSticker({
-    required dynamic userIds,
+    required List<int> userIds,
     required int achievementId,
   }) =>
       _api.request('secure.giveEventSticker', {
-        'user_ids': userIds,
+        'user_ids': userIds.join(','),
         'achievement_id': achievementId,
       });
 
   Future<Map<String, dynamic>> sendNotification({
-    dynamic userIds,
+    List<int>? userIds,
     int? userId,
     required String message,
   }) =>
       _api.request('secure.sendNotification', {
-        if (userIds != null) 'user_ids': userIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
         if (userId != null) 'user_id': userId,
         'message': message,
       });
@@ -95,13 +95,13 @@ class Secure {
       });
 
   Future<Map<String, dynamic>> setCounter({
-    dynamic counters,
+    List<String>? counters,
     int? userId,
     int? counter,
     bool? increment,
   }) =>
       _api.request('secure.setCounter', {
-        if (counters != null) 'counters': counters,
+        if (counters != null) 'counters': counters.join(','),
         if (userId != null) 'user_id': userId,
         if (counter != null) 'counter': counter,
         if (increment != null) 'increment': increment,

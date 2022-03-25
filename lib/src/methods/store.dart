@@ -6,10 +6,10 @@ class Store {
   Store(this._api);
 
   Future<Map<String, dynamic>> addStickersToFavorite({
-    required dynamic stickerIds,
+    required List<int> stickerIds,
   }) =>
       _api.request('store.addStickersToFavorite', {
-        'sticker_ids': stickerIds,
+        'sticker_ids': stickerIds.join(','),
       });
 
   Future<Map<String, dynamic>> getFavoriteStickers() =>
@@ -19,38 +19,38 @@ class Store {
     String? type,
     String? merchant,
     String? section,
-    dynamic productIds,
-    dynamic filters,
+    List<int>? productIds,
+    List<String>? filters,
     bool? extended,
   }) =>
       _api.request('store.getProducts', {
         if (type != null) 'type': type,
         if (merchant != null) 'merchant': merchant,
         if (section != null) 'section': section,
-        if (productIds != null) 'product_ids': productIds,
-        if (filters != null) 'filters': filters,
+        if (productIds != null) 'product_ids': productIds.join(','),
+        if (filters != null) 'filters': filters.join(','),
         if (extended != null) 'extended': extended,
       });
 
   Future<Map<String, dynamic>> getStickersKeywords({
-    dynamic stickersIds,
-    dynamic productsIds,
+    List<int>? stickersIds,
+    List<int>? productsIds,
     bool? aliases,
     bool? allProducts,
     bool? needStickers,
   }) =>
       _api.request('store.getStickersKeywords', {
-        if (stickersIds != null) 'stickers_ids': stickersIds,
-        if (productsIds != null) 'products_ids': productsIds,
+        if (stickersIds != null) 'stickers_ids': stickersIds.join(','),
+        if (productsIds != null) 'products_ids': productsIds.join(','),
         if (aliases != null) 'aliases': aliases,
         if (allProducts != null) 'all_products': allProducts,
         if (needStickers != null) 'need_stickers': needStickers,
       });
 
   Future<Map<String, dynamic>> removeStickersFromFavorite({
-    required dynamic stickerIds,
+    required List<int> stickerIds,
   }) =>
       _api.request('store.removeStickersFromFavorite', {
-        'sticker_ids': stickerIds,
+        'sticker_ids': stickerIds.join(','),
       });
 }

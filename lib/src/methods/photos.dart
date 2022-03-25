@@ -31,8 +31,8 @@ class Photos {
     required String title,
     int? groupId,
     String? description,
-    dynamic privacyView,
-    dynamic privacyComment,
+    List<String>? privacyView,
+    List<String>? privacyComment,
     bool? uploadByAdminsOnly,
     bool? commentsDisabled,
   }) =>
@@ -40,8 +40,8 @@ class Photos {
         'title': title,
         if (groupId != null) 'group_id': groupId,
         if (description != null) 'description': description,
-        if (privacyView != null) 'privacy_view': privacyView,
-        if (privacyComment != null) 'privacy_comment': privacyComment,
+        if (privacyView != null) 'privacy_view': privacyView.join(','),
+        if (privacyComment != null) 'privacy_comment': privacyComment.join(','),
         if (uploadByAdminsOnly != null)
           'upload_by_admins_only': uploadByAdminsOnly,
         if (commentsDisabled != null) 'comments_disabled': commentsDisabled,
@@ -51,7 +51,7 @@ class Photos {
     int? ownerId,
     required int photoId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
     bool? fromGroup,
     int? replyToComment,
     int? stickerId,
@@ -62,7 +62,7 @@ class Photos {
         if (ownerId != null) 'owner_id': ownerId,
         'photo_id': photoId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
         if (fromGroup != null) 'from_group': fromGroup,
         if (replyToComment != null) 'reply_to_comment': replyToComment,
         if (stickerId != null) 'sticker_id': stickerId,
@@ -123,8 +123,8 @@ class Photos {
     String? title,
     String? description,
     int? ownerId,
-    dynamic privacyView,
-    dynamic privacyComment,
+    List<String>? privacyView,
+    List<String>? privacyComment,
     bool? uploadByAdminsOnly,
     bool? commentsDisabled,
   }) =>
@@ -133,8 +133,8 @@ class Photos {
         if (title != null) 'title': title,
         if (description != null) 'description': description,
         if (ownerId != null) 'owner_id': ownerId,
-        if (privacyView != null) 'privacy_view': privacyView,
-        if (privacyComment != null) 'privacy_comment': privacyComment,
+        if (privacyView != null) 'privacy_view': privacyView.join(','),
+        if (privacyComment != null) 'privacy_comment': privacyComment.join(','),
         if (uploadByAdminsOnly != null)
           'upload_by_admins_only': uploadByAdminsOnly,
         if (commentsDisabled != null) 'comments_disabled': commentsDisabled,
@@ -144,19 +144,19 @@ class Photos {
     int? ownerId,
     required int commentId,
     String? message,
-    dynamic attachments,
+    List<String>? attachments,
   }) =>
       _api.request('photos.editComment', {
         if (ownerId != null) 'owner_id': ownerId,
         'comment_id': commentId,
         if (message != null) 'message': message,
-        if (attachments != null) 'attachments': attachments,
+        if (attachments != null) 'attachments': attachments.join(','),
       });
 
   Future<Map<String, dynamic>> get({
     int? ownerId,
     String? albumId,
-    dynamic photoIds,
+    List<String>? photoIds,
     bool? rev,
     bool? extended,
     String? feedType,
@@ -168,7 +168,7 @@ class Photos {
       _api.request('photos.get', {
         if (ownerId != null) 'owner_id': ownerId,
         if (albumId != null) 'album_id': albumId,
-        if (photoIds != null) 'photo_ids': photoIds,
+        if (photoIds != null) 'photo_ids': photoIds.join(','),
         if (rev != null) 'rev': rev,
         if (extended != null) 'extended': extended,
         if (feedType != null) 'feed_type': feedType,
@@ -180,7 +180,7 @@ class Photos {
 
   Future<Map<String, dynamic>> getAlbums({
     int? ownerId,
-    dynamic albumIds,
+    List<int>? albumIds,
     int? offset,
     int? count,
     bool? needSystem,
@@ -189,7 +189,7 @@ class Photos {
   }) =>
       _api.request('photos.getAlbums', {
         if (ownerId != null) 'owner_id': ownerId,
-        if (albumIds != null) 'album_ids': albumIds,
+        if (albumIds != null) 'album_ids': albumIds.join(','),
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
         if (needSystem != null) 'need_system': needSystem,
@@ -243,12 +243,12 @@ class Photos {
       });
 
   Future<Map<String, dynamic>> getById({
-    required dynamic photos,
+    required List<String> photos,
     bool? extended,
     bool? photoSizes,
   }) =>
       _api.request('photos.getById', {
-        'photos': photos,
+        'photos': photos.join(','),
         if (extended != null) 'extended': extended,
         if (photoSizes != null) 'photo_sizes': photoSizes,
       });
@@ -276,7 +276,7 @@ class Photos {
     String? sort,
     String? accessKey,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('photos.getComments', {
         if (ownerId != null) 'owner_id': ownerId,
@@ -288,7 +288,7 @@ class Photos {
         if (sort != null) 'sort': sort,
         if (accessKey != null) 'access_key': accessKey,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getMarketAlbumUploadServer({

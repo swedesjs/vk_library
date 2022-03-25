@@ -12,8 +12,8 @@ class Stats {
     int? timestampTo,
     String? interval,
     int? intervalsCount,
-    dynamic filters,
-    dynamic statsGroups,
+    List<String>? filters,
+    List<String>? statsGroups,
     bool? extended,
   }) =>
       _api.request('stats.get', {
@@ -23,18 +23,18 @@ class Stats {
         if (timestampTo != null) 'timestamp_to': timestampTo,
         if (interval != null) 'interval': interval,
         if (intervalsCount != null) 'intervals_count': intervalsCount,
-        if (filters != null) 'filters': filters,
-        if (statsGroups != null) 'stats_groups': statsGroups,
+        if (filters != null) 'filters': filters.join(','),
+        if (statsGroups != null) 'stats_groups': statsGroups.join(','),
         if (extended != null) 'extended': extended,
       });
 
   Future<Map<String, dynamic>> getPostReach({
     required String ownerId,
-    required dynamic postIds,
+    required List<int> postIds,
   }) =>
       _api.request('stats.getPostReach', {
         'owner_id': ownerId,
-        'post_ids': postIds,
+        'post_ids': postIds.join(','),
       });
 
   Future<Map<String, dynamic>> trackVisitor() =>

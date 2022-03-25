@@ -42,21 +42,21 @@ class Orders {
 
   Future<Map<String, dynamic>> getAmount({
     required int userId,
-    required dynamic votes,
+    required List<String> votes,
   }) =>
       _api.request('orders.getAmount', {
         'user_id': userId,
-        'votes': votes,
+        'votes': votes.join(','),
       });
 
   Future<Map<String, dynamic>> getById({
     int? orderId,
-    dynamic orderIds,
+    List<int>? orderIds,
     bool? testMode,
   }) =>
       _api.request('orders.getById', {
         if (orderId != null) 'order_id': orderId,
-        if (orderIds != null) 'order_ids': orderIds,
+        if (orderIds != null) 'order_ids': orderIds.join(','),
         if (testMode != null) 'test_mode': testMode,
       });
 

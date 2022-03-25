@@ -171,14 +171,14 @@ class Groups {
     int? ageLimits,
     bool? market,
     bool? marketComments,
-    dynamic marketCountry,
-    dynamic marketCity,
+    List<int>? marketCountry,
+    List<int>? marketCity,
     int? marketCurrency,
     int? marketContact,
     int? marketWiki,
     bool? obsceneFilter,
     bool? obsceneStopwords,
-    dynamic obsceneWords,
+    List<String>? obsceneWords,
     int? mainSection,
     int? secondarySection,
     int? country,
@@ -218,14 +218,14 @@ class Groups {
         if (ageLimits != null) 'age_limits': ageLimits,
         if (market != null) 'market': market,
         if (marketComments != null) 'market_comments': marketComments,
-        if (marketCountry != null) 'market_country': marketCountry,
-        if (marketCity != null) 'market_city': marketCity,
+        if (marketCountry != null) 'market_country': marketCountry.join(','),
+        if (marketCity != null) 'market_city': marketCity.join(','),
         if (marketCurrency != null) 'market_currency': marketCurrency,
         if (marketContact != null) 'market_contact': marketContact,
         if (marketWiki != null) 'market_wiki': marketWiki,
         if (obsceneFilter != null) 'obscene_filter': obsceneFilter,
         if (obsceneStopwords != null) 'obscene_stopwords': obsceneStopwords,
-        if (obsceneWords != null) 'obscene_words': obsceneWords,
+        if (obsceneWords != null) 'obscene_words': obsceneWords.join(','),
         if (mainSection != null) 'main_section': mainSection,
         if (secondarySection != null) 'secondary_section': secondarySection,
         if (country != null) 'country': country,
@@ -320,63 +320,63 @@ class Groups {
   Future<Map<String, dynamic>> get({
     int? userId,
     bool? extended,
-    dynamic filter,
-    dynamic fields,
+    List<Object>? filter,
+    List<Object>? fields,
     int? offset,
     int? count,
   }) =>
       _api.request('groups.get', {
         if (userId != null) 'user_id': userId,
         if (extended != null) 'extended': extended,
-        if (filter != null) 'filter': filter,
-        if (fields != null) 'fields': fields,
+        if (filter != null) 'filter': filter.join(','),
+        if (fields != null) 'fields': fields.join(','),
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
       });
 
   Future<Map<String, dynamic>> getAddresses({
     required int groupId,
-    dynamic addressIds,
+    List<int>? addressIds,
     num? latitude,
     num? longitude,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('groups.getAddresses', {
         'group_id': groupId,
-        if (addressIds != null) 'address_ids': addressIds,
+        if (addressIds != null) 'address_ids': addressIds.join(','),
         if (latitude != null) 'latitude': latitude,
         if (longitude != null) 'longitude': longitude,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getBanned({
     required int groupId,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
     int? ownerId,
   }) =>
       _api.request('groups.getBanned', {
         'group_id': groupId,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (ownerId != null) 'owner_id': ownerId,
       });
 
   Future<Map<String, dynamic>> getById({
-    dynamic groupIds,
+    List<String>? groupIds,
     String? groupId,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('groups.getById', {
-        if (groupIds != null) 'group_ids': groupIds,
+        if (groupIds != null) 'group_ids': groupIds.join(','),
         if (groupId != null) 'group_id': groupId,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getCallbackConfirmationCode({
@@ -388,11 +388,11 @@ class Groups {
 
   Future<Map<String, dynamic>> getCallbackServers({
     required int groupId,
-    dynamic serverIds,
+    List<int>? serverIds,
   }) =>
       _api.request('groups.getCallbackServers', {
         'group_id': groupId,
-        if (serverIds != null) 'server_ids': serverIds,
+        if (serverIds != null) 'server_ids': serverIds.join(','),
       });
 
   Future<Map<String, dynamic>> getCallbackSettings({
@@ -426,14 +426,14 @@ class Groups {
     required int groupId,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
     String? nameCase,
   }) =>
       _api.request('groups.getInvitedUsers', {
         'group_id': groupId,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (nameCase != null) 'name_case': nameCase,
       });
 
@@ -467,7 +467,7 @@ class Groups {
     String? sort,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
     String? filter,
   }) =>
       _api.request('groups.getMembers', {
@@ -475,7 +475,7 @@ class Groups {
         if (sort != null) 'sort': sort,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (filter != null) 'filter': filter,
       });
 
@@ -483,13 +483,13 @@ class Groups {
     required int groupId,
     int? offset,
     int? count,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('groups.getRequests', {
         'group_id': groupId,
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getSettings({
@@ -521,13 +521,13 @@ class Groups {
   Future<Map<String, dynamic>> isMember({
     required String groupId,
     int? userId,
-    dynamic userIds,
+    List<int>? userIds,
     bool? extended,
   }) =>
       _api.request('groups.isMember', {
         'group_id': groupId,
         if (userId != null) 'user_id': userId,
-        if (userIds != null) 'user_ids': userIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
         if (extended != null) 'extended': extended,
       });
 

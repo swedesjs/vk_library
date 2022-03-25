@@ -27,31 +27,31 @@ class Messages {
       });
 
   Future<Map<String, dynamic>> createChat({
-    dynamic userIds,
+    List<int>? userIds,
     String? title,
     int? groupId,
   }) =>
       _api.request('messages.createChat', {
-        if (userIds != null) 'user_ids': userIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
         if (title != null) 'title': title,
         if (groupId != null) 'group_id': groupId,
       });
 
   Future<Map<String, dynamic>> delete({
-    dynamic messageIds,
+    List<int>? messageIds,
     bool? spam,
     int? groupId,
     bool? deleteForAll,
     int? peerId,
-    dynamic cmids,
+    List<int>? cmids,
   }) =>
       _api.request('messages.delete', {
-        if (messageIds != null) 'message_ids': messageIds,
+        if (messageIds != null) 'message_ids': messageIds.join(','),
         if (spam != null) 'spam': spam,
         if (groupId != null) 'group_id': groupId,
         if (deleteForAll != null) 'delete_for_all': deleteForAll,
         if (peerId != null) 'peer_id': peerId,
-        if (cmids != null) 'cmids': cmids,
+        if (cmids != null) 'cmids': cmids.join(','),
       });
 
   Future<Map<String, dynamic>> deleteChatPhoto({
@@ -127,53 +127,53 @@ class Messages {
 
   Future<Map<String, dynamic>> getByConversationMessageId({
     required int peerId,
-    required dynamic conversationMessageIds,
+    required List<int> conversationMessageIds,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
     int? groupId,
   }) =>
       _api.request('messages.getByConversationMessageId', {
         'peer_id': peerId,
-        'conversation_message_ids': conversationMessageIds,
+        'conversation_message_ids': conversationMessageIds.join(','),
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
       });
 
   Future<Map<String, dynamic>> getById({
-    required dynamic messageIds,
+    required List<int> messageIds,
     int? previewLength,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
     int? groupId,
   }) =>
       _api.request('messages.getById', {
-        'message_ids': messageIds,
+        'message_ids': messageIds.join(','),
         if (previewLength != null) 'preview_length': previewLength,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
       });
 
   Future<Map<String, dynamic>> getChatPreview({
     int? peerId,
     String? link,
-    dynamic fields,
+    List<Object>? fields,
   }) =>
       _api.request('messages.getChatPreview', {
         if (peerId != null) 'peer_id': peerId,
         if (link != null) 'link': link,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getConversationMembers({
     required int peerId,
-    dynamic fields,
+    List<Object>? fields,
     int? groupId,
   }) =>
       _api.request('messages.getConversationMembers', {
         'peer_id': peerId,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
       });
 
@@ -183,7 +183,7 @@ class Messages {
     String? filter,
     bool? extended,
     int? startMessageId,
-    dynamic fields,
+    List<Object>? fields,
     int? groupId,
   }) =>
       _api.request('messages.getConversations', {
@@ -192,20 +192,20 @@ class Messages {
         if (filter != null) 'filter': filter,
         if (extended != null) 'extended': extended,
         if (startMessageId != null) 'start_message_id': startMessageId,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
       });
 
   Future<Map<String, dynamic>> getConversationsById({
-    required dynamic peerIds,
+    required List<int> peerIds,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
     int? groupId,
   }) =>
       _api.request('messages.getConversationsById', {
-        'peer_ids': peerIds,
+        'peer_ids': peerIds.join(','),
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
       });
 
@@ -217,7 +217,7 @@ class Messages {
     int? startMessageId,
     int? rev,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
     int? groupId,
   }) =>
       _api.request('messages.getHistory', {
@@ -228,7 +228,7 @@ class Messages {
         if (startMessageId != null) 'start_message_id': startMessageId,
         if (rev != null) 'rev': rev,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
       });
 
@@ -238,7 +238,7 @@ class Messages {
     String? startFrom,
     int? count,
     bool? photoSizes,
-    dynamic fields,
+    List<Object>? fields,
     int? groupId,
     bool? preserveOrder,
     int? maxForwardsLevel,
@@ -249,7 +249,7 @@ class Messages {
         if (startFrom != null) 'start_from': startFrom,
         if (count != null) 'count': count,
         if (photoSizes != null) 'photo_sizes': photoSizes,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
         if (preserveOrder != null) 'preserve_order': preserveOrder,
         if (maxForwardsLevel != null) 'max_forwards_level': maxForwardsLevel,
@@ -260,7 +260,7 @@ class Messages {
     int? offset,
     int? startMessageId,
     int? previewLength,
-    dynamic fields,
+    List<Object>? fields,
     bool? extended,
     int? groupId,
   }) =>
@@ -269,7 +269,7 @@ class Messages {
         if (offset != null) 'offset': offset,
         if (startMessageId != null) 'start_message_id': startMessageId,
         if (previewLength != null) 'preview_length': previewLength,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (extended != null) 'extended': extended,
         if (groupId != null) 'group_id': groupId,
       });
@@ -280,8 +280,8 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
-    dynamic nameCase,
-    dynamic fields,
+    List<String>? nameCase,
+    List<String>? fields,
   }) =>
       _api.request('messages.getIntentUsers', {
         'intent': intent,
@@ -289,8 +289,8 @@ class Messages {
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
         if (extended != null) 'extended': extended,
-        if (nameCase != null) 'name_case': nameCase,
-        if (fields != null) 'fields': fields,
+        if (nameCase != null) 'name_case': nameCase.join(','),
+        if (fields != null) 'fields': fields.join(','),
       });
 
   Future<Map<String, dynamic>> getInviteLink({
@@ -316,7 +316,7 @@ class Messages {
     int? pts,
     int? previewLength,
     bool? onlines,
-    dynamic fields,
+    List<Object>? fields,
     int? eventsLimit,
     int? msgsLimit,
     int? maxMsgId,
@@ -331,7 +331,7 @@ class Messages {
         if (pts != null) 'pts': pts,
         if (previewLength != null) 'preview_length': previewLength,
         if (onlines != null) 'onlines': onlines,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (eventsLimit != null) 'events_limit': eventsLimit,
         if (msgsLimit != null) 'msgs_limit': msgsLimit,
         if (maxMsgId != null) 'max_msg_id': maxMsgId,
@@ -381,11 +381,11 @@ class Messages {
       });
 
   Future<Map<String, dynamic>> markAsImportant({
-    dynamic messageIds,
+    List<int>? messageIds,
     int? important,
   }) =>
       _api.request('messages.markAsImportant', {
-        if (messageIds != null) 'message_ids': messageIds,
+        if (messageIds != null) 'message_ids': messageIds.join(','),
         if (important != null) 'important': important,
       });
 
@@ -401,14 +401,14 @@ class Messages {
       });
 
   Future<Map<String, dynamic>> markAsRead({
-    dynamic messageIds,
+    List<int>? messageIds,
     int? peerId,
     int? startMessageId,
     int? groupId,
     bool? markConversationAsRead,
   }) =>
       _api.request('messages.markAsRead', {
-        if (messageIds != null) 'message_ids': messageIds,
+        if (messageIds != null) 'message_ids': messageIds.join(','),
         if (peerId != null) 'peer_id': peerId,
         if (startMessageId != null) 'start_message_id': startMessageId,
         if (groupId != null) 'group_id': groupId,
@@ -456,7 +456,7 @@ class Messages {
     int? offset,
     int? count,
     bool? extended,
-    dynamic fields,
+    List<String>? fields,
     int? groupId,
   }) =>
       _api.request('messages.search', {
@@ -467,7 +467,7 @@ class Messages {
         if (offset != null) 'offset': offset,
         if (count != null) 'count': count,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
       });
 
@@ -475,14 +475,14 @@ class Messages {
     String? q,
     int? count,
     bool? extended,
-    dynamic fields,
+    List<Object>? fields,
     int? groupId,
   }) =>
       _api.request('messages.searchConversations', {
         if (q != null) 'q': q,
         if (count != null) 'count': count,
         if (extended != null) 'extended': extended,
-        if (fields != null) 'fields': fields,
+        if (fields != null) 'fields': fields.join(','),
         if (groupId != null) 'group_id': groupId,
       });
 
@@ -490,16 +490,16 @@ class Messages {
     int? userId,
     int? randomId,
     int? peerId,
-    dynamic peerIds,
+    List<int>? peerIds,
     String? domain,
     int? chatId,
-    dynamic userIds,
+    List<int>? userIds,
     String? message,
     num? lat,
     num? long,
     String? attachment,
     int? replyTo,
-    dynamic forwardMessages,
+    List<int>? forwardMessages,
     String? forward,
     int? stickerId,
     int? groupId,
@@ -516,16 +516,17 @@ class Messages {
         if (userId != null) 'user_id': userId,
         if (randomId != null) 'random_id': randomId,
         if (peerId != null) 'peer_id': peerId,
-        if (peerIds != null) 'peer_ids': peerIds,
+        if (peerIds != null) 'peer_ids': peerIds.join(','),
         if (domain != null) 'domain': domain,
         if (chatId != null) 'chat_id': chatId,
-        if (userIds != null) 'user_ids': userIds,
+        if (userIds != null) 'user_ids': userIds.join(','),
         if (message != null) 'message': message,
         if (lat != null) 'lat': lat,
         if (long != null) 'long': long,
         if (attachment != null) 'attachment': attachment,
         if (replyTo != null) 'reply_to': replyTo,
-        if (forwardMessages != null) 'forward_messages': forwardMessages,
+        if (forwardMessages != null)
+          'forward_messages': forwardMessages.join(','),
         if (forward != null) 'forward': forward,
         if (stickerId != null) 'sticker_id': stickerId,
         if (groupId != null) 'group_id': groupId,
