@@ -1,24 +1,12 @@
 include: package:pedantic/analysis_options.yaml
 
-analyzer:
-  errors:
-    prefer_final_locals: error
-    iterable_contains_unrelated_type: error
-    list_remove_unrelated_type: error
-    curly_braces_in_flow_control_structures: error
-    directives_ordering: error
-    avoid_print: warning
-    prefer_const_declarations: warning
-
 linter:
   rules:
-    camel_case_types: true
-    prefer_double_quotes: true
-    prefer_const_declarations: true
-    prefer_final_locals: true
-    avoid_print: true
-    iterable_contains_unrelated_type: true
-    list_remove_unrelated_type: true
-    curly_braces_in_flow_control_structures: true
-    directives_ordering: true
-    prefer_single_quotes: false
+    - avoid_relative_lib_imports
+    - avoid_positional_boolean_parameters
+    - avoid_renaming_method_parameters
+    - avoid_unused_constructor_parameters
+    - prefer_if_elements_to_conditional_expressions
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - prefer_iterable_whereType

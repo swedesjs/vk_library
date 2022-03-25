@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/swedesjs/vk_library/master/schemas/vk_library_options.json
-# Token must contain 85 characters.
-token: 85 characters.
-
-# It is an optional parameter. Takes values ​​such as: ru, uk, be, es, fi, de or it
-language: ru
-
-# It is an optional parameter. We indicate a number from 4 to 5.131.
-version: 4

@@ -1,154 +1,100 @@
-part of vk_library;
+import 'package:dio/dio.dart';
+import 'package:vk_library/src/methods/account.dart';
+import 'package:vk_library/src/methods/ads.dart';
+import 'package:vk_library/src/methods/adsweb.dart';
+import 'package:vk_library/src/methods/appWidgets.dart';
+import 'package:vk_library/src/methods/apps.dart';
+import 'package:vk_library/src/methods/auth.dart';
+import 'package:vk_library/src/methods/board.dart';
+import 'package:vk_library/src/methods/database.dart';
+import 'package:vk_library/src/methods/docs.dart';
+import 'package:vk_library/src/methods/donut.dart';
+import 'package:vk_library/src/methods/downloadedGames.dart';
+import 'package:vk_library/src/methods/fave.dart';
+import 'package:vk_library/src/methods/friends.dart';
+import 'package:vk_library/src/methods/gifts.dart';
+import 'package:vk_library/src/methods/groups.dart';
+import 'package:vk_library/src/methods/leadForms.dart';
+import 'package:vk_library/src/methods/likes.dart';
+import 'package:vk_library/src/methods/market.dart';
+import 'package:vk_library/src/methods/messages.dart';
+import 'package:vk_library/src/methods/newsfeed.dart';
+import 'package:vk_library/src/methods/notes.dart';
+import 'package:vk_library/src/methods/notifications.dart';
+import 'package:vk_library/src/methods/orders.dart';
+import 'package:vk_library/src/methods/pages.dart';
+import 'package:vk_library/src/methods/photos.dart';
+import 'package:vk_library/src/methods/podcasts.dart';
+import 'package:vk_library/src/methods/polls.dart';
+import 'package:vk_library/src/methods/prettyCards.dart';
+import 'package:vk_library/src/methods/search.dart';
+import 'package:vk_library/src/methods/secure.dart';
+import 'package:vk_library/src/methods/stats.dart';
+import 'package:vk_library/src/methods/status.dart';
+import 'package:vk_library/src/methods/storage.dart';
+import 'package:vk_library/src/methods/store.dart';
+import 'package:vk_library/src/methods/stories.dart';
+import 'package:vk_library/src/methods/streaming.dart';
+import 'package:vk_library/src/methods/users.dart';
+import 'package:vk_library/src/methods/utils.dart';
+import 'package:vk_library/src/methods/video.dart';
+import 'package:vk_library/src/methods/wall.dart';
+import 'package:vk_library/src/methods/widgets.dart';
+import 'package:vk_library/src/models/api_exception.dart';
+import 'package:vk_library/vk_library.dart';
 
-/// Default link where api requests are sent
-final baseUrl = Uri(scheme: "https", host: "api.vk.com");
-
-/// Default instance variable [Dio] for sending requests
-final _dio = Dio(BaseOptions(validateStatus: (status) => true));
-
-/// Instance of access to api vk
-///
-/// *Example*:
-/// ```dart
-/// final api = API("token", "5.131", Language.RU);
-/// await api.messages.send(userId: 1, message: "Hello");
-/// ```
 class API {
-  /// Secret token
-  final String _token;
-
-  /// API version
-  final String _version;
-
-  /// Language
-  final Language _language;
-
-  /// Field for calling methods [Account]
   late final Account account;
-
-  /// Field for calling methods [Ads]
   late final Ads ads;
-
-  /// Field for calling methods [Apps]
-  late final Apps apps;
-
-  /// Field for calling methods [AppWidgets]
+  late final Adsweb adsweb;
   late final AppWidgets appWidgets;
-
-  /// Field for calling methods [Auth]
+  late final Apps apps;
   late final Auth auth;
-
-  /// Field for calling methods [Board]
   late final Board board;
-
-  /// Field for calling methods [Database]
   late final Database database;
-
-  /// Field for calling methods [Docs]
   late final Docs docs;
-
-  /// Field for calling methods [Donut]
   late final Donut donut;
-
-  /// Field for calling methods [DownloadedGames]
   late final DownloadedGames downloadedGames;
-
-  /// Field for calling methods [Fave]
   late final Fave fave;
-
-  /// Field for calling methods [Friends]
   late final Friends friends;
-
-  /// Field for calling methods [Gifts]
   late final Gifts gifts;
-
-  /// Field for calling methods [Groups]
   late final Groups groups;
-
-  /// Field for calling methods [LeadForms]
   late final LeadForms leadForms;
-
-  /// Field for calling methods [Likes]
   late final Likes likes;
-
-  /// Field for calling methods [Market]
   late final Market market;
-
-  /// Field for calling methods [Messages]
   late final Messages messages;
-
-  /// Field for calling methods [Newsfeed]
   late final Newsfeed newsfeed;
-
-  /// Field for calling methods [Notes]
   late final Notes notes;
-
-  /// Field for calling methods [Notifications]
   late final Notifications notifications;
-
-  /// Field for calling methods [Orders]
   late final Orders orders;
-
-  /// Field for calling methods [Pages]
   late final Pages pages;
-
-  /// Field for calling methods [Photos]
   late final Photos photos;
-
-  /// Field for calling methods [Podcasts]
   late final Podcasts podcasts;
-
-  /// Field for calling methods [Polls]
   late final Polls polls;
-
-  /// Field for calling methods [PrettyCards]
   late final PrettyCards prettyCards;
-
-  /// Field for calling methods [Search]
   late final Search search;
-
-  /// Field for calling methods [Secure]
   late final Secure secure;
-
-  /// Field for calling methods [Stats]
   late final Stats stats;
-
-  /// Field for calling methods [Status]
   late final Status status;
-
-  /// Field for calling methods [Storage]
   late final Storage storage;
-
-  /// Field for calling methods [Store]
   late final Store store;
-
-  /// Field for calling methods [Stories]
   late final Stories stories;
-
-  /// Field for calling methods [Streaming]
   late final Streaming streaming;
-
-  /// Field for calling methods [Users]
   late final Users users;
-
-  /// Field for calling methods [Utils]
   late final Utils utils;
-
-  /// Field for calling methods [Video]
   late final Video video;
-
-  /// Field for calling methods [Wall]
   late final Wall wall;
-
-  /// Field for calling methods [Widgets]
   late final Widgets widgets;
 
-  /// Will create an instance of the [API] class by which you can access the api, specifying the token, api version and language
-  API(this._token, this._version, this._language) {
+  final VKOptions _options;
+  static const _baseUrl = 'https://api.vk.com/method/';
+
+  API(this._options) {
     account = Account(this);
     ads = Ads(this);
-    apps = Apps(this);
+    adsweb = Adsweb(this);
     appWidgets = AppWidgets(this);
+    apps = Apps(this);
     auth = Auth(this);
     board = Board(this);
     database = Database(this);
@@ -187,46 +133,17 @@ class API {
     widgets = Widgets(this);
   }
 
-  /// The method sends a request to VK, and in case of an error, throws an exception [APIException]
-  ///
-  /// In the [methodName] parameter we indicate the name of the method, in [data] we indicate the data that needs to be sent to VK in the [Map] type
-  /// ```dart
-  /// await vk.api.call("users.get", const {"user_id": 1});
-  /// ```
-  Future<Call> call(
-    String methodName,
-    Json data,
-  ) async {
-    final response = await _dio.post<Json>(
-      baseUrl.replace(path: "method/$methodName/").toString(),
-      queryParameters: {
-        "access_token": _token,
-        "v": _version,
-        "language": _language.value,
-        ...data,
-      },
+  Future<Map<String, dynamic>> request(String method,
+      [Map<String, dynamic>? params]) async {
+    final dio = await Dio().get<Map<String, dynamic>>(
+      _baseUrl + method,
+      queryParameters: {..._options.toJson(), ...?params},
     );
 
-    final responseData = response.data!;
+    final data = dio.data!;
+    final error = data['error'];
+    if (error != null) throw APIException.fromJson(error);
 
-    if (responseData["error"] != null) {
-      final error = responseData["error"];
-
-      throw APIException(
-        code: error["error_code"],
-        message: error["error_msg"],
-        request_params: (error["request_params"] as List).cast<Json>(),
-      );
-    }
-
-    return Call(responseData);
-  }
-
-  /// A generic method that allows you to run a sequence of other methods, storing and filtering intermediate results.
-  Future<Call> execute({String? code, int? func_v}) async {
-    return call("execute", {
-      if (code != null) "code": code,
-      if (func_v != null) "func_v": func_v,
-    });
+    return data;
   }
 }
