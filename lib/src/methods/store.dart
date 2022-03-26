@@ -5,6 +5,7 @@ class Store {
 
   Store(this._api);
 
+  /// Adds given sticker IDs to the list of user's favorite stickers
   Future<Map<String, dynamic>> addStickersToFavorite({
     required List<int> stickerIds,
   }) =>
@@ -47,6 +48,7 @@ class Store {
         if (needStickers != null) 'need_stickers': needStickers,
       });
 
+  /// Removes given sticker IDs from the list of user's favorite stickers
   Future<Map<String, dynamic>> removeStickersFromFavorite({
     required List<int> stickerIds,
   }) =>

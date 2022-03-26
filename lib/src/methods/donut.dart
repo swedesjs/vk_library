@@ -25,6 +25,7 @@ class Donut {
         'owner_id': ownerId,
       });
 
+  /// Returns a list of user's VK Donut subscriptions.
   Future<Map<String, dynamic>> getSubscriptions({
     List<Object>? fields,
     int? offset,

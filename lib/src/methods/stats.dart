@@ -5,6 +5,7 @@ class Stats {
 
   Stats(this._api);
 
+  /// Returns statistics of a community or an application.
   Future<Map<String, dynamic>> get({
     int? groupId,
     int? appId,
@@ -28,6 +29,7 @@ class Stats {
         if (extended != null) 'extended': extended,
       });
 
+  /// Returns stats for a wall post.
   Future<Map<String, dynamic>> getPostReach({
     required String ownerId,
     required List<int> postIds,

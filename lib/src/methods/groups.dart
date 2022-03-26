@@ -49,6 +49,7 @@ class Groups {
         if (secretKey != null) 'secret_key': secretKey,
       });
 
+  /// Allows to add a link to the community.
   Future<Map<String, dynamic>> addLink({
     required int groupId,
     required String link,
@@ -60,6 +61,7 @@ class Groups {
         if (text != null) 'text': text,
       });
 
+  /// Allows to approve join request to the community.
   Future<Map<String, dynamic>> approveRequest({
     required int groupId,
     required int userId,
@@ -86,6 +88,7 @@ class Groups {
         if (commentVisible != null) 'comment_visible': commentVisible,
       });
 
+  /// Creates a new community.
   Future<Map<String, dynamic>> create({
     required String title,
     String? description,
@@ -121,6 +124,7 @@ class Groups {
         'server_id': serverId,
       });
 
+  /// Allows to delete a link from the community.
   Future<Map<String, dynamic>> deleteLink({
     required int groupId,
     required int linkId,
@@ -137,6 +141,7 @@ class Groups {
         'group_id': groupId,
       });
 
+  /// Edits a community.
   Future<Map<String, dynamic>> edit({
     required int groupId,
     String? title,
@@ -280,6 +285,7 @@ class Groups {
         if (secretKey != null) 'secret_key': secretKey,
       });
 
+  /// Allows to edit a link in the community.
   Future<Map<String, dynamic>> editLink({
     required int groupId,
     required int linkId,
@@ -291,6 +297,7 @@ class Groups {
         if (text != null) 'text': text,
       });
 
+  /// Allows to add, remove or edit the community manager.
   Future<Map<String, dynamic>> editManager({
     required int groupId,
     required int userId,
@@ -317,6 +324,7 @@ class Groups {
         'group_id': groupId,
       });
 
+  /// Returns a list of the communities to which a user belongs.
   Future<Map<String, dynamic>> get({
     int? userId,
     bool? extended,
@@ -334,6 +342,7 @@ class Groups {
         if (count != null) 'count': count,
       });
 
+  /// Returns a list of community addresses.
   Future<Map<String, dynamic>> getAddresses({
     required int groupId,
     List<int>? addressIds,
@@ -353,6 +362,7 @@ class Groups {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns a list of users on a community blacklist.
   Future<Map<String, dynamic>> getBanned({
     required int groupId,
     int? offset,
@@ -368,6 +378,7 @@ class Groups {
         if (ownerId != null) 'owner_id': ownerId,
       });
 
+  /// Returns information about communities by their IDs.
   Future<Map<String, dynamic>> getById({
     List<String>? groupIds,
     String? groupId,
@@ -379,6 +390,7 @@ class Groups {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns Callback API confirmation code for the community.
   Future<Map<String, dynamic>> getCallbackConfirmationCode({
     required int groupId,
   }) =>
@@ -395,6 +407,7 @@ class Groups {
         if (serverIds != null) 'server_ids': serverIds.join(','),
       });
 
+  /// Returns [vk.com/dev/callback_api|Callback API] notifications settings.
   Future<Map<String, dynamic>> getCallbackSettings({
     required int groupId,
     int? serverId,
@@ -404,6 +417,7 @@ class Groups {
         if (serverId != null) 'server_id': serverId,
       });
 
+  /// Returns communities list for a catalog category.
   Future<Map<String, dynamic>> getCatalog({
     int? categoryId,
     int? subcategoryId,
@@ -413,6 +427,7 @@ class Groups {
         if (subcategoryId != null) 'subcategory_id': subcategoryId,
       });
 
+  /// Returns categories list for communities catalog
   Future<Map<String, dynamic>> getCatalogInfo({
     bool? extended,
     bool? subcategories,
@@ -422,6 +437,7 @@ class Groups {
         if (subcategories != null) 'subcategories': subcategories,
       });
 
+  /// Returns invited users list of a community
   Future<Map<String, dynamic>> getInvitedUsers({
     required int groupId,
     int? offset,
@@ -437,6 +453,7 @@ class Groups {
         if (nameCase != null) 'name_case': nameCase,
       });
 
+  /// Returns a list of invitations to join communities and events.
   Future<Map<String, dynamic>> getInvites({
     int? offset,
     int? count,
@@ -448,6 +465,7 @@ class Groups {
         if (extended != null) 'extended': extended,
       });
 
+  /// Returns the data needed to query a Long Poll server for events
   Future<Map<String, dynamic>> getLongPollServer({
     required int groupId,
   }) =>
@@ -455,6 +473,7 @@ class Groups {
         'group_id': groupId,
       });
 
+  /// Returns Long Poll notification settings
   Future<Map<String, dynamic>> getLongPollSettings({
     required int groupId,
   }) =>
@@ -462,6 +481,7 @@ class Groups {
         'group_id': groupId,
       });
 
+  /// Returns a list of community members.
   Future<Map<String, dynamic>> getMembers({
     String? groupId,
     String? sort,
@@ -479,6 +499,7 @@ class Groups {
         if (filter != null) 'filter': filter,
       });
 
+  /// Returns a list of requests to the community.
   Future<Map<String, dynamic>> getRequests({
     required int groupId,
     int? offset,
@@ -492,6 +513,7 @@ class Groups {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns community settings.
   Future<Map<String, dynamic>> getSettings({
     required int groupId,
   }) =>
@@ -499,6 +521,7 @@ class Groups {
         'group_id': groupId,
       });
 
+  /// List of group's tags
   Future<Map<String, dynamic>> getTagList({
     required int groupId,
   }) =>
@@ -509,6 +532,7 @@ class Groups {
   Future<Map<String, dynamic>> getTokenPermissions() =>
       _api.request('groups.getTokenPermissions');
 
+  /// Allows to invite friends to the community.
   Future<Map<String, dynamic>> invite({
     required int groupId,
     required int userId,
@@ -518,6 +542,7 @@ class Groups {
         'user_id': userId,
       });
 
+  /// Returns information specifying whether a user is a member of a community.
   Future<Map<String, dynamic>> isMember({
     required String groupId,
     int? userId,
@@ -531,6 +556,7 @@ class Groups {
         if (extended != null) 'extended': extended,
       });
 
+  /// With this method you can join the group or public page, and also confirm your participation in an event.
   Future<Map<String, dynamic>> join({
     int? groupId,
     String? notSure,
@@ -540,6 +566,7 @@ class Groups {
         if (notSure != null) 'not_sure': notSure,
       });
 
+  /// With this method you can leave a group, public page, or event.
   Future<Map<String, dynamic>> leave({
     required int groupId,
   }) =>
@@ -547,6 +574,7 @@ class Groups {
         'group_id': groupId,
       });
 
+  /// Removes a user from the community.
   Future<Map<String, dynamic>> removeUser({
     required int groupId,
     required int userId,
@@ -556,6 +584,7 @@ class Groups {
         'user_id': userId,
       });
 
+  /// Allows to reorder links in the community.
   Future<Map<String, dynamic>> reorderLink({
     required int groupId,
     required int linkId,
@@ -567,6 +596,7 @@ class Groups {
         if (after != null) 'after': after,
       });
 
+  /// Returns a list of communities matching the search criteria.
   Future<Map<String, dynamic>> search({
     required String q,
     String? type,
@@ -590,6 +620,7 @@ class Groups {
         if (count != null) 'count': count,
       });
 
+  /// Allow to set notifications settings for group.
   Future<Map<String, dynamic>> setCallbackSettings({
     required int groupId,
     int? serverId,
@@ -720,6 +751,7 @@ class Groups {
           'donut_money_withdraw_error': donutMoneyWithdrawError,
       });
 
+  /// Sets Long Poll notification settings
   Future<Map<String, dynamic>> setLongPollSettings({
     required int groupId,
     bool? enabled,
@@ -859,6 +891,7 @@ class Groups {
         if (botsAddToChat != null) 'bots_add_to_chat': botsAddToChat,
       });
 
+  /// In order to save note about group participant
   Future<Map<String, dynamic>> setUserNote({
     required int groupId,
     required int userId,
@@ -870,6 +903,7 @@ class Groups {
         if (note != null) 'note': note,
       });
 
+  /// Add new group's tag
   Future<Map<String, dynamic>> tagAdd({
     required int groupId,
     required String tagName,
@@ -881,6 +915,7 @@ class Groups {
         if (tagColor != null) 'tag_color': tagColor,
       });
 
+  /// Bind or unbind group's tag to user
   Future<Map<String, dynamic>> tagBind({
     required int groupId,
     required int tagId,
@@ -894,6 +929,7 @@ class Groups {
         'act': act,
       });
 
+  /// Delete group's tag
   Future<Map<String, dynamic>> tagDelete({
     required int groupId,
     required int tagId,
@@ -903,6 +939,7 @@ class Groups {
         'tag_id': tagId,
       });
 
+  /// Update group's tag
   Future<Map<String, dynamic>> tagUpdate({
     required int groupId,
     required int tagId,

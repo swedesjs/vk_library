@@ -5,6 +5,7 @@ class Database {
 
   Database(this._api);
 
+  /// Returns list of chairs on a specified faculty.
   Future<Map<String, dynamic>> getChairs({
     required int facultyId,
     int? offset,
@@ -16,6 +17,7 @@ class Database {
         if (count != null) 'count': count,
       });
 
+  /// Returns a list of cities.
   Future<Map<String, dynamic>> getCities({
     required int countryId,
     int? regionId,
@@ -33,6 +35,7 @@ class Database {
         if (count != null) 'count': count,
       });
 
+  /// Returns information about cities by their IDs.
   Future<Map<String, dynamic>> getCitiesById({
     List<int>? cityIds,
   }) =>
@@ -40,6 +43,7 @@ class Database {
         if (cityIds != null) 'city_ids': cityIds.join(','),
       });
 
+  /// Returns a list of countries.
   Future<Map<String, dynamic>> getCountries({
     bool? needAll,
     String? code,
@@ -53,6 +57,7 @@ class Database {
         if (count != null) 'count': count,
       });
 
+  /// Returns information about countries by their IDs.
   Future<Map<String, dynamic>> getCountriesById({
     List<int>? countryIds,
   }) =>
@@ -60,6 +65,7 @@ class Database {
         if (countryIds != null) 'country_ids': countryIds.join(','),
       });
 
+  /// Returns a list of faculties (i.e., university departments).
   Future<Map<String, dynamic>> getFaculties({
     required int universityId,
     int? offset,
@@ -71,6 +77,7 @@ class Database {
         if (count != null) 'count': count,
       });
 
+  /// Get metro stations by city
   Future<Map<String, dynamic>> getMetroStations({
     required int cityId,
     int? offset,
@@ -84,6 +91,7 @@ class Database {
         if (extended != null) 'extended': extended,
       });
 
+  /// Get metro station by his id
   Future<Map<String, dynamic>> getMetroStationsById({
     List<int>? stationIds,
   }) =>
@@ -91,6 +99,7 @@ class Database {
         if (stationIds != null) 'station_ids': stationIds.join(','),
       });
 
+  /// Returns a list of regions.
   Future<Map<String, dynamic>> getRegions({
     required int countryId,
     String? q,
@@ -104,6 +113,7 @@ class Database {
         if (count != null) 'count': count,
       });
 
+  /// Returns a list of school classes specified for the country.
   Future<Map<String, dynamic>> getSchoolClasses({
     int? countryId,
   }) =>
@@ -111,6 +121,7 @@ class Database {
         if (countryId != null) 'country_id': countryId,
       });
 
+  /// Returns a list of schools.
   Future<Map<String, dynamic>> getSchools({
     String? q,
     required int cityId,
@@ -124,6 +135,7 @@ class Database {
         if (count != null) 'count': count,
       });
 
+  /// Returns a list of higher education institutions.
   Future<Map<String, dynamic>> getUniversities({
     String? q,
     int? countryId,

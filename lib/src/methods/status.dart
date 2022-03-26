@@ -5,6 +5,7 @@ class Status {
 
   Status(this._api);
 
+  /// Returns data required to show the status of a user or community.
   Future<Map<String, dynamic>> get({
     int? userId,
     int? groupId,
@@ -14,6 +15,7 @@ class Status {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Sets a new status for the current user.
   Future<Map<String, dynamic>> set({
     String? text,
     int? groupId,

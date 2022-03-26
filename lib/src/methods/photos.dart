@@ -5,6 +5,7 @@ class Photos {
 
   Photos(this._api);
 
+  /// Confirms a tag on a photo.
   Future<Map<String, dynamic>> confirmTag({
     int? ownerId,
     required String photoId,
@@ -16,6 +17,7 @@ class Photos {
         'tag_id': tagId,
       });
 
+  /// Allows to copy a photo to the "Saved photos" album
   Future<Map<String, dynamic>> copy({
     required int ownerId,
     required int photoId,
@@ -27,6 +29,7 @@ class Photos {
         if (accessKey != null) 'access_key': accessKey,
       });
 
+  /// Creates an empty photo album.
   Future<Map<String, dynamic>> createAlbum({
     required String title,
     int? groupId,
@@ -47,6 +50,7 @@ class Photos {
         if (commentsDisabled != null) 'comments_disabled': commentsDisabled,
       });
 
+  /// Adds a new comment on the photo.
   Future<Map<String, dynamic>> createComment({
     int? ownerId,
     required int photoId,
@@ -70,6 +74,7 @@ class Photos {
         if (guid != null) 'guid': guid,
       });
 
+  /// Deletes a photo.
   Future<Map<String, dynamic>> delete({
     int? ownerId,
     required int photoId,
@@ -79,6 +84,7 @@ class Photos {
         'photo_id': photoId,
       });
 
+  /// Deletes a photo album belonging to the current user.
   Future<Map<String, dynamic>> deleteAlbum({
     required int albumId,
     int? groupId,
@@ -88,6 +94,7 @@ class Photos {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Deletes a comment on the photo.
   Future<Map<String, dynamic>> deleteComment({
     int? ownerId,
     required int commentId,
@@ -97,6 +104,7 @@ class Photos {
         'comment_id': commentId,
       });
 
+  /// Edits the caption of a photo.
   Future<Map<String, dynamic>> edit({
     int? ownerId,
     required int photoId,
@@ -118,6 +126,7 @@ class Photos {
         if (deletePlace != null) 'delete_place': deletePlace,
       });
 
+  /// Edits information about a photo album.
   Future<Map<String, dynamic>> editAlbum({
     required int albumId,
     String? title,
@@ -140,6 +149,7 @@ class Photos {
         if (commentsDisabled != null) 'comments_disabled': commentsDisabled,
       });
 
+  /// Edits a comment on a photo.
   Future<Map<String, dynamic>> editComment({
     int? ownerId,
     required int commentId,
@@ -153,6 +163,7 @@ class Photos {
         if (attachments != null) 'attachments': attachments.join(','),
       });
 
+  /// Returns a list of a user's or community's photos.
   Future<Map<String, dynamic>> get({
     int? ownerId,
     String? albumId,
@@ -178,6 +189,7 @@ class Photos {
         if (count != null) 'count': count,
       });
 
+  /// Returns a list of a user's or community's photo albums.
   Future<Map<String, dynamic>> getAlbums({
     int? ownerId,
     List<int>? albumIds,
@@ -197,6 +209,7 @@ class Photos {
         if (photoSizes != null) 'photo_sizes': photoSizes,
       });
 
+  /// Returns the number of photo albums belonging to a user or community.
   Future<Map<String, dynamic>> getAlbumsCount({
     int? userId,
     int? groupId,
@@ -206,6 +219,7 @@ class Photos {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns a list of photos belonging to a user or community, in reverse chronological order.
   Future<Map<String, dynamic>> getAll({
     int? ownerId,
     bool? extended,
@@ -227,6 +241,7 @@ class Photos {
         if (skipHidden != null) 'skip_hidden': skipHidden,
       });
 
+  /// Returns a list of comments on a specific photo album or all albums of the user sorted in reverse chronological order.
   Future<Map<String, dynamic>> getAllComments({
     int? ownerId,
     int? albumId,
@@ -242,6 +257,7 @@ class Photos {
         if (count != null) 'count': count,
       });
 
+  /// Returns information about photos by their IDs.
   Future<Map<String, dynamic>> getById({
     required List<String> photos,
     bool? extended,
@@ -253,6 +269,7 @@ class Photos {
         if (photoSizes != null) 'photo_sizes': photoSizes,
       });
 
+  /// Returns an upload link for chat cover pictures.
   Future<Map<String, dynamic>> getChatUploadServer({
     required int chatId,
     int? cropX,
@@ -266,6 +283,7 @@ class Photos {
         if (cropWidth != null) 'crop_width': cropWidth,
       });
 
+  /// Returns a list of comments on a photo.
   Future<Map<String, dynamic>> getComments({
     int? ownerId,
     required int photoId,
@@ -291,6 +309,7 @@ class Photos {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns the server address for market album photo upload.
   Future<Map<String, dynamic>> getMarketAlbumUploadServer({
     required int groupId,
   }) =>
@@ -298,6 +317,7 @@ class Photos {
         'group_id': groupId,
       });
 
+  /// Returns the server address for market photo upload.
   Future<Map<String, dynamic>> getMarketUploadServer({
     required int groupId,
     bool? mainPhoto,
@@ -313,6 +333,7 @@ class Photos {
         if (cropWidth != null) 'crop_width': cropWidth,
       });
 
+  /// Returns the server address for photo upload in a private message for a user.
   Future<Map<String, dynamic>> getMessagesUploadServer({
     int? peerId,
   }) =>
@@ -320,6 +341,7 @@ class Photos {
         if (peerId != null) 'peer_id': peerId,
       });
 
+  /// Returns a list of photos with tags that have not been viewed.
   Future<Map<String, dynamic>> getNewTags({
     int? offset,
     int? count,
@@ -329,6 +351,7 @@ class Photos {
         if (count != null) 'count': count,
       });
 
+  /// Returns the server address for owner cover upload.
   Future<Map<String, dynamic>> getOwnerCoverPhotoUploadServer({
     required int groupId,
     int? cropX,
@@ -344,6 +367,7 @@ class Photos {
         if (cropY2 != null) 'crop_y2': cropY2,
       });
 
+  /// Returns an upload server address for a profile or community photo.
   Future<Map<String, dynamic>> getOwnerPhotoUploadServer({
     int? ownerId,
   }) =>
@@ -351,6 +375,7 @@ class Photos {
         if (ownerId != null) 'owner_id': ownerId,
       });
 
+  /// Returns a list of tags on a photo.
   Future<Map<String, dynamic>> getTags({
     int? ownerId,
     required int photoId,
@@ -362,6 +387,7 @@ class Photos {
         if (accessKey != null) 'access_key': accessKey,
       });
 
+  /// Returns the server address for photo upload.
   Future<Map<String, dynamic>> getUploadServer({
     int? albumId,
     int? groupId,
@@ -371,6 +397,7 @@ class Photos {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns a list of photos in which a user is tagged.
   Future<Map<String, dynamic>> getUserPhotos({
     int? userId,
     int? offset,
@@ -386,6 +413,7 @@ class Photos {
         if (sort != null) 'sort': sort,
       });
 
+  /// Returns the server address for photo upload onto a user's wall.
   Future<Map<String, dynamic>> getWallUploadServer({
     int? groupId,
   }) =>
@@ -393,6 +421,7 @@ class Photos {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Makes a photo into an album cover.
   Future<Map<String, dynamic>> makeCover({
     int? ownerId,
     required int photoId,
@@ -404,6 +433,7 @@ class Photos {
         if (albumId != null) 'album_id': albumId,
       });
 
+  /// Moves a photo from one album to another.
   Future<Map<String, dynamic>> move({
     int? ownerId,
     required int targetAlbumId,
@@ -415,6 +445,7 @@ class Photos {
         'photo_ids': photoIds,
       });
 
+  /// Adds a tag on the photo.
   Future<Map<String, dynamic>> putTag({
     int? ownerId,
     required int photoId,
@@ -434,6 +465,7 @@ class Photos {
         if (y2 != null) 'y2': y2,
       });
 
+  /// Removes a tag from a photo.
   Future<Map<String, dynamic>> removeTag({
     int? ownerId,
     required int photoId,
@@ -445,6 +477,7 @@ class Photos {
         'tag_id': tagId,
       });
 
+  /// Reorders the album in the list of user albums.
   Future<Map<String, dynamic>> reorderAlbums({
     int? ownerId,
     required int albumId,
@@ -458,6 +491,7 @@ class Photos {
         if (after != null) 'after': after,
       });
 
+  /// Reorders the photo in the list of photos of the user album.
   Future<Map<String, dynamic>> reorderPhotos({
     int? ownerId,
     required int photoId,
@@ -471,6 +505,7 @@ class Photos {
         if (after != null) 'after': after,
       });
 
+  /// Reports (submits a complaint about) a photo.
   Future<Map<String, dynamic>> report({
     required int ownerId,
     required int photoId,
@@ -482,6 +517,7 @@ class Photos {
         if (reason != null) 'reason': reason,
       });
 
+  /// Reports (submits a complaint about) a comment on a photo.
   Future<Map<String, dynamic>> reportComment({
     required int ownerId,
     required int commentId,
@@ -493,6 +529,7 @@ class Photos {
         if (reason != null) 'reason': reason,
       });
 
+  /// Restores a deleted photo.
   Future<Map<String, dynamic>> restore({
     int? ownerId,
     required int photoId,
@@ -502,6 +539,7 @@ class Photos {
         'photo_id': photoId,
       });
 
+  /// Restores a deleted comment on a photo.
   Future<Map<String, dynamic>> restoreComment({
     int? ownerId,
     required int commentId,
@@ -511,6 +549,7 @@ class Photos {
         'comment_id': commentId,
       });
 
+  /// Saves photos after successful uploading.
   Future<Map<String, dynamic>> save({
     int? albumId,
     int? groupId,
@@ -532,6 +571,7 @@ class Photos {
         if (caption != null) 'caption': caption,
       });
 
+  /// Saves market album photos after successful uploading.
   Future<Map<String, dynamic>> saveMarketAlbumPhoto({
     required int groupId,
     required String photo,
@@ -545,6 +585,7 @@ class Photos {
         'hash': hash,
       });
 
+  /// Saves market photos after successful uploading.
   Future<Map<String, dynamic>> saveMarketPhoto({
     int? groupId,
     required String photo,
@@ -562,6 +603,7 @@ class Photos {
         if (cropHash != null) 'crop_hash': cropHash,
       });
 
+  /// Saves a photo after being successfully uploaded. URL obtained with [vk.com/dev/photos.getMessagesUploadServer|photos.getMessagesUploadServer] method.
   Future<Map<String, dynamic>> saveMessagesPhoto({
     required String photo,
     int? server,
@@ -573,6 +615,7 @@ class Photos {
         if (hash != null) 'hash': hash,
       });
 
+  /// Saves cover photo after successful uploading.
   Future<Map<String, dynamic>> saveOwnerCoverPhoto({
     required String hash,
     required String photo,
@@ -582,6 +625,7 @@ class Photos {
         'photo': photo,
       });
 
+  /// Saves a profile or community photo. Upload URL can be got with the [vk.com/dev/photos.getOwnerPhotoUploadServer|photos.getOwnerPhotoUploadServer] method.
   Future<Map<String, dynamic>> saveOwnerPhoto({
     String? server,
     String? hash,
@@ -593,6 +637,7 @@ class Photos {
         if (photo != null) 'photo': photo,
       });
 
+  /// Saves a photo to a user's or community's wall after being uploaded.
   Future<Map<String, dynamic>> saveWallPhoto({
     int? userId,
     int? groupId,
@@ -614,6 +659,7 @@ class Photos {
         if (caption != null) 'caption': caption,
       });
 
+  /// Returns a list of photos.
   Future<Map<String, dynamic>> search({
     String? q,
     num? lat,

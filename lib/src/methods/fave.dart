@@ -12,6 +12,7 @@ class Fave {
         'url': url,
       });
 
+  /// Adds a link to user faves.
   Future<Map<String, dynamic>> addLink({
     required String link,
   }) =>
@@ -126,6 +127,7 @@ class Fave {
         'article_id': articleId,
       });
 
+  /// Removes link from the user's faves.
   Future<Map<String, dynamic>> removeLink({
     String? linkId,
     String? link,

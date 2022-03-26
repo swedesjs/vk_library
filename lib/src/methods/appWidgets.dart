@@ -5,6 +5,7 @@ class AppWidgets {
 
   AppWidgets(this._api);
 
+  /// Returns a URL for uploading a photo to the community collection for community app widgets
   Future<Map<String, dynamic>> getAppImageUploadServer({
     required String imageType,
   }) =>
@@ -12,6 +13,7 @@ class AppWidgets {
         'image_type': imageType,
       });
 
+  /// Returns an app collection of images for community app widgets
   Future<Map<String, dynamic>> getAppImages({
     int? offset,
     int? count,
@@ -23,6 +25,7 @@ class AppWidgets {
         if (imageType != null) 'image_type': imageType,
       });
 
+  /// Returns a URL for uploading a photo to the community collection for community app widgets
   Future<Map<String, dynamic>> getGroupImageUploadServer({
     required String imageType,
   }) =>
@@ -30,6 +33,7 @@ class AppWidgets {
         'image_type': imageType,
       });
 
+  /// Returns a community collection of images for community app widgets
   Future<Map<String, dynamic>> getGroupImages({
     int? offset,
     int? count,
@@ -41,6 +45,7 @@ class AppWidgets {
         if (imageType != null) 'image_type': imageType,
       });
 
+  /// Returns an image for community app widgets by its ID
   Future<Map<String, dynamic>> getImagesById({
     required List<String> images,
   }) =>
@@ -48,6 +53,7 @@ class AppWidgets {
         'images': images.join(','),
       });
 
+  /// Allows to save image into app collection for community app widgets
   Future<Map<String, dynamic>> saveAppImage({
     required String hash,
     required String image,
@@ -57,6 +63,7 @@ class AppWidgets {
         'image': image,
       });
 
+  /// Allows to save image into community collection for community app widgets
   Future<Map<String, dynamic>> saveGroupImage({
     required String hash,
     required String image,
@@ -66,6 +73,7 @@ class AppWidgets {
         'image': image,
       });
 
+  /// Allows to update community app widget
   Future<Map<String, dynamic>> update({
     required String code,
     required String type,

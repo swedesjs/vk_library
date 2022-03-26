@@ -5,6 +5,7 @@ class Pages {
 
   Pages(this._api);
 
+  /// Allows to clear the cache of particular 'external' pages which may be attached to VK posts.
   Future<Map<String, dynamic>> clearCache({
     required String url,
   }) =>
@@ -12,6 +13,7 @@ class Pages {
         'url': url,
       });
 
+  /// Returns information about a wiki page.
   Future<Map<String, dynamic>> get({
     int? ownerId,
     int? pageId,
@@ -31,6 +33,7 @@ class Pages {
         if (needHtml != null) 'need_html': needHtml,
       });
 
+  /// Returns a list of all previous versions of a wiki page.
   Future<Map<String, dynamic>> getHistory({
     required int pageId,
     int? groupId,
@@ -42,6 +45,7 @@ class Pages {
         if (userId != null) 'user_id': userId,
       });
 
+  /// Returns a list of wiki pages in a group.
   Future<Map<String, dynamic>> getTitles({
     int? groupId,
   }) =>
@@ -49,6 +53,7 @@ class Pages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns the text of one of the previous versions of a wiki page.
   Future<Map<String, dynamic>> getVersion({
     required int versionId,
     int? groupId,
@@ -62,6 +67,7 @@ class Pages {
         if (needHtml != null) 'need_html': needHtml,
       });
 
+  /// Returns HTML representation of the wiki markup.
   Future<Map<String, dynamic>> parseWiki({
     required String text,
     int? groupId,
@@ -71,6 +77,7 @@ class Pages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Saves the text of a wiki page.
   Future<Map<String, dynamic>> save({
     String? text,
     int? pageId,
@@ -86,6 +93,7 @@ class Pages {
         if (title != null) 'title': title,
       });
 
+  /// Saves modified read and edit access settings for a wiki page.
   Future<Map<String, dynamic>> saveAccess({
     required int pageId,
     int? groupId,

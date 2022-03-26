@@ -21,6 +21,7 @@ class Wall {
         'post_id': postId,
       });
 
+  /// Adds a comment to a post on a user wall or community wall.
   Future<Map<String, dynamic>> createComment({
     int? ownerId,
     required int postId,
@@ -42,6 +43,7 @@ class Wall {
         if (guid != null) 'guid': guid,
       });
 
+  /// Deletes a post from a user wall or community wall.
   Future<Map<String, dynamic>> delete({
     int? ownerId,
     int? postId,
@@ -51,6 +53,7 @@ class Wall {
         if (postId != null) 'post_id': postId,
       });
 
+  /// Deletes a comment on a post on a user wall or community wall.
   Future<Map<String, dynamic>> deleteComment({
     int? ownerId,
     required int commentId,
@@ -60,6 +63,7 @@ class Wall {
         'comment_id': commentId,
       });
 
+  /// Edits a post on a user wall or community wall.
   Future<Map<String, dynamic>> edit({
     int? ownerId,
     required int postId,
@@ -104,6 +108,7 @@ class Wall {
         if (topicId != null) 'topic_id': topicId,
       });
 
+  /// Allows to edit hidden post.
   Future<Map<String, dynamic>> editAdsStealth({
     int? ownerId,
     required int postId,
@@ -133,6 +138,7 @@ class Wall {
         if (linkVideo != null) 'link_video': linkVideo,
       });
 
+  /// Edits a comment on a user wall or community wall.
   Future<Map<String, dynamic>> editComment({
     int? ownerId,
     required int commentId,
@@ -146,6 +152,7 @@ class Wall {
         if (attachments != null) 'attachments': attachments.join(','),
       });
 
+  /// Returns a list of posts on a user wall or community wall.
   Future<Map<String, dynamic>> get({
     int? ownerId,
     String? domain,
@@ -165,6 +172,7 @@ class Wall {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns a list of posts from user or community walls by their IDs.
   Future<Map<String, dynamic>> getById({
     required List<String> posts,
     bool? extended,
@@ -178,6 +186,7 @@ class Wall {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns a comment on a post on a user wall or community wall.
   Future<Map<String, dynamic>> getComment({
     int? ownerId,
     required int commentId,
@@ -191,6 +200,7 @@ class Wall {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns a list of comments on a post on a user wall or community wall.
   Future<Map<String, dynamic>> getComments({
     int? ownerId,
     int? postId,
@@ -220,6 +230,7 @@ class Wall {
         if (threadItemsCount != null) 'thread_items_count': threadItemsCount,
       });
 
+  /// Returns information about reposts of a post on user wall or community wall.
   Future<Map<String, dynamic>> getReposts({
     int? ownerId,
     int? postId,
@@ -242,6 +253,7 @@ class Wall {
         'post_id': postId,
       });
 
+  /// Pins the post on wall.
   Future<Map<String, dynamic>> pin({
     int? ownerId,
     required int postId,
@@ -251,6 +263,7 @@ class Wall {
         'post_id': postId,
       });
 
+  /// Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
   Future<Map<String, dynamic>> post({
     int? ownerId,
     bool? friendsOnly,
@@ -294,6 +307,7 @@ class Wall {
         if (topicId != null) 'topic_id': topicId,
       });
 
+  /// Allows to create hidden post which will not be shown on the community's wall and can be used for creating an ad with type "Community post".
   Future<Map<String, dynamic>> postAdsStealth({
     required int ownerId,
     String? message,
@@ -323,6 +337,7 @@ class Wall {
         if (linkVideo != null) 'link_video': linkVideo,
       });
 
+  /// Reports (submits a complaint about) a comment on a post on a user wall or community wall.
   Future<Map<String, dynamic>> reportComment({
     required int ownerId,
     required int commentId,
@@ -334,6 +349,7 @@ class Wall {
         if (reason != null) 'reason': reason,
       });
 
+  /// Reports (submits a complaint about) a post on a user wall or community wall.
   Future<Map<String, dynamic>> reportPost({
     required int ownerId,
     required int postId,
@@ -345,6 +361,7 @@ class Wall {
         if (reason != null) 'reason': reason,
       });
 
+  /// Reposts (copies) an object to a user wall or community wall.
   Future<Map<String, dynamic>> repost({
     required String object,
     String? message,
@@ -360,6 +377,7 @@ class Wall {
         if (muteNotifications != null) 'mute_notifications': muteNotifications,
       });
 
+  /// Restores a post deleted from a user wall or community wall.
   Future<Map<String, dynamic>> restore({
     int? ownerId,
     int? postId,
@@ -369,6 +387,7 @@ class Wall {
         if (postId != null) 'post_id': postId,
       });
 
+  /// Restores a comment deleted from a user wall or community wall.
   Future<Map<String, dynamic>> restoreComment({
     int? ownerId,
     required int commentId,
@@ -378,6 +397,7 @@ class Wall {
         'comment_id': commentId,
       });
 
+  /// Allows to search posts on user or community walls.
   Future<Map<String, dynamic>> search({
     int? ownerId,
     String? domain,
@@ -399,6 +419,7 @@ class Wall {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Unpins the post on wall.
   Future<Map<String, dynamic>> unpin({
     int? ownerId,
     required int postId,

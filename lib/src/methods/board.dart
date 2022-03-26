@@ -5,6 +5,7 @@ class Board {
 
   Board(this._api);
 
+  /// Creates a new topic on a community's discussion board.
   Future<Map<String, dynamic>> addTopic({
     required int groupId,
     required String title,
@@ -20,6 +21,7 @@ class Board {
         if (attachments != null) 'attachments': attachments.join(','),
       });
 
+  /// Closes a topic on a community's discussion board so that comments cannot be posted.
   Future<Map<String, dynamic>> closeTopic({
     required int groupId,
     required int topicId,
@@ -29,6 +31,7 @@ class Board {
         'topic_id': topicId,
       });
 
+  /// Adds a comment on a topic on a community's discussion board.
   Future<Map<String, dynamic>> createComment({
     required int groupId,
     required int topicId,
@@ -48,6 +51,7 @@ class Board {
         if (guid != null) 'guid': guid,
       });
 
+  /// Deletes a comment on a topic on a community's discussion board.
   Future<Map<String, dynamic>> deleteComment({
     required int groupId,
     required int topicId,
@@ -59,6 +63,7 @@ class Board {
         'comment_id': commentId,
       });
 
+  /// Deletes a topic from a community's discussion board.
   Future<Map<String, dynamic>> deleteTopic({
     required int groupId,
     required int topicId,
@@ -68,6 +73,7 @@ class Board {
         'topic_id': topicId,
       });
 
+  /// Edits a comment on a topic on a community's discussion board.
   Future<Map<String, dynamic>> editComment({
     required int groupId,
     required int topicId,
@@ -83,6 +89,7 @@ class Board {
         if (attachments != null) 'attachments': attachments.join(','),
       });
 
+  /// Edits the title of a topic on a community's discussion board.
   Future<Map<String, dynamic>> editTopic({
     required int groupId,
     required int topicId,
@@ -94,6 +101,7 @@ class Board {
         'title': title,
       });
 
+  /// Pins a topic (fixes its place) to the top of a community's discussion board.
   Future<Map<String, dynamic>> fixTopic({
     required int groupId,
     required int topicId,
@@ -103,6 +111,7 @@ class Board {
         'topic_id': topicId,
       });
 
+  /// Returns a list of comments on a topic on a community's discussion board.
   Future<Map<String, dynamic>> getComments({
     required int groupId,
     required int topicId,
@@ -124,6 +133,7 @@ class Board {
         if (sort != null) 'sort': sort,
       });
 
+  /// Returns a list of topics on a community's discussion board.
   Future<Map<String, dynamic>> getTopics({
     required int groupId,
     List<int>? topicIds,
@@ -145,6 +155,7 @@ class Board {
         if (previewLength != null) 'preview_length': previewLength,
       });
 
+  /// Re-opens a previously closed topic on a community's discussion board.
   Future<Map<String, dynamic>> openTopic({
     required int groupId,
     required int topicId,
@@ -154,6 +165,7 @@ class Board {
         'topic_id': topicId,
       });
 
+  /// Restores a comment deleted from a topic on a community's discussion board.
   Future<Map<String, dynamic>> restoreComment({
     required int groupId,
     required int topicId,
@@ -165,6 +177,7 @@ class Board {
         'comment_id': commentId,
       });
 
+  /// Unpins a pinned topic from the top of a community's discussion board.
   Future<Map<String, dynamic>> unfixTopic({
     required int groupId,
     required int topicId,

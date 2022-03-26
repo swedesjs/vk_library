@@ -5,6 +5,7 @@ class Secure {
 
   Secure(this._api);
 
+  /// Adds user activity information to an application
   Future<Map<String, dynamic>> addAppEvent({
     required int userId,
     required int activityId,
@@ -16,6 +17,7 @@ class Secure {
         if (value != null) 'value': value,
       });
 
+  /// Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
   Future<Map<String, dynamic>> checkToken({
     String? token,
     String? ip,
@@ -25,9 +27,11 @@ class Secure {
         if (ip != null) 'ip': ip,
       });
 
+  /// Returns payment balance of the application in hundredth of a vote.
   Future<Map<String, dynamic>> getAppBalance() =>
       _api.request('secure.getAppBalance');
 
+  /// Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
   Future<Map<String, dynamic>> getSMSHistory({
     int? userId,
     int? dateFrom,
@@ -41,6 +45,7 @@ class Secure {
         if (limit != null) 'limit': limit,
       });
 
+  /// Shows history of votes transaction between users and the application.
   Future<Map<String, dynamic>> getTransactionsHistory({
     int? type,
     int? uidFrom,
@@ -58,6 +63,7 @@ class Secure {
         if (limit != null) 'limit': limit,
       });
 
+  /// Returns one of the previously set game levels of one or more users in the application.
   Future<Map<String, dynamic>> getUserLevel({
     required List<int> userIds,
   }) =>
@@ -65,6 +71,7 @@ class Secure {
         'user_ids': userIds.join(','),
       });
 
+  /// Opens the game achievement and gives the user a sticker
   Future<Map<String, dynamic>> giveEventSticker({
     required List<int> userIds,
     required int achievementId,
@@ -74,6 +81,7 @@ class Secure {
         'achievement_id': achievementId,
       });
 
+  /// Sends notification to the user.
   Future<Map<String, dynamic>> sendNotification({
     List<int>? userIds,
     int? userId,
@@ -85,6 +93,7 @@ class Secure {
         'message': message,
       });
 
+  /// Sends 'SMS' notification to a user's mobile device.
   Future<Map<String, dynamic>> sendSMSNotification({
     required int userId,
     required String message,
@@ -94,6 +103,7 @@ class Secure {
         'message': message,
       });
 
+  /// Sets a counter which is shown to the user in bold in the left menu.
   Future<Map<String, dynamic>> setCounter({
     List<String>? counters,
     int? userId,

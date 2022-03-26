@@ -5,6 +5,7 @@ class Search {
 
   Search(this._api);
 
+  /// Allows the programmer to do a quick search for any substring.
   Future<Map<String, dynamic>> getHints({
     String? q,
     int? offset,

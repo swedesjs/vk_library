@@ -5,6 +5,7 @@ class Likes {
 
   Likes(this._api);
 
+  /// Adds the specified object to the 'Likes' list of the current user.
   Future<Map<String, dynamic>> add({
     required String type,
     int? ownerId,
@@ -18,6 +19,7 @@ class Likes {
         if (accessKey != null) 'access_key': accessKey,
       });
 
+  /// Deletes the specified object from the 'Likes' list of the current user.
   Future<Map<String, dynamic>> delete({
     required String type,
     int? ownerId,
@@ -31,6 +33,7 @@ class Likes {
         if (accessKey != null) 'access_key': accessKey,
       });
 
+  /// Returns a list of IDs of users who added the specified object to their 'Likes' list.
   Future<Map<String, dynamic>> getList({
     required String type,
     int? ownerId,
@@ -56,6 +59,7 @@ class Likes {
         if (skipOwn != null) 'skip_own': skipOwn,
       });
 
+  /// Checks for the object in the 'Likes' list of the specified user.
   Future<Map<String, dynamic>> isLiked({
     int? userId,
     required String type,

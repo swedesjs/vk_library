@@ -5,6 +5,7 @@ class Newsfeed {
 
   Newsfeed(this._api);
 
+  /// Prevents news from specified users and communities from appearing in the current user's newsfeed.
   Future<Map<String, dynamic>> addBan({
     List<int>? userIds,
     List<int>? groupIds,
@@ -14,6 +15,7 @@ class Newsfeed {
         if (groupIds != null) 'group_ids': groupIds.join(','),
       });
 
+  /// Allows news from previously banned users and communities to be shown in the current user's newsfeed.
   Future<Map<String, dynamic>> deleteBan({
     List<int>? userIds,
     List<int>? groupIds,
@@ -30,6 +32,7 @@ class Newsfeed {
         'list_id': listId,
       });
 
+  /// Returns data required to show newsfeed for the current user.
   Future<Map<String, dynamic>> get({
     List<Object>? filters,
     bool? returnBanned,
@@ -55,6 +58,7 @@ class Newsfeed {
         if (section != null) 'section': section,
       });
 
+  /// Returns a list of users and communities banned from the current user's newsfeed.
   Future<Map<String, dynamic>> getBanned({
     bool? extended,
     List<Object>? fields,
@@ -66,6 +70,7 @@ class Newsfeed {
         if (nameCase != null) 'name_case': nameCase,
       });
 
+  /// Returns a list of comments in the current user's newsfeed.
   Future<Map<String, dynamic>> getComments({
     int? count,
     List<Object>? filters,
@@ -87,6 +92,7 @@ class Newsfeed {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns a list of newsfeeds followed by the current user.
   Future<Map<String, dynamic>> getLists({
     List<int>? listIds,
     bool? extended,
@@ -96,6 +102,7 @@ class Newsfeed {
         if (extended != null) 'extended': extended,
       });
 
+  /// Returns a list of posts on user walls in which the current user is mentioned.
   Future<Map<String, dynamic>> getMentions({
     int? ownerId,
     int? startTime,
@@ -111,6 +118,7 @@ class Newsfeed {
         if (count != null) 'count': count,
       });
 
+  /// , Returns a list of newsfeeds recommended to the current user.
   Future<Map<String, dynamic>> getRecommended({
     int? startTime,
     int? endTime,
@@ -128,6 +136,7 @@ class Newsfeed {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns communities and users that current user is suggested to follow.
   Future<Map<String, dynamic>> getSuggestedSources({
     int? offset,
     int? count,
@@ -141,6 +150,7 @@ class Newsfeed {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Hides an item from the newsfeed.
   Future<Map<String, dynamic>> ignoreItem({
     required String type,
     int? ownerId,
@@ -152,6 +162,7 @@ class Newsfeed {
         if (itemId != null) 'item_id': itemId,
       });
 
+  /// Creates and edits user newsfeed lists
   Future<Map<String, dynamic>> saveList({
     int? listId,
     required String title,
@@ -165,6 +176,7 @@ class Newsfeed {
         if (noReposts != null) 'no_reposts': noReposts,
       });
 
+  /// Returns search results by statuses.
   Future<Map<String, dynamic>> search({
     String? q,
     bool? extended,
@@ -188,6 +200,7 @@ class Newsfeed {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns a hidden item to the newsfeed.
   Future<Map<String, dynamic>> unignoreItem({
     required String type,
     required int ownerId,
@@ -201,6 +214,7 @@ class Newsfeed {
         if (trackCode != null) 'track_code': trackCode,
       });
 
+  /// Unsubscribes the current user from specified newsfeeds.
   Future<Map<String, dynamic>> unsubscribe({
     required String type,
     int? ownerId,

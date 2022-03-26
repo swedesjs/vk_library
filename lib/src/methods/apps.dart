@@ -5,9 +5,11 @@ class Apps {
 
   Apps(this._api);
 
+  /// Deletes all request notifications from the current app.
   Future<Map<String, dynamic>> deleteAppRequests() =>
       _api.request('apps.deleteAppRequests');
 
+  /// Returns applications data.
   Future<Map<String, dynamic>> get({
     int? appId,
     List<String>? appIds,
@@ -27,6 +29,7 @@ class Apps {
         if (nameCase != null) 'name_case': nameCase,
       });
 
+  /// Returns a list of applications (apps) available to users in the App Catalog.
   Future<Map<String, dynamic>> getCatalog({
     String? sort,
     int? offset,
@@ -54,6 +57,7 @@ class Apps {
         if (filter != null) 'filter': filter,
       });
 
+  /// Creates friends list for requests and invites in current app.
   Future<Map<String, dynamic>> getFriendsList({
     bool? extended,
     int? count,
@@ -69,6 +73,7 @@ class Apps {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns players rating in the game.
   Future<Map<String, dynamic>> getLeaderboard({
     required String type,
     bool? global,
@@ -80,6 +85,7 @@ class Apps {
         if (extended != null) 'extended': extended,
       });
 
+  /// Returns policies and terms given to a mini app.
   Future<Map<String, dynamic>> getMiniAppPolicies({
     required int appId,
   }) =>
@@ -87,6 +93,7 @@ class Apps {
         'app_id': appId,
       });
 
+  /// Returns scopes for auth
   Future<Map<String, dynamic>> getScopes({
     String? type,
   }) =>
@@ -94,6 +101,7 @@ class Apps {
         if (type != null) 'type': type,
       });
 
+  /// Returns user score in app
   Future<Map<String, dynamic>> getScore({
     required int userId,
   }) =>
@@ -119,6 +127,7 @@ class Apps {
         if (userId != null) 'user_id': userId,
       });
 
+  /// Sends a request to another user in an app that uses VK authorization.
   Future<Map<String, dynamic>> sendRequest({
     required int userId,
     String? text,

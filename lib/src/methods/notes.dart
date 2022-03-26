@@ -5,6 +5,7 @@ class Notes {
 
   Notes(this._api);
 
+  /// Creates a new note for the current user.
   Future<Map<String, dynamic>> add({
     required String title,
     required String text,
@@ -18,6 +19,7 @@ class Notes {
         if (privacyComment != null) 'privacy_comment': privacyComment.join(','),
       });
 
+  /// Adds a new comment on a note.
   Future<Map<String, dynamic>> createComment({
     required int noteId,
     int? ownerId,
@@ -33,6 +35,7 @@ class Notes {
         if (guid != null) 'guid': guid,
       });
 
+  /// Deletes a note of the current user.
   Future<Map<String, dynamic>> delete({
     required int noteId,
   }) =>
@@ -40,6 +43,7 @@ class Notes {
         'note_id': noteId,
       });
 
+  /// Deletes a comment on a note.
   Future<Map<String, dynamic>> deleteComment({
     required int commentId,
     int? ownerId,
@@ -49,6 +53,7 @@ class Notes {
         if (ownerId != null) 'owner_id': ownerId,
       });
 
+  /// Edits a note of the current user.
   Future<Map<String, dynamic>> edit({
     required int noteId,
     required String title,
@@ -64,6 +69,7 @@ class Notes {
         if (privacyComment != null) 'privacy_comment': privacyComment.join(','),
       });
 
+  /// Edits a comment on a note.
   Future<Map<String, dynamic>> editComment({
     required int commentId,
     int? ownerId,
@@ -75,6 +81,7 @@ class Notes {
         'message': message,
       });
 
+  /// Returns a list of notes created by a user.
   Future<Map<String, dynamic>> get({
     List<int>? noteIds,
     int? userId,
@@ -90,6 +97,7 @@ class Notes {
         if (sort != null) 'sort': sort,
       });
 
+  /// Returns a note by its ID.
   Future<Map<String, dynamic>> getById({
     required int noteId,
     int? ownerId,
@@ -101,6 +109,7 @@ class Notes {
         if (needWiki != null) 'need_wiki': needWiki,
       });
 
+  /// Returns a list of comments on a note.
   Future<Map<String, dynamic>> getComments({
     required int noteId,
     int? ownerId,
@@ -116,6 +125,7 @@ class Notes {
         if (count != null) 'count': count,
       });
 
+  /// Restores a deleted comment on a note.
   Future<Map<String, dynamic>> restoreComment({
     required int commentId,
     int? ownerId,

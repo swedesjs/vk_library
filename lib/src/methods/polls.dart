@@ -5,6 +5,7 @@ class Polls {
 
   Polls(this._api);
 
+  /// Adds the current user's vote to the selected answer in the poll.
   Future<Map<String, dynamic>> addVote({
     int? ownerId,
     required int pollId,
@@ -18,6 +19,7 @@ class Polls {
         if (isBoard != null) 'is_board': isBoard,
       });
 
+  /// Creates polls that can be attached to the users' or communities' posts.
   Future<Map<String, dynamic>> create({
     String? question,
     bool? isAnonymous,
@@ -43,6 +45,7 @@ class Polls {
         if (disableUnvote != null) 'disable_unvote': disableUnvote,
       });
 
+  /// Deletes the current user's vote from the selected answer in the poll.
   Future<Map<String, dynamic>> deleteVote({
     int? ownerId,
     required int pollId,
@@ -56,6 +59,7 @@ class Polls {
         if (isBoard != null) 'is_board': isBoard,
       });
 
+  /// Edits created polls
   Future<Map<String, dynamic>> edit({
     int? ownerId,
     required int pollId,
@@ -82,6 +86,7 @@ class Polls {
   Future<Map<String, dynamic>> getBackgrounds() =>
       _api.request('polls.getBackgrounds');
 
+  /// Returns detailed information about a poll by its ID.
   Future<Map<String, dynamic>> getById({
     int? ownerId,
     bool? isBoard,
@@ -108,6 +113,7 @@ class Polls {
         if (ownerId != null) 'owner_id': ownerId,
       });
 
+  /// Returns a list of IDs of users who selected specific answers in the poll.
   Future<Map<String, dynamic>> getVoters({
     int? ownerId,
     required int pollId,

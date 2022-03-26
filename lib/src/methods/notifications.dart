@@ -5,6 +5,7 @@ class Notifications {
 
   Notifications(this._api);
 
+  /// Returns a list of notifications about other users' feedback to the current user's wall posts.
   Future<Map<String, dynamic>> get({
     int? count,
     String? startFrom,
@@ -20,6 +21,7 @@ class Notifications {
         if (endTime != null) 'end_time': endTime,
       });
 
+  /// Resets the counter of new notifications about other users' feedback to the current user's wall posts.
   Future<Map<String, dynamic>> markAsViewed() =>
       _api.request('notifications.markAsViewed');
 

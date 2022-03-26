@@ -16,6 +16,7 @@ class Orders {
         if (pendingCancel != null) 'pending_cancel': pendingCancel,
       });
 
+  /// Changes order status.
   Future<Map<String, dynamic>> changeState({
     required int orderId,
     required String action,
@@ -29,6 +30,7 @@ class Orders {
         if (testMode != null) 'test_mode': testMode,
       });
 
+  /// Returns a list of orders.
   Future<Map<String, dynamic>> get({
     int? offset,
     int? count,
@@ -49,6 +51,7 @@ class Orders {
         'votes': votes.join(','),
       });
 
+  /// Returns information about orders by their IDs.
   Future<Map<String, dynamic>> getById({
     int? orderId,
     List<int>? orderIds,

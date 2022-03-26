@@ -5,6 +5,7 @@ class Storage {
 
   Storage(this._api);
 
+  /// Returns a value of variable with the name set by key parameter.
   Future<Map<String, dynamic>> get({
     String? key,
     List<String>? keys,
@@ -16,6 +17,7 @@ class Storage {
         if (userId != null) 'user_id': userId,
       });
 
+  /// Returns the names of all variables.
   Future<Map<String, dynamic>> getKeys({
     int? userId,
     int? offset,
@@ -27,6 +29,7 @@ class Storage {
         if (count != null) 'count': count,
       });
 
+  /// Saves a value of variable with the name set by 'key' parameter.
   Future<Map<String, dynamic>> set({
     required String key,
     String? value,

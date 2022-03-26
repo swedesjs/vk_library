@@ -5,6 +5,7 @@ class Ads {
 
   Ads(this._api);
 
+  /// Adds managers and/or supervisors to advertising account.
   Future<Map<String, dynamic>> addOfficeUsers({
     required int accountId,
     required String data,
@@ -14,6 +15,7 @@ class Ads {
         'data': data,
       });
 
+  /// Allows to check the ad link.
   Future<Map<String, dynamic>> checkLink({
     required int accountId,
     required String linkType,
@@ -27,6 +29,7 @@ class Ads {
         if (campaignId != null) 'campaign_id': campaignId,
       });
 
+  /// Creates ads.
   Future<Map<String, dynamic>> createAds({
     required int accountId,
     required String data,
@@ -36,6 +39,7 @@ class Ads {
         'data': data,
       });
 
+  /// Creates advertising campaigns.
   Future<Map<String, dynamic>> createCampaigns({
     required int accountId,
     required String data,
@@ -45,6 +49,7 @@ class Ads {
         'data': data,
       });
 
+  /// Creates clients of an advertising agency.
   Future<Map<String, dynamic>> createClients({
     required int accountId,
     required String data,
@@ -54,6 +59,7 @@ class Ads {
         'data': data,
       });
 
+  /// Creates a group to re-target ads for users who visited advertiser's site (viewed information about the product, registered, etc.).
   Future<Map<String, dynamic>> createTargetGroup({
     required int accountId,
     int? clientId,
@@ -71,6 +77,7 @@ class Ads {
         if (targetPixelRules != null) 'target_pixel_rules': targetPixelRules,
       });
 
+  /// Archives ads.
   Future<Map<String, dynamic>> deleteAds({
     required int accountId,
     required String ids,
@@ -80,6 +87,7 @@ class Ads {
         'ids': ids,
       });
 
+  /// Archives advertising campaigns.
   Future<Map<String, dynamic>> deleteCampaigns({
     required int accountId,
     required String ids,
@@ -89,6 +97,7 @@ class Ads {
         'ids': ids,
       });
 
+  /// Archives clients of an advertising agency.
   Future<Map<String, dynamic>> deleteClients({
     required int accountId,
     required String ids,
@@ -98,6 +107,7 @@ class Ads {
         'ids': ids,
       });
 
+  /// Deletes a retarget group.
   Future<Map<String, dynamic>> deleteTargetGroup({
     required int accountId,
     int? clientId,
@@ -109,8 +119,10 @@ class Ads {
         'target_group_id': targetGroupId,
       });
 
+  /// Returns a list of advertising accounts.
   Future<Map<String, dynamic>> getAccounts() => _api.request('ads.getAccounts');
 
+  /// Returns number of ads.
   Future<Map<String, dynamic>> getAds({
     required int accountId,
     String? adIds,
@@ -132,6 +144,7 @@ class Ads {
         if (offset != null) 'offset': offset,
       });
 
+  /// Returns descriptions of ad layouts.
   Future<Map<String, dynamic>> getAdsLayout({
     required int accountId,
     int? clientId,
@@ -153,6 +166,7 @@ class Ads {
         if (offset != null) 'offset': offset,
       });
 
+  /// Returns ad targeting parameters.
   Future<Map<String, dynamic>> getAdsTargeting({
     required int accountId,
     String? adIds,
@@ -172,6 +186,7 @@ class Ads {
         if (offset != null) 'offset': offset,
       });
 
+  /// Returns current budget of the advertising account.
   Future<Map<String, dynamic>> getBudget({
     required int accountId,
   }) =>
@@ -179,6 +194,7 @@ class Ads {
         'account_id': accountId,
       });
 
+  /// Returns a list of campaigns in an advertising account.
   Future<Map<String, dynamic>> getCampaigns({
     required int accountId,
     int? clientId,
@@ -194,6 +210,7 @@ class Ads {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns a list of possible ad categories.
   Future<Map<String, dynamic>> getCategories({
     String? lang,
   }) =>
@@ -201,6 +218,7 @@ class Ads {
         if (lang != null) 'lang': lang,
       });
 
+  /// Returns a list of advertising agency's clients.
   Future<Map<String, dynamic>> getClients({
     required int accountId,
   }) =>
@@ -208,6 +226,7 @@ class Ads {
         'account_id': accountId,
       });
 
+  /// Returns demographics for ads or campaigns.
   Future<Map<String, dynamic>> getDemographics({
     required int accountId,
     required String idsType,
@@ -225,6 +244,7 @@ class Ads {
         'date_to': dateTo,
       });
 
+  /// Returns information about current state of a counter — number of remaining runs of methods and time to the next counter nulling in seconds.
   Future<Map<String, dynamic>> getFloodStats({
     required int accountId,
   }) =>
@@ -263,6 +283,7 @@ class Ads {
         'ids': ids.join(','),
       });
 
+  /// Returns a list of managers and supervisors of advertising account.
   Future<Map<String, dynamic>> getOfficeUsers({
     required int accountId,
   }) =>
@@ -270,6 +291,7 @@ class Ads {
         'account_id': accountId,
       });
 
+  /// Returns detailed statistics of promoted posts reach from campaigns and ads.
   Future<Map<String, dynamic>> getPostsReach({
     required int accountId,
     required String idsType,
@@ -281,6 +303,7 @@ class Ads {
         'ids': ids,
       });
 
+  /// Returns a reason of ad rejection for pre-moderation.
   Future<Map<String, dynamic>> getRejectionReason({
     required int accountId,
     required int adId,
@@ -290,6 +313,7 @@ class Ads {
         'ad_id': adId,
       });
 
+  /// Returns statistics of performance indicators for ads, campaigns, clients or the whole account.
   Future<Map<String, dynamic>> getStatistics({
     required int accountId,
     required String idsType,
@@ -309,6 +333,7 @@ class Ads {
         if (statsFields != null) 'stats_fields': statsFields.join(','),
       });
 
+  /// Returns a set of auto-suggestions for various targeting parameters.
   Future<Map<String, dynamic>> getSuggestions({
     required String section,
     String? ids,
@@ -326,6 +351,7 @@ class Ads {
         if (lang != null) 'lang': lang,
       });
 
+  /// Returns a list of target groups.
   Future<Map<String, dynamic>> getTargetGroups({
     required int accountId,
     int? clientId,
@@ -337,6 +363,7 @@ class Ads {
         if (extended != null) 'extended': extended,
       });
 
+  /// Returns the size of targeting audience, and also recommended values for CPC and CPM.
   Future<Map<String, dynamic>> getTargetingStats({
     required int accountId,
     int? clientId,
@@ -371,6 +398,7 @@ class Ads {
           'impressions_limit_period': impressionsLimitPeriod,
       });
 
+  /// Returns URL to upload an ad photo to.
   Future<Map<String, dynamic>> getUploadURL({
     required int adFormat,
     int? icon,
@@ -380,9 +408,11 @@ class Ads {
         if (icon != null) 'icon': icon,
       });
 
+  /// Returns URL to upload an ad video to.
   Future<Map<String, dynamic>> getVideoUploadURL() =>
       _api.request('ads.getVideoUploadURL');
 
+  /// Imports a list of advertiser's contacts to count VK registered users against the target group.
   Future<Map<String, dynamic>> importTargetContacts({
     required int accountId,
     int? clientId,
@@ -396,6 +426,7 @@ class Ads {
         'contacts': contacts,
       });
 
+  /// Removes managers and/or supervisors from advertising account.
   Future<Map<String, dynamic>> removeOfficeUsers({
     required int accountId,
     required String ids,
@@ -405,6 +436,7 @@ class Ads {
         'ids': ids,
       });
 
+  /// Edits ads.
   Future<Map<String, dynamic>> updateAds({
     required int accountId,
     required String data,
@@ -414,6 +446,7 @@ class Ads {
         'data': data,
       });
 
+  /// Edits advertising campaigns.
   Future<Map<String, dynamic>> updateCampaigns({
     required int accountId,
     required String data,
@@ -423,6 +456,7 @@ class Ads {
         'data': data,
       });
 
+  /// Edits clients of an advertising agency.
   Future<Map<String, dynamic>> updateClients({
     required int accountId,
     required String data,
@@ -432,6 +466,7 @@ class Ads {
         'data': data,
       });
 
+  /// Adds managers and/or supervisors to advertising account.
   Future<Map<String, dynamic>> updateOfficeUsers({
     required int accountId,
     required String data,
@@ -441,6 +476,7 @@ class Ads {
         'data': data,
       });
 
+  /// Edits a retarget group.
   Future<Map<String, dynamic>> updateTargetGroup({
     required int accountId,
     int? clientId,

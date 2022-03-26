@@ -5,6 +5,7 @@ class Streaming {
 
   Streaming(this._api);
 
+  /// Allows to receive data for the connection to Streaming API.
   Future<Map<String, dynamic>> getServerUrl() =>
       _api.request('streaming.getServerUrl');
 

@@ -12,6 +12,7 @@ class Account {
         if (ownerId != null) 'owner_id': ownerId,
       });
 
+  /// Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.
   Future<Map<String, dynamic>> changePassword({
     String? restoreSid,
     String? changePasswordHash,
@@ -26,6 +27,7 @@ class Account {
         'new_password': newPassword,
       });
 
+  /// Returns a list of active ads (offers) which executed by the user will bring him/her respective number of votes to his balance in the application.
   Future<Map<String, dynamic>> getActiveOffers({
     int? offset,
     int? count,
@@ -35,6 +37,7 @@ class Account {
         if (count != null) 'count': count,
       });
 
+  /// Gets settings of the user in this application.
   Future<Map<String, dynamic>> getAppPermissions({
     required int userId,
   }) =>
@@ -42,6 +45,7 @@ class Account {
         'user_id': userId,
       });
 
+  /// Returns a user's blacklist.
   Future<Map<String, dynamic>> getBanned({
     int? offset,
     int? count,
@@ -51,6 +55,7 @@ class Account {
         if (count != null) 'count': count,
       });
 
+  /// Returns non-null values of user counters.
   Future<Map<String, dynamic>> getCounters({
     List<String>? filter,
     int? userId,
@@ -60,6 +65,7 @@ class Account {
         if (userId != null) 'user_id': userId,
       });
 
+  /// Returns current account info.
   Future<Map<String, dynamic>> getInfo({
     List<String>? fields,
   }) =>
@@ -67,9 +73,11 @@ class Account {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns the current account info.
   Future<Map<String, dynamic>> getProfileInfo() =>
       _api.request('account.getProfileInfo');
 
+  /// Gets settings of push notifications.
   Future<Map<String, dynamic>> getPushSettings({
     String? deviceId,
   }) =>
@@ -77,6 +85,7 @@ class Account {
         if (deviceId != null) 'device_id': deviceId,
       });
 
+  /// Subscribes an iOS/Android/Windows Phone-based device to receive push notifications
   Future<Map<String, dynamic>> registerDevice({
     required String token,
     String? deviceModel,
@@ -96,6 +105,7 @@ class Account {
         if (sandbox != null) 'sandbox': sandbox,
       });
 
+  /// Edits current profile info.
   Future<Map<String, dynamic>> saveProfileInfo({
     String? firstName,
     String? lastName,
@@ -129,6 +139,7 @@ class Account {
         if (status != null) 'status': status,
       });
 
+  /// Allows to edit the current account info.
   Future<Map<String, dynamic>> setInfo({
     String? name,
     String? value,
@@ -138,9 +149,11 @@ class Account {
         if (value != null) 'value': value,
       });
 
+  /// Marks a current user as offline.
   Future<Map<String, dynamic>> setOffline() =>
       _api.request('account.setOffline');
 
+  /// Marks the current user as online for 15 minutes.
   Future<Map<String, dynamic>> setOnline({
     bool? voip,
   }) =>
@@ -148,6 +161,7 @@ class Account {
         if (voip != null) 'voip': voip,
       });
 
+  /// Change push settings.
   Future<Map<String, dynamic>> setPushSettings({
     required String deviceId,
     String? settings,
@@ -161,6 +175,7 @@ class Account {
         if (value != null) 'value': value.join(','),
       });
 
+  /// Mutes push notifications for the set period of time.
   Future<Map<String, dynamic>> setSilenceMode({
     String? deviceId,
     int? time,
@@ -181,6 +196,7 @@ class Account {
         if (ownerId != null) 'owner_id': ownerId,
       });
 
+  /// Unsubscribes a device from push notifications.
   Future<Map<String, dynamic>> unregisterDevice({
     String? deviceId,
     bool? sandbox,

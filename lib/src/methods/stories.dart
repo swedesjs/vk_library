@@ -5,6 +5,7 @@ class Stories {
 
   Stories(this._api);
 
+  /// Allows to hide stories from chosen sources from current user's feed.
   Future<Map<String, dynamic>> banOwner({
     required List<int> ownersIds,
   }) =>
@@ -12,6 +13,7 @@ class Stories {
         'owners_ids': ownersIds.join(','),
       });
 
+  /// Allows to delete story.
   Future<Map<String, dynamic>> delete({
     int? ownerId,
     int? storyId,
@@ -23,6 +25,7 @@ class Stories {
         if (stories != null) 'stories': stories.join(','),
       });
 
+  /// Returns stories available for current user.
   Future<Map<String, dynamic>> get({
     int? ownerId,
     bool? extended,
@@ -34,6 +37,7 @@ class Stories {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns list of sources hidden from current user's feed.
   Future<Map<String, dynamic>> getBanned({
     bool? extended,
     List<Object>? fields,
@@ -43,6 +47,7 @@ class Stories {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns story by its ID.
   Future<Map<String, dynamic>> getById({
     required List<String> stories,
     bool? extended,
@@ -54,6 +59,7 @@ class Stories {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns URL for uploading a story with photo.
   Future<Map<String, dynamic>> getPhotoUploadServer({
     bool? addToNews,
     List<int>? userIds,
@@ -73,6 +79,7 @@ class Stories {
         if (clickableStickers != null) 'clickable_stickers': clickableStickers,
       });
 
+  /// Returns replies to the story.
   Future<Map<String, dynamic>> getReplies({
     required int ownerId,
     required int storyId,
@@ -88,6 +95,7 @@ class Stories {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns stories available for current user.
   Future<Map<String, dynamic>> getStats({
     required int ownerId,
     required int storyId,
@@ -97,6 +105,7 @@ class Stories {
         'story_id': storyId,
       });
 
+  /// Allows to receive URL for uploading story with video.
   Future<Map<String, dynamic>> getVideoUploadServer({
     bool? addToNews,
     List<int>? userIds,
@@ -116,6 +125,7 @@ class Stories {
         if (clickableStickers != null) 'clickable_stickers': clickableStickers,
       });
 
+  /// Returns a list of story viewers.
   Future<Map<String, dynamic>> getViewers({
     required int ownerId,
     required int storyId,
@@ -133,6 +143,7 @@ class Stories {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Hides all replies in the last 24 hours from the user to current user's stories.
   Future<Map<String, dynamic>> hideAllReplies({
     required int ownerId,
     int? groupId,
@@ -142,6 +153,7 @@ class Stories {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Hides the reply to the current user's story.
   Future<Map<String, dynamic>> hideReply({
     required int ownerId,
     required int storyId,
@@ -200,6 +212,7 @@ class Stories {
         if (unseenMarker != null) 'unseen_marker': unseenMarker,
       });
 
+  /// Allows to show stories from hidden sources in current user's feed.
   Future<Map<String, dynamic>> unbanOwner({
     required List<int> ownersIds,
   }) =>

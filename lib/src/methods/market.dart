@@ -5,6 +5,7 @@ class Market {
 
   Market(this._api);
 
+  /// Ads a new item to the market.
   Future<Map<String, dynamic>> add({
     required int ownerId,
     required String name,
@@ -40,6 +41,7 @@ class Market {
         if (sku != null) 'sku': sku,
       });
 
+  /// Creates new collection of items
   Future<Map<String, dynamic>> addAlbum({
     required int ownerId,
     required String title,
@@ -55,6 +57,7 @@ class Market {
         if (isHidden != null) 'is_hidden': isHidden,
       });
 
+  /// Adds an item to one or multiple collections.
   Future<Map<String, dynamic>> addToAlbum({
     required int ownerId,
     required List<int> itemIds,
@@ -66,6 +69,7 @@ class Market {
         'album_ids': albumIds.join(','),
       });
 
+  /// Creates a new comment for an item.
   Future<Map<String, dynamic>> createComment({
     required int ownerId,
     required int itemId,
@@ -87,6 +91,7 @@ class Market {
         if (guid != null) 'guid': guid,
       });
 
+  /// Deletes an item.
   Future<Map<String, dynamic>> delete({
     required int ownerId,
     required int itemId,
@@ -96,6 +101,7 @@ class Market {
         'item_id': itemId,
       });
 
+  /// Deletes a collection of items.
   Future<Map<String, dynamic>> deleteAlbum({
     required int ownerId,
     required int albumId,
@@ -105,6 +111,7 @@ class Market {
         'album_id': albumId,
       });
 
+  /// Deletes an item's comment
   Future<Map<String, dynamic>> deleteComment({
     required int ownerId,
     required int commentId,
@@ -114,6 +121,7 @@ class Market {
         'comment_id': commentId,
       });
 
+  /// Edits an item.
   Future<Map<String, dynamic>> edit({
     required int ownerId,
     required int itemId,
@@ -151,6 +159,7 @@ class Market {
         if (sku != null) 'sku': sku,
       });
 
+  /// Edits a collection of items
   Future<Map<String, dynamic>> editAlbum({
     required int ownerId,
     required int albumId,
@@ -168,6 +177,7 @@ class Market {
         if (isHidden != null) 'is_hidden': isHidden,
       });
 
+  /// Chages item comment's text
   Future<Map<String, dynamic>> editComment({
     required int ownerId,
     required int commentId,
@@ -181,6 +191,7 @@ class Market {
         if (attachments != null) 'attachments': attachments.join(','),
       });
 
+  /// Edit order
   Future<Map<String, dynamic>> editOrder({
     required int userId,
     required int orderId,
@@ -208,6 +219,7 @@ class Market {
         if (weight != null) 'weight': weight,
       });
 
+  /// Returns items list for a community.
   Future<Map<String, dynamic>> get({
     required int ownerId,
     int? albumId,
@@ -231,6 +243,7 @@ class Market {
         if (withDisabled != null) 'with_disabled': withDisabled,
       });
 
+  /// Returns items album's data
   Future<Map<String, dynamic>> getAlbumById({
     required int ownerId,
     required List<int> albumIds,
@@ -240,6 +253,7 @@ class Market {
         'album_ids': albumIds.join(','),
       });
 
+  /// Returns community's market collections list.
   Future<Map<String, dynamic>> getAlbums({
     required int ownerId,
     int? offset,
@@ -251,6 +265,7 @@ class Market {
         if (count != null) 'count': count,
       });
 
+  /// Returns information about market items by their ids.
   Future<Map<String, dynamic>> getById({
     required List<String> itemIds,
     bool? extended,
@@ -260,6 +275,7 @@ class Market {
         if (extended != null) 'extended': extended,
       });
 
+  /// Returns a list of market categories.
   Future<Map<String, dynamic>> getCategories({
     int? count,
     int? offset,
@@ -269,6 +285,7 @@ class Market {
         if (offset != null) 'offset': offset,
       });
 
+  /// Returns comments list for an item.
   Future<Map<String, dynamic>> getComments({
     required int ownerId,
     required int itemId,
@@ -292,6 +309,7 @@ class Market {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Get market orders
   Future<Map<String, dynamic>> getGroupOrders({
     required int groupId,
     int? offset,
@@ -303,6 +321,7 @@ class Market {
         if (count != null) 'count': count,
       });
 
+  /// Get order
   Future<Map<String, dynamic>> getOrderById({
     int? userId,
     required int orderId,
@@ -314,6 +333,7 @@ class Market {
         if (extended != null) 'extended': extended,
       });
 
+  /// Get market items in the order
   Future<Map<String, dynamic>> getOrderItems({
     int? userId,
     required int orderId,
@@ -342,6 +362,7 @@ class Market {
         if (dateTo != null) 'date_to': dateTo,
       });
 
+  /// Removes an item from one or multiple collections.
   Future<Map<String, dynamic>> removeFromAlbum({
     required int ownerId,
     required int itemId,
@@ -353,6 +374,7 @@ class Market {
         'album_ids': albumIds.join(','),
       });
 
+  /// Reorders the collections list.
   Future<Map<String, dynamic>> reorderAlbums({
     required int ownerId,
     required int albumId,
@@ -366,6 +388,7 @@ class Market {
         if (after != null) 'after': after,
       });
 
+  /// Changes item place in a collection.
   Future<Map<String, dynamic>> reorderItems({
     required int ownerId,
     int? albumId,
@@ -381,6 +404,7 @@ class Market {
         if (after != null) 'after': after,
       });
 
+  /// Sends a complaint to the item.
   Future<Map<String, dynamic>> report({
     required int ownerId,
     required int itemId,
@@ -392,6 +416,7 @@ class Market {
         if (reason != null) 'reason': reason,
       });
 
+  /// Sends a complaint to the item's comment.
   Future<Map<String, dynamic>> reportComment({
     required int ownerId,
     required int commentId,
@@ -403,6 +428,7 @@ class Market {
         'reason': reason,
       });
 
+  /// Restores recently deleted item
   Future<Map<String, dynamic>> restore({
     required int ownerId,
     required int itemId,
@@ -412,6 +438,7 @@ class Market {
         'item_id': itemId,
       });
 
+  /// Restores a recently deleted comment
   Future<Map<String, dynamic>> restoreComment({
     required int ownerId,
     required int commentId,
@@ -421,6 +448,7 @@ class Market {
         'comment_id': commentId,
       });
 
+  /// Searches market items in a community's catalog
   Future<Map<String, dynamic>> search({
     required int ownerId,
     int? albumId,

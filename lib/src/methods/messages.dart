@@ -5,6 +5,7 @@ class Messages {
 
   Messages(this._api);
 
+  /// Adds a new user to a chat.
   Future<Map<String, dynamic>> addChatUser({
     required int chatId,
     int? userId,
@@ -17,6 +18,7 @@ class Messages {
           'visible_messages_count': visibleMessagesCount,
       });
 
+  /// Allows sending messages from community to the current user.
   Future<Map<String, dynamic>> allowMessagesFromGroup({
     required int groupId,
     String? key,
@@ -26,6 +28,7 @@ class Messages {
         if (key != null) 'key': key,
       });
 
+  /// Creates a chat with several participants.
   Future<Map<String, dynamic>> createChat({
     List<int>? userIds,
     String? title,
@@ -37,6 +40,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Deletes one or more messages.
   Future<Map<String, dynamic>> delete({
     List<int>? messageIds,
     bool? spam,
@@ -54,6 +58,7 @@ class Messages {
         if (cmids != null) 'cmids': cmids.join(','),
       });
 
+  /// Deletes a chat's cover picture.
   Future<Map<String, dynamic>> deleteChatPhoto({
     required int chatId,
     int? groupId,
@@ -63,6 +68,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Deletes all private messages in a conversation.
   Future<Map<String, dynamic>> deleteConversation({
     int? userId,
     int? peerId,
@@ -74,6 +80,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Denies sending message from community to the current user.
   Future<Map<String, dynamic>> denyMessagesFromGroup({
     required int groupId,
   }) =>
@@ -81,6 +88,7 @@ class Messages {
         'group_id': groupId,
       });
 
+  /// Edits the message.
   Future<Map<String, dynamic>> edit({
     required int peerId,
     String? message,
@@ -116,6 +124,7 @@ class Messages {
         if (keyboard != null) 'keyboard': keyboard,
       });
 
+  /// Edits the title of a chat.
   Future<Map<String, dynamic>> editChat({
     required int chatId,
     String? title,
@@ -125,6 +134,7 @@ class Messages {
         if (title != null) 'title': title,
       });
 
+  /// Returns messages by their IDs within the conversation.
   Future<Map<String, dynamic>> getByConversationMessageId({
     required int peerId,
     required List<int> conversationMessageIds,
@@ -140,6 +150,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns messages by their IDs.
   Future<Map<String, dynamic>> getById({
     required List<int> messageIds,
     int? previewLength,
@@ -166,6 +177,7 @@ class Messages {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns a list of IDs of users participating in a chat.
   Future<Map<String, dynamic>> getConversationMembers({
     required int peerId,
     List<Object>? fields,
@@ -177,6 +189,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns a list of the current user's conversations.
   Future<Map<String, dynamic>> getConversations({
     int? offset,
     int? count,
@@ -196,6 +209,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns conversations by their IDs
   Future<Map<String, dynamic>> getConversationsById({
     required List<int> peerIds,
     bool? extended,
@@ -209,6 +223,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns message history for the specified user or group chat.
   Future<Map<String, dynamic>> getHistory({
     int? offset,
     int? count,
@@ -232,6 +247,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns media files from the dialog or group chat.
   Future<Map<String, dynamic>> getHistoryAttachments({
     required int peerId,
     String? mediaType,
@@ -255,6 +271,7 @@ class Messages {
         if (maxForwardsLevel != null) 'max_forwards_level': maxForwardsLevel,
       });
 
+  /// Returns a list of user's important messages.
   Future<Map<String, dynamic>> getImportantMessages({
     int? count,
     int? offset,
@@ -304,6 +321,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns a user's current status and date of last activity.
   Future<Map<String, dynamic>> getLastActivity({
     required int userId,
   }) =>
@@ -311,6 +329,7 @@ class Messages {
         'user_id': userId,
       });
 
+  /// Returns updates in user's private messages.
   Future<Map<String, dynamic>> getLongPollHistory({
     int? ts,
     int? pts,
@@ -342,6 +361,7 @@ class Messages {
         if (extended != null) 'extended': extended,
       });
 
+  /// Returns data required for connection to a Long Poll server.
   Future<Map<String, dynamic>> getLongPollServer({
     bool? needPts,
     int? groupId,
@@ -353,6 +373,7 @@ class Messages {
         if (lpVersion != null) 'lp_version': lpVersion,
       });
 
+  /// Returns information whether sending messages from the community to current user is allowed.
   Future<Map<String, dynamic>> isMessagesFromGroupAllowed({
     required int groupId,
     required int userId,
@@ -369,6 +390,7 @@ class Messages {
         'link': link,
       });
 
+  /// Marks and unmarks conversations as unanswered.
   Future<Map<String, dynamic>> markAsAnsweredConversation({
     required int peerId,
     bool? answered,
@@ -380,6 +402,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Marks and unmarks messages as important (starred).
   Future<Map<String, dynamic>> markAsImportant({
     List<int>? messageIds,
     int? important,
@@ -389,6 +412,7 @@ class Messages {
         if (important != null) 'important': important,
       });
 
+  /// Marks and unmarks conversations as important.
   Future<Map<String, dynamic>> markAsImportantConversation({
     required int peerId,
     bool? important,
@@ -400,6 +424,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Marks messages as read.
   Future<Map<String, dynamic>> markAsRead({
     List<int>? messageIds,
     int? peerId,
@@ -416,6 +441,7 @@ class Messages {
           'mark_conversation_as_read': markConversationAsRead,
       });
 
+  /// Pin a message.
   Future<Map<String, dynamic>> pin({
     required int peerId,
     int? messageId,
@@ -428,6 +454,7 @@ class Messages {
           'conversation_message_id': conversationMessageId,
       });
 
+  /// Allows the current user to leave a chat or, if the current user started the chat, allows the user to remove another user from the chat.
   Future<Map<String, dynamic>> removeChatUser({
     required int chatId,
     int? userId,
@@ -439,6 +466,7 @@ class Messages {
         if (memberId != null) 'member_id': memberId,
       });
 
+  /// Restores a deleted message.
   Future<Map<String, dynamic>> restore({
     required int messageId,
     int? groupId,
@@ -448,6 +476,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns a list of the current user's private messages that match search criteria.
   Future<Map<String, dynamic>> search({
     String? q,
     int? peerId,
@@ -471,6 +500,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Returns a list of the current user's conversations that match search criteria.
   Future<Map<String, dynamic>> searchConversations({
     String? q,
     int? count,
@@ -486,6 +516,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Sends a message.
   Future<Map<String, dynamic>> send({
     int? userId,
     int? randomId,
@@ -553,6 +584,7 @@ class Messages {
         if (eventData != null) 'event_data': eventData,
       });
 
+  /// Changes the status of a user as typing in a conversation.
   Future<Map<String, dynamic>> setActivity({
     int? userId,
     String? type,
@@ -566,6 +598,7 @@ class Messages {
         if (groupId != null) 'group_id': groupId,
       });
 
+  /// Sets a previously-uploaded picture as the cover picture of a chat.
   Future<Map<String, dynamic>> setChatPhoto({
     required String file,
   }) =>

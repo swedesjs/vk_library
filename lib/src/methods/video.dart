@@ -5,6 +5,7 @@ class Video {
 
   Video(this._api);
 
+  /// Adds a video to a user or community page.
   Future<Map<String, dynamic>> add({
     int? targetId,
     required int videoId,
@@ -16,6 +17,7 @@ class Video {
         'owner_id': ownerId,
       });
 
+  /// Creates an empty album for videos.
   Future<Map<String, dynamic>> addAlbum({
     int? groupId,
     String? title,
@@ -42,6 +44,7 @@ class Video {
         'video_id': videoId,
       });
 
+  /// Adds a new comment on a video.
   Future<Map<String, dynamic>> createComment({
     int? ownerId,
     required int videoId,
@@ -63,6 +66,7 @@ class Video {
         if (guid != null) 'guid': guid,
       });
 
+  /// Deletes a video from a user or community page.
   Future<Map<String, dynamic>> delete({
     required int videoId,
     int? ownerId,
@@ -74,6 +78,7 @@ class Video {
         if (targetId != null) 'target_id': targetId,
       });
 
+  /// Deletes a video album.
   Future<Map<String, dynamic>> deleteAlbum({
     int? groupId,
     required int albumId,
@@ -83,6 +88,7 @@ class Video {
         'album_id': albumId,
       });
 
+  /// Deletes a comment on a video.
   Future<Map<String, dynamic>> deleteComment({
     int? ownerId,
     required int commentId,
@@ -92,6 +98,7 @@ class Video {
         'comment_id': commentId,
       });
 
+  /// Edits information about a video on a user or community page.
   Future<Map<String, dynamic>> edit({
     int? ownerId,
     required int videoId,
@@ -113,6 +120,7 @@ class Video {
         if (repeat != null) 'repeat': repeat,
       });
 
+  /// Edits the title of a video album.
   Future<Map<String, dynamic>> editAlbum({
     int? groupId,
     required int albumId,
@@ -126,6 +134,7 @@ class Video {
         if (privacy != null) 'privacy': privacy.join(','),
       });
 
+  /// Edits the text of a comment on a video.
   Future<Map<String, dynamic>> editComment({
     int? ownerId,
     required int commentId,
@@ -139,6 +148,7 @@ class Video {
         if (attachments != null) 'attachments': attachments.join(','),
       });
 
+  /// Returns detailed information about videos.
   Future<Map<String, dynamic>> get({
     int? ownerId,
     List<String>? videos,
@@ -158,6 +168,7 @@ class Video {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Returns video album info
   Future<Map<String, dynamic>> getAlbumById({
     int? ownerId,
     required int albumId,
@@ -167,6 +178,7 @@ class Video {
         'album_id': albumId,
       });
 
+  /// Returns a list of video albums owned by a user or community.
   Future<Map<String, dynamic>> getAlbums({
     int? ownerId,
     int? offset,
@@ -195,6 +207,7 @@ class Video {
         if (extended != null) 'extended': extended,
       });
 
+  /// Returns a list of comments on a video.
   Future<Map<String, dynamic>> getComments({
     int? ownerId,
     required int videoId,
@@ -233,6 +246,7 @@ class Video {
         'video_id': videoId,
       });
 
+  /// Reorders the album in the list of user video albums.
   Future<Map<String, dynamic>> reorderAlbums({
     int? ownerId,
     required int albumId,
@@ -246,6 +260,7 @@ class Video {
         if (after != null) 'after': after,
       });
 
+  /// Reorders the video in the video album.
   Future<Map<String, dynamic>> reorderVideos({
     int? targetId,
     int? albumId,
@@ -267,6 +282,7 @@ class Video {
         if (afterVideoId != null) 'after_video_id': afterVideoId,
       });
 
+  /// Reports (submits a complaint about) a video.
   Future<Map<String, dynamic>> report({
     required int ownerId,
     required int videoId,
@@ -282,6 +298,7 @@ class Video {
         if (searchQuery != null) 'search_query': searchQuery,
       });
 
+  /// Reports (submits a complaint about) a comment on a video.
   Future<Map<String, dynamic>> reportComment({
     required int ownerId,
     required int commentId,
@@ -293,6 +310,7 @@ class Video {
         if (reason != null) 'reason': reason,
       });
 
+  /// Restores a previously deleted video.
   Future<Map<String, dynamic>> restore({
     required int videoId,
     int? ownerId,
@@ -302,6 +320,7 @@ class Video {
         if (ownerId != null) 'owner_id': ownerId,
       });
 
+  /// Restores a previously deleted comment on a video.
   Future<Map<String, dynamic>> restoreComment({
     int? ownerId,
     required int commentId,
@@ -311,6 +330,7 @@ class Video {
         'comment_id': commentId,
       });
 
+  /// Returns a server address (required for upload) and video data.
   Future<Map<String, dynamic>> save({
     String? name,
     String? description,
@@ -340,6 +360,7 @@ class Video {
         if (compression != null) 'compression': compression,
       });
 
+  /// Returns a list of videos under the set search criterion.
   Future<Map<String, dynamic>> search({
     String? q,
     int? sort,

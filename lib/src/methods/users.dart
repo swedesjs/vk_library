@@ -5,6 +5,7 @@ class Users {
 
   Users(this._api);
 
+  /// Returns detailed information on users.
   Future<Map<String, dynamic>> get({
     List<String>? userIds,
     List<Object>? fields,
@@ -16,6 +17,7 @@ class Users {
         if (nameCase != null) 'name_case': nameCase,
       });
 
+  /// Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
   Future<Map<String, dynamic>> getFollowers({
     int? userId,
     int? offset,
@@ -31,6 +33,7 @@ class Users {
         if (nameCase != null) 'name_case': nameCase,
       });
 
+  /// Returns a list of IDs of users and communities followed by the user.
   Future<Map<String, dynamic>> getSubscriptions({
     int? userId,
     bool? extended,
@@ -46,6 +49,7 @@ class Users {
         if (fields != null) 'fields': fields.join(','),
       });
 
+  /// Reports (submits a complain about) a user.
   Future<Map<String, dynamic>> report({
     required int userId,
     required String type,
@@ -57,6 +61,7 @@ class Users {
         if (comment != null) 'comment': comment,
       });
 
+  /// Returns a list of users matching the search criteria.
   Future<Map<String, dynamic>> search({
     String? q,
     int? sort,
