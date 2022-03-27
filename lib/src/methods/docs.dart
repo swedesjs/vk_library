@@ -101,7 +101,7 @@ class Docs {
         if (groupId != null) 'group_id': groupId,
       });
 
-  /// Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
+  /// Saves a document after [uploading it to a server](https://vk.com/dev/upload_files_2).
   Future<Map<String, dynamic>> save({
     required String file,
     String? title,

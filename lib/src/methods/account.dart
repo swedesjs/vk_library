@@ -12,7 +12,7 @@ class Account {
         if (ownerId != null) 'owner_id': ownerId,
       });
 
-  /// Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.
+  /// Changes a user password after access is successfully restored with the [Auth.restore] method.
   Future<Map<String, dynamic>> changePassword({
     String? restoreSid,
     String? changePasswordHash,

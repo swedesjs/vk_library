@@ -407,7 +407,7 @@ class Groups {
         if (serverIds != null) 'server_ids': serverIds.join(','),
       });
 
-  /// Returns [vk.com/dev/callback_api|Callback API] notifications settings.
+  /// Returns [Callback API](https://vk.com/dev/callback_api) notifications settings.
   Future<Map<String, dynamic>> getCallbackSettings({
     required int groupId,
     int? serverId,

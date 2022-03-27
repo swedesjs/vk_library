@@ -603,7 +603,7 @@ class Photos {
         if (cropHash != null) 'crop_hash': cropHash,
       });
 
-  /// Saves a photo after being successfully uploaded. URL obtained with [vk.com/dev/photos.getMessagesUploadServer|photos.getMessagesUploadServer] method.
+  /// Saves a photo after being successfully uploaded. URL obtained with [Photos.getMessagesUploadServer] method.
   Future<Map<String, dynamic>> saveMessagesPhoto({
     required String photo,
     int? server,
@@ -625,7 +625,7 @@ class Photos {
         'photo': photo,
       });
 
-  /// Saves a profile or community photo. Upload URL can be got with the [vk.com/dev/photos.getOwnerPhotoUploadServer|photos.getOwnerPhotoUploadServer] method.
+  /// Saves a profile or community photo. Upload URL can be got with the [Photos.getOwnerPhotoUploadServer] method.
   Future<Map<String, dynamic>> saveOwnerPhoto({
     String? server,
     String? hash,

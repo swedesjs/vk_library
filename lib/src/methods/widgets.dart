@@ -5,7 +5,7 @@ class Widgets {
 
   Widgets(this._api);
 
-  /// Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
+  /// Gets a list of comments for the page added through the [Comments widget](https://vk.com/dev/comments).
   Future<Map<String, dynamic>> getComments({
     int? widgetApiId,
     String? url,
@@ -25,7 +25,7 @@ class Widgets {
         if (count != null) 'count': count,
       });
 
-  /// Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.
+  /// Gets a list of application/site pages where the [Comments widget](https://vk.com/dev/comments) or [Like widget](https://vk.com/dev/like) is installed.
   Future<Map<String, dynamic>> getPages({
     int? widgetApiId,
     String? order,

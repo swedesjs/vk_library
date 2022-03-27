@@ -31,7 +31,7 @@ class Secure {
   Future<Map<String, dynamic>> getAppBalance() =>
       _api.request('secure.getAppBalance');
 
-  /// Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
+  /// Shows a list of SMS notifications sent by the application using [Secure.sendSMSNotification] method.
   Future<Map<String, dynamic>> getSMSHistory({
     int? userId,
     int? dateFrom,
