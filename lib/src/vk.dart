@@ -1,7 +1,9 @@
 import 'package:vk_library/src/api.dart';
 import 'package:vk_library/src/models/vk_options.dart';
 
-export 'package:vk_library/src/models/vk_options.dart';
+export 'api.dart';
+export 'models/api_exception.dart';
+export 'models/vk_options.dart';
 
 class VK {
   final VKOptions options;
