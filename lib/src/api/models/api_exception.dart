@@ -1,6 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'api_exception.g.dart';
+part of '../models.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class APIException implements Exception {

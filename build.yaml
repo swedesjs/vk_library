@@ -3,4 +3,4 @@ targets:
     builders:
       json_serializable:
         generate_for:
-          - lib/src/models/*.dart
+          - lib/src/api/models.dart

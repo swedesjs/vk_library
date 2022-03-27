@@ -1,6 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'vk_options.g.dart';
+part of '../models.dart';
 
 enum Language { ru, uk, be, en, es, fi, de, it }
 
