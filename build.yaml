@@ -2,5 +2,12 @@ targets:
   $default:
     builders:
       json_serializable:
+        options:
+          include_if_null: false
+          explicit_to_json: true
+          field_rename: snake
         generate_for:
           - lib/src/api/models.dart
+          - lib/src/longpoll/models.dart
+          - lib/src/longpoll/models/attachments/attachment.dart
+          - lib/src/longpoll/models/objects/objects.dart
