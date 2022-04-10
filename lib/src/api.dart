@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:vk_library/vk_library.dart';
 
@@ -47,7 +49,7 @@ class API {
   late final Widgets widgets;
 
   final VKOptions _options;
-  static const _baseUrl = 'https://api.vk.com/method/';
+  static const _baseUrl = 'https://api.vk.com/method';
 
   API(this._options) {
     account = Account(this);
@@ -95,9 +97,14 @@ class API {
 
   Future<Map<String, dynamic>> request(String method,
       [Map<String, dynamic>? params]) async {
-    final dio = await Dio().get<Map<String, dynamic>>(
-      _baseUrl + method,
-      queryParameters: {..._options.toJson(), ...?params},
+    final dio = await Dio().post<Map<String, dynamic>>(
+      '$_baseUrl/$method',
+      data: <String, dynamic>{..._options.toJson(), ...?params}
+          .entries
+          .map((e) =>
+              '${e.key}=${e.value is Map<String, dynamic> && e.value is List<dynamic> ? jsonEncode(e.value) : e.value}')
+          .join('&'),
+      options: Options(contentType: 'application/x-www-form-urlencoded'),
     );
 
     final data = dio.data!;
