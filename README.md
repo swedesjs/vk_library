@@ -37,7 +37,7 @@ print(request['response']);
 API request via native function:
 
 ```dart
-final request = await vk.api.request('users.get', {'users_ids': ['durov']});
+final request = await vk.api.request('users.get', {'user_ids': ['durov']});
 
 print(request['response']);
 ```
