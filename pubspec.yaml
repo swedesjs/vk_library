@@ -1,5 +1,5 @@
 name: vk_library
-description: This package is designed to work with VK api
+description: VK SDK for Dart supporting all public methods of VK api, group longpoll, etc
 version: 1.0.3
 repository: https://github.com/swedesjs/vk_library
 homepage: https://github.com/swedesjs/vk_library
