@@ -16,7 +16,7 @@ abstract class Longpoll<T> {
 }
 
 class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
-  final API api;
+  final API _api;
   int? _groupId;
 
   int? get groupId => _groupId;
@@ -27,7 +27,7 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
 
   bool get isPolling => _isPolling;
 
-  GroupLongpoll(this.api, {int? groupId, this.wait = 25}) : _groupId = groupId {
+  GroupLongpoll(this._api, {int? groupId, this.wait = 25}) : _groupId = groupId {
     if (wait > 90) {
       throw GroupLongpollException('Maximum value for timeout - 90');
     }
@@ -38,11 +38,11 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
       _isPolling = true;
 
       if (_groupId == null) {
-        final group = await api.groups.getById();
+        final group = await _api.groups.getById();
         _groupId = group['response'][0]['id'] as int;
       }
 
-      final parameters = await api.groups.getLongPollServer(groupId: _groupId!);
+      final parameters = await _api.groups.getLongPollServer(groupId: _groupId!);
       final response = parameters['response'];
 
       return _startPolling(response['key'], response['server'], response['ts']);
