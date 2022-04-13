@@ -10,8 +10,10 @@ abstract class Longpoll<T> {
 
   Longpoll() : _updateController = StreamController();
 
+  /// Returns a stream.
   Stream<T> onUpdate() => _updateController.stream;
 
+  /// Adds a new event.
   void emitUpdate(T update) => _updateController.add(update);
 }
 
@@ -19,20 +21,25 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
   final API _api;
   int? _groupId;
 
+  /// Group Id.
   int? get groupId => _groupId;
 
+  /// Waiting time
   final int wait;
 
   bool _isPolling = false;
 
+  /// Is listening running
   bool get isPolling => _isPolling;
 
-  GroupLongpoll(this._api, {int? groupId, this.wait = 25}) : _groupId = groupId {
+  GroupLongpoll(this._api, {int? groupId, this.wait = 25})
+      : _groupId = groupId {
     if (wait > 90) {
       throw GroupLongpollException('Maximum value for timeout - 90');
     }
   }
 
+  /// Starts listening for new updates
   Future<void> start() async {
     if (!_isPolling) {
       _isPolling = true;
@@ -42,7 +49,8 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
         _groupId = group['response'][0]['id'] as int;
       }
 
-      final parameters = await _api.groups.getLongPollServer(groupId: _groupId!);
+      final parameters =
+          await _api.groups.getLongPollServer(groupId: _groupId!);
       final response = parameters['response'];
 
       return _startPolling(response['key'], response['server'], response['ts']);
@@ -51,9 +59,11 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
     }
   }
 
+  /// Stop listening for new updates
   Future<void> stop() {
     if (_isPolling) {
       _isPolling = false;
+      _updateController.close();
     } else {
       throw GroupLongpollException('');
     }
