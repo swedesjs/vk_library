@@ -55,7 +55,7 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
 
       return _startPolling(response['key'], response['server'], response['ts']);
     } else {
-      throw GroupLongpollException('');
+      throw GroupLongpollException('Longpoll is already running!');
     }
   }
 
@@ -64,8 +64,6 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
     if (_isPolling) {
       _isPolling = false;
       _updateController.close();
-    } else {
-      throw GroupLongpollException('');
     }
 
     return Future.value();
