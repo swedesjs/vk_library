@@ -234,6 +234,8 @@ Map<String, dynamic> _$MessageModelActionPhotoToJson(
 UpdateGroupLongpoll _$UpdateGroupLongpollFromJson(Map<String, dynamic> json) =>
     UpdateGroupLongpoll(
       type: json['type'] as String,
+      eventId: json['event_id'] as String,
+      version: json['v'] as String,
       object: json['object'] as Map<String, dynamic>,
       groupId: json['group_id'] as int,
     );
@@ -242,6 +244,8 @@ Map<String, dynamic> _$UpdateGroupLongpollToJson(
         UpdateGroupLongpoll instance) =>
     <String, dynamic>{
       'type': instance.type,
+      'event_id': instance.eventId,
+      'v': instance.version,
       'object': instance.object,
       'group_id': instance.groupId,
     };
