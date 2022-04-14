@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// An object describing an audio recording
+///
+/// https://dev.vk.com/reference/objects/audio
 @JsonSerializable()
 class AudioAttachment extends Attachment {
   /// Audio ID.

@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// An object describing an attached link in a post, comment, or wall post
+///
+/// https://dev.vk.com/reference/objects/link
 @JsonSerializable()
 class LinkAttachment extends Attachment {
   /// Link URL.

@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// An object describing a photo
+///
+/// https://dev.vk.com/reference/objects/photo
 @JsonSerializable()
 class PhotoAttachment extends Attachment {
   /// Identifier.

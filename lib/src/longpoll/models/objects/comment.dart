@@ -1,5 +1,8 @@
 part of 'objects.dart';
 
+/// Object describing the comments on the wall
+///
+/// https://dev.vk.com/reference/objects/comment
 @JsonSerializable()
 class CommentObject {
   /// Comment ID.

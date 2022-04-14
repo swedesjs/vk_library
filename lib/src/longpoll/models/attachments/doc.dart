@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// An object describing the file
+///
+/// https://dev.vk.com/reference/objects/doc
 @JsonSerializable()
 class DocAttachment extends Attachment {
   /// File ID.

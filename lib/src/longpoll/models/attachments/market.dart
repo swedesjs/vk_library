@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// An object describing a product
+///
+/// https://dev.vk.com/reference/objects/market-item
 @JsonSerializable()
 class MarketAttachment extends Attachment {
   /// Item ID.

@@ -1,5 +1,8 @@
 part of '../models.dart';
 
+/// Object describing the message
+///
+/// https://dev.vk.com/reference/objects/message
 @JsonSerializable()
 class MessageModel {
   /// Message ID.

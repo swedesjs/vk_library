@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// An object describing a post on a user's or community's wall
+///
+/// https://dev.vk.com/reference/objects/post
 @JsonSerializable()
 class WallAttachment extends Attachment {
   /// Identifier.

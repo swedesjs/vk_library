@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// Object describing the video
+///
+/// https://dev.vk.com/reference/objects/video
 @JsonSerializable()
 class VideoAttachment extends Attachment {
   /// Identifier.

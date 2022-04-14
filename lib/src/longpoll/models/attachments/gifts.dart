@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// An object describing a gift
+///
+/// https://dev.vk.com/reference/objects/gift
 @JsonSerializable()
 class GiftAttachment extends Attachment {
   /// Gift ID.

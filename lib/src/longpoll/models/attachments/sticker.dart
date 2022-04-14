@@ -1,5 +1,8 @@
 part of 'attachment.dart';
 
+/// Object describing the sticker
+///
+/// https://dev.vk.com/reference/objects/sticker
 @JsonSerializable()
 class StickerAttachment extends Attachment {
   /// Product Id.

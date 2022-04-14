@@ -29,6 +29,21 @@ part 'wall.dart';
 
 part 'wall_reply.dart';
 
+/// Base class for describing all media attachments in VK
+///
+/// Objects that describe media attachments:
+///
+/// - [PhotoAttachment]
+/// - [VideoAttachment]
+/// - [AudioAttachment]
+/// - [DocAttachment]
+/// - [LinkAttachment]
+/// - [MarketAttachment]
+/// - [MarketAlbumAttachment]
+/// - [WallAttachment]
+/// - [WallReplyAttachment]
+/// - [StickerAttachment]
+/// - [GiftAttachment]
 @JsonSerializable(createFactory: false)
 abstract class Attachment {
   final AttachmentType type;
@@ -53,6 +68,7 @@ enum AttachmentType {
   gift
 }
 
+/// The function converts objects into the required classes dependent on the [Attachment] class
 List<Attachment> transformAttachments(List<dynamic> rawAttachments) {
   final attachments = <Attachment>[];
 
