@@ -23,7 +23,7 @@ class AllAttachmentable extends Attachmentable {
   }
 
   /// Finds necessary attachments in all possible messages
-  List<Attachment> getAllAttachments(AttachmentType type) {
+  List<Attachment> getAllAttachments([AttachmentType? type]) {
     return [
       ...getAttachments(type),
       ...?_replyMessage?.getAttachments(type),
