@@ -1,6 +1,8 @@
 import 'package:vk_library/src/longpoll/longpoll.dart';
 import 'package:vk_library/src/longpoll/shared/attachmentable.dart';
 
+import 'message_forwards_collection.dart';
+
 class AllAttachmentable extends Attachmentable {
   final MessageForwardsCollection _forwards;
   final MessageModel? _replyMessage;
