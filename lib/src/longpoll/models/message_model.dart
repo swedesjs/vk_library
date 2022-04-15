@@ -44,8 +44,13 @@ class MessageModel {
   final Map<String, dynamic>? keyboard;
 
   /// Array of forwarded messages (if any). The maximum number of elements is 100. The maximum nesting depth for forwarded messages is 45, the total maximum number in the chain, including nesting, is 500.
-  @JsonKey(name: 'fwd_messages')
-  final List<MessageModel>? forwards;
+  @JsonKey(name: 'fwd_messages', fromJson: _toForwards)
+  final MessageForwardsCollection forwards;
+
+  static MessageForwardsCollection _toForwards(List<dynamic> array) =>
+      MessageForwardsCollection._(
+        array.cast<Map<String, dynamic>>().map(MessageModel.fromJson),
+      );
 
   /// The message in response to which the current one was sent.
   final MessageModel? replyMessage;
@@ -95,7 +100,7 @@ class MessageModel {
     this.geo,
     this.payload,
     this.keyboard,
-    this.forwards,
+    this.forwards = const MessageForwardsCollection._(Iterable.empty()),
     this.replyMessage,
     this.action,
     this.adminAuthorId,
@@ -273,4 +278,22 @@ class MessageModelActionPhoto {
       _$MessageModelActionPhotoFromJson(json);
 
   Map<String, dynamic> toJson() => _$MessageModelActionPhotoToJson(this);
+}
+
+class MessageForwardsCollection extends Iterable<MessageModel> {
+  final Iterable<MessageModel> _messages;
+
+  const MessageForwardsCollection._(
+    this._messages,
+  );
+
+  @override
+  Iterator<MessageModel> get iterator => _messages.iterator;
+
+  /// Returns the indexth element.
+  MessageModel operator [](int index) => elementAt(index);
+
+  /// Media attachments from all forwarded messages.
+  List<Attachment> get attachments =>
+      expand((element) => element.attachments).toList();
 }

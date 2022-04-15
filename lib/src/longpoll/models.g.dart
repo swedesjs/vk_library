@@ -22,9 +22,9 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
           : MessageModelGeo.fromJson(json['geo'] as Map<String, dynamic>),
       payload: json['payload'] as String?,
       keyboard: json['keyboard'] as Map<String, dynamic>?,
-      forwards: (json['fwd_messages'] as List<dynamic>?)
-          ?.map((e) => MessageModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      forwards: json['fwd_messages'] == null
+          ? const MessageForwardsCollection._(Iterable.empty())
+          : MessageModel._toForwards(json['fwd_messages'] as List),
       replyMessage: json['reply_message'] == null
           ? null
           : MessageModel.fromJson(
@@ -65,8 +65,7 @@ Map<String, dynamic> _$MessageModelToJson(MessageModel instance) {
   writeNotNull('geo', instance.geo?.toJson());
   writeNotNull('payload', instance.payload);
   writeNotNull('keyboard', instance.keyboard);
-  writeNotNull(
-      'fwd_messages', instance.forwards?.map((e) => e.toJson()).toList());
+  val['fwd_messages'] = instance.forwards.map((e) => e.toJson()).toList();
   writeNotNull('reply_message', instance.replyMessage?.toJson());
   writeNotNull('action', instance.action?.toJson());
   writeNotNull('admin_author_id', instance.adminAuthorId);
