@@ -4,7 +4,7 @@ part of '../models.dart';
 ///
 /// https://dev.vk.com/reference/objects/message
 @JsonSerializable()
-class MessageModel {
+class MessageModel extends AllAttachmentable {
   /// Message ID.
   final int id;
 
@@ -111,7 +111,11 @@ class MessageModel {
     this.wasListened,
     this.pinnedAt,
     this.messageTag,
-  });
+  }) : super(
+          attachments: attachments,
+          forwards: forwards,
+          replyMessage: replyMessage,
+        );
 
   factory MessageModel.fromJson(Map<String, dynamic> json) =>
       _$MessageModelFromJson(json);
@@ -279,8 +283,9 @@ class MessageModelActionPhoto {
 
   Map<String, dynamic> toJson() => _$MessageModelActionPhotoToJson(this);
 }
-
-class MessageForwardsCollection extends Iterable<MessageModel> {
+///
+class MessageForwardsCollection extends Iterable<MessageModel>
+    implements Attachmentable {
   final Iterable<MessageModel> _messages;
 
   const MessageForwardsCollection._(
@@ -294,6 +299,31 @@ class MessageForwardsCollection extends Iterable<MessageModel> {
   MessageModel operator [](int index) => elementAt(index);
 
   /// Media attachments from all forwarded messages.
+  // ignore: annotate_overrides
   List<Attachment> get attachments =>
       expand((element) => element.attachments).toList();
+
+  List<MessageModel> get equalize {
+    List<MessageModel> getForwards(Iterable<MessageModel> rawForwards) {
+      final forwards = <MessageModel>[];
+
+      for (final forward in rawForwards) {
+        forwards
+          ..add(forward)
+          ..addAll(getForwards(forward.forwards));
+      }
+
+      return forwards;
+    }
+
+    return getForwards(this);
+  }
+
+  @override
+  bool hasAttachments([AttachmentType? type]) =>
+      equalize.any((element) => element.hasAttachments(type));
+
+  @override
+  List<Attachment> getAttachments([AttachmentType? type]) =>
+      equalize.expand((e) => e.getAttachments(type)).toList();
 }

@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vk_library/src/longpoll/longpoll.dart';
+import 'package:vk_library/src/longpoll/shared/all_attachmentable.dart';
+import 'package:vk_library/src/longpoll/shared/attachmentable.dart';
 
 export 'models/attachments/attachment.dart';
 export 'models/objects/objects.dart';
