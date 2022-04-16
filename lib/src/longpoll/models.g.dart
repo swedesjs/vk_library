@@ -15,6 +15,8 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
       randomId: json['random_id'] as int?,
       ref: json['ref'] as String?,
       refSource: json['ref_source'] as String?,
+      isOut: whetherNull(json['out'] as int?),
+      isHidden: json['is_hidden'] as bool?,
       attachments: transformAttachments(json['attachments'] as List),
       isImportant: json['important'] as bool?,
       geo: json['geo'] == null
@@ -60,6 +62,8 @@ Map<String, dynamic> _$MessageModelToJson(MessageModel instance) {
   writeNotNull('random_id', instance.randomId);
   writeNotNull('ref', instance.ref);
   writeNotNull('ref_source', instance.refSource);
+  writeNotNull('out', instance.isOut);
+  writeNotNull('is_hidden', instance.isHidden);
   val['attachments'] = instance.attachments.map((e) => e.toJson()).toList();
   writeNotNull('important', instance.isImportant);
   writeNotNull('geo', instance.geo?.toJson());

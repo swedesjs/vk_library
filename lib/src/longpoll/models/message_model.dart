@@ -28,6 +28,13 @@ class MessageModel extends AllAttachmentable {
   /// Arbitrary parameter for working with [referral sources](https://dev.vk.com/api/community-messages/getting-started).
   final String? ref, refSource;
 
+  /// Message type (0 - received, 1 - sent, not returned for forwarded messages).
+  @JsonKey(name: 'out', fromJson: whetherNull)
+  final bool? isOut;
+
+  /// Is it hidden.
+  final bool? isHidden;
+
   /// Message media attachments.
   @JsonKey(fromJson: transformAttachments)
   final List<Attachment> attachments;
@@ -95,6 +102,8 @@ class MessageModel extends AllAttachmentable {
     this.randomId,
     this.ref,
     this.refSource,
+    this.isOut,
+    this.isHidden,
     required this.attachments,
     this.isImportant,
     this.geo,
