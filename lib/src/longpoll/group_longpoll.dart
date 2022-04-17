@@ -11,11 +11,6 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
   /// Waiting time
   final int wait;
 
-  bool _isPolling = false;
-
-  /// Is listening running
-  bool get isPolling => _isPolling;
-
   GroupLongpoll(this._api, {int? groupId, this.wait = 25})
       : _groupId = groupId {
     if (wait > 90) {
@@ -44,15 +39,6 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
   }
 
   @override
-  Future<void> stop() {
-    if (_isPolling) {
-      _isPolling = false;
-      _updateController.close();
-    }
-
-    return Future.value();
-  }
-
   Future<void> _startPolling(String key, String server, String ts) {
     if (_isPolling) {
       Dio().get<Map<String, dynamic>>(
@@ -72,7 +58,7 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
     return Future.value();
   }
 
-  /// Returns new message events
+  @override
   Stream<MessageModel> onMessageNew() =>
       onUpdate().where((event) => event.type == 'message_new').map(
             (event) => MessageModel.fromJson(

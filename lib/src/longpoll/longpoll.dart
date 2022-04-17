@@ -7,9 +7,16 @@ export 'models.dart';
 
 part 'group_longpoll.dart';
 
+part 'user_longpoll.dart';
+
 /// Main long poll class
 abstract class Longpoll<T> {
   final StreamController<T> _updateController;
+
+  bool _isPolling = false;
+
+  /// Is listening running
+  bool get isPolling => _isPolling;
 
   Longpoll() : _updateController = StreamController();
 
@@ -22,6 +29,19 @@ abstract class Longpoll<T> {
   /// Starts listening for new updates
   Future<void> start();
 
+  // ignore: unused_declaration
+  Future<void> _startPolling(String key, String server, String ts);
+
   /// Stop listening for new updates
-  Future<void> stop();
+  Future<void> stop() {
+    if (_isPolling) {
+      _isPolling = false;
+      _updateController.close();
+    }
+
+    return Future.value();
+  }
+
+  /// Returns new message events
+  Stream<Object> onMessageNew();
 }
