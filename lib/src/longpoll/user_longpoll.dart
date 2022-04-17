@@ -48,7 +48,6 @@ class UserLongpoll extends Longpoll<List<dynamic>> {
     }
   }
 
-  @override
   Future<void> _startPolling(String key, String server, String ts) {
     if (_isPolling) {
       Dio().get<Map<String, dynamic>>('https://$server', queryParameters: {

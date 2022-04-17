@@ -9,28 +9,28 @@ part 'group_longpoll.dart';
 
 part 'user_longpoll.dart';
 
-/// Main long poll class
-abstract class Longpoll<T> {
+/// Helper class is used to add, listen for new update streams
+abstract class AbstractUpdate<T> {
   final StreamController<T> _updateController;
 
-  bool _isPolling = false;
-
-  /// Is listening running
-  bool get isPolling => _isPolling;
-
-  Longpoll() : _updateController = StreamController();
+  AbstractUpdate() : _updateController = StreamController();
 
   /// Returns a stream.
   Stream<T> onUpdate() => _updateController.stream;
 
   /// Adds a new event.
   void emitUpdate(T update) => _updateController.add(update);
+}
+
+/// Main long poll class
+abstract class Longpoll<T> extends AbstractUpdate<T> {
+  bool _isPolling = false;
+
+  /// Is listening running
+  bool get isPolling => _isPolling;
 
   /// Starts listening for new updates
   Future<void> start();
-
-  // ignore: unused_declaration
-  Future<void> _startPolling(String key, String server, String ts);
 
   /// Stop listening for new updates
   Future<void> stop() {

@@ -38,7 +38,6 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
     }
   }
 
-  @override
   Future<void> _startPolling(String key, String server, String ts) {
     if (_isPolling) {
       Dio().get<Map<String, dynamic>>(
