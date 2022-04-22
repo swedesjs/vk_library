@@ -4,16 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/audio
 @JsonSerializable()
-class AudioAttachment extends Attachment {
-  /// Audio ID.
-  final int id;
-
-  /// Audio recording owner ID.
-  final int ownerId;
-
-  /// Content access key.
-  final String? accessKey;
-
+class AudioAttachment extends AttachmentDefault {
   /// Executor.
   final String? artist;
 
@@ -48,9 +39,9 @@ class AudioAttachment extends Attachment {
   final int? isHq;
 
   AudioAttachment({
-    required this.id,
-    required this.ownerId,
-    this.accessKey,
+    required int id,
+    required int ownerId,
+    String? accessKey,
     this.artist,
     this.title,
     this.duration,
@@ -61,7 +52,12 @@ class AudioAttachment extends Attachment {
     this.date,
     required this.noSearch,
     this.isHq,
-  }) : super(type: AttachmentType.audio);
+  }) : super(
+          type: AttachmentType.audio,
+          id: id,
+          ownerId: ownerId,
+          accessKey: accessKey,
+        );
 
   factory AudioAttachment.fromJson(Map<String, dynamic> json) =>
       _$AudioAttachmentFromJson(json);

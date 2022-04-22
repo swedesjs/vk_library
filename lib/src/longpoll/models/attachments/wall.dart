@@ -4,16 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/post
 @JsonSerializable()
-class WallAttachment extends Attachment {
-  /// Identifier.
-  final int id;
-
-  /// Owner ID.
-  final int ownerId;
-
-  /// Content access key.
-  final String? accessKey;
-
+class WallAttachment extends AttachmentDefault {
   /// Identifier of the author of the entry (on whose behalf the entry was published).
   final int? fromId;
 
@@ -101,9 +92,9 @@ class WallAttachment extends Attachment {
   final int? postponedId;
 
   WallAttachment({
-    required this.id,
-    required this.ownerId,
-    this.accessKey,
+    required int id,
+    required int ownerId,
+    String? accessKey,
     this.fromId,
     this.createdBy,
     this.date,
@@ -130,7 +121,12 @@ class WallAttachment extends Attachment {
     this.isFavorite = false,
     this.donut,
     this.postponedId,
-  }) : super(type: AttachmentType.wall);
+  }) : super(
+          type: AttachmentType.wall,
+          id: id,
+          ownerId: ownerId,
+          accessKey: accessKey,
+        );
 
   factory WallAttachment.fromJson(Map<String, dynamic> json) =>
       _$WallAttachmentFromJson(json);

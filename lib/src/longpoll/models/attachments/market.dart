@@ -4,16 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/market-item
 @JsonSerializable()
-class MarketAttachment extends Attachment {
-  /// Item ID.
-  final int id;
-
-  /// Item owner ID.
-  final int ownerId;
-
-  /// Content access key.
-  final String? accessKey;
-
+class MarketAttachment extends AttachmentDefault {
   /// Product Name.
   final String? title;
 
@@ -69,9 +60,9 @@ class MarketAttachment extends Attachment {
   final String? buttonTitle;
 
   MarketAttachment({
-    required this.id,
-    required this.ownerId,
-    this.accessKey,
+    required int id,
+    required int ownerId,
+    String? accessKey,
     this.title,
     this.description,
     this.price,
@@ -89,7 +80,12 @@ class MarketAttachment extends Attachment {
     this.likes,
     this.url,
     this.buttonTitle,
-  }) : super(type: AttachmentType.market);
+  }) : super(
+          type: AttachmentType.market,
+          id: id,
+          ownerId: ownerId,
+          accessKey: accessKey,
+        );
 
   factory MarketAttachment.fromJson(Map<String, dynamic> json) =>
       _$MarketAttachmentFromJson(json);

@@ -45,7 +45,7 @@ class WallReplyAttachment extends Attachment implements CommentObject {
     this.replyToUser,
     this.text,
     this.thread,
-  }) : super(type: AttachmentType.sticker);
+  }) : super(type: AttachmentType.wallReply);
 
   factory WallReplyAttachment.fromJson(Map<String, dynamic> json) =>
       _$WallReplyAttachmentFromJson(json);

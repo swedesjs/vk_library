@@ -4,16 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/market-album
 @JsonSerializable()
-class MarketAlbumAttachment extends Attachment {
-  /// Collection ID.
-  final int id;
-
-  /// Collection owner ID.
-  final int ownerId;
-
-  /// Content access key.
-  final String? accessKey;
-
+class MarketAlbumAttachment extends AttachmentDefault {
   /// The name of the collection.
   final String? title;
 
@@ -30,15 +21,20 @@ class MarketAlbumAttachment extends Attachment {
   final int? count;
 
   MarketAlbumAttachment({
-    required this.id,
-    required this.ownerId,
-    this.accessKey,
+    required int id,
+    required int ownerId,
+    String? accessKey,
     this.title,
     this.isMain,
     this.isHidden,
     this.photo,
     this.count,
-  }) : super(type: AttachmentType.marketAlbum);
+  }) : super(
+          type: AttachmentType.marketAlbum,
+          id: id,
+          ownerId: ownerId,
+          accessKey: accessKey,
+        );
 
   factory MarketAlbumAttachment.fromJson(Map<String, dynamic> json) =>
       _$MarketAlbumAttachmentFromJson(json);

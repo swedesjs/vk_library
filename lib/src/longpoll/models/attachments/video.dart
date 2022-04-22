@@ -4,16 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/video
 @JsonSerializable()
-class VideoAttachment extends Attachment {
-  /// Identifier.
-  final int id;
-
-  /// Owner ID.
-  final int ownerId;
-
-  /// Content access key.
-  final String? accessKey;
-
+class VideoAttachment extends AttachmentDefault {
   /// Title of the video.
   final String? title;
 
@@ -146,9 +137,9 @@ class VideoAttachment extends Attachment {
   final VideoAttachmentReposts? reposts;
 
   VideoAttachment({
-    required this.id,
-    required this.ownerId,
-    this.accessKey,
+    required int id,
+    required int ownerId,
+    String? accessKey,
     this.title,
     this.description,
     this.duration,
@@ -187,7 +178,12 @@ class VideoAttachment extends Attachment {
     this.spectators,
     this.likes,
     this.reposts,
-  }) : super(type: AttachmentType.video);
+  }) : super(
+          type: AttachmentType.video,
+          id: id,
+          ownerId: ownerId,
+          accessKey: accessKey,
+        );
 
   factory VideoAttachment.fromJson(Map<String, dynamic> json) =>
       _$VideoAttachmentFromJson(json);

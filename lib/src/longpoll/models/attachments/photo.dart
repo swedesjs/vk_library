@@ -4,16 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/photo
 @JsonSerializable()
-class PhotoAttachment extends Attachment {
-  /// Identifier.
-  final int id;
-
-  /// Owner ID.
-  final int ownerId;
-
-  /// Content access key.
-  final String? accessKey;
-
+class PhotoAttachment extends AttachmentDefault {
   /// The ID of the album that the photo is in.
   final int? albumId;
 
@@ -38,9 +29,9 @@ class PhotoAttachment extends Attachment {
   final int? height;
 
   PhotoAttachment({
-    required this.id,
-    required this.ownerId,
-    this.accessKey,
+    required int id,
+    required int ownerId,
+    String? accessKey,
     this.albumId,
     this.userId,
     this.description,
@@ -48,7 +39,12 @@ class PhotoAttachment extends Attachment {
     this.sizes,
     this.width,
     this.height,
-  }) : super(type: AttachmentType.photo);
+  }) : super(
+          type: AttachmentType.photo,
+          id: id,
+          ownerId: ownerId,
+          accessKey: accessKey,
+        );
 
   factory PhotoAttachment.fromJson(Map<String, dynamic> json) =>
       _$PhotoAttachmentFromJson(json);

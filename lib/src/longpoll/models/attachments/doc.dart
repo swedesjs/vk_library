@@ -4,16 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/doc
 @JsonSerializable()
-class DocAttachment extends Attachment {
-  /// File ID.
-  final int id;
-
-  /// The ID of the user who uploaded the file.
-  final int ownerId;
-
-  /// Content access key.
-  final String? accessKey;
-
+class DocAttachment extends AttachmentDefault {
   /// File name.
   final String? title;
 
@@ -38,9 +29,9 @@ class DocAttachment extends Attachment {
   final DocAttachmentPreview? preview;
 
   DocAttachment({
-    required this.id,
-    required this.ownerId,
-    this.accessKey,
+    required int id,
+    required int ownerId,
+    String? accessKey,
     this.title,
     this.size,
     this.ext,
@@ -48,7 +39,12 @@ class DocAttachment extends Attachment {
     this.date,
     this.docType,
     this.preview,
-  }) : super(type: AttachmentType.doc);
+  }) : super(
+          type: AttachmentType.doc,
+          id: id,
+          ownerId: ownerId,
+          accessKey: accessKey,
+        );
 
   factory DocAttachment.fromJson(Map<String, dynamic> json) =>
       _$DocAttachmentFromJson(json);
