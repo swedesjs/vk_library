@@ -68,6 +68,31 @@ enum AttachmentType {
   gift
 }
 
+@JsonSerializable()
+class AttachmentDefault extends Attachment {
+  /// ID Attachment
+  final int id;
+
+  /// Owner Id attachment
+  final int ownerId;
+
+  /// Content key
+  final String? accessKey;
+
+  AttachmentDefault({
+    required AttachmentType type,
+    required this.id,
+    required this.ownerId,
+    this.accessKey,
+  }) : super(type: type);
+
+  factory AttachmentDefault.fromJson(Map<String, dynamic> json) =>
+      _$AttachmentDefaultFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$AttachmentDefaultToJson(this);
+}
+
 /// The function converts objects into the required classes dependent on the [Attachment] class
 List<Attachment> transformAttachments(List<dynamic> rawAttachments) {
   final attachments = <Attachment>[];

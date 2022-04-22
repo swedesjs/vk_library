@@ -25,6 +25,31 @@ const _$AttachmentTypeEnumMap = {
   AttachmentType.gift: 'gift',
 };
 
+AttachmentDefault _$AttachmentDefaultFromJson(Map<String, dynamic> json) =>
+    AttachmentDefault(
+      type: $enumDecode(_$AttachmentTypeEnumMap, json['type']),
+      id: json['id'] as int,
+      ownerId: json['owner_id'] as int,
+      accessKey: json['access_key'] as String?,
+    );
+
+Map<String, dynamic> _$AttachmentDefaultToJson(AttachmentDefault instance) {
+  final val = <String, dynamic>{
+    'type': _$AttachmentTypeEnumMap[instance.type],
+    'id': instance.id,
+    'owner_id': instance.ownerId,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('access_key', instance.accessKey);
+  return val;
+}
+
 AudioAttachment _$AudioAttachmentFromJson(Map<String, dynamic> json) =>
     AudioAttachment(
       id: json['id'] as int,
