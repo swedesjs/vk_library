@@ -234,6 +234,45 @@ Map<String, dynamic> _$MessageModelActionPhotoToJson(
   return val;
 }
 
+Map<String, dynamic> _$TransformMessageToJson(TransformMessage instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'message_id': instance.messageId,
+      'flags': instance.flags,
+      'peer_id': instance.peerId,
+      'timestamp': instance.timestamp,
+      'text': instance.text,
+      'additional': instance.additional.toJson(),
+      'attachments': instance.attachments,
+      'random_id': instance.randomId,
+      'conversation_msg_id': instance.conversationMsgId,
+      'update_timestamp': instance.updateTimestamp,
+    };
+
+TransformMessageAdditional _$TransformMessageAdditionalFromJson(
+        Map<String, dynamic> json) =>
+    TransformMessageAdditional(
+      title: json['title'] as String?,
+      from: json['from'] as String?,
+      payload: json['payload'] as String?,
+    );
+
+Map<String, dynamic> _$TransformMessageAdditionalToJson(
+    TransformMessageAdditional instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('title', instance.title);
+  writeNotNull('from', instance.from);
+  writeNotNull('payload', instance.payload);
+  return val;
+}
+
 UpdateGroupLongpoll _$UpdateGroupLongpollFromJson(Map<String, dynamic> json) =>
     UpdateGroupLongpoll(
       type: json['type'] as String,
