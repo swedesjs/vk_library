@@ -6,6 +6,8 @@ part 'attachment.g.dart';
 
 part 'audio.dart';
 
+part 'audio_message.dart';
+
 part 'doc.dart';
 
 part 'general_classes.dart';
@@ -43,6 +45,7 @@ part 'wall_reply.dart';
 /// - [WallReplyAttachment]
 /// - [StickerAttachment]
 /// - [GiftAttachment]
+/// - [AudioMessageAttachment]
 @JsonSerializable(createFactory: false)
 abstract class Attachment {
   final AttachmentType type;
@@ -64,7 +67,8 @@ enum AttachmentType {
   wall,
   wallReply,
   sticker,
-  gift
+  gift,
+  audioMessage
 }
 
 @JsonSerializable()
@@ -138,6 +142,9 @@ List<Attachment> transformAttachments(List<dynamic> rawAttachments) {
         break;
       case AttachmentType.gift:
         attachments.add(GiftAttachment.fromJson(object));
+        break;
+      case AttachmentType.audioMessage:
+        attachments.add(AudioMessageAttachment.fromJson(object));
         break;
     }
   }

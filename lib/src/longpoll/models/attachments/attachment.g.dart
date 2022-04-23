@@ -23,6 +23,7 @@ const _$AttachmentTypeEnumMap = {
   AttachmentType.wallReply: 'wall_reply',
   AttachmentType.sticker: 'sticker',
   AttachmentType.gift: 'gift',
+  AttachmentType.audioMessage: 'audio_message',
 };
 
 AttachmentDefault _$AttachmentDefaultFromJson(Map<String, dynamic> json) =>
@@ -90,6 +91,44 @@ Map<String, dynamic> _$AudioAttachmentToJson(AudioAttachment instance) {
   writeNotNull('date', instance.date?.toIso8601String());
   val['no_search'] = instance.noSearch;
   writeNotNull('is_hq', instance.isHq);
+  return val;
+}
+
+AudioMessageAttachment _$AudioMessageAttachmentFromJson(
+        Map<String, dynamic> json) =>
+    AudioMessageAttachment(
+      id: json['id'] as int,
+      ownerId: json['owner_id'] as int,
+      accessKey: json['access_key'] as String?,
+      duration: durationNullFromJson(json['duration'] as int?),
+      waveform:
+          (json['waveform'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      linkOgg: json['link_ogg'] as String?,
+      linkMp3: json['link_mp3'] as String?,
+      locale: json['locale'] as String?,
+      isRecognized: whetherNull(json['is_recognized'] as int?),
+    );
+
+Map<String, dynamic> _$AudioMessageAttachmentToJson(
+    AudioMessageAttachment instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'owner_id': instance.ownerId,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('access_key', instance.accessKey);
+  writeNotNull('duration', durationNullToJson(instance.duration));
+  writeNotNull('waveform', instance.waveform);
+  writeNotNull('link_ogg', instance.linkOgg);
+  writeNotNull('link_mp3', instance.linkMp3);
+  writeNotNull('locale', instance.locale);
+  writeNotNull('is_recognized', instance.isRecognized);
   return val;
 }
 
