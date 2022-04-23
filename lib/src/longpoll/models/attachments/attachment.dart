@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../models.dart';
-import '../objects/objects.dart';
 
 part 'attachment.g.dart';
 
@@ -91,6 +90,10 @@ class AttachmentDefault extends Attachment {
 
   @override
   Map<String, dynamic> toJson() => _$AttachmentDefaultToJson(this);
+
+  /// The method converts the current instance to a [PhotoAttachment]
+  PhotoAttachment toPhoto() =>
+      PhotoAttachment(id: id, ownerId: ownerId, accessKey: accessKey);
 }
 
 /// The function converts objects into the required classes dependent on the [Attachment] class
@@ -134,7 +137,7 @@ List<Attachment> transformAttachments(List<dynamic> rawAttachments) {
         attachments.add(StickerAttachment.fromJson(object));
         break;
       case AttachmentType.gift:
-        attachments.add(MarketAlbumAttachment.fromJson(object));
+        attachments.add(GiftAttachment.fromJson(object));
         break;
     }
   }
