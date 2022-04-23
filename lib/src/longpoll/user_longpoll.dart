@@ -72,7 +72,9 @@ class UserLongpoll extends Longpoll<List<dynamic>> {
   }
 
   @override
-  Stream<List> onMessageNew() => onUpdate().where((event) => event[0] == 4);
+  Stream<MessageModel> onMessageNew() => onUpdate()
+      .where((event) => event[0] == 4)
+      .map((event) => TransformMessage.fromJson(event).transform());
 }
 
 const _$EnumUserLongpollMode = {
