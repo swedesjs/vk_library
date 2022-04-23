@@ -100,54 +100,44 @@ class AttachmentDefault extends Attachment {
       PhotoAttachment(id: id, ownerId: ownerId, accessKey: accessKey);
 }
 
+/// Converts the map to an [Attachment] instance
+Attachment transformAttachment(Map<String, dynamic> attachment) {
+  final type = attachment['type'];
+  final enumType = $enumDecode(_$AttachmentTypeEnumMap, type);
+  final object = attachment[type];
+
+  switch (enumType) {
+    case AttachmentType.photo:
+      return PhotoAttachment.fromJson(object);
+    case AttachmentType.video:
+      return VideoAttachment.fromJson(object);
+    case AttachmentType.audio:
+      return AudioAttachment.fromJson(object);
+    case AttachmentType.doc:
+      return DocAttachment.fromJson(object);
+    case AttachmentType.link:
+      return LinkAttachment.fromJson(object);
+    case AttachmentType.market:
+      return MarketAttachment.fromJson(object);
+    case AttachmentType.marketAlbum:
+      return MarketAlbumAttachment.fromJson(object);
+    case AttachmentType.wall:
+      return WallAttachment.fromJson(object);
+    case AttachmentType.wallReply:
+      return WallReplyAttachment.fromJson(object);
+    case AttachmentType.sticker:
+      return StickerAttachment.fromJson(object);
+    case AttachmentType.gift:
+      return GiftAttachment.fromJson(object);
+    case AttachmentType.audioMessage:
+      return AudioMessageAttachment.fromJson(object);
+  }
+}
+
 /// The function converts objects into the required classes dependent on the [Attachment] class
 List<Attachment> transformAttachments(List<dynamic> rawAttachments) {
-  final attachments = <Attachment>[];
-
-  for (final rawAttachment in rawAttachments) {
-    final type = rawAttachment['type'];
-    final enumType = $enumDecode(_$AttachmentTypeEnumMap, type);
-    final object = rawAttachment[type];
-
-    switch (enumType) {
-      case AttachmentType.photo:
-        attachments.add(PhotoAttachment.fromJson(object));
-        break;
-      case AttachmentType.video:
-        attachments.add(VideoAttachment.fromJson(object));
-        break;
-      case AttachmentType.audio:
-        attachments.add(AudioAttachment.fromJson(object));
-        break;
-      case AttachmentType.doc:
-        attachments.add(DocAttachment.fromJson(object));
-        break;
-      case AttachmentType.link:
-        attachments.add(LinkAttachment.fromJson(object));
-        break;
-      case AttachmentType.market:
-        attachments.add(MarketAttachment.fromJson(object));
-        break;
-      case AttachmentType.marketAlbum:
-        attachments.add(MarketAlbumAttachment.fromJson(object));
-        break;
-      case AttachmentType.wall:
-        attachments.add(WallAttachment.fromJson(object));
-        break;
-      case AttachmentType.wallReply:
-        attachments.add(WallReplyAttachment.fromJson(object));
-        break;
-      case AttachmentType.sticker:
-        attachments.add(StickerAttachment.fromJson(object));
-        break;
-      case AttachmentType.gift:
-        attachments.add(GiftAttachment.fromJson(object));
-        break;
-      case AttachmentType.audioMessage:
-        attachments.add(AudioMessageAttachment.fromJson(object));
-        break;
-    }
-  }
-
-  return attachments;
+  return [
+    for (final rawAttachment in rawAttachments)
+      transformAttachment(rawAttachment as Map<String, dynamic>)
+  ];
 }
