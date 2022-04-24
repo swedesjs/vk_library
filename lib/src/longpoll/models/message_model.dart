@@ -1,5 +1,17 @@
 part of '../models.dart';
 
+const initialNumberPeerId = 2000000000;
+
+PeerType getPeerType(int id) {
+  if (id < initialNumberPeerId) {
+    return PeerType.chat;
+  } else if (id < 0) {
+    return PeerType.group;
+  } else {
+    return PeerType.user;
+  }
+}
+
 /// Object describing the message
 ///
 /// https://dev.vk.com/reference/objects/message
@@ -15,12 +27,38 @@ class MessageModel extends AllAttachmentable {
   /// Peer id.
   final int peerId;
 
+  /// The type of conversation from which the message was sent
+  PeerType get peerType => getPeerType(peerId);
+
+  /// Is it a dialog with the user
+  bool get isFromUser => peerType == PeerType.user;
+
+  /// Is it a dialogue with a group
+  bool get isFromGroup => peerType == PeerType.group;
+
+  /// Has a chat message been sent
+  bool get isChat => peerType == PeerType.chat;
+
+  /// Chat ID (if peerType = [PeerType.chat])
+  int? get chatId => isChat ? peerId - initialNumberPeerId : null;
+
   /// Sender ID.
   @JsonKey(name: 'from_id')
   final int senderId;
 
+  /// Sender type.
+  PeerType get senderType => getPeerType(senderId);
+
+  /// Whether the user sent a message
+  bool get isUser => senderType == PeerType.user;
+
+  /// Whether the message was sent by a group
+  bool get isGroup => senderType == PeerType.group;
+
   /// Message text.
   final String text;
+
+  bool get hasText => text.isNotEmpty;
 
   /// The identifier used when sending the message. Returned for outgoing messages only.
   final int? randomId;
@@ -46,6 +84,9 @@ class MessageModel extends AllAttachmentable {
   /// Location information.
   final MessageModelGeo? geo;
 
+  /// Is geolocation information provided
+  bool get hasGeo => geo != null;
+
   /// Service field for messages to bots (payload).
   final String? payload;
   final Map<String, dynamic>? keyboard;
@@ -54,6 +95,9 @@ class MessageModel extends AllAttachmentable {
   @JsonKey(name: 'fwd_messages', fromJson: _toForwards)
   final MessageForwardsCollection forwards;
 
+  /// Are there forwarded messages
+  bool get hasForwards => forwards.isNotEmpty;
+
   static MessageForwardsCollection _toForwards(List<dynamic> array) =>
       MessageForwardsCollection(
         array.cast<Map<String, dynamic>>().map(MessageModel.fromJson),
@@ -61,6 +105,9 @@ class MessageModel extends AllAttachmentable {
 
   /// The message in response to which the current one was sent.
   final MessageModel? replyMessage;
+
+  /// Is there a reply to messages
+  bool get hasReplyMessage => replyMessage != null;
 
   /// Service action information with chat.
   final MessageModelAction? action;
@@ -292,3 +339,5 @@ class MessageModelActionPhoto {
 
   Map<String, dynamic> toJson() => _$MessageModelActionPhotoToJson(this);
 }
+
+enum PeerType { user, chat, group }
