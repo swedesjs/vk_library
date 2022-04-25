@@ -54,6 +54,17 @@ longpoll.onUpdate().listen((event) {
 longpoll.start();
 ```
 
+Receive user longpoll updates:
+
+```dart
+final longpoll = UserLongpoll(vk.api);
+
+longpoll.onUpdate().listen((event) {
+  print(event.toJson());
+});
+
+longpoll.start();
+```
 ## Error processing
 
 API request may result in an APIException:
