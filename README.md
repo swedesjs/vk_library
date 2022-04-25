@@ -60,7 +60,7 @@ Receive user longpoll updates:
 final longpoll = UserLongpoll(vk.api);
 
 longpoll.onUpdate().listen((event) {
-  print(event.toJson());
+  print(event);
 });
 
 longpoll.start();
