@@ -1,8 +1,7 @@
 # vk_library
 [![Pub](https://img.shields.io/pub/v/vk_library?color=blue&style=flat-square)](https://pub.dev/packages/vk_library)
 
-VK SDK for Dart supporting all public methods of VK api, group longpoll, etc
-
+VK SDK for Dart with support for all public VK api methods, Bots Longpoll, User Longpoll, etc.
 ## Get Started
 
 ### Add Dependency
