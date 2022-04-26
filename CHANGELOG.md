@@ -21,4 +21,8 @@
 
 ## v1.0.3
 
-- 
+## v1.0.4
+
+- Added support for User Longpoll and GroupLongpoll
+- Added a message model for the convenience of working with events: `message_new`, `message_edit`, `message_reply`
+- Attachment models added

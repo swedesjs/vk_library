@@ -8,7 +8,7 @@ VK SDK for Dart with support for all public VK api methods, Bots Longpoll, User 
 
 ```yaml
 dependencies:
-  vk_library: 1.0.3
+  vk_library: 1.0.4
 ```
 
 ### Create a base class to work with
