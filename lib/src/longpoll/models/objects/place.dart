@@ -1,4 +1,5 @@
 part of 'objects.dart';
+
 /// An object that describes a place
 ///
 /// https://dev.vk.com/reference/objects/place
