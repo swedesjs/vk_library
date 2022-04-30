@@ -101,8 +101,7 @@ class API {
       '$_baseUrl/$method',
       data: <String, dynamic>{..._options.toJson(), ...?params}
           .entries
-          .map((e) =>
-              '${e.key}=${e.value is Map<String, dynamic> && e.value is List<dynamic> ? jsonEncode(e.value) : e.value}')
+          .map((e) => '${e.key}=${_transformJson(e.value)}')
           .join('&'),
       options: Options(contentType: 'application/x-www-form-urlencoded'),
     );
@@ -112,5 +111,13 @@ class API {
     if (error != null) throw APIException.fromJson(error);
 
     return data;
+  }
+
+  Object _transformJson(Object value) {
+    if (value is Map<String, dynamic> && value is List<dynamic>) {
+      return jsonEncode(value);
+    }
+
+    return value;
   }
 }
