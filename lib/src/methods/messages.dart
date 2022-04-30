@@ -1,4 +1,4 @@
-import 'package:vk_library/src/api.dart';
+import 'package:vk_library/vk_library.dart';
 
 class Messages {
   final API _api;
@@ -103,7 +103,7 @@ class Messages {
     int? messageId,
     int? conversationMessageId,
     String? template,
-    String? keyboard,
+    Keyboard? keyboard,
   }) =>
       _api.request('messages.edit', {
         'peer_id': peerId,
@@ -121,7 +121,7 @@ class Messages {
         if (conversationMessageId != null)
           'conversation_message_id': conversationMessageId,
         if (template != null) 'template': template,
-        if (keyboard != null) 'keyboard': keyboard,
+        if (keyboard != null) 'keyboard': keyboard.toJson(),
       });
 
   /// Edits the title of a chat.
@@ -534,7 +534,7 @@ class Messages {
     String? forward,
     int? stickerId,
     int? groupId,
-    String? keyboard,
+    Keyboard? keyboard,
     String? template,
     String? payload,
     String? contentSource,
@@ -561,7 +561,7 @@ class Messages {
         if (forward != null) 'forward': forward,
         if (stickerId != null) 'sticker_id': stickerId,
         if (groupId != null) 'group_id': groupId,
-        if (keyboard != null) 'keyboard': keyboard,
+        if (keyboard != null) 'keyboard': keyboard.toJson(),
         if (template != null) 'template': template,
         if (payload != null) 'payload': payload,
         if (contentSource != null) 'content_source': contentSource,

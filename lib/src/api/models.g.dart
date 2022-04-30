@@ -48,3 +48,148 @@ const _$LanguageEnumMap = {
   Language.de: 'de',
   Language.it: 'it',
 };
+
+Map<String, dynamic> _$KeyboardToJson(Keyboard instance) => <String, dynamic>{
+      'one_time': instance.isOneTime,
+      'buttons': instance.buttons
+          .map((e) => e.map((e) => e.toJson()).toList())
+          .toList(),
+      'inline': instance.isInline,
+    };
+
+Map<String, dynamic> _$KeyboardButtonToJson(KeyboardButton instance) =>
+    <String, dynamic>{
+      'action': instance.action.toJson(),
+      'color': _$KeyboardColorEnumMap[instance.color],
+    };
+
+const _$KeyboardColorEnumMap = {
+  KeyboardColor.primary: 'primary',
+  KeyboardColor.secondary: 'secondary',
+  KeyboardColor.negative: 'negative',
+  KeyboardColor.positive: 'positive',
+};
+
+Map<String, dynamic> _$AbstractKeyboardActionToJson(
+    AbstractKeyboardAction instance) {
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('payload', instance.payload);
+  return val;
+}
+
+const _$KeyboardActionTypeEnumMap = {
+  KeyboardActionType.text: 'text',
+  KeyboardActionType.openLink: 'open_link',
+  KeyboardActionType.location: 'location',
+  KeyboardActionType.vkPay: 'vkpay',
+  KeyboardActionType.vkApps: 'open_app',
+  KeyboardActionType.callback: 'callback',
+};
+
+Map<String, dynamic> _$KeyboardTextToJson(KeyboardText instance) {
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('payload', instance.payload);
+  val['label'] = instance.text;
+  return val;
+}
+
+Map<String, dynamic> _$KeyboardOpenLinkToJson(KeyboardOpenLink instance) {
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('payload', instance.payload);
+  val['link'] = instance.link;
+  val['label'] = instance.text;
+  return val;
+}
+
+Map<String, dynamic> _$KeyboardLocationToJson(KeyboardLocation instance) {
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('payload', instance.payload);
+  return val;
+}
+
+Map<String, dynamic> _$KeyboardVKPayToJson(KeyboardVKPay instance) {
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('payload', instance.payload);
+  writeNotNull('hash', instance.hash);
+  return val;
+}
+
+Map<String, dynamic> _$KeyboardVKAppsToJson(KeyboardVKApps instance) {
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('payload', instance.payload);
+  writeNotNull('app_id', instance.appId);
+  writeNotNull('owner_id', instance.ownerId);
+  writeNotNull('label', instance.name);
+  writeNotNull('hash', instance.hash);
+  return val;
+}
+
+Map<String, dynamic> _$KeyboardCallbackToJson(KeyboardCallback instance) {
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('payload', instance.payload);
+  writeNotNull('label', instance.text);
+  return val;
+}
