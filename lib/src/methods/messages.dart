@@ -528,7 +528,7 @@ class Messages {
     String? message,
     num? lat,
     num? long,
-    String? attachment,
+    List<String>? attachment,
     int? replyTo,
     List<int>? forwardMessages,
     String? forward,
@@ -554,7 +554,7 @@ class Messages {
         if (message != null) 'message': message,
         if (lat != null) 'lat': lat,
         if (long != null) 'long': long,
-        if (attachment != null) 'attachment': attachment,
+        if (attachment != null) 'attachment': attachment.join(','),
         if (replyTo != null) 'reply_to': replyTo,
         if (forwardMessages != null)
           'forward_messages': forwardMessages.join(','),
