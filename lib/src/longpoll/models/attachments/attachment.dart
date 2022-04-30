@@ -53,6 +53,9 @@ abstract class Attachment {
   Attachment({required this.type});
 
   Map<String, dynamic> toJson() => _$AttachmentToJson(this);
+
+  @override
+  String toString() => runtimeType.toString();
 }
 
 @JsonEnum(fieldRename: FieldRename.snake)
@@ -98,6 +101,24 @@ class AttachmentDefault extends Attachment {
   /// The method converts the current instance to a [PhotoAttachment]
   PhotoAttachment toPhoto() =>
       PhotoAttachment(id: id, ownerId: ownerId, accessKey: accessKey);
+
+  /// Returns the format string `{ownerId}_{id}{?'_'}{?accessKey}`
+  String get identifiers => getValue(whetherAccessKey: true);
+
+  /// Returns the format string `{type}{ownerId}_{id}{?'_'}{?accessKey}`
+  String get attachment => _$AttachmentTypeEnumMap[type]! + identifiers;
+
+  /// If [whetherAccessKey] = true and [accessKey] != null,
+  /// then returns a string format like `{ownerId}_{id}_{accessKey}`, otherwise returns `{ownerId}_{id}`
+  String getValue({bool whetherAccessKey = false}) {
+    final returnAccessKey =
+        whetherAccessKey && accessKey != null ? '_$accessKey' : '';
+
+    return '${ownerId}_$id$returnAccessKey';
+  }
+
+  @override
+  String toString() => '$runtimeType[$identifiers]';
 }
 
 /// Converts the map to an [Attachment] instance
