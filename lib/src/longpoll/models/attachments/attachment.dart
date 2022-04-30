@@ -90,7 +90,24 @@ class AttachmentDefault extends Attachment {
     required this.id,
     required this.ownerId,
     this.accessKey,
-  }) : super(type: type);
+  }) : super(type: type) {
+    const supportedTypes = <AttachmentType>[
+      AttachmentType.doc,
+      AttachmentType.photo,
+      AttachmentType.video,
+      AttachmentType.audioMessage,
+      AttachmentType.market,
+      AttachmentType.wall,
+      AttachmentType.marketAlbum,
+      AttachmentType.audio
+    ];
+
+    if (!supportedTypes.contains(type)) {
+      throw UnsupportedError(
+        'The "${type.name}" type is not supported, supported types are: ${supportedTypes.map((e) => e.name).join(', ')}',
+      );
+    }
+  }
 
   factory AttachmentDefault.fromJson(Map<String, dynamic> json) =>
       _$AttachmentDefaultFromJson(json);
