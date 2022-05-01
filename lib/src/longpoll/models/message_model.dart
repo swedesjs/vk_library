@@ -137,8 +137,9 @@ class MessageModel extends AllAttachmentable {
   /// A string to match the user Notify and VKontakte. The data is copied at the moment the user responds to a message from Notify sent with the session_id parameter.
   final String? messageTag;
 
+  /// Information about available client features.
   @JsonKey(ignore: true)
-  late Map<String, dynamic>? clientInfo;
+  late MessageModelClientInfo? clientInfo;
 
   MessageModel({
     required this.id,
@@ -341,3 +342,38 @@ class MessageModelActionPhoto {
 }
 
 enum PeerType { user, chat, group }
+
+/// Information about available client features.
+@JsonSerializable()
+class MessageModelClientInfo {
+  /// An array of buttons that the client supports. See [Keyboard](https://dev.vk.com/api/bots/development/keyboard#%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85) section for possible values;
+  final List<String> buttonActions;
+
+  /// Is the bot keyboard supported by the client.
+  final bool keyboard;
+
+  /// Is the inline keyboard of bots supported by the client.
+  final bool inlineKeyboard;
+
+  /// Are [carousels](https://dev.vk.com/api/bots/development/messages) supported by the client.
+  final bool carousel;
+
+  /// The [ID](https://dev.vk.com/api/api-requests) of the language being used.
+  final int langId;
+
+  /// Returns one element of the [Language] enum at index [langId]
+  Language get language => Language.values[langId];
+
+  MessageModelClientInfo({
+    required this.buttonActions,
+    required this.keyboard,
+    required this.inlineKeyboard,
+    required this.carousel,
+    required this.langId,
+  });
+
+  factory MessageModelClientInfo.fromJson(Map<String, dynamic> json) =>
+      _$MessageModelClientInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MessageModelClientInfoToJson(this);
+}

@@ -234,6 +234,28 @@ Map<String, dynamic> _$MessageModelActionPhotoToJson(
   return val;
 }
 
+MessageModelClientInfo _$MessageModelClientInfoFromJson(
+        Map<String, dynamic> json) =>
+    MessageModelClientInfo(
+      buttonActions: (json['button_actions'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      keyboard: json['keyboard'] as bool,
+      inlineKeyboard: json['inline_keyboard'] as bool,
+      carousel: json['carousel'] as bool,
+      langId: json['lang_id'] as int,
+    );
+
+Map<String, dynamic> _$MessageModelClientInfoToJson(
+        MessageModelClientInfo instance) =>
+    <String, dynamic>{
+      'button_actions': instance.buttonActions,
+      'keyboard': instance.keyboard,
+      'inline_keyboard': instance.inlineKeyboard,
+      'carousel': instance.carousel,
+      'lang_id': instance.langId,
+    };
+
 Map<String, dynamic> _$TransformMessageToJson(TransformMessage instance) =>
     <String, dynamic>{
       'type': instance.type,

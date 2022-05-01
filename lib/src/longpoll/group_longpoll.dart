@@ -61,8 +61,10 @@ class GroupLongpoll extends Longpoll<UpdateGroupLongpoll> {
   Stream<MessageModel> onMessageNew() =>
       onUpdate().where((event) => event.type == 'message_new').map(
             (event) => MessageModel.fromJson(
-                event.object['message'] as Map<String, dynamic>)
-              ..clientInfo = event.object['client_info'],
+              event.object['message'] as Map<String, dynamic>,
+            )..clientInfo = MessageModelClientInfo.fromJson(
+                event.object['client_info'] as Map<String, dynamic>,
+              ),
           );
 }
 
