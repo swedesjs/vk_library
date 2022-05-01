@@ -32,23 +32,6 @@ Map<String, dynamic> _$RequestParamToJson(RequestParam instance) =>
       'value': instance.value,
     };
 
-Map<String, dynamic> _$VKOptionsToJson(VKOptions instance) => <String, dynamic>{
-      'access_token': instance.token,
-      'lang': _$LanguageEnumMap[instance.language],
-      'v': instance.version,
-    };
-
-const _$LanguageEnumMap = {
-  Language.ru: 'ru',
-  Language.uk: 'uk',
-  Language.be: 'be',
-  Language.en: 'en',
-  Language.es: 'es',
-  Language.fi: 'fi',
-  Language.de: 'de',
-  Language.it: 'it',
-};
-
 Map<String, dynamic> _$KeyboardToJson(Keyboard instance) => <String, dynamic>{
       'one_time': instance.isOneTime,
       'buttons': instance.buttons
@@ -193,3 +176,63 @@ Map<String, dynamic> _$KeyboardCallbackToJson(KeyboardCallback instance) {
   writeNotNull('label', instance.text);
   return val;
 }
+
+Map<String, dynamic> _$TemplateToJson(Template instance) => <String, dynamic>{
+      'elements': instance.elements.map((e) => e.toJson()).toList(),
+    };
+
+Map<String, dynamic> _$TemplateElementToJson(TemplateElement instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('title', instance.title);
+  writeNotNull('description', instance.description);
+  writeNotNull('photo_id', instance.photoId);
+  val['action'] = instance.action.toJson();
+  val['buttons'] = instance.buttons.map((e) => e.toJson()).toList();
+  return val;
+}
+
+Map<String, dynamic> _$AbstractTemplateActionToJson(
+        AbstractTemplateAction instance) =>
+    <String, dynamic>{
+      'type': _$TemplateActionTypeEnumMap[instance.type],
+    };
+
+const _$TemplateActionTypeEnumMap = {
+  TemplateActionType.openLink: 'open_link',
+  TemplateActionType.openPhoto: 'open_photo',
+};
+
+Map<String, dynamic> _$TemplateOpenLinkToJson(TemplateOpenLink instance) =>
+    <String, dynamic>{
+      'type': _$TemplateActionTypeEnumMap[instance.type],
+      'link': instance.link,
+    };
+
+Map<String, dynamic> _$TemplateOpenPhotoToJson(TemplateOpenPhoto instance) =>
+    <String, dynamic>{
+      'type': _$TemplateActionTypeEnumMap[instance.type],
+    };
+
+Map<String, dynamic> _$VKOptionsToJson(VKOptions instance) => <String, dynamic>{
+      'access_token': instance.token,
+      'lang': _$LanguageEnumMap[instance.language],
+      'v': instance.version,
+    };
+
+const _$LanguageEnumMap = {
+  Language.ru: 'ru',
+  Language.uk: 'uk',
+  Language.be: 'be',
+  Language.en: 'en',
+  Language.es: 'es',
+  Language.fi: 'fi',
+  Language.de: 'de',
+  Language.it: 'it',
+};
