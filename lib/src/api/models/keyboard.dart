@@ -3,7 +3,7 @@ part of '../models.dart';
 const _createFactoryOff = JsonSerializable(createFactory: false);
 
 /// Keyboard for VK bots.
-@_createFactoryOff
+@JsonSerializable()
 class Keyboard {
   /// Whether to hide the keyboard after first use.
   /// The parameter works only for buttons that send a message ([KeyboardText], [KeyboardLocation]).
@@ -23,6 +23,9 @@ class Keyboard {
     this.buttons = const [],
     this.isInline = false,
   });
+
+  factory Keyboard.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardFromJson(json);
 
   Map<String, dynamic> toJson() => _$KeyboardToJson(this);
 }
@@ -47,7 +50,7 @@ enum KeyboardColor {
 }
 
 /// The class describes the button.
-@_createFactoryOff
+@JsonSerializable()
 class KeyboardButton {
   /// An object that describes the type of action and its parameters.
   ///
@@ -65,6 +68,9 @@ class KeyboardButton {
   final KeyboardColor color;
 
   KeyboardButton({required this.action, this.color = KeyboardColor.secondary});
+
+  factory KeyboardButton.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardButtonFromJson(json);
 
   Map<String, dynamic> toJson() => _$KeyboardButtonToJson(this);
 }
@@ -100,6 +106,25 @@ abstract class AbstractKeyboardAction {
 
   AbstractKeyboardAction({required this.type, required this.payload});
 
+  factory AbstractKeyboardAction.fromJson(Map<String, dynamic> json) {
+    final type = $enumDecode(_$KeyboardActionTypeEnumMap, json['type']);
+
+    switch (type) {
+      case KeyboardActionType.text:
+        return KeyboardText.fromJson(json);
+      case KeyboardActionType.openLink:
+        return KeyboardOpenLink.fromJson(json);
+      case KeyboardActionType.location:
+        return KeyboardLocation.fromJson(json);
+      case KeyboardActionType.vkPay:
+        return KeyboardVKPay.fromJson(json);
+      case KeyboardActionType.vkApps:
+        return KeyboardVKApps.fromJson(json);
+      case KeyboardActionType.callback:
+        return KeyboardCallback.fromJson(json);
+    }
+  }
+
   Map<String, dynamic> toJson() => _$AbstractKeyboardActionToJson(this);
 }
 
@@ -107,7 +132,7 @@ const _label = JsonKey(name: 'label');
 
 /// Text button.
 /// Sends a message with the text specified in the [text] (label).
-@_createFactoryOff
+@JsonSerializable()
 class KeyboardText extends AbstractKeyboardAction {
   /// Button text.
   @_label
@@ -116,12 +141,15 @@ class KeyboardText extends AbstractKeyboardAction {
   KeyboardText({required this.text, String? payload})
       : super(type: KeyboardActionType.text, payload: payload);
 
+  factory KeyboardText.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardTextFromJson(json);
+
   @override
   Map<String, dynamic> toJson() => _$KeyboardTextToJson(this);
 }
 
 /// Opens the specified link.
-@_createFactoryOff
+@JsonSerializable()
 class KeyboardOpenLink extends AbstractKeyboardAction {
   /// Link to be opened by clicking on the button.
   final String link;
@@ -133,16 +161,22 @@ class KeyboardOpenLink extends AbstractKeyboardAction {
   KeyboardOpenLink({required this.link, required this.text, String? payload})
       : super(type: KeyboardActionType.openLink, payload: payload);
 
+  factory KeyboardOpenLink.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardOpenLinkFromJson(json);
+
   @override
   Map<String, dynamic> toJson() => _$KeyboardOpenLinkToJson(this);
 }
 
 /// On click, sends the location to the dialogue with the bot/conversation.
 /// This button always takes up the full width of the keyboard.
-@_createFactoryOff
+@JsonSerializable()
 class KeyboardLocation extends AbstractKeyboardAction {
   KeyboardLocation({String? payload})
       : super(type: KeyboardActionType.location, payload: payload);
+
+  factory KeyboardLocation.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardLocationFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$KeyboardLocationToJson(this);
@@ -151,7 +185,7 @@ class KeyboardLocation extends AbstractKeyboardAction {
 /// Opens the VK Pay payment window with predefined parameters.
 /// The button is called `Pay with VK pay`, VK pay is displayed as a logo.
 /// This button always takes up the full width of the keyboard.
-@_createFactoryOff
+@JsonSerializable()
 class KeyboardVKPay extends AbstractKeyboardAction {
   /// A string containing the VK Pay payment parameters and the application ID in the aid parameter, separated by `&`.
   /// Example: `action=transfer-to-group&group_id=1&aid=10`.
@@ -160,13 +194,16 @@ class KeyboardVKPay extends AbstractKeyboardAction {
   KeyboardVKPay({this.hash, String? payload})
       : super(type: KeyboardActionType.vkPay, payload: payload);
 
+  factory KeyboardVKPay.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardVKPayFromJson(json);
+
   @override
   Map<String, dynamic> toJson() => _$KeyboardVKPayToJson(this);
 }
 
 /// Opens the specified VK Apps.
 /// This button always takes up the full width of the keyboard.
-@_createFactoryOff
+@JsonSerializable()
 class KeyboardVKApps extends AbstractKeyboardAction {
   /// Called application identifier with type VK Apps.
   final int? appId;
@@ -189,12 +226,15 @@ class KeyboardVKApps extends AbstractKeyboardAction {
     String? payload,
   }) : super(type: KeyboardActionType.vkApps, payload: payload);
 
+  factory KeyboardVKApps.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardVKAppsFromJson(json);
+
   @override
   Map<String, dynamic> toJson() => _$KeyboardVKAppsToJson(this);
 }
 
 /// Allows you to receive a notification about pressing a button without sending a message from the user and perform the necessary action.
-@_createFactoryOff
+@JsonSerializable()
 class KeyboardCallback extends AbstractKeyboardAction {
   /// Button text.
   @_label
@@ -202,6 +242,9 @@ class KeyboardCallback extends AbstractKeyboardAction {
 
   KeyboardCallback({this.text, String? payload})
       : super(type: KeyboardActionType.callback, payload: payload);
+
+  factory KeyboardCallback.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardCallbackFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$KeyboardCallbackToJson(this);
