@@ -32,18 +32,6 @@ Map<String, dynamic> _$RequestParamToJson(RequestParam instance) =>
       'value': instance.value,
     };
 
-Keyboard _$KeyboardFromJson(Map<String, dynamic> json) => Keyboard(
-      isOneTime: json['one_time'] as bool? ?? false,
-      buttons: (json['buttons'] as List<dynamic>?)
-              ?.map((e) => (e as List<dynamic>)
-                  .map(
-                      (e) => KeyboardButton.fromJson(e as Map<String, dynamic>))
-                  .toList())
-              .toList() ??
-          const [],
-      isInline: json['inline'] as bool? ?? false,
-    );
-
 Map<String, dynamic> _$KeyboardToJson(Keyboard instance) => <String, dynamic>{
       'one_time': instance.isOneTime,
       'buttons': instance.buttons
@@ -51,14 +39,6 @@ Map<String, dynamic> _$KeyboardToJson(Keyboard instance) => <String, dynamic>{
           .toList(),
       'inline': instance.isInline,
     };
-
-KeyboardButton _$KeyboardButtonFromJson(Map<String, dynamic> json) =>
-    KeyboardButton(
-      action: AbstractKeyboardAction.fromJson(
-          json['action'] as Map<String, dynamic>),
-      color: $enumDecodeNullable(_$KeyboardColorEnumMap, json['color']) ??
-          KeyboardColor.secondary,
-    );
 
 Map<String, dynamic> _$KeyboardButtonToJson(KeyboardButton instance) =>
     <String, dynamic>{
@@ -98,13 +78,10 @@ const _$KeyboardActionTypeEnumMap = {
   KeyboardActionType.callback: 'callback',
 };
 
-KeyboardText _$KeyboardTextFromJson(Map<String, dynamic> json) => KeyboardText(
-      text: json['label'] as String,
-      payload: json['payload'] as String?,
-    );
-
 Map<String, dynamic> _$KeyboardTextToJson(KeyboardText instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -117,15 +94,10 @@ Map<String, dynamic> _$KeyboardTextToJson(KeyboardText instance) {
   return val;
 }
 
-KeyboardOpenLink _$KeyboardOpenLinkFromJson(Map<String, dynamic> json) =>
-    KeyboardOpenLink(
-      link: json['link'] as String,
-      text: json['label'] as String,
-      payload: json['payload'] as String?,
-    );
-
 Map<String, dynamic> _$KeyboardOpenLinkToJson(KeyboardOpenLink instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -139,13 +111,10 @@ Map<String, dynamic> _$KeyboardOpenLinkToJson(KeyboardOpenLink instance) {
   return val;
 }
 
-KeyboardLocation _$KeyboardLocationFromJson(Map<String, dynamic> json) =>
-    KeyboardLocation(
-      payload: json['payload'] as String?,
-    );
-
 Map<String, dynamic> _$KeyboardLocationToJson(KeyboardLocation instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -157,14 +126,10 @@ Map<String, dynamic> _$KeyboardLocationToJson(KeyboardLocation instance) {
   return val;
 }
 
-KeyboardVKPay _$KeyboardVKPayFromJson(Map<String, dynamic> json) =>
-    KeyboardVKPay(
-      hash: json['hash'] as String?,
-      payload: json['payload'] as String?,
-    );
-
 Map<String, dynamic> _$KeyboardVKPayToJson(KeyboardVKPay instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -177,17 +142,10 @@ Map<String, dynamic> _$KeyboardVKPayToJson(KeyboardVKPay instance) {
   return val;
 }
 
-KeyboardVKApps _$KeyboardVKAppsFromJson(Map<String, dynamic> json) =>
-    KeyboardVKApps(
-      appId: json['app_id'] as int?,
-      ownerId: json['owner_id'] as int?,
-      name: json['label'] as String?,
-      hash: json['hash'] as String?,
-      payload: json['payload'] as String?,
-    );
-
 Map<String, dynamic> _$KeyboardVKAppsToJson(KeyboardVKApps instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -203,14 +161,10 @@ Map<String, dynamic> _$KeyboardVKAppsToJson(KeyboardVKApps instance) {
   return val;
 }
 
-KeyboardCallback _$KeyboardCallbackFromJson(Map<String, dynamic> json) =>
-    KeyboardCallback(
-      text: json['label'] as String?,
-      payload: json['payload'] as String?,
-    );
-
 Map<String, dynamic> _$KeyboardCallbackToJson(KeyboardCallback instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'type': _$KeyboardActionTypeEnumMap[instance.type],
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -223,29 +177,9 @@ Map<String, dynamic> _$KeyboardCallbackToJson(KeyboardCallback instance) {
   return val;
 }
 
-Template _$TemplateFromJson(Map<String, dynamic> json) => Template(
-      elements: (json['elements'] as List<dynamic>?)
-              ?.map((e) => TemplateElement.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-    );
-
 Map<String, dynamic> _$TemplateToJson(Template instance) => <String, dynamic>{
       'elements': instance.elements.map((e) => e.toJson()).toList(),
     };
-
-TemplateElement _$TemplateElementFromJson(Map<String, dynamic> json) =>
-    TemplateElement(
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      photoId: json['photo_id'] as String?,
-      buttons: (json['buttons'] as List<dynamic>?)
-              ?.map((e) => KeyboardButton.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      action: AbstractTemplateAction.fromJson(
-          json['action'] as Map<String, dynamic>),
-    );
 
 Map<String, dynamic> _$TemplateElementToJson(TemplateElement instance) {
   final val = <String, dynamic>{};
@@ -275,21 +209,16 @@ const _$TemplateActionTypeEnumMap = {
   TemplateActionType.openPhoto: 'open_photo',
 };
 
-TemplateOpenLink _$TemplateOpenLinkFromJson(Map<String, dynamic> json) =>
-    TemplateOpenLink(
-      link: json['link'] as String,
-    );
-
 Map<String, dynamic> _$TemplateOpenLinkToJson(TemplateOpenLink instance) =>
     <String, dynamic>{
+      'type': _$TemplateActionTypeEnumMap[instance.type],
       'link': instance.link,
     };
 
-TemplateOpenPhoto _$TemplateOpenPhotoFromJson(Map<String, dynamic> json) =>
-    TemplateOpenPhoto();
-
 Map<String, dynamic> _$TemplateOpenPhotoToJson(TemplateOpenPhoto instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'type': _$TemplateActionTypeEnumMap[instance.type],
+    };
 
 Map<String, dynamic> _$VKOptionsToJson(VKOptions instance) => <String, dynamic>{
       'access_token': instance.token,
