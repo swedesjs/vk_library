@@ -6,7 +6,17 @@ class Template {
   /// List of carousel items.
   final List<TemplateElement> elements;
 
-  Template({this.elements = const []});
+  Template({required this.elements}) {
+    if (elements.isEmpty) {
+      throw TemplateException('The list must contain at least 1 element!');
+    }
+
+    if (elements.length > 10) {
+      throw TemplateException(
+        'The maximum number of elements must not exceed 10',
+      );
+    }
+  }
 
   Map<String, dynamic> toJson() => {
         'type': 'carousel',
@@ -43,7 +53,17 @@ class TemplateElement {
     this.photoId,
     this.buttons = const [],
     required this.action,
-  });
+  }) {
+    if (photoId == null && title == null) {
+      throw TemplateException(
+        'The "title" or "photoId" field must be specified',
+      );
+    }
+
+    if (description == null && title != null) {
+      throw TemplateException('The "description" field must be specified');
+    }
+  }
 
   Map<String, dynamic> toJson() => _$TemplateElementToJson(this);
 }
@@ -104,4 +124,14 @@ class TemplateOpenPhoto extends AbstractTemplateAction {
 
   @override
   Map<String, dynamic> toJson() => _$TemplateOpenPhotoToJson(this);
+}
+
+class TemplateException implements Exception {
+  /// Message
+  final String message;
+
+  TemplateException(this.message);
+
+  @override
+  String toString() => 'TemplateException: $message';
 }
