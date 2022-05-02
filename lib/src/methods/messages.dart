@@ -102,7 +102,7 @@ class Messages {
     bool? disableMentions,
     int? messageId,
     int? conversationMessageId,
-    String? template,
+    Template? template,
     Keyboard? keyboard,
   }) =>
       _api.request('messages.edit', {
@@ -120,7 +120,7 @@ class Messages {
         if (messageId != null) 'message_id': messageId,
         if (conversationMessageId != null)
           'conversation_message_id': conversationMessageId,
-        if (template != null) 'template': template,
+        if (template != null) 'template': template.toJson(),
         if (keyboard != null) 'keyboard': keyboard.toJson(),
       });
 
@@ -535,7 +535,7 @@ class Messages {
     int? stickerId,
     int? groupId,
     Keyboard? keyboard,
-    String? template,
+    Template? template,
     String? payload,
     String? contentSource,
     bool? dontParseLinks,
@@ -562,7 +562,7 @@ class Messages {
         if (stickerId != null) 'sticker_id': stickerId,
         if (groupId != null) 'group_id': groupId,
         if (keyboard != null) 'keyboard': keyboard.toJson(),
-        if (template != null) 'template': template,
+        if (template != null) 'template': template.toJson(),
         if (payload != null) 'payload': payload,
         if (contentSource != null) 'content_source': contentSource,
         if (dontParseLinks != null) 'dont_parse_links': dontParseLinks,
