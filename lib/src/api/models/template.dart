@@ -1,12 +1,15 @@
 part of '../models.dart';
 
 /// Message template that contains multiple elements, carousel elements can be scrolled horizontally.
-@_createFactoryOff
+@JsonSerializable()
 class Template {
   /// List of carousel items.
   final List<TemplateElement> elements;
 
   Template({this.elements = const []});
+
+  factory Template.fromJson(Map<String, dynamic> json) =>
+      _$TemplateFromJson(json);
 
   Map<String, dynamic> toJson() => {
         'type': 'carousel',
@@ -15,7 +18,7 @@ class Template {
 }
 
 /// Template element.
-@_createFactoryOff
+@JsonSerializable()
 class TemplateElement {
   /// Title, 80 characters maximum.
   final String? title;
@@ -45,6 +48,9 @@ class TemplateElement {
     required this.action,
   });
 
+  factory TemplateElement.fromJson(Map<String, dynamic> json) =>
+      _$TemplateElementFromJson(json);
+
   Map<String, dynamic> toJson() => _$TemplateElementToJson(this);
 }
 
@@ -70,11 +76,22 @@ abstract class AbstractTemplateAction {
 
   const AbstractTemplateAction({required this.type});
 
+  factory AbstractTemplateAction.fromJson(Map<String, dynamic> json) {
+    final type = $enumDecode(_$TemplateActionTypeEnumMap, json['type']);
+
+    switch (type) {
+      case TemplateActionType.openLink:
+        return TemplateOpenLink.fromJson(json);
+      case TemplateActionType.openPhoto:
+        return TemplateOpenLink.fromJson(json);
+    }
+  }
+
   Map<String, dynamic> toJson() => _$AbstractTemplateActionToJson(this);
 }
 
 /// Open a link from the [link] field.
-@_createFactoryOff
+@JsonSerializable()
 class TemplateOpenLink extends AbstractTemplateAction {
   /// Link.
   final String link;
@@ -82,14 +99,20 @@ class TemplateOpenLink extends AbstractTemplateAction {
   const TemplateOpenLink({required this.link})
       : super(type: TemplateActionType.openLink);
 
+  factory TemplateOpenLink.fromJson(Map<String, dynamic> json) =>
+      _$TemplateOpenLinkFromJson(json);
+
   @override
   Map<String, dynamic> toJson() => _$TemplateOpenLinkToJson(this);
 }
 
 /// Open a photo of the current carousel item.
-@_createFactoryOff
+@JsonSerializable()
 class TemplateOpenPhoto extends AbstractTemplateAction {
   const TemplateOpenPhoto() : super(type: TemplateActionType.openPhoto);
+
+  factory TemplateOpenPhoto.fromJson(Map<String, dynamic> json) =>
+      _$TemplateOpenPhotoFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$TemplateOpenPhotoToJson(this);

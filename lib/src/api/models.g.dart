@@ -223,9 +223,29 @@ Map<String, dynamic> _$KeyboardCallbackToJson(KeyboardCallback instance) {
   return val;
 }
 
+Template _$TemplateFromJson(Map<String, dynamic> json) => Template(
+      elements: (json['elements'] as List<dynamic>?)
+              ?.map((e) => TemplateElement.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
 Map<String, dynamic> _$TemplateToJson(Template instance) => <String, dynamic>{
       'elements': instance.elements.map((e) => e.toJson()).toList(),
     };
+
+TemplateElement _$TemplateElementFromJson(Map<String, dynamic> json) =>
+    TemplateElement(
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      photoId: json['photo_id'] as String?,
+      buttons: (json['buttons'] as List<dynamic>?)
+              ?.map((e) => KeyboardButton.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      action: AbstractTemplateAction.fromJson(
+          json['action'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$TemplateElementToJson(TemplateElement instance) {
   final val = <String, dynamic>{};
@@ -239,8 +259,8 @@ Map<String, dynamic> _$TemplateElementToJson(TemplateElement instance) {
   writeNotNull('title', instance.title);
   writeNotNull('description', instance.description);
   writeNotNull('photo_id', instance.photoId);
-  val['action'] = instance.action.toJson();
   val['buttons'] = instance.buttons.map((e) => e.toJson()).toList();
+  val['action'] = instance.action.toJson();
   return val;
 }
 
@@ -255,16 +275,21 @@ const _$TemplateActionTypeEnumMap = {
   TemplateActionType.openPhoto: 'open_photo',
 };
 
+TemplateOpenLink _$TemplateOpenLinkFromJson(Map<String, dynamic> json) =>
+    TemplateOpenLink(
+      link: json['link'] as String,
+    );
+
 Map<String, dynamic> _$TemplateOpenLinkToJson(TemplateOpenLink instance) =>
     <String, dynamic>{
-      'type': _$TemplateActionTypeEnumMap[instance.type],
       'link': instance.link,
     };
 
+TemplateOpenPhoto _$TemplateOpenPhotoFromJson(Map<String, dynamic> json) =>
+    TemplateOpenPhoto();
+
 Map<String, dynamic> _$TemplateOpenPhotoToJson(TemplateOpenPhoto instance) =>
-    <String, dynamic>{
-      'type': _$TemplateActionTypeEnumMap[instance.type],
-    };
+    <String, dynamic>{};
 
 Map<String, dynamic> _$VKOptionsToJson(VKOptions instance) => <String, dynamic>{
       'access_token': instance.token,
