@@ -12,7 +12,7 @@ class Keyboard {
   final bool isOneTime;
 
   /// An array of arrays with buttons.
-  final List<List<KeyboardButton>> buttons;
+  final List<List<AbstractKeyboardAction>> buttons;
 
   /// Whether the keyboard should be displayed inside the message.
   @JsonKey(name: 'inline')
@@ -46,29 +46,6 @@ enum KeyboardColor {
   positive
 }
 
-/// The class describes the button.
-@_createFactoryOff
-class KeyboardButton {
-  /// An object that describes the type of action and its parameters.
-  ///
-  /// Objects:
-  /// - [KeyboardText]
-  /// - [KeyboardOpenLink]
-  /// - [KeyboardLocation]
-  /// - [KeyboardVKPay]
-  /// - [KeyboardVKApps]
-  /// - [KeyboardCallback]
-  final AbstractKeyboardAction action;
-
-  /// Button color.
-  /// The parameter is used only for buttons with: [KeyboardText] and [KeyboardCallback].
-  final KeyboardColor color;
-
-  KeyboardButton({required this.action, this.color = KeyboardColor.secondary});
-
-  Map<String, dynamic> toJson() => _$KeyboardButtonToJson(this);
-}
-
 @JsonEnum(fieldRename: FieldRename.snake)
 enum KeyboardActionType {
   text,
@@ -90,7 +67,7 @@ enum KeyboardActionType {
 /// - [KeyboardVKPay]
 /// - [KeyboardVKApps]
 /// - [KeyboardCallback]
-@_createFactoryOff
+@JsonSerializable(createFactory: false, createToJson: false)
 abstract class AbstractKeyboardAction {
   /// Button Type.
   final KeyboardActionType type;
@@ -98,7 +75,14 @@ abstract class AbstractKeyboardAction {
   /// Additional information.
   final String? payload;
 
-  AbstractKeyboardAction({required this.type, required this.payload});
+  @JsonKey(ignore: true)
+  final KeyboardColor? color;
+
+  AbstractKeyboardAction({
+    required this.type,
+    required this.payload,
+    this.color,
+  });
 
   // factory AbstractKeyboardAction.fromJson(Map<String, dynamic> json) {
   //   final type = $enumDecode(_$KeyboardActionTypeEnumMap, json['type']);
@@ -118,8 +102,12 @@ abstract class AbstractKeyboardAction {
   //       return KeyboardCallback.fromJson(json);
   //   }
   // }
+  Map<String, dynamic> toActionJson();
 
-  Map<String, dynamic> toJson() => _$AbstractKeyboardActionToJson(this);
+  Map<String, dynamic> toJson() => {
+        'action': toActionJson(),
+        if (color != null) 'color': color!.name,
+      };
 }
 
 const _label = JsonKey(name: 'label');
@@ -132,11 +120,14 @@ class KeyboardText extends AbstractKeyboardAction {
   @_label
   final String text;
 
-  KeyboardText({required this.text, String? payload})
-      : super(type: KeyboardActionType.text, payload: payload);
+  KeyboardText({
+    required this.text,
+    String? payload,
+    KeyboardColor color = KeyboardColor.secondary,
+  }) : super(type: KeyboardActionType.text, payload: payload, color: color);
 
   @override
-  Map<String, dynamic> toJson() => _$KeyboardTextToJson(this);
+  Map<String, dynamic> toActionJson() => _$KeyboardTextToJson(this);
 }
 
 /// Opens the specified link.
@@ -153,7 +144,7 @@ class KeyboardOpenLink extends AbstractKeyboardAction {
       : super(type: KeyboardActionType.openLink, payload: payload);
 
   @override
-  Map<String, dynamic> toJson() => _$KeyboardOpenLinkToJson(this);
+  Map<String, dynamic> toActionJson() => _$KeyboardOpenLinkToJson(this);
 }
 
 /// On click, sends the location to the dialogue with the bot/conversation.
@@ -164,7 +155,7 @@ class KeyboardLocation extends AbstractKeyboardAction {
       : super(type: KeyboardActionType.location, payload: payload);
 
   @override
-  Map<String, dynamic> toJson() => _$KeyboardLocationToJson(this);
+  Map<String, dynamic> toActionJson() => _$KeyboardLocationToJson(this);
 }
 
 /// Opens the VK Pay payment window with predefined parameters.
@@ -180,7 +171,7 @@ class KeyboardVKPay extends AbstractKeyboardAction {
       : super(type: KeyboardActionType.vkPay, payload: payload);
 
   @override
-  Map<String, dynamic> toJson() => _$KeyboardVKPayToJson(this);
+  Map<String, dynamic> toActionJson() => _$KeyboardVKPayToJson(this);
 }
 
 /// Opens the specified VK Apps.
@@ -209,7 +200,7 @@ class KeyboardVKApps extends AbstractKeyboardAction {
   }) : super(type: KeyboardActionType.vkApps, payload: payload);
 
   @override
-  Map<String, dynamic> toJson() => _$KeyboardVKAppsToJson(this);
+  Map<String, dynamic> toActionJson() => _$KeyboardVKAppsToJson(this);
 }
 
 /// Allows you to receive a notification about pressing a button without sending a message from the user and perform the necessary action.
@@ -219,9 +210,12 @@ class KeyboardCallback extends AbstractKeyboardAction {
   @_label
   final String? text;
 
-  KeyboardCallback({this.text, String? payload})
-      : super(type: KeyboardActionType.callback, payload: payload);
+  KeyboardCallback({
+    this.text,
+    String? payload,
+    KeyboardColor color = KeyboardColor.secondary,
+  }) : super(type: KeyboardActionType.callback, payload: payload, color: color);
 
   @override
-  Map<String, dynamic> toJson() => _$KeyboardCallbackToJson(this);
+  Map<String, dynamic> toActionJson() => _$KeyboardCallbackToJson(this);
 }

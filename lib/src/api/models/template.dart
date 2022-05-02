@@ -28,7 +28,7 @@ class TemplateElement {
 
   /// An array with buttons - you can pass any buttons that are inherited from the [AbstractKeyboardAction] class.
   /// One carousel element can contain no more than 3 buttons.
-  final List<KeyboardButton> buttons;
+  final List<AbstractKeyboardAction> buttons;
 
   /// An object that describes the action to take when the carousel item is clicked.
   /// Two actions are supported:
