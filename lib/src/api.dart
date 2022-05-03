@@ -118,6 +118,10 @@ class API {
       return value.map((e) => e.name).join(',');
     }
 
+    if (value is Enum) {
+      return value.name;
+    }
+
     if (value is Map<String, dynamic> && value is List<dynamic>) {
       return jsonEncode(value);
     }
