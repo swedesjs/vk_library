@@ -114,6 +114,10 @@ class API {
   }
 
   Object _transformJson(Object value) {
+    if (value is List<Enum>) {
+      return value.map((e) => e.name).join(',');
+    }
+
     if (value is Map<String, dynamic> && value is List<dynamic>) {
       return jsonEncode(value);
     }
