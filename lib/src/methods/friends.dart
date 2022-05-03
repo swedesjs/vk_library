@@ -1,4 +1,4 @@
-import 'package:vk_library/src/api.dart';
+import 'package:vk_library/vk_library.dart';
 
 class Friends {
   final API _api;
@@ -93,7 +93,7 @@ class Friends {
     int? count,
     int? offset,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
     String? ref,
   }) =>
       _api.request('friends.get', {
@@ -207,7 +207,7 @@ class Friends {
     int? count,
     int? offset,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) =>
       _api.request('friends.getSuggestions', {
         if (filter != null) 'filter': filter.join(','),
@@ -222,7 +222,7 @@ class Friends {
     int? userId,
     String? q,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
     int? offset,
     int? count,
   }) =>

@@ -1,4 +1,4 @@
-import 'package:vk_library/src/api.dart';
+import 'package:vk_library/vk_library.dart';
 
 class Apps {
   final API _api;
@@ -17,7 +17,7 @@ class Apps {
     bool? extended,
     bool? returnFriends,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) =>
       _api.request('apps.get', {
         if (appId != null) 'app_id': appId,
@@ -38,7 +38,7 @@ class Apps {
     bool? extended,
     bool? returnFriends,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
     String? q,
     int? genreId,
     String? filter,

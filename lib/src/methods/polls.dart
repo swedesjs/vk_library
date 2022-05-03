@@ -1,4 +1,4 @@
-import 'package:vk_library/src/api.dart';
+import 'package:vk_library/vk_library.dart';
 
 class Polls {
   final API _api;
@@ -94,7 +94,7 @@ class Polls {
     bool? extended,
     int? friendsCount,
     List<String>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) =>
       _api.request('polls.getById', {
         if (ownerId != null) 'owner_id': ownerId,
@@ -123,7 +123,7 @@ class Polls {
     int? offset,
     int? count,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) =>
       _api.request('polls.getVoters', {
         if (ownerId != null) 'owner_id': ownerId,

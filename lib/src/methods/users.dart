@@ -1,4 +1,4 @@
-import 'package:vk_library/src/api.dart';
+import 'package:vk_library/vk_library.dart';
 
 class Users {
   final API _api;
@@ -9,7 +9,7 @@ class Users {
   Future<Map<String, dynamic>> get({
     List<String>? userIds,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) =>
       _api.request('users.get', {
         if (userIds != null) 'user_ids': userIds.join(','),
@@ -23,7 +23,7 @@ class Users {
     int? offset,
     int? count,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) =>
       _api.request('users.getFollowers', {
         if (userId != null) 'user_id': userId,

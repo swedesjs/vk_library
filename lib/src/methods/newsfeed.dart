@@ -1,4 +1,4 @@
-import 'package:vk_library/src/api.dart';
+import 'package:vk_library/vk_library.dart';
 
 class Newsfeed {
   final API _api;
@@ -62,7 +62,7 @@ class Newsfeed {
   Future<Map<String, dynamic>> getBanned({
     bool? extended,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) =>
       _api.request('newsfeed.getBanned', {
         if (extended != null) 'extended': extended,

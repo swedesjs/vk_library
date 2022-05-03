@@ -1,4 +1,4 @@
-import 'package:vk_library/src/api.dart';
+import 'package:vk_library/vk_library.dart';
 
 class Groups {
   final API _api;
@@ -443,7 +443,7 @@ class Groups {
     int? offset,
     int? count,
     List<Object>? fields,
-    String? nameCase,
+    NameCase? nameCase,
   }) =>
       _api.request('groups.getInvitedUsers', {
         'group_id': groupId,
