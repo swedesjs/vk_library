@@ -12,7 +12,7 @@ class AudioAttachment extends AttachmentDefault {
   final String? title;
 
   /// Audio duration.
-  @JsonKey(fromJson: durationNullFromJson, toJson: durationNullToJson)
+@DurationNullConverter()
   final Duration? duration;
 
   /// Link to mp3.

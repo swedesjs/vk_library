@@ -58,13 +58,13 @@ AudioAttachment _$AudioAttachmentFromJson(Map<String, dynamic> json) =>
       accessKey: json['access_key'] as String?,
       artist: json['artist'] as String?,
       title: json['title'] as String?,
-      duration: durationNullFromJson(json['duration'] as int?),
+      duration:
+          const DurationNullConverter().fromJson(json['duration'] as int?),
       url: json['url'] as String?,
       lyricsId: json['lyrics_id'] as int?,
       albumId: json['album_id'] as int?,
       genreId: json['genre_id'] as int?,
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      date: const DateTimeNullConverter().fromJson(json['date'] as int?),
       noSearch: fieldReturnedInCase(json['no_search'] as int?),
       isHq: json['is_hq'] as int?,
     );
@@ -84,12 +84,13 @@ Map<String, dynamic> _$AudioAttachmentToJson(AudioAttachment instance) {
   writeNotNull('access_key', instance.accessKey);
   writeNotNull('artist', instance.artist);
   writeNotNull('title', instance.title);
-  writeNotNull('duration', durationNullToJson(instance.duration));
+  writeNotNull(
+      'duration', const DurationNullConverter().toJson(instance.duration));
   writeNotNull('url', instance.url);
   writeNotNull('lyrics_id', instance.lyricsId);
   writeNotNull('album_id', instance.albumId);
   writeNotNull('genre_id', instance.genreId);
-  writeNotNull('date', instance.date?.toIso8601String());
+  writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   val['no_search'] = instance.noSearch;
   writeNotNull('is_hq', instance.isHq);
   return val;
@@ -101,7 +102,8 @@ AudioMessageAttachment _$AudioMessageAttachmentFromJson(
       id: json['id'] as int,
       ownerId: json['owner_id'] as int,
       accessKey: json['access_key'] as String?,
-      duration: durationNullFromJson(json['duration'] as int?),
+      duration:
+          const DurationNullConverter().fromJson(json['duration'] as int?),
       waveform:
           (json['waveform'] as List<dynamic>?)?.map((e) => e as int).toList(),
       linkOgg: json['link_ogg'] as String?,
@@ -124,7 +126,8 @@ Map<String, dynamic> _$AudioMessageAttachmentToJson(
   }
 
   writeNotNull('access_key', instance.accessKey);
-  writeNotNull('duration', durationNullToJson(instance.duration));
+  writeNotNull(
+      'duration', const DurationNullConverter().toJson(instance.duration));
   writeNotNull('waveform', instance.waveform);
   writeNotNull('link_ogg', instance.linkOgg);
   writeNotNull('link_mp3', instance.linkMp3);
@@ -142,8 +145,7 @@ DocAttachment _$DocAttachmentFromJson(Map<String, dynamic> json) =>
       size: json['size'] as int?,
       ext: json['ext'] as String?,
       url: json['url'] as String?,
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      date: const DateTimeNullConverter().fromJson(json['date'] as int?),
       docType: $enumDecodeNullable(_$DocAttachmentTypeEnumMap, json['type']),
       preview: json['preview'] == null
           ? null
@@ -168,7 +170,7 @@ Map<String, dynamic> _$DocAttachmentToJson(DocAttachment instance) {
   writeNotNull('size', instance.size);
   writeNotNull('ext', instance.ext);
   writeNotNull('url', instance.url);
-  writeNotNull('date', instance.date?.toIso8601String());
+  writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   writeNotNull('type', _$DocAttachmentTypeEnumMap[instance.docType]);
   writeNotNull('preview', instance.preview?.toJson());
   return val;
@@ -267,7 +269,8 @@ Map<String, dynamic> _$DocAttachmentPreviewGraffitiToJson(
 DocAttachmentPreviewAudioMessage _$DocAttachmentPreviewAudioMessageFromJson(
         Map<String, dynamic> json) =>
     DocAttachmentPreviewAudioMessage(
-      duration: durationNullFromJson(json['duration'] as int?),
+      duration:
+          const DurationNullConverter().fromJson(json['duration'] as int?),
       waveform:
           (json['waveform'] as List<dynamic>?)?.map((e) => e as int).toList(),
       linkOgg: json['link_ogg'] as String?,
@@ -284,7 +287,8 @@ Map<String, dynamic> _$DocAttachmentPreviewAudioMessageToJson(
     }
   }
 
-  writeNotNull('duration', durationNullToJson(instance.duration));
+  writeNotNull(
+      'duration', const DurationNullConverter().toJson(instance.duration));
   writeNotNull('waveform', instance.waveform);
   writeNotNull('link_ogg', instance.linkOgg);
   writeNotNull('link_mp3', instance.linkMp3);
@@ -396,8 +400,7 @@ MarketAttachment _$MarketAttachmentFromJson(Map<String, dynamic> json) =>
           : MarketAttachmentCategory.fromJson(
               json['category'] as Map<String, dynamic>),
       thumbPhoto: json['thumb_photo'] as String?,
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      date: const DateTimeNullConverter().fromJson(json['date'] as int?),
       availability: $enumDecodeNullable(
           _$MarketAttachmentAvailabilityEnumMap, json['availability']),
       isFavorite: json['is_favorite'] as bool? ?? false,
@@ -432,7 +435,7 @@ Map<String, dynamic> _$MarketAttachmentToJson(MarketAttachment instance) {
   writeNotNull('weight', instance.weight);
   writeNotNull('category', instance.category?.toJson());
   writeNotNull('thumb_photo', instance.thumbPhoto);
-  writeNotNull('date', instance.date?.toIso8601String());
+  writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   writeNotNull('availability',
       _$MarketAttachmentAvailabilityEnumMap[instance.availability]);
   val['is_favorite'] = instance.isFavorite;
@@ -619,8 +622,7 @@ PhotoAttachment _$PhotoAttachmentFromJson(Map<String, dynamic> json) =>
       albumId: json['album_id'] as int?,
       userId: json['user_id'] as int?,
       description: json['text'] as String?,
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      date: const DateTimeNullConverter().fromJson(json['date'] as int?),
       sizes: (json['sizes'] as List<dynamic>?)
           ?.map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -644,7 +646,7 @@ Map<String, dynamic> _$PhotoAttachmentToJson(PhotoAttachment instance) {
   writeNotNull('album_id', instance.albumId);
   writeNotNull('user_id', instance.userId);
   writeNotNull('text', instance.description);
-  writeNotNull('date', instance.date?.toIso8601String());
+  writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   writeNotNull('sizes', instance.sizes?.map((e) => e.toJson()).toList());
   writeNotNull('width', instance.width);
   writeNotNull('height', instance.height);
@@ -729,7 +731,8 @@ VideoAttachment _$VideoAttachmentFromJson(Map<String, dynamic> json) =>
       accessKey: json['access_key'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      duration: durationNullFromJson(json['duration'] as int?),
+      duration:
+          const DurationNullConverter().fromJson(json['duration'] as int?),
       image: (json['image'] as List<dynamic>?)
           ?.map((e) => VideoAttachmentImage.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -737,11 +740,9 @@ VideoAttachment _$VideoAttachmentFromJson(Map<String, dynamic> json) =>
           ?.map((e) =>
               GeneralClassAttachmentImage.fromJson(e as Map<String, dynamic>))
           .toList(),
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
-      addingDate: json['adding_date'] == null
-          ? null
-          : DateTime.parse(json['adding_date'] as String),
+      date: const DateTimeNullConverter().fromJson(json['date'] as int?),
+      addingDate:
+          const DateTimeNullConverter().fromJson(json['adding_date'] as int?),
       views: json['views'] as int?,
       localViews: json['local_views'] as int?,
       comments: json['comments'] as int?,
@@ -798,12 +799,14 @@ Map<String, dynamic> _$VideoAttachmentToJson(VideoAttachment instance) {
   writeNotNull('access_key', instance.accessKey);
   writeNotNull('title', instance.title);
   writeNotNull('description', instance.description);
-  writeNotNull('duration', durationNullToJson(instance.duration));
+  writeNotNull(
+      'duration', const DurationNullConverter().toJson(instance.duration));
   writeNotNull('image', instance.image?.map((e) => e.toJson()).toList());
   writeNotNull(
       'first_frame', instance.firstFrame?.map((e) => e.toJson()).toList());
-  writeNotNull('date', instance.date?.toIso8601String());
-  writeNotNull('adding_date', instance.addingDate?.toIso8601String());
+  writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
+  writeNotNull(
+      'adding_date', const DateTimeNullConverter().toJson(instance.addingDate));
   writeNotNull('views', instance.views);
   writeNotNull('local_views', instance.localViews);
   writeNotNull('comments', instance.comments);
@@ -934,8 +937,7 @@ WallAttachment _$WallAttachmentFromJson(Map<String, dynamic> json) =>
       accessKey: json['access_key'] as String?,
       fromId: json['from_id'] as int?,
       createdBy: json['created_by'] as int?,
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      date: const DateTimeNullConverter().fromJson(json['date'] as int?),
       text: json['text'] as String?,
       replyOwnerId: json['reply_owner_id'] as int?,
       replyPostId: json['reply_post_id'] as int?,
@@ -1001,7 +1003,7 @@ Map<String, dynamic> _$WallAttachmentToJson(WallAttachment instance) {
   writeNotNull('access_key', instance.accessKey);
   writeNotNull('from_id', instance.fromId);
   writeNotNull('created_by', instance.createdBy);
-  writeNotNull('date', instance.date?.toIso8601String());
+  writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   writeNotNull('text', instance.text);
   writeNotNull('reply_owner_id', instance.replyOwnerId);
   writeNotNull('reply_post_id', instance.replyPostId);

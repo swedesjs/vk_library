@@ -12,7 +12,7 @@ class VideoAttachment extends AttachmentDefault {
   final String? description;
 
   /// The length of the video in seconds.
-  @JsonKey(fromJson: durationNullFromJson, toJson: durationNullToJson)
+  @DurationNullConverter()
   final Duration? duration;
 
   /// Cover image.

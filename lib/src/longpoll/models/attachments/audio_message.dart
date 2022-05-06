@@ -6,7 +6,7 @@ part of 'attachment.dart';
 @JsonSerializable()
 class AudioMessageAttachment extends AttachmentDefault {
   /// Audio message duration.
-  @JsonKey(fromJson: durationNullFromJson, toJson: durationNullToJson)
+  @DurationNullConverter()
   final Duration? duration;
 
   /// An array of values for the visual display of the sound.

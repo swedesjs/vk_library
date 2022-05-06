@@ -18,7 +18,7 @@ class DocAttachment extends AttachmentDefault {
   final String? url;
 
   /// Date added.
-@DateTimeNullConverter()
+  @DateTimeNullConverter()
   final DateTime? date;
 
   /// File type.
@@ -126,7 +126,7 @@ class DocAttachmentPreviewGraffiti {
 @JsonSerializable()
 class DocAttachmentPreviewAudioMessage {
   /// Audio message duration.
-  @JsonKey(fromJson: durationNullFromJson, toJson: durationNullToJson)
+  @DurationNullConverter()
   final Duration? duration;
 
   /// array of values for visual display of sound

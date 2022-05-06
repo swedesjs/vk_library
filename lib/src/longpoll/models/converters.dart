@@ -28,3 +28,31 @@ class DateTimeNullConverter extends JsonConverter<DateTime?, int?> {
     return null;
   }
 }
+
+class DurationConverter extends JsonConverter<Duration, int> {
+  const DurationConverter();
+
+  @override
+  Duration fromJson(int json) => Duration(seconds: json);
+
+  @override
+  int toJson(Duration object) => object.inSeconds;
+}
+
+class DurationNullConverter extends JsonConverter<Duration?, int?> {
+  const DurationNullConverter();
+
+  @override
+  Duration? fromJson(int? json) {
+    if (json != null) return const DurationConverter().fromJson(json);
+
+    return null;
+  }
+
+  @override
+  int? toJson(Duration? object) {
+    if (object != null) return const DurationConverter().toJson(object);
+
+    return null;
+  }
+}

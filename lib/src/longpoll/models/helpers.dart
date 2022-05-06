@@ -23,8 +23,3 @@ bool whether(int value) {
 }
 
 bool? whetherNull(int? value) => value == null ? null : whether(value);
-
-Duration? durationNullFromJson(int? seconds) =>
-    seconds == null ? null : Duration(seconds: seconds);
-
-int? durationNullToJson(Duration? duration) => duration?.inSeconds;
