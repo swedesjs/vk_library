@@ -966,9 +966,11 @@ WallAttachment _$WallAttachmentFromJson(Map<String, dynamic> json) =>
           ? null
           : WallAttachmentPostSource.fromJson(
               json['post_source'] as Map<String, dynamic>),
-      attachments: json['attachments'] == null
-          ? const []
-          : transformAttachments(json['attachments'] as List),
+      attachments: (json['attachments'] as List<dynamic>?)
+              ?.map((e) => const AttachmentConverter()
+                  .fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       geo: json['geo'] == null
           ? null
           : WallAttachmentGeo.fromJson(json['geo'] as Map<String, dynamic>),
@@ -1015,7 +1017,8 @@ Map<String, dynamic> _$WallAttachmentToJson(WallAttachment instance) {
   writeNotNull('views', instance.views?.toJson());
   writeNotNull('post_type', _$WallAttachmentPostTypeEnumMap[instance.postType]);
   writeNotNull('post_source', instance.postSource?.toJson());
-  val['attachments'] = instance.attachments.map((e) => e.toJson()).toList();
+  val['attachments'] =
+      instance.attachments.map(const AttachmentConverter().toJson).toList();
   writeNotNull('geo', instance.geo?.toJson());
   writeNotNull('signer_id', instance.signerId);
   writeNotNull('copy_history', instance.copyHistory);
@@ -1269,7 +1272,10 @@ WallReplyAttachment _$WallReplyAttachmentFromJson(Map<String, dynamic> json) =>
     WallReplyAttachment(
       postId: json['post_id'] as int?,
       ownerId: json['owner_id'] as int?,
-      attachments: transformAttachments(json['attachments'] as List),
+      attachments: (json['attachments'] as List<dynamic>?)
+          ?.map((e) =>
+              const AttachmentConverter().fromJson(e as Map<String, dynamic>))
+          .toList(),
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       donut: json['donut'] == null
@@ -1300,8 +1306,8 @@ Map<String, dynamic> _$WallReplyAttachmentToJson(WallReplyAttachment instance) {
 
   writeNotNull('post_id', instance.postId);
   writeNotNull('owner_id', instance.ownerId);
-  writeNotNull(
-      'attachments', instance.attachments?.map((e) => e.toJson()).toList());
+  writeNotNull('attachments',
+      instance.attachments?.map(const AttachmentConverter().toJson).toList());
   writeNotNull('date', instance.date?.toIso8601String());
   writeNotNull('donut', instance.donut?.toJson());
   writeNotNull('from_id', instance.fromId);

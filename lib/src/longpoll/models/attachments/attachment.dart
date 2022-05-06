@@ -139,44 +139,45 @@ class AttachmentDefault extends Attachment {
   String toString() => '$runtimeType[$identifiers]';
 }
 
-/// Converts the map to an [Attachment] instance
-Attachment transformAttachment(Map<String, dynamic> attachment) {
-  final type = attachment['type'];
-  final enumType = $enumDecode(_$AttachmentTypeEnumMap, type);
-  final object = attachment[type];
+class AttachmentConverter
+    extends JsonConverter<Attachment, Map<String, dynamic>> {
+  const AttachmentConverter();
 
-  switch (enumType) {
-    case AttachmentType.photo:
-      return PhotoAttachment.fromJson(object);
-    case AttachmentType.video:
-      return VideoAttachment.fromJson(object);
-    case AttachmentType.audio:
-      return AudioAttachment.fromJson(object);
-    case AttachmentType.doc:
-      return DocAttachment.fromJson(object);
-    case AttachmentType.link:
-      return LinkAttachment.fromJson(object);
-    case AttachmentType.market:
-      return MarketAttachment.fromJson(object);
-    case AttachmentType.marketAlbum:
-      return MarketAlbumAttachment.fromJson(object);
-    case AttachmentType.wall:
-      return WallAttachment.fromJson(object);
-    case AttachmentType.wallReply:
-      return WallReplyAttachment.fromJson(object);
-    case AttachmentType.sticker:
-      return StickerAttachment.fromJson(object);
-    case AttachmentType.gift:
-      return GiftAttachment.fromJson(object);
-    case AttachmentType.audioMessage:
-      return AudioMessageAttachment.fromJson(object);
+  /// Converts the map to an [Attachment] instance
+  @override
+  Attachment fromJson(Map<String, dynamic> json) {
+    final type = json['type'];
+    final enumType = $enumDecode(_$AttachmentTypeEnumMap, type);
+    final object = json[type];
+
+    switch (enumType) {
+      case AttachmentType.photo:
+        return PhotoAttachment.fromJson(object);
+      case AttachmentType.video:
+        return VideoAttachment.fromJson(object);
+      case AttachmentType.audio:
+        return AudioAttachment.fromJson(object);
+      case AttachmentType.doc:
+        return DocAttachment.fromJson(object);
+      case AttachmentType.link:
+        return LinkAttachment.fromJson(object);
+      case AttachmentType.market:
+        return MarketAttachment.fromJson(object);
+      case AttachmentType.marketAlbum:
+        return MarketAlbumAttachment.fromJson(object);
+      case AttachmentType.wall:
+        return WallAttachment.fromJson(object);
+      case AttachmentType.wallReply:
+        return WallReplyAttachment.fromJson(object);
+      case AttachmentType.sticker:
+        return StickerAttachment.fromJson(object);
+      case AttachmentType.gift:
+        return GiftAttachment.fromJson(object);
+      case AttachmentType.audioMessage:
+        return AudioMessageAttachment.fromJson(object);
+    }
   }
-}
 
-/// The function converts objects into the required classes dependent on the [Attachment] class
-List<Attachment> transformAttachments(List<dynamic> rawAttachments) {
-  return [
-    for (final rawAttachment in rawAttachments)
-      transformAttachment(rawAttachment as Map<String, dynamic>)
-  ];
+  @override
+  Map<String, dynamic> toJson(Attachment object) => object.toJson();
 }

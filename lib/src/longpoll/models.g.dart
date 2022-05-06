@@ -17,7 +17,10 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
       refSource: json['ref_source'] as String?,
       isOut: whetherNull(json['out'] as int?),
       isHidden: json['is_hidden'] as bool?,
-      attachments: transformAttachments(json['attachments'] as List),
+      attachments: (json['attachments'] as List<dynamic>)
+          .map((e) =>
+              const AttachmentConverter().fromJson(e as Map<String, dynamic>))
+          .toList(),
       isImportant: json['important'] as bool?,
       geo: json['geo'] == null
           ? null
@@ -65,7 +68,8 @@ Map<String, dynamic> _$MessageModelToJson(MessageModel instance) {
   writeNotNull('ref_source', instance.refSource);
   writeNotNull('out', instance.isOut);
   writeNotNull('is_hidden', instance.isHidden);
-  val['attachments'] = instance.attachments.map((e) => e.toJson()).toList();
+  val['attachments'] =
+      instance.attachments.map(const AttachmentConverter().toJson).toList();
   writeNotNull('important', instance.isImportant);
   writeNotNull('geo', instance.geo?.toJson());
   writeNotNull('payload', instance.payload);

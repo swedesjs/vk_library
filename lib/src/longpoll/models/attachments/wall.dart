@@ -51,7 +51,7 @@ class WallAttachment extends AttachmentDefault {
   final WallAttachmentPostSource? postSource;
 
   /// Entry media attachments
-  @JsonKey(fromJson: transformAttachments)
+  @AttachmentConverter()
   final List<Attachment> attachments;
 
   /// Location information.

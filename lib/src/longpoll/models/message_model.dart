@@ -75,7 +75,7 @@ class MessageModel extends AllAttachmentable {
   final bool? isHidden;
 
   /// Message media attachments.
-  @JsonKey(fromJson: transformAttachments)
+  @AttachmentConverter()
   final List<Attachment> attachments;
 
   /// The message is marked as important.

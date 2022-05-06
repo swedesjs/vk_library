@@ -10,25 +10,35 @@ class WallReplyAttachment extends Attachment implements CommentObject {
 
   /// ID of the owner of the wall on which the comment was left.
   final int? ownerId;
-  @JsonKey(fromJson: transformAttachments)
+
+  @AttachmentConverter()
   @override
   final List<Attachment>? attachments;
+
   @override
   final DateTime? date;
+
   @override
   final CommentObjectDonut? donut;
+
   @override
   final int? fromId;
+
   @override
   final int? id;
+
   @override
   final List<int>? parentsStack;
+
   @override
   final int? replyToComment;
+
   @override
   final int? replyToUser;
+
   @override
   final String? text;
+
   @override
   final CommentObjectThread? thread;
 

@@ -28,7 +28,7 @@ class CommentObject {
   final int? replyToComment;
 
   /// Comment media attachments (photos, links, etc.).
-  @JsonKey(fromJson: transformAttachments)
+  @AttachmentConverter()
   final List<Attachment>? attachments;
 
   /// An array of parent comment IDs.

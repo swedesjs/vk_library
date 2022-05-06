@@ -17,7 +17,10 @@ CommentObject _$CommentObjectFromJson(Map<String, dynamic> json) =>
           : CommentObjectDonut.fromJson(json['donut'] as Map<String, dynamic>),
       replyToUser: json['reply_to_user'] as int?,
       replyToComment: json['reply_to_comment'] as int?,
-      attachments: transformAttachments(json['attachments'] as List),
+      attachments: (json['attachments'] as List<dynamic>?)
+          ?.map((e) =>
+              const AttachmentConverter().fromJson(e as Map<String, dynamic>))
+          .toList(),
       parentsStack: (json['parents_stack'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
@@ -43,8 +46,8 @@ Map<String, dynamic> _$CommentObjectToJson(CommentObject instance) {
   writeNotNull('donut', instance.donut?.toJson());
   writeNotNull('reply_to_user', instance.replyToUser);
   writeNotNull('reply_to_comment', instance.replyToComment);
-  writeNotNull(
-      'attachments', instance.attachments?.map((e) => e.toJson()).toList());
+  writeNotNull('attachments',
+      instance.attachments?.map(const AttachmentConverter().toJson).toList());
   writeNotNull('parents_stack', instance.parentsStack);
   writeNotNull('thread', instance.thread?.toJson());
   return val;

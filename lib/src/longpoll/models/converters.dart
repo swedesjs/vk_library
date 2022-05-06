@@ -56,3 +56,4 @@ class DurationNullConverter extends JsonConverter<Duration?, int?> {
     return null;
   }
 }
+
