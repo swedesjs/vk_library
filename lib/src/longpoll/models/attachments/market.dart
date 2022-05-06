@@ -27,7 +27,7 @@ class MarketAttachment extends AttachmentDefault {
   final String? thumbPhoto;
 
   /// Product creation date.
-@DateTimeNullConverter()
+  @DateTimeNullConverter()
   final DateTime? date;
 
   /// Product availability status.

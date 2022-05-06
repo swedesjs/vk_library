@@ -1276,8 +1276,7 @@ WallReplyAttachment _$WallReplyAttachmentFromJson(Map<String, dynamic> json) =>
           ?.map((e) =>
               const AttachmentConverter().fromJson(e as Map<String, dynamic>))
           .toList(),
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      date: const DateTimeNullConverter().fromJson(json['date'] as int?),
       donut: json['donut'] == null
           ? null
           : CommentObjectDonut.fromJson(json['donut'] as Map<String, dynamic>),
@@ -1308,7 +1307,7 @@ Map<String, dynamic> _$WallReplyAttachmentToJson(WallReplyAttachment instance) {
   writeNotNull('owner_id', instance.ownerId);
   writeNotNull('attachments',
       instance.attachments?.map(const AttachmentConverter().toJson).toList());
-  writeNotNull('date', instance.date?.toIso8601String());
+  writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   writeNotNull('donut', instance.donut?.toJson());
   writeNotNull('from_id', instance.fromId);
   writeNotNull('id', instance.id);

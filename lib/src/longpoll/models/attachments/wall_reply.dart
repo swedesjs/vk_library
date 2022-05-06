@@ -15,6 +15,7 @@ class WallReplyAttachment extends Attachment implements CommentObject {
   @override
   final List<Attachment>? attachments;
 
+  @DateTimeNullConverter()
   @override
   final DateTime? date;
 
