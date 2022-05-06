@@ -18,7 +18,7 @@ class PlaceObject {
   final int? longitude;
 
   /// Place creation date.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? created;
 
   /// Location icon, image URL.
@@ -28,7 +28,7 @@ class PlaceObject {
   final int? checkins;
 
   /// Update date.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? updated;
 
   /// Place type.

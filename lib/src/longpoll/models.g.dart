@@ -8,7 +8,7 @@ part of 'models.dart';
 
 MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
       id: json['id'] as int,
-      dispatchTime: dateFromJson(json['date'] as int),
+      dispatchTime: const DateTimeConverter().fromJson(json['date'] as int),
       peerId: json['peer_id'] as int,
       senderId: json['from_id'] as int,
       text: json['text'] as String,
@@ -38,7 +38,8 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
       conversationMessageId: json['conversation_message_id'] as int,
       isCropped: json['is_cropped'] as bool?,
       membersCount: json['members_count'] as int?,
-      updateTime: dateNullFromJson(json['update_time'] as int?),
+      updateTime:
+          const DateTimeNullConverter().fromJson(json['update_time'] as int?),
       wasListened: json['was_listened'] as bool?,
       pinnedAt: json['pinned_at'] as int?,
       messageTag: json['message_tag'] as String?,
@@ -47,10 +48,6 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
 Map<String, dynamic> _$MessageModelToJson(MessageModel instance) {
   final val = <String, dynamic>{
     'id': instance.id,
-    'date': instance.dispatchTime.toIso8601String(),
-    'peer_id': instance.peerId,
-    'from_id': instance.senderId,
-    'text': instance.text,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -59,6 +56,10 @@ Map<String, dynamic> _$MessageModelToJson(MessageModel instance) {
     }
   }
 
+  writeNotNull('date', const DateTimeConverter().toJson(instance.dispatchTime));
+  val['peer_id'] = instance.peerId;
+  val['from_id'] = instance.senderId;
+  val['text'] = instance.text;
   writeNotNull('random_id', instance.randomId);
   writeNotNull('ref', instance.ref);
   writeNotNull('ref_source', instance.refSource);
@@ -76,7 +77,8 @@ Map<String, dynamic> _$MessageModelToJson(MessageModel instance) {
   val['conversation_message_id'] = instance.conversationMessageId;
   writeNotNull('is_cropped', instance.isCropped);
   writeNotNull('members_count', instance.membersCount);
-  writeNotNull('update_time', instance.updateTime?.toIso8601String());
+  writeNotNull(
+      'update_time', const DateTimeNullConverter().toJson(instance.updateTime));
   writeNotNull('was_listened', instance.wasListened);
   writeNotNull('pinned_at', instance.pinnedAt);
   writeNotNull('message_tag', instance.messageTag);

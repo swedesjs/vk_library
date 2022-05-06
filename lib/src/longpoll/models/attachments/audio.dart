@@ -28,7 +28,7 @@ class AudioAttachment extends AttachmentDefault {
   final int? genreId;
 
   /// Date added.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? date;
 
   /// Whether the option "Do not display when searching" is enabled.

@@ -10,7 +10,7 @@ CommentObject _$CommentObjectFromJson(Map<String, dynamic> json) =>
     CommentObject(
       id: json['id'] as int?,
       fromId: json['from_id'] as int?,
-      date: dateNullFromJson(json['date'] as int?),
+      date: const DateTimeNullConverter().fromJson(json['date'] as int?),
       text: json['text'] as String?,
       donut: json['donut'] == null
           ? null
@@ -38,7 +38,7 @@ Map<String, dynamic> _$CommentObjectToJson(CommentObject instance) {
 
   writeNotNull('id', instance.id);
   writeNotNull('from_id', instance.fromId);
-  writeNotNull('date', instance.date?.toIso8601String());
+  writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   writeNotNull('text', instance.text);
   writeNotNull('donut', instance.donut?.toJson());
   writeNotNull('reply_to_user', instance.replyToUser);
@@ -103,10 +103,10 @@ PlaceObject _$PlaceObjectFromJson(Map<String, dynamic> json) => PlaceObject(
       title: json['title'] as String?,
       latitude: json['latitude'] as int?,
       longitude: json['longitude'] as int?,
-      created: dateNullFromJson(json['created'] as int?),
+      created: const DateTimeNullConverter().fromJson(json['created'] as int?),
       icon: json['icon'] as String?,
       checkins: json['checkins'] as int?,
-      updated: dateNullFromJson(json['updated'] as int?),
+      updated: const DateTimeNullConverter().fromJson(json['updated'] as int?),
       type: json['type'] as int?,
       country: json['country'] as int?,
       city: json['city'] as int?,
@@ -126,10 +126,12 @@ Map<String, dynamic> _$PlaceObjectToJson(PlaceObject instance) {
   writeNotNull('title', instance.title);
   writeNotNull('latitude', instance.latitude);
   writeNotNull('longitude', instance.longitude);
-  writeNotNull('created', instance.created?.toIso8601String());
+  writeNotNull(
+      'created', const DateTimeNullConverter().toJson(instance.created));
   writeNotNull('icon', instance.icon);
   writeNotNull('checkins', instance.checkins);
-  writeNotNull('updated', instance.updated?.toIso8601String());
+  writeNotNull(
+      'updated', const DateTimeNullConverter().toJson(instance.updated));
   writeNotNull('type', instance.type);
   writeNotNull('country', instance.country);
   writeNotNull('city', instance.city);

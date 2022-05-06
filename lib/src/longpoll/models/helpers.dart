@@ -1,11 +1,5 @@
 part of '../models.dart';
 
-DateTime dateFromJson(int time) =>
-    DateTime.fromMillisecondsSinceEpoch(time * 1000);
-
-DateTime? dateNullFromJson(int? time) =>
-    time == null ? null : dateFromJson(time);
-
 bool fieldReturnedInCase(int? value) {
   switch (value) {
     case null:

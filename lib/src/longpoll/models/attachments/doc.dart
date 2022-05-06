@@ -18,7 +18,7 @@ class DocAttachment extends AttachmentDefault {
   final String? url;
 
   /// Date added.
-  @JsonKey(fromJson: dateNullFromJson)
+@DateTimeNullConverter()
   final DateTime? date;
 
   /// File type.

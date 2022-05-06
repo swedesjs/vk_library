@@ -63,7 +63,8 @@ AudioAttachment _$AudioAttachmentFromJson(Map<String, dynamic> json) =>
       lyricsId: json['lyrics_id'] as int?,
       albumId: json['album_id'] as int?,
       genreId: json['genre_id'] as int?,
-      date: dateNullFromJson(json['date'] as int?),
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
       noSearch: fieldReturnedInCase(json['no_search'] as int?),
       isHq: json['is_hq'] as int?,
     );
@@ -141,7 +142,8 @@ DocAttachment _$DocAttachmentFromJson(Map<String, dynamic> json) =>
       size: json['size'] as int?,
       ext: json['ext'] as String?,
       url: json['url'] as String?,
-      date: dateNullFromJson(json['date'] as int?),
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
       docType: $enumDecodeNullable(_$DocAttachmentTypeEnumMap, json['type']),
       preview: json['preview'] == null
           ? null
@@ -394,7 +396,8 @@ MarketAttachment _$MarketAttachmentFromJson(Map<String, dynamic> json) =>
           : MarketAttachmentCategory.fromJson(
               json['category'] as Map<String, dynamic>),
       thumbPhoto: json['thumb_photo'] as String?,
-      date: dateFromJson(json['date'] as int),
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
       availability: $enumDecodeNullable(
           _$MarketAttachmentAvailabilityEnumMap, json['availability']),
       isFavorite: json['is_favorite'] as bool? ?? false,
@@ -616,7 +619,8 @@ PhotoAttachment _$PhotoAttachmentFromJson(Map<String, dynamic> json) =>
       albumId: json['album_id'] as int?,
       userId: json['user_id'] as int?,
       description: json['text'] as String?,
-      date: dateNullFromJson(json['date'] as int?),
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
       sizes: (json['sizes'] as List<dynamic>?)
           ?.map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -733,8 +737,11 @@ VideoAttachment _$VideoAttachmentFromJson(Map<String, dynamic> json) =>
           ?.map((e) =>
               GeneralClassAttachmentImage.fromJson(e as Map<String, dynamic>))
           .toList(),
-      date: dateNullFromJson(json['date'] as int?),
-      addingDate: dateNullFromJson(json['adding_date'] as int?),
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      addingDate: json['adding_date'] == null
+          ? null
+          : DateTime.parse(json['adding_date'] as String),
       views: json['views'] as int?,
       localViews: json['local_views'] as int?,
       comments: json['comments'] as int?,
@@ -927,7 +934,8 @@ WallAttachment _$WallAttachmentFromJson(Map<String, dynamic> json) =>
       accessKey: json['access_key'] as String?,
       fromId: json['from_id'] as int?,
       createdBy: json['created_by'] as int?,
-      date: dateNullFromJson(json['date'] as int?),
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
       text: json['text'] as String?,
       replyOwnerId: json['reply_owner_id'] as int?,
       replyPostId: json['reply_post_id'] as int?,

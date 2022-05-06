@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vk_library/src/longpoll/shared/all_attachmentable.dart';
 import 'package:vk_library/vk_library.dart';
+import 'models/converters.dart';
 import 'shared/message_forwards_collection.dart';
 
 export 'models/attachments/attachment.dart';

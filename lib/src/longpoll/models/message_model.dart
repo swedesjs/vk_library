@@ -21,7 +21,8 @@ class MessageModel extends AllAttachmentable {
   final int id;
 
   /// Dispatch time.
-  @JsonKey(fromJson: dateFromJson, name: 'date')
+  @JsonKey(name: 'date')
+  @DateTimeConverter()
   final DateTime dispatchTime;
 
   /// Peer id.
@@ -125,7 +126,7 @@ class MessageModel extends AllAttachmentable {
   final int? membersCount;
 
   /// The date the message was updated.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? updateTime;
 
   /// Whether the attached audio message has already been listened to by you.

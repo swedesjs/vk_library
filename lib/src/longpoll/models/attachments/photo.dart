@@ -16,7 +16,7 @@ class PhotoAttachment extends AttachmentDefault {
   final String? description;
 
   /// Date added.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? date;
 
   /// An array with copies of the image in different sizes.

@@ -22,11 +22,11 @@ class VideoAttachment extends AttachmentDefault {
   final List<GeneralClassAttachmentImage>? firstFrame;
 
   /// The date the video was created.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? date;
 
   /// The date the video was added by the user or group.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? addingDate;
 
   /// Number of video views.

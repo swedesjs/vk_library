@@ -12,7 +12,7 @@ class CommentObject {
   final int? fromId;
 
   /// Date the comment was created.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? date;
 
   /// Comment text.

@@ -12,7 +12,7 @@ class WallAttachment extends AttachmentDefault {
   final int? createdBy;
 
   /// Posting time.
-  @JsonKey(fromJson: dateNullFromJson)
+  @DateTimeNullConverter()
   final DateTime? date;
 
   /// The text of the entry.
