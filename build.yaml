@@ -11,7 +11,3 @@ targets:
           - lib/src/longpoll/models.dart
           - lib/src/longpoll/models/attachments/attachment.dart
           - lib/src/longpoll/models/objects/objects.dart
-      freezed:
-        options:
-          copy_with: false
-          equal: false
