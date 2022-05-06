@@ -1270,8 +1270,9 @@ const _$WallAttachmentDonutEditModeEnumMap = {
 
 WallReplyAttachment _$WallReplyAttachmentFromJson(Map<String, dynamic> json) =>
     WallReplyAttachment(
+      id: json['id'] as int,
+      ownerId: json['owner_id'] as int,
       postId: json['post_id'] as int?,
-      ownerId: json['owner_id'] as int?,
       attachments: (json['attachments'] as List<dynamic>?)
           ?.map((e) =>
               const AttachmentConverter().fromJson(e as Map<String, dynamic>))
@@ -1281,7 +1282,6 @@ WallReplyAttachment _$WallReplyAttachmentFromJson(Map<String, dynamic> json) =>
           ? null
           : CommentObjectDonut.fromJson(json['donut'] as Map<String, dynamic>),
       fromId: json['from_id'] as int?,
-      id: json['id'] as int?,
       parentsStack: (json['parents_stack'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
@@ -1295,7 +1295,10 @@ WallReplyAttachment _$WallReplyAttachmentFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$WallReplyAttachmentToJson(WallReplyAttachment instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'owner_id': instance.ownerId,
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1304,13 +1307,11 @@ Map<String, dynamic> _$WallReplyAttachmentToJson(WallReplyAttachment instance) {
   }
 
   writeNotNull('post_id', instance.postId);
-  writeNotNull('owner_id', instance.ownerId);
   writeNotNull('attachments',
       instance.attachments?.map(const AttachmentConverter().toJson).toList());
   writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   writeNotNull('donut', instance.donut?.toJson());
   writeNotNull('from_id', instance.fromId);
-  writeNotNull('id', instance.id);
   writeNotNull('parents_stack', instance.parentsStack);
   writeNotNull('reply_to_comment', instance.replyToComment);
   writeNotNull('reply_to_user', instance.replyToUser);

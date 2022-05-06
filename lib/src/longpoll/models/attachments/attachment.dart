@@ -100,7 +100,8 @@ class AttachmentDefault extends Attachment {
       AttachmentType.market,
       AttachmentType.wall,
       AttachmentType.marketAlbum,
-      AttachmentType.audio
+      AttachmentType.audio,
+      AttachmentType.wallReply
     ];
 
     if (!supportedTypes.contains(type)) {
