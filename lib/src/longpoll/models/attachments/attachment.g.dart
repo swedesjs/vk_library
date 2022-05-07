@@ -399,6 +399,7 @@ LinkAttachment _$LinkAttachmentFromJson(Map<String, dynamic> json) =>
       button: json['button'] as Map<String, dynamic>?,
       previewPage: json['preview_page'] as String?,
       previewUrl: json['preview_url'] as String?,
+      isFavorite: json['is_favorite'] as bool?,
     );
 
 Map<String, dynamic> _$LinkAttachmentToJson(LinkAttachment instance) {
@@ -419,6 +420,7 @@ Map<String, dynamic> _$LinkAttachmentToJson(LinkAttachment instance) {
   writeNotNull('button', instance.button);
   writeNotNull('preview_page', instance.previewPage);
   writeNotNull('preview_url', instance.previewUrl);
+  writeNotNull('is_favorite', instance.isFavorite);
   return val;
 }
 
@@ -734,6 +736,8 @@ const _$PhotoSizeTypeEnumMap = {
   PhotoSizeType.w: 'w',
   PhotoSizeType.i: 'i',
   PhotoSizeType.d: 'd',
+  PhotoSizeType.l: 'l',
+  PhotoSizeType.k: 'k',
 };
 
 PollAttachment _$PollAttachmentFromJson(Map<String, dynamic> json) =>

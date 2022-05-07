@@ -85,5 +85,7 @@ enum PhotoSizeType {
   w,
   // @nodoc
   i,
-  d
+  d,
+  l,
+  k
 }

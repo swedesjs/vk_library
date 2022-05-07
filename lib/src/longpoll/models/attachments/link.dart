@@ -31,6 +31,7 @@ class LinkAttachment extends Attachment {
 
   /// URL of the content page to preview the content of the page.
   final String? previewUrl;
+  final bool? isFavorite;
 
   LinkAttachment({
     this.url,
@@ -42,6 +43,7 @@ class LinkAttachment extends Attachment {
     this.button,
     this.previewPage,
     this.previewUrl,
+    this.isFavorite,
   }) : super(type: AttachmentType.link);
 
   factory LinkAttachment.fromJson(Map<String, dynamic> json) =>
