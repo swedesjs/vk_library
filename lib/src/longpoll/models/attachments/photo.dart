@@ -28,6 +28,9 @@ class PhotoAttachment extends AttachmentDefault {
   /// The height of the original photo in pixels.
   final int? height;
 
+  // @nodoc
+  final bool? hasTags;
+
   PhotoAttachment({
     required int id,
     required int ownerId,
@@ -39,6 +42,7 @@ class PhotoAttachment extends AttachmentDefault {
     this.sizes,
     this.width,
     this.height,
+    this.hasTags,
   }) : super(
           type: AttachmentType.photo,
           id: id,

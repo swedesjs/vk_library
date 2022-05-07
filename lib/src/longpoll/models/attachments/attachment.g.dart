@@ -629,6 +629,7 @@ PhotoAttachment _$PhotoAttachmentFromJson(Map<String, dynamic> json) =>
           .toList(),
       width: json['width'] as int?,
       height: json['height'] as int?,
+      hasTags: json['has_tags'] as bool?,
     );
 
 Map<String, dynamic> _$PhotoAttachmentToJson(PhotoAttachment instance) {
@@ -651,6 +652,7 @@ Map<String, dynamic> _$PhotoAttachmentToJson(PhotoAttachment instance) {
   writeNotNull('sizes', instance.sizes?.map((e) => e.toJson()).toList());
   writeNotNull('width', instance.width);
   writeNotNull('height', instance.height);
+  writeNotNull('has_tags', instance.hasTags);
   return val;
 }
 
