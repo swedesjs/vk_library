@@ -993,6 +993,7 @@ VideoAttachment _$VideoAttachmentFromJson(Map<String, dynamic> json) =>
           ? null
           : VideoAttachmentReposts.fromJson(
               json['reposts'] as Map<String, dynamic>),
+      trackCode: json['track_code'] as String?,
     );
 
 Map<String, dynamic> _$VideoAttachmentToJson(VideoAttachment instance) {
@@ -1050,6 +1051,7 @@ Map<String, dynamic> _$VideoAttachmentToJson(VideoAttachment instance) {
   writeNotNull('spectators', instance.spectators);
   writeNotNull('likes', instance.likes?.toJson());
   writeNotNull('reposts', instance.reposts?.toJson());
+  writeNotNull('track_code', instance.trackCode);
   return val;
 }
 

@@ -136,6 +136,9 @@ class VideoAttachment extends AttachmentDefault {
   /// Contains the repost object.
   final VideoAttachmentReposts? reposts;
 
+/// @nodoc
+  final String? trackCode;
+
   VideoAttachment({
     required int id,
     required int ownerId,
@@ -178,6 +181,7 @@ class VideoAttachment extends AttachmentDefault {
     this.spectators,
     this.likes,
     this.reposts,
+    this.trackCode,
   }) : super(
           type: AttachmentType.video,
           id: id,
