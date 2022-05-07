@@ -72,4 +72,18 @@ class PhotoSize extends GeneralClassAttachmentImage {
   Map<String, dynamic> toJson() => _$PhotoSizeToJson(this);
 }
 
-enum PhotoSizeType { s, m, x, o, p, q, r, y, z, w }
+enum PhotoSizeType {
+  s,
+  m,
+  x,
+  o,
+  p,
+  q,
+  r,
+  y,
+  z,
+  w,
+  // @nodoc
+  i,
+  d
+}

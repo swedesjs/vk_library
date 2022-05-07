@@ -732,6 +732,8 @@ const _$PhotoSizeTypeEnumMap = {
   PhotoSizeType.y: 'y',
   PhotoSizeType.z: 'z',
   PhotoSizeType.w: 'w',
+  PhotoSizeType.i: 'i',
+  PhotoSizeType.d: 'd',
 };
 
 PollAttachment _$PollAttachmentFromJson(Map<String, dynamic> json) =>
