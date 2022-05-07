@@ -12,7 +12,7 @@ class AudioAttachment extends AttachmentDefault {
   final String? title;
 
   /// Audio duration.
-@DurationNullConverter()
+  @DurationNullConverter()
   final Duration? duration;
 
   /// Link to mp3.
@@ -38,6 +38,15 @@ class AudioAttachment extends AttachmentDefault {
   /// 1 if the audio is in high quality.
   final int? isHq;
 
+  // @nodoc
+  final bool? isExplicit;
+  final bool? isFocusTrack;
+  final String? trackCode;
+  final List<AudioAttachmentMainArtists>? mainArtists;
+  final bool? shortVideosAllowed;
+  final bool? storiesAllowed;
+  final bool? storiesCoverAllowed;
+
   AudioAttachment({
     required int id,
     required int ownerId,
@@ -52,6 +61,13 @@ class AudioAttachment extends AttachmentDefault {
     this.date,
     required this.noSearch,
     this.isHq,
+    this.isExplicit,
+    this.isFocusTrack,
+    this.trackCode,
+    this.mainArtists,
+    this.shortVideosAllowed,
+    this.storiesAllowed,
+    this.storiesCoverAllowed,
   }) : super(
           type: AttachmentType.audio,
           id: id,
@@ -64,4 +80,18 @@ class AudioAttachment extends AttachmentDefault {
 
   @override
   Map<String, dynamic> toJson() => _$AudioAttachmentToJson(this);
+}
+
+@JsonSerializable()
+class AudioAttachmentMainArtists {
+  final String? name;
+  final String? domain;
+  final String? id;
+
+  AudioAttachmentMainArtists({this.name, this.domain, this.id});
+
+  factory AudioAttachmentMainArtists.fromJson(Map<String, dynamic> json) =>
+      _$AudioAttachmentMainArtistsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AudioAttachmentMainArtistsToJson(this);
 }

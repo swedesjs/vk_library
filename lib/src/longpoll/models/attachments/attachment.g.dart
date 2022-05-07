@@ -68,6 +68,16 @@ AudioAttachment _$AudioAttachmentFromJson(Map<String, dynamic> json) =>
       date: const DateTimeNullConverter().fromJson(json['date'] as int?),
       noSearch: fieldReturnedInCase(json['no_search'] as int?),
       isHq: json['is_hq'] as int?,
+      isExplicit: json['is_explicit'] as bool?,
+      isFocusTrack: json['is_focus_track'] as bool?,
+      trackCode: json['track_code'] as String?,
+      mainArtists: (json['main_artists'] as List<dynamic>?)
+          ?.map((e) =>
+              AudioAttachmentMainArtists.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      shortVideosAllowed: json['short_videos_allowed'] as bool?,
+      storiesAllowed: json['stories_allowed'] as bool?,
+      storiesCoverAllowed: json['stories_cover_allowed'] as bool?,
     );
 
 Map<String, dynamic> _$AudioAttachmentToJson(AudioAttachment instance) {
@@ -94,6 +104,38 @@ Map<String, dynamic> _$AudioAttachmentToJson(AudioAttachment instance) {
   writeNotNull('date', const DateTimeNullConverter().toJson(instance.date));
   val['no_search'] = instance.noSearch;
   writeNotNull('is_hq', instance.isHq);
+  writeNotNull('is_explicit', instance.isExplicit);
+  writeNotNull('is_focus_track', instance.isFocusTrack);
+  writeNotNull('track_code', instance.trackCode);
+  writeNotNull(
+      'main_artists', instance.mainArtists?.map((e) => e.toJson()).toList());
+  writeNotNull('short_videos_allowed', instance.shortVideosAllowed);
+  writeNotNull('stories_allowed', instance.storiesAllowed);
+  writeNotNull('stories_cover_allowed', instance.storiesCoverAllowed);
+  return val;
+}
+
+AudioAttachmentMainArtists _$AudioAttachmentMainArtistsFromJson(
+        Map<String, dynamic> json) =>
+    AudioAttachmentMainArtists(
+      name: json['name'] as String?,
+      domain: json['domain'] as String?,
+      id: json['id'] as String?,
+    );
+
+Map<String, dynamic> _$AudioAttachmentMainArtistsToJson(
+    AudioAttachmentMainArtists instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('name', instance.name);
+  writeNotNull('domain', instance.domain);
+  writeNotNull('id', instance.id);
   return val;
 }
 
