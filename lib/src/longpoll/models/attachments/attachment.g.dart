@@ -24,6 +24,7 @@ const _$AttachmentTypeEnumMap = {
   AttachmentType.sticker: 'sticker',
   AttachmentType.gift: 'gift',
   AttachmentType.audioMessage: 'audio_message',
+  AttachmentType.poll: 'poll',
 };
 
 AttachmentDefault _$AttachmentDefaultFromJson(Map<String, dynamic> json) =>
@@ -688,6 +689,172 @@ const _$PhotoSizeTypeEnumMap = {
   PhotoSizeType.z: 'z',
   PhotoSizeType.w: 'w',
 };
+
+PollAttachment _$PollAttachmentFromJson(Map<String, dynamic> json) =>
+    PollAttachment(
+      id: json['id'] as int,
+      ownerId: json['owner_id'] as int,
+      created: const DateTimeNullConverter().fromJson(json['created'] as int?),
+      question: json['question'] as String?,
+      votes: json['votes'] as int?,
+      answers: (json['answers'] as List<dynamic>?)
+          ?.map(
+              (e) => PollAttachmentAnswers.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      anonymous: json['anonymous'] as bool?,
+      multiple: json['multiple'] as bool?,
+      answerIds:
+          (json['answer_ids'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      endDate: const DateTimeNullConverter().fromJson(json['end_date'] as int?),
+      closed: json['closed'] as bool?,
+      isBoard: json['is_board'] as bool?,
+      canEdit: json['can_edit'] as bool?,
+      canVote: json['can_vote'] as bool?,
+      canReport: json['can_report'] as bool?,
+      canShare: json['can_share'] as bool?,
+      authorId: json['author_id'] as int?,
+      photo: json['photo'] == null
+          ? null
+          : PhotoAttachment.fromJson(json['photo'] as Map<String, dynamic>),
+      background: json['background'] == null
+          ? null
+          : PollAttachmentBackground.fromJson(
+              json['background'] as Map<String, dynamic>),
+      friends:
+          (json['friends'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      disableUnvote: json['disable_unvote'] as bool?,
+      embedHash: json['embed_hash'] as String?,
+    );
+
+Map<String, dynamic> _$PollAttachmentToJson(PollAttachment instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'owner_id': instance.ownerId,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'created', const DateTimeNullConverter().toJson(instance.created));
+  writeNotNull('question', instance.question);
+  writeNotNull('votes', instance.votes);
+  writeNotNull('answers', instance.answers?.map((e) => e.toJson()).toList());
+  writeNotNull('anonymous', instance.anonymous);
+  writeNotNull('multiple', instance.multiple);
+  writeNotNull('answer_ids', instance.answerIds);
+  writeNotNull(
+      'end_date', const DateTimeNullConverter().toJson(instance.endDate));
+  writeNotNull('closed', instance.closed);
+  writeNotNull('is_board', instance.isBoard);
+  writeNotNull('can_edit', instance.canEdit);
+  writeNotNull('can_vote', instance.canVote);
+  writeNotNull('can_report', instance.canReport);
+  writeNotNull('can_share', instance.canShare);
+  writeNotNull('author_id', instance.authorId);
+  writeNotNull('photo', instance.photo?.toJson());
+  writeNotNull('background', instance.background?.toJson());
+  writeNotNull('friends', instance.friends);
+  writeNotNull('disable_unvote', instance.disableUnvote);
+  writeNotNull('embed_hash', instance.embedHash);
+  return val;
+}
+
+PollAttachmentAnswers _$PollAttachmentAnswersFromJson(
+        Map<String, dynamic> json) =>
+    PollAttachmentAnswers(
+      id: json['id'] as int?,
+      text: json['text'] as String?,
+      votes: json['votes'] as int?,
+      rate: (json['rate'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$PollAttachmentAnswersToJson(
+    PollAttachmentAnswers instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  writeNotNull('text', instance.text);
+  writeNotNull('votes', instance.votes);
+  writeNotNull('rate', instance.rate);
+  return val;
+}
+
+PollAttachmentBackground _$PollAttachmentBackgroundFromJson(
+        Map<String, dynamic> json) =>
+    PollAttachmentBackground(
+      id: json['id'] as int?,
+      type: $enumDecodeNullable(
+          _$PollAttachmentBackgroundTypeEnumMap, json['type']),
+      angle: json['angle'] as int?,
+      color: json['color'] as String?,
+      width: json['width'] as int?,
+      height: json['height'] as int?,
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+      points: (json['points'] as List<dynamic>?)
+          ?.map((e) => PollAttachmentBackgroundPoints.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$PollAttachmentBackgroundToJson(
+    PollAttachmentBackground instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  writeNotNull('type', _$PollAttachmentBackgroundTypeEnumMap[instance.type]);
+  writeNotNull('angle', instance.angle);
+  writeNotNull('color', instance.color);
+  writeNotNull('width', instance.width);
+  writeNotNull('height', instance.height);
+  writeNotNull('images', instance.images);
+  writeNotNull('points', instance.points?.map((e) => e.toJson()).toList());
+  return val;
+}
+
+const _$PollAttachmentBackgroundTypeEnumMap = {
+  PollAttachmentBackgroundType.gradient: 'gradient',
+  PollAttachmentBackgroundType.tile: 'tile',
+};
+
+PollAttachmentBackgroundPoints _$PollAttachmentBackgroundPointsFromJson(
+        Map<String, dynamic> json) =>
+    PollAttachmentBackgroundPoints(
+      position: json['position'] as num?,
+      color: json['color'] as String?,
+    );
+
+Map<String, dynamic> _$PollAttachmentBackgroundPointsToJson(
+    PollAttachmentBackgroundPoints instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('position', instance.position);
+  writeNotNull('color', instance.color);
+  return val;
+}
 
 StickerAttachment _$StickerAttachmentFromJson(Map<String, dynamic> json) =>
     StickerAttachment(

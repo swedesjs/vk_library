@@ -23,6 +23,8 @@ part 'market_album.dart';
 
 part 'photo.dart';
 
+part 'poll.dart';
+
 part 'sticker.dart';
 
 part 'video.dart';
@@ -47,6 +49,7 @@ part 'wall_reply.dart';
 /// - [StickerAttachment]
 /// - [GiftAttachment]
 /// - [AudioMessageAttachment]
+/// - [PollAttachment]
 @JsonSerializable(createFactory: false)
 abstract class Attachment {
   final AttachmentType type;
@@ -72,7 +75,8 @@ enum AttachmentType {
   wallReply,
   sticker,
   gift,
-  audioMessage
+  audioMessage,
+  poll
 }
 
 @JsonSerializable()
@@ -176,6 +180,8 @@ class AttachmentConverter
         return GiftAttachment.fromJson(object);
       case AttachmentType.audioMessage:
         return AudioMessageAttachment.fromJson(object);
+      case AttachmentType.poll:
+        return PollAttachment.fromJson(object);
     }
   }
 
