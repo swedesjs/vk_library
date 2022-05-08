@@ -50,12 +50,16 @@ class WallReplyAttachment extends AttachmentDefault implements CommentObject {
     this.replyToUser,
     this.text,
     this.thread,
+    this.likes,
   }) : super(
           type: AttachmentType.wallReply,
           id: id,
           ownerId: ownerId,
           accessKey: null,
         );
+
+  // @nodoc
+  final WallAttachmentLikes? likes;
 
   factory WallReplyAttachment.fromJson(Map<String, dynamic> json) =>
       _$WallReplyAttachmentFromJson(json);

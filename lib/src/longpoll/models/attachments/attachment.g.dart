@@ -1525,6 +1525,9 @@ WallReplyAttachment _$WallReplyAttachmentFromJson(Map<String, dynamic> json) =>
           ? null
           : CommentObjectThread.fromJson(
               json['thread'] as Map<String, dynamic>),
+      likes: json['likes'] == null
+          ? null
+          : WallAttachmentLikes.fromJson(json['likes'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$WallReplyAttachmentToJson(WallReplyAttachment instance) {
@@ -1550,5 +1553,6 @@ Map<String, dynamic> _$WallReplyAttachmentToJson(WallReplyAttachment instance) {
   writeNotNull('reply_to_user', instance.replyToUser);
   writeNotNull('text', instance.text);
   writeNotNull('thread', instance.thread?.toJson());
+  writeNotNull('likes', instance.likes?.toJson());
   return val;
 }
