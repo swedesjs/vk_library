@@ -121,12 +121,24 @@ class WallAttachment extends AttachmentDefault {
     this.isFavorite = false,
     this.donut,
     this.postponedId,
+    this.toId,
+    this.shortTextRate,
+    this.carouselOffset,
+    this.from,
+    this.zoomText,
   }) : super(
           type: AttachmentType.wall,
           id: id,
           ownerId: ownerId,
           accessKey: accessKey,
         );
+
+  // @nodoc
+  final int? toId;
+  final double? shortTextRate;
+  final int? carouselOffset;
+  final Map<String, dynamic>? from;
+  final bool? zoomText;
 
   factory WallAttachment.fromJson(Map<String, dynamic> json) =>
       _$WallAttachmentFromJson(json);
@@ -221,7 +233,16 @@ class WallAttachmentReposts {
   @JsonKey(fromJson: whetherNull)
   final bool? userReposted;
 
-  WallAttachmentReposts({this.count, this.userReposted});
+// @nodoc
+  final int? wallCount;
+  final int? mailCount;
+
+  WallAttachmentReposts({
+    this.count,
+    this.userReposted,
+    this.wallCount,
+    this.mailCount,
+  });
 
   factory WallAttachmentReposts.fromJson(Map<String, dynamic> json) =>
       _$WallAttachmentRepostsFromJson(json);

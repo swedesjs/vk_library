@@ -1207,6 +1207,11 @@ WallAttachment _$WallAttachmentFromJson(Map<String, dynamic> json) =>
           ? null
           : WallAttachmentDonut.fromJson(json['donut'] as Map<String, dynamic>),
       postponedId: json['postponed_id'] as int?,
+      toId: json['to_id'] as int?,
+      shortTextRate: (json['short_text_rate'] as num?)?.toDouble(),
+      carouselOffset: json['carousel_offset'] as int?,
+      from: json['from'] as Map<String, dynamic>?,
+      zoomText: json['zoom_text'] as bool?,
     );
 
 Map<String, dynamic> _$WallAttachmentToJson(WallAttachment instance) {
@@ -1249,6 +1254,11 @@ Map<String, dynamic> _$WallAttachmentToJson(WallAttachment instance) {
   val['is_favorite'] = instance.isFavorite;
   writeNotNull('donut', instance.donut?.toJson());
   writeNotNull('postponed_id', instance.postponedId);
+  writeNotNull('to_id', instance.toId);
+  writeNotNull('short_text_rate', instance.shortTextRate);
+  writeNotNull('carousel_offset', instance.carouselOffset);
+  writeNotNull('from', instance.from);
+  writeNotNull('zoom_text', instance.zoomText);
   return val;
 }
 
@@ -1343,6 +1353,8 @@ WallAttachmentReposts _$WallAttachmentRepostsFromJson(
     WallAttachmentReposts(
       count: json['count'] as int?,
       userReposted: whetherNull(json['user_reposted'] as int?),
+      wallCount: json['wall_count'] as int?,
+      mailCount: json['mail_count'] as int?,
     );
 
 Map<String, dynamic> _$WallAttachmentRepostsToJson(
@@ -1357,6 +1369,8 @@ Map<String, dynamic> _$WallAttachmentRepostsToJson(
 
   writeNotNull('count', instance.count);
   writeNotNull('user_reposted', instance.userReposted);
+  writeNotNull('wall_count', instance.wallCount);
+  writeNotNull('mail_count', instance.mailCount);
   return val;
 }
 
