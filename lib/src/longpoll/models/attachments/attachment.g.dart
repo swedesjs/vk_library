@@ -25,6 +25,7 @@ const _$AttachmentTypeEnumMap = {
   AttachmentType.gift: 'gift',
   AttachmentType.audioMessage: 'audio_message',
   AttachmentType.poll: 'poll',
+  AttachmentType.graffiti: 'graffiti',
 };
 
 AttachmentDefault _$AttachmentDefaultFromJson(Map<String, dynamic> json) =>
@@ -938,6 +939,35 @@ Map<String, dynamic> _$StickerAttachmentToJson(StickerAttachment instance) {
       instance.imagesWithBackground?.map((e) => e.toJson()).toList());
   writeNotNull('animation_url', instance.animationUrl);
   writeNotNull('is_allowed', instance.isAllowed);
+  return val;
+}
+
+GraffitiAttachment _$GraffitiAttachmentFromJson(Map<String, dynamic> json) =>
+    GraffitiAttachment(
+      id: json['id'] as int,
+      ownerId: json['owner_id'] as int,
+      accessKey: json['access_key'] as String?,
+      url: json['url'] as String?,
+      width: json['width'] as int?,
+      height: json['height'] as int?,
+    );
+
+Map<String, dynamic> _$GraffitiAttachmentToJson(GraffitiAttachment instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'owner_id': instance.ownerId,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('access_key', instance.accessKey);
+  writeNotNull('url', instance.url);
+  writeNotNull('width', instance.width);
+  writeNotNull('height', instance.height);
   return val;
 }
 

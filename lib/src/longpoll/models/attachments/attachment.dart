@@ -27,6 +27,8 @@ part 'poll.dart';
 
 part 'sticker.dart';
 
+part 'graffiti.dart';
+
 part 'video.dart';
 
 part 'wall.dart';
@@ -76,7 +78,8 @@ enum AttachmentType {
   sticker,
   gift,
   audioMessage,
-  poll
+  poll,
+  graffiti
 }
 
 @JsonSerializable()
@@ -106,7 +109,8 @@ class AttachmentDefault extends Attachment {
       AttachmentType.marketAlbum,
       AttachmentType.audio,
       AttachmentType.wallReply,
-      AttachmentType.poll
+      AttachmentType.poll,
+      AttachmentType.graffiti
     ];
 
     if (!supportedTypes.contains(type)) {
@@ -183,6 +187,8 @@ class AttachmentConverter
         return AudioMessageAttachment.fromJson(object);
       case AttachmentType.poll:
         return PollAttachment.fromJson(object);
+      case AttachmentType.graffiti:
+        return GraffitiAttachment.fromJson(object);
     }
   }
 
