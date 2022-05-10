@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/poll
 @JsonSerializable()
-class PollAttachment extends AttachmentDefault {
+class PollAttachment extends Attachment {
   /// Date of creation.
   @DateTimeNullConverter()
   final DateTime? created;

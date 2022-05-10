@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/doc
 @JsonSerializable()
-class DocAttachment extends AttachmentDefault {
+class DocAttachment extends Attachment {
   /// File name.
   final String? title;
 

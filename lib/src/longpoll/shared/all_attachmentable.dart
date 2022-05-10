@@ -10,7 +10,7 @@ class AllAttachmentable extends Attachmentable {
   AllAttachmentable({
     required MessageForwardsCollection forwards,
     MessageModel? replyMessage,
-    required List<Attachment> attachments,
+    required List<AbstractAttachment> attachments,
   })  : _forwards = forwards,
         _replyMessage = replyMessage,
         super(attachments);
@@ -23,7 +23,7 @@ class AllAttachmentable extends Attachmentable {
   }
 
   /// Finds necessary attachments in all possible messages
-  List<Attachment> getAllAttachments([AttachmentType? type]) {
+  List<AbstractAttachment> getAllAttachments([AttachmentType? type]) {
     return [
       ...getAttachments(type),
       ...?_replyMessage?.getAttachments(type),

@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/post
 @JsonSerializable()
-class WallAttachment extends AttachmentDefault {
+class WallAttachment extends Attachment {
   /// Identifier of the author of the entry (on whose behalf the entry was published).
   final int? fromId;
 
@@ -52,7 +52,7 @@ class WallAttachment extends AttachmentDefault {
 
   /// Entry media attachments
   @AttachmentConverter()
-  final List<Attachment> attachments;
+  final List<AbstractAttachment> attachments;
 
   /// Location information.
   final WallAttachmentGeo? geo;

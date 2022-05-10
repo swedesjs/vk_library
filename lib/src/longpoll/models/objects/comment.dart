@@ -29,7 +29,7 @@ class CommentObject {
 
   /// Comment media attachments (photos, links, etc.).
   @AttachmentConverter()
-  final List<Attachment>? attachments;
+  final List<AbstractAttachment>? attachments;
 
   /// An array of parent comment IDs.
   final List<int>? parentsStack;

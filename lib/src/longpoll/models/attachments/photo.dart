@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/photo
 @JsonSerializable()
-class PhotoAttachment extends AttachmentDefault {
+class PhotoAttachment extends Attachment {
   /// The ID of the album that the photo is in.
   final int? albumId;
 

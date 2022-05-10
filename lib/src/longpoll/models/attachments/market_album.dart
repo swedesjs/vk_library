@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/market-album
 @JsonSerializable()
-class MarketAlbumAttachment extends AttachmentDefault {
+class MarketAlbumAttachment extends Attachment {
   /// The name of the collection.
   final String? title;
 

@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/audio-message
 @JsonSerializable()
-class AudioMessageAttachment extends AttachmentDefault {
+class AudioMessageAttachment extends Attachment {
   /// Audio message duration.
   @DurationNullConverter()
   final Duration? duration;

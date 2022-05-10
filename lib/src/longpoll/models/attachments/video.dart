@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/video
 @JsonSerializable()
-class VideoAttachment extends AttachmentDefault {
+class VideoAttachment extends Attachment {
   /// Title of the video.
   final String? title;
 

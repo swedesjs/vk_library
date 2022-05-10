@@ -76,7 +76,7 @@ class MessageModel extends AllAttachmentable {
 
   /// Message media attachments.
   @AttachmentConverter()
-  final List<Attachment> attachments;
+  final List<AbstractAttachment> attachments;
 
   /// The message is marked as important.
   @JsonKey(name: 'important')

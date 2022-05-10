@@ -29,7 +29,7 @@ class MessageForwardsCollection extends Iterable<MessageModel>
   MessageModel operator [](int index) => elementAt(index);
 
   /// Media attachments from all forwarded messages.
-  List<Attachment> get attachments =>
+  List<AbstractAttachment> get attachments =>
       expand((element) => element.attachments).toList();
 
   List<MessageModel> get equalize => getForwards(this);
@@ -39,6 +39,6 @@ class MessageForwardsCollection extends Iterable<MessageModel>
       equalize.any((element) => element.hasAttachments(type));
 
   @override
-  List<Attachment> getAttachments([AttachmentType? type]) =>
+  List<AbstractAttachment> getAttachments([AttachmentType? type]) =>
       equalize.expand((e) => e.getAttachments(type)).toList();
 }

@@ -6,7 +6,7 @@ part of 'attachment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$AttachmentToJson(Attachment instance) =>
+Map<String, dynamic> _$AbstractAttachmentToJson(AbstractAttachment instance) =>
     <String, dynamic>{
       'type': _$AttachmentTypeEnumMap[instance.type],
     };
@@ -28,15 +28,14 @@ const _$AttachmentTypeEnumMap = {
   AttachmentType.graffiti: 'graffiti',
 };
 
-AttachmentDefault _$AttachmentDefaultFromJson(Map<String, dynamic> json) =>
-    AttachmentDefault(
+Attachment _$AttachmentFromJson(Map<String, dynamic> json) => Attachment(
       type: $enumDecode(_$AttachmentTypeEnumMap, json['type']),
       id: json['id'] as int,
       ownerId: json['owner_id'] as int,
       accessKey: json['access_key'] as String?,
     );
 
-Map<String, dynamic> _$AttachmentDefaultToJson(AttachmentDefault instance) {
+Map<String, dynamic> _$AttachmentToJson(Attachment instance) {
   final val = <String, dynamic>{
     'type': _$AttachmentTypeEnumMap[instance.type],
     'id': instance.id,

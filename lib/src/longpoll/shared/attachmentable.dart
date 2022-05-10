@@ -1,7 +1,7 @@
 import 'package:vk_library/vk_library.dart';
 
 class Attachmentable {
-  final List<Attachment> _attachments;
+  final List<AbstractAttachment> _attachments;
 
   Attachmentable(this._attachments);
 
@@ -13,7 +13,7 @@ class Attachmentable {
   }
 
   /// Finds necessary attachments
-  List<Attachment> getAttachments([AttachmentType? type]) {
+  List<AbstractAttachment> getAttachments([AttachmentType? type]) {
     if (type == null) return _attachments;
 
     return _attachments.where((element) => element.type == type).toList();

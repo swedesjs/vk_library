@@ -53,12 +53,12 @@ part 'wall_reply.dart';
 /// - [AudioMessageAttachment]
 /// - [PollAttachment]
 @JsonSerializable(createFactory: false)
-abstract class Attachment {
+abstract class AbstractAttachment {
   final AttachmentType type;
 
-  Attachment({required this.type});
+  AbstractAttachment({required this.type});
 
-  Map<String, dynamic> toJson() => _$AttachmentToJson(this);
+  Map<String, dynamic> toJson() => _$AbstractAttachmentToJson(this);
 
   @override
   String toString() => runtimeType.toString();
@@ -83,7 +83,7 @@ enum AttachmentType {
 }
 
 @JsonSerializable()
-class AttachmentDefault extends Attachment {
+class Attachment extends AbstractAttachment {
   /// ID Attachment
   final int id;
 
@@ -93,7 +93,7 @@ class AttachmentDefault extends Attachment {
   /// Content key
   final String? accessKey;
 
-  AttachmentDefault({
+  Attachment({
     required AttachmentType type,
     required this.id,
     required this.ownerId,
@@ -120,11 +120,11 @@ class AttachmentDefault extends Attachment {
     }
   }
 
-  factory AttachmentDefault.fromJson(Map<String, dynamic> json) =>
-      _$AttachmentDefaultFromJson(json);
+  factory Attachment.fromJson(Map<String, dynamic> json) =>
+      _$AttachmentFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$AttachmentDefaultToJson(this);
+  Map<String, dynamic> toJson() => _$AttachmentToJson(this);
 
   /// The method converts the current instance to a [PhotoAttachment]
   PhotoAttachment toPhoto() =>
@@ -150,12 +150,12 @@ class AttachmentDefault extends Attachment {
 }
 
 class AttachmentConverter
-    extends JsonConverter<Attachment, Map<String, dynamic>> {
+    extends JsonConverter<AbstractAttachment, Map<String, dynamic>> {
   const AttachmentConverter();
 
-  /// Converts the map to an [Attachment] instance
+  /// Converts the map to an [AbstractAttachment] instance
   @override
-  Attachment fromJson(Map<String, dynamic> json) {
+  AbstractAttachment fromJson(Map<String, dynamic> json) {
     final type = json['type'];
     final enumType = $enumDecode(_$AttachmentTypeEnumMap, type);
     final object = json[type];
@@ -193,5 +193,5 @@ class AttachmentConverter
   }
 
   @override
-  Map<String, dynamic> toJson(Attachment object) => object.toJson();
+  Map<String, dynamic> toJson(AbstractAttachment object) => object.toJson();
 }

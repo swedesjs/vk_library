@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/graffiti
 @JsonSerializable()
-class GraffitiAttachment extends AttachmentDefault {
+class GraffitiAttachment extends Attachment {
   /// The graffiti address where it can be downloaded.
   final String? url;
 

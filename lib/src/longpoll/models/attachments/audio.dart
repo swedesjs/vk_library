@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/audio
 @JsonSerializable()
-class AudioAttachment extends AttachmentDefault {
+class AudioAttachment extends Attachment {
   /// Executor.
   final String? artist;
 

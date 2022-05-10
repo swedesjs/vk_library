@@ -80,18 +80,18 @@ class TransformMessage {
     );
   }
 
-  /// Converts the format string `{owner_Id}_{id}` to an instance of the [AttachmentDefault] class
-  static AttachmentDefault idToAttachment(String key, AttachmentType type) {
+  /// Converts the format string `{owner_Id}_{id}` to an instance of the [Attachment] class
+  static Attachment idToAttachment(String key, AttachmentType type) {
     final delimiter = key.indexOf('_');
 
-    return AttachmentDefault(
+    return Attachment(
       type: type,
       id: int.parse(key.substring(delimiter + 1)),
       ownerId: int.parse(key.substring(0, delimiter)),
     );
   }
 
-  static Attachment handler(
+  static AbstractAttachment handler(
     Map<String, dynamic> map,
     String key,
     AttachmentType type,
@@ -138,7 +138,7 @@ class TransformMessage {
   }
 
   MessageModel transform() {
-    final attachmentTransform = <Attachment>[];
+    final attachmentTransform = <AbstractAttachment>[];
 
     for (var i = 1, key = 'attach1';
         attachments[key] != null;
