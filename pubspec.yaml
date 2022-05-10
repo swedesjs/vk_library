@@ -12,6 +12,7 @@ dev_dependencies:
   json_serializable: ^6.1.5
   build_runner: ^2.1.8
   pedantic: ^1.11.1
+  dotenv: ^4.0.1
 dependencies:
   dio: ^4.0.4
   json_annotation: ^4.5.0
