@@ -102,58 +102,27 @@ class Attachment extends AbstractAttachment {
     required this.id,
     required this.ownerId,
     this.accessKey,
-  }) : super(type: type) {
-    const supportedTypes = <AttachmentType>[
-      AttachmentType.doc,
-      AttachmentType.photo,
-      AttachmentType.video,
-      AttachmentType.audioMessage,
-      AttachmentType.market,
-      AttachmentType.wall,
-      AttachmentType.marketAlbum,
-      AttachmentType.audio,
-      AttachmentType.wallReply,
-      AttachmentType.poll,
-      AttachmentType.graffiti
-    ];
-
-    if (!supportedTypes.contains(type)) {
-      throw UnsupportedError(
-        'The "${type.name}" type is not supported, supported types are: ${supportedTypes.map((e) => e.name).join(', ')}',
-      );
-    }
-  }
+  }) : super(type: type);
 
   factory Attachment.fromJson(Map<String, dynamic> json) =>
       _$AttachmentFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$AttachmentToJson(this);
+  bool get canBeAttach => true;
 
   /// The method converts the current instance to a [PhotoAttachment]
   PhotoAttachment toPhoto() =>
       PhotoAttachment(id: id, ownerId: ownerId, accessKey: accessKey);
 
-  /// Returns the format string `{ownerId}_{id}{?'_'}{?accessKey}`
-  String get identifiers => getValue(whetherAccessKey: true);
+  @override
+  Map<String, dynamic> toJson() => _$AttachmentToJson(this);
 
-  /// Returns the format string `{type}{ownerId}_{id}{?'_'}{?accessKey}`
-  String get attachment => _$AttachmentTypeEnumMap[type]! + identifiers;
+  @override
+  String toString() {
+    final returnAccessKey = accessKey != null ? '_$accessKey' : '';
 
-  /// If [whetherAccessKey] = true and [accessKey] != null,
-  /// then returns a string format like `{ownerId}_{id}_{accessKey}`, otherwise returns `{ownerId}_{id}`
-  String getValue({bool whetherAccessKey = false}) {
-    final returnAccessKey =
-        whetherAccessKey && accessKey != null ? '_$accessKey' : '';
-
-    return '${ownerId}_$id$returnAccessKey';
+    return '${_$AttachmentTypeEnumMap[type]}${ownerId}_$id$returnAccessKey';
   }
-
-  @override
-  String toString() => '$runtimeType[$identifiers]';
-
-  @override
-  bool get canBeAttach => true;
 }
 
 @JsonSerializable()
@@ -169,7 +138,6 @@ class ExternalAttachment extends AbstractAttachment {
   @override
   Map<String, dynamic> toJson() => _$ExternalAttachmentToJson(this);
 }
-
 
 class AttachmentConverter
     extends JsonConverter<AbstractAttachment, Map<String, dynamic>> {
