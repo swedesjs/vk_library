@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/sticker
 @JsonSerializable()
-class StickerAttachment extends AbstractAttachment {
+class StickerAttachment extends ExternalAttachment {
   /// Product Id.
   final int? productId;
 

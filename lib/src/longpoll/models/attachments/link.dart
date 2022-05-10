@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/link
 @JsonSerializable()
-class LinkAttachment extends AbstractAttachment {
+class LinkAttachment extends ExternalAttachment {
   /// Link URL.
   final String? url;
 

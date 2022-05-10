@@ -52,6 +52,16 @@ Map<String, dynamic> _$AttachmentToJson(Attachment instance) {
   return val;
 }
 
+ExternalAttachment _$ExternalAttachmentFromJson(Map<String, dynamic> json) =>
+    ExternalAttachment(
+      type: $enumDecode(_$AttachmentTypeEnumMap, json['type']),
+    );
+
+Map<String, dynamic> _$ExternalAttachmentToJson(ExternalAttachment instance) =>
+    <String, dynamic>{
+      'type': _$AttachmentTypeEnumMap[instance.type],
+    };
+
 AudioAttachment _$AudioAttachmentFromJson(Map<String, dynamic> json) =>
     AudioAttachment(
       id: json['id'] as int,
@@ -383,6 +393,35 @@ Map<String, dynamic> _$GiftAttachmentToJson(GiftAttachment instance) {
   writeNotNull('thumb_256', instance.thumb_256);
   writeNotNull('thumb_96', instance.thumb_96);
   writeNotNull('thumb_48', instance.thumb_48);
+  return val;
+}
+
+GraffitiAttachment _$GraffitiAttachmentFromJson(Map<String, dynamic> json) =>
+    GraffitiAttachment(
+      id: json['id'] as int,
+      ownerId: json['owner_id'] as int,
+      accessKey: json['access_key'] as String?,
+      url: json['url'] as String?,
+      width: json['width'] as int?,
+      height: json['height'] as int?,
+    );
+
+Map<String, dynamic> _$GraffitiAttachmentToJson(GraffitiAttachment instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'owner_id': instance.ownerId,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('access_key', instance.accessKey);
+  writeNotNull('url', instance.url);
+  writeNotNull('width', instance.width);
+  writeNotNull('height', instance.height);
   return val;
 }
 
@@ -938,35 +977,6 @@ Map<String, dynamic> _$StickerAttachmentToJson(StickerAttachment instance) {
       instance.imagesWithBackground?.map((e) => e.toJson()).toList());
   writeNotNull('animation_url', instance.animationUrl);
   writeNotNull('is_allowed', instance.isAllowed);
-  return val;
-}
-
-GraffitiAttachment _$GraffitiAttachmentFromJson(Map<String, dynamic> json) =>
-    GraffitiAttachment(
-      id: json['id'] as int,
-      ownerId: json['owner_id'] as int,
-      accessKey: json['access_key'] as String?,
-      url: json['url'] as String?,
-      width: json['width'] as int?,
-      height: json['height'] as int?,
-    );
-
-Map<String, dynamic> _$GraffitiAttachmentToJson(GraffitiAttachment instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'owner_id': instance.ownerId,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('access_key', instance.accessKey);
-  writeNotNull('url', instance.url);
-  writeNotNull('width', instance.width);
-  writeNotNull('height', instance.height);
   return val;
 }
 

@@ -4,7 +4,7 @@ part of 'attachment.dart';
 ///
 /// https://dev.vk.com/reference/objects/gift
 @JsonSerializable()
-class GiftAttachment extends AbstractAttachment {
+class GiftAttachment extends ExternalAttachment {
   /// Gift ID.
   final int? id;
 

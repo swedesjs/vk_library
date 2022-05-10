@@ -15,6 +15,8 @@ part 'general_classes.dart';
 
 part 'gifts.dart';
 
+part 'graffiti.dart';
+
 part 'link.dart';
 
 part 'market.dart';
@@ -26,8 +28,6 @@ part 'photo.dart';
 part 'poll.dart';
 
 part 'sticker.dart';
-
-part 'graffiti.dart';
 
 part 'video.dart';
 
@@ -59,6 +59,10 @@ abstract class AbstractAttachment {
   AbstractAttachment({required this.type});
 
   Map<String, dynamic> toJson() => _$AbstractAttachmentToJson(this);
+
+  /// Possible string representation
+  @JsonKey(ignore: true)
+  bool get canBeAttach;
 
   @override
   String toString() => runtimeType.toString();
@@ -147,7 +151,25 @@ class Attachment extends AbstractAttachment {
 
   @override
   String toString() => '$runtimeType[$identifiers]';
+
+  @override
+  bool get canBeAttach => true;
 }
+
+@JsonSerializable()
+class ExternalAttachment extends AbstractAttachment {
+  ExternalAttachment({required AttachmentType type}) : super(type: type);
+
+  factory ExternalAttachment.fromJson(Map<String, dynamic> json) =>
+      _$ExternalAttachmentFromJson(json);
+
+  @override
+  bool get canBeAttach => false;
+
+  @override
+  Map<String, dynamic> toJson() => _$ExternalAttachmentToJson(this);
+}
+
 
 class AttachmentConverter
     extends JsonConverter<AbstractAttachment, Map<String, dynamic>> {
