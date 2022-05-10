@@ -13,6 +13,8 @@ part 'doc.dart';
 
 part 'general_classes.dart';
 
+part 'external_attachment.dart';
+
 part 'gifts.dart';
 
 part 'graffiti.dart';
@@ -123,20 +125,6 @@ class Attachment extends AbstractAttachment {
 
     return '${_$AttachmentTypeEnumMap[type]}${ownerId}_$id$returnAccessKey';
   }
-}
-
-@JsonSerializable()
-class ExternalAttachment extends AbstractAttachment {
-  ExternalAttachment({required AttachmentType type}) : super(type: type);
-
-  factory ExternalAttachment.fromJson(Map<String, dynamic> json) =>
-      _$ExternalAttachmentFromJson(json);
-
-  @override
-  bool get canBeAttach => false;
-
-  @override
-  Map<String, dynamic> toJson() => _$ExternalAttachmentToJson(this);
 }
 
 class AttachmentConverter
