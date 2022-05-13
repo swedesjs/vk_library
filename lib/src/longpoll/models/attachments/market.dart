@@ -60,9 +60,9 @@ class MarketAttachment extends Attachment {
   final String? buttonTitle;
 
   MarketAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.title,
     this.description,
     this.price,
@@ -80,12 +80,7 @@ class MarketAttachment extends Attachment {
     this.likes,
     this.url,
     this.buttonTitle,
-  }) : super(
-          type: AttachmentType.market,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.market);
 
   factory MarketAttachment.fromJson(Map<String, dynamic> json) =>
       _$MarketAttachmentFromJson(json);

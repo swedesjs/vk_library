@@ -29,9 +29,9 @@ class DocAttachment extends Attachment {
   final DocAttachmentPreview? preview;
 
   DocAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.title,
     this.size,
     this.ext,
@@ -39,12 +39,7 @@ class DocAttachment extends Attachment {
     this.date,
     this.docType,
     this.preview,
-  }) : super(
-          type: AttachmentType.doc,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.doc);
 
   factory DocAttachment.fromJson(Map<String, dynamic> json) =>
       _$DocAttachmentFromJson(json);

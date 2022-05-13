@@ -136,13 +136,13 @@ class VideoAttachment extends Attachment {
   /// Contains the repost object.
   final VideoAttachmentReposts? reposts;
 
-/// @nodoc
+  // @nodoc
   final String? trackCode;
 
   VideoAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.title,
     this.description,
     this.duration,
@@ -182,12 +182,7 @@ class VideoAttachment extends Attachment {
     this.likes,
     this.reposts,
     this.trackCode,
-  }) : super(
-          type: AttachmentType.video,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.video);
 
   factory VideoAttachment.fromJson(Map<String, dynamic> json) =>
       _$VideoAttachmentFromJson(json);

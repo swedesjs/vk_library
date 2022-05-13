@@ -21,20 +21,15 @@ class MarketAlbumAttachment extends Attachment {
   final int? count;
 
   MarketAlbumAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.title,
     this.isMain,
     this.isHidden,
     this.photo,
     this.count,
-  }) : super(
-          type: AttachmentType.marketAlbum,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.marketAlbum);
 
   factory MarketAlbumAttachment.fromJson(Map<String, dynamic> json) =>
       _$MarketAlbumAttachmentFromJson(json);

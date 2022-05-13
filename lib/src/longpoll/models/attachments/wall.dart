@@ -92,9 +92,9 @@ class WallAttachment extends Attachment {
   final int? postponedId;
 
   WallAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.fromId,
     this.createdBy,
     this.date,
@@ -126,12 +126,7 @@ class WallAttachment extends Attachment {
     this.carouselOffset,
     this.from,
     this.zoomText,
-  }) : super(
-          type: AttachmentType.wall,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.wall);
 
   // @nodoc
   final int? toId;

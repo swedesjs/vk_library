@@ -48,9 +48,9 @@ class AudioAttachment extends Attachment {
   final bool? storiesCoverAllowed;
 
   AudioAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.artist,
     this.title,
     this.duration,
@@ -68,12 +68,7 @@ class AudioAttachment extends Attachment {
     this.shortVideosAllowed,
     this.storiesAllowed,
     this.storiesCoverAllowed,
-  }) : super(
-          type: AttachmentType.audio,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.audio);
 
   factory AudioAttachment.fromJson(Map<String, dynamic> json) =>
       _$AudioAttachmentFromJson(json);

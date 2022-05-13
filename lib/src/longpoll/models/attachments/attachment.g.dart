@@ -52,16 +52,6 @@ Map<String, dynamic> _$AttachmentToJson(Attachment instance) {
   return val;
 }
 
-ExternalAttachment _$ExternalAttachmentFromJson(Map<String, dynamic> json) =>
-    ExternalAttachment(
-      type: $enumDecode(_$AttachmentTypeEnumMap, json['type']),
-    );
-
-Map<String, dynamic> _$ExternalAttachmentToJson(ExternalAttachment instance) =>
-    <String, dynamic>{
-      'type': _$AttachmentTypeEnumMap[instance.type],
-    };
-
 AudioAttachment _$AudioAttachmentFromJson(Map<String, dynamic> json) =>
     AudioAttachment(
       id: json['id'] as int,
@@ -347,6 +337,16 @@ Map<String, dynamic> _$DocAttachmentPreviewAudioMessageToJson(
   writeNotNull('link_mp3', instance.linkMp3);
   return val;
 }
+
+ExternalAttachment _$ExternalAttachmentFromJson(Map<String, dynamic> json) =>
+    ExternalAttachment(
+      type: $enumDecode(_$AttachmentTypeEnumMap, json['type']),
+    );
+
+Map<String, dynamic> _$ExternalAttachmentToJson(ExternalAttachment instance) =>
+    <String, dynamic>{
+      'type': _$AttachmentTypeEnumMap[instance.type],
+    };
 
 GeneralClassAttachmentImage _$GeneralClassAttachmentImageFromJson(
         Map<String, dynamic> json) =>

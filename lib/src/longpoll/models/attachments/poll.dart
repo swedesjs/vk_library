@@ -66,8 +66,8 @@ class PollAttachment extends Attachment {
   final String? embedHash;
 
   PollAttachment({
-    required int id,
-    required int ownerId,
+    required super.id,
+    required super.ownerId,
     this.created,
     this.question,
     this.votes,
@@ -88,12 +88,7 @@ class PollAttachment extends Attachment {
     this.friends,
     this.disableUnvote,
     this.embedHash,
-  }) : super(
-          type: AttachmentType.poll,
-          id: id,
-          ownerId: ownerId,
-          accessKey: null,
-        );
+  }) : super(type: AttachmentType.poll, accessKey: null);
 
   factory PollAttachment.fromJson(Map<String, dynamic> json) =>
       _$PollAttachmentFromJson(json);

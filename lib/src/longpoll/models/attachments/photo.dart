@@ -32,9 +32,9 @@ class PhotoAttachment extends Attachment {
   final bool? hasTags;
 
   PhotoAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.albumId,
     this.userId,
     this.description,
@@ -43,12 +43,7 @@ class PhotoAttachment extends Attachment {
     this.width,
     this.height,
     this.hasTags,
-  }) : super(
-          type: AttachmentType.photo,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.photo);
 
   factory PhotoAttachment.fromJson(Map<String, dynamic> json) =>
       _$PhotoAttachmentFromJson(json);

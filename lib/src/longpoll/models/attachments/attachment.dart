@@ -5,15 +5,17 @@ import '../converters.dart';
 
 part 'attachment.g.dart';
 
+part 'attachment_converter.dart';
+
 part 'audio.dart';
 
 part 'audio_message.dart';
 
 part 'doc.dart';
 
-part 'general_classes.dart';
-
 part 'external_attachment.dart';
+
+part 'general_classes.dart';
 
 part 'gifts.dart';
 
@@ -32,7 +34,7 @@ part 'poll.dart';
 part 'sticker.dart';
 
 part 'video.dart';
-part 'attachment_converter.dart';
+
 part 'wall.dart';
 
 part 'wall_reply.dart';
@@ -100,11 +102,11 @@ class Attachment extends AbstractAttachment {
   final String? accessKey;
 
   Attachment({
-    required AttachmentType type,
+    required super.type,
     required this.id,
     required this.ownerId,
     this.accessKey,
-  }) : super(type: type);
+  });
 
   factory Attachment.fromJson(Map<String, dynamic> json) =>
       _$AttachmentFromJson(json);

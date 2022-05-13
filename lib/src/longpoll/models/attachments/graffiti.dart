@@ -15,18 +15,13 @@ class GraffitiAttachment extends Attachment {
   final int? height;
 
   GraffitiAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.url,
     this.width,
     this.height,
-  }) : super(
-          type: AttachmentType.graffiti,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.graffiti);
 
   factory GraffitiAttachment.fromJson(Map<String, dynamic> json) =>
       _$GraffitiAttachmentFromJson(json);

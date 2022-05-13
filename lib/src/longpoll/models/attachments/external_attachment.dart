@@ -2,7 +2,7 @@ part of 'attachment.dart';
 
 @JsonSerializable()
 class ExternalAttachment extends AbstractAttachment {
-  ExternalAttachment({required AttachmentType type}) : super(type: type);
+  ExternalAttachment({required super.type});
 
   factory ExternalAttachment.fromJson(Map<String, dynamic> json) =>
       _$ExternalAttachmentFromJson(json);

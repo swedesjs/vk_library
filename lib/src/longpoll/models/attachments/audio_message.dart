@@ -23,21 +23,16 @@ class AudioMessageAttachment extends Attachment {
   final bool? isRecognized;
 
   AudioMessageAttachment({
-    required int id,
-    required int ownerId,
-    String? accessKey,
+    required super.id,
+    required super.ownerId,
+    super.accessKey,
     this.duration,
     this.waveform,
     this.linkOgg,
     this.linkMp3,
     this.locale,
     this.isRecognized,
-  }) : super(
-          type: AttachmentType.audioMessage,
-          id: id,
-          ownerId: ownerId,
-          accessKey: accessKey,
-        );
+  }) : super(type: AttachmentType.audioMessage);
 
   factory AudioMessageAttachment.fromJson(Map<String, dynamic> json) =>
       _$AudioMessageAttachmentFromJson(json);
