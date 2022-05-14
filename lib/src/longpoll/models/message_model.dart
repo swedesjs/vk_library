@@ -177,6 +177,24 @@ class MessageModel with Attachmentable, AllAttachmentable {
   factory MessageModel.fromJson(Map<String, dynamic> json) =>
       _$MessageModelFromJson(json);
 
+  factory MessageModel.empty([int conversationMessageId = 0]) {
+    final zeroDate = DateTime.fromMillisecondsSinceEpoch(0);
+
+    return MessageModel(
+      id: 0,
+      conversationMessageId: conversationMessageId,
+      dispatchTime: zeroDate,
+      updateTime: zeroDate,
+      peerId: 0,
+      senderId: 0,
+      isOut: false,
+      text: '',
+      attachments: [],
+      randomId: 0,
+      isImportant: false,
+    );
+  }
+
   Map<String, dynamic> toJson() => _$MessageModelToJson(this);
 }
 

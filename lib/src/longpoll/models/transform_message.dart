@@ -62,24 +62,6 @@ class TransformMessage {
 
   Map<String, dynamic> toJson() => _$TransformMessageToJson(this);
 
-  static MessageModel _zeroMessageModel([int conversationMsgId = 0]) {
-    final zeroDateTime = DateTime.fromMillisecondsSinceEpoch(0);
-
-    return MessageModel(
-      id: 0,
-      conversationMessageId: conversationMsgId,
-      dispatchTime: zeroDateTime,
-      updateTime: zeroDateTime,
-      peerId: 0,
-      senderId: 0,
-      isOut: false,
-      text: '',
-      attachments: [],
-      randomId: 0,
-      isImportant: false,
-    );
-  }
-
   /// Converts the format string `{owner_Id}_{id}` to an instance of the [Attachment] class
   static Attachment idToAttachment(String key, AttachmentType type) {
     final delimiter = key.indexOf('_');
@@ -168,9 +150,9 @@ class TransformMessage {
       payload: additional.payload,
       replyMessage: reply == null
           ? null
-          : _zeroMessageModel(jsonDecode(reply)['conversation_message_id']),
+          : MessageModel.empty(jsonDecode(reply)['conversation_message_id']),
       forwards: MessageForwardsCollection(
-        attachments['fwd'] == null ? const [] : [_zeroMessageModel()],
+        attachments['fwd'] == null ? const [] : [MessageModel.empty()],
       ),
       isImportant: false,
     );
