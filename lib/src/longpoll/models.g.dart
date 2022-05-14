@@ -28,7 +28,7 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
       payload: json['payload'] as String?,
       keyboard: json['keyboard'] as Map<String, dynamic>?,
       forwards: json['fwd_messages'] == null
-          ? const MessageForwardsCollection(Iterable.empty())
+          ? const MessageForwardsCollection([])
           : MessageModel._toForwards(json['fwd_messages'] as List),
       replyMessage: json['reply_message'] == null
           ? null

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:vk_library/vk_library.dart';
 
 import 'attachmentable.dart';
@@ -16,17 +17,9 @@ List<MessageModel> getForwards(Iterable<MessageModel> rawForwards) {
 }
 
 /// A class with helper functions for working with the list of forwarded messages
-class MessageForwardsCollection extends Iterable<MessageModel>
+class MessageForwardsCollection extends DelegatingList<MessageModel>
     implements Attachmentable {
-  final Iterable<MessageModel> _messages;
-
-  const MessageForwardsCollection(this._messages);
-
-  @override
-  Iterator<MessageModel> get iterator => _messages.iterator;
-
-  /// Returns the indexth element.
-  MessageModel operator [](int index) => elementAt(index);
+  const MessageForwardsCollection(super.base);
 
   /// Media attachments from all forwarded messages.
   @override

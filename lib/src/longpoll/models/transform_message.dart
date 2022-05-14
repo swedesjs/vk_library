@@ -170,9 +170,7 @@ class TransformMessage {
           ? null
           : _zeroMessageModel(jsonDecode(reply)['conversation_message_id']),
       forwards: MessageForwardsCollection(
-        attachments['fwd'] == null
-            ? const Iterable.empty()
-            : [_zeroMessageModel()],
+        attachments['fwd'] == null ? const [] : [_zeroMessageModel()],
       ),
       isImportant: false,
     );

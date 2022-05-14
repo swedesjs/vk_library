@@ -103,7 +103,7 @@ class MessageModel with Attachmentable, AllAttachmentable {
 
   static MessageForwardsCollection _toForwards(List<dynamic> array) =>
       MessageForwardsCollection(
-        array.cast<Map<String, dynamic>>().map(MessageModel.fromJson),
+        array.cast<Map<String, dynamic>>().map(MessageModel.fromJson).toList(),
       );
 
   /// The message in response to which the current one was sent.
@@ -161,7 +161,7 @@ class MessageModel with Attachmentable, AllAttachmentable {
     this.geo,
     this.payload,
     this.keyboard,
-    this.forwards = const MessageForwardsCollection(Iterable.empty()),
+    this.forwards = const MessageForwardsCollection([]),
     this.replyMessage,
     this.action,
     this.adminAuthorId,
