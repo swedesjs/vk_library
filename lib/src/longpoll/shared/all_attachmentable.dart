@@ -3,31 +3,24 @@ import 'package:vk_library/src/longpoll/shared/attachmentable.dart';
 
 import 'message_forwards_collection.dart';
 
-class AllAttachmentable extends Attachmentable {
-  final MessageForwardsCollection _forwards;
-  final MessageModel? _replyMessage;
+mixin AllAttachmentable on Attachmentable {
+  MessageForwardsCollection get forwards;
 
-  AllAttachmentable({
-    required MessageForwardsCollection forwards,
-    MessageModel? replyMessage,
-    required List<AbstractAttachment> attachments,
-  })  : _forwards = forwards,
-        _replyMessage = replyMessage,
-        super(attachments);
+  MessageModel? get replyMessage;
 
   /// Checks for presence in all possible attachment messages
   bool hasAllAttachments([AttachmentType? type]) {
     return hasAttachments(type) ||
-        (_replyMessage?.hasAttachments(type) ?? false) ||
-        _forwards.hasAttachments(type);
+        (replyMessage?.hasAttachments(type) ?? false) ||
+        forwards.hasAttachments(type);
   }
 
   /// Finds necessary attachments in all possible messages
   List<AbstractAttachment> getAllAttachments([AttachmentType? type]) {
     return [
       ...getAttachments(type),
-      ...?_replyMessage?.getAttachments(type),
-      ..._forwards.getAttachments(type)
+      ...?replyMessage?.getAttachments(type),
+      ...forwards.getAttachments(type)
     ];
   }
 }

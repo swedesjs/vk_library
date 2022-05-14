@@ -1,21 +1,19 @@
 import 'package:vk_library/vk_library.dart';
 
-class Attachmentable {
-  final List<AbstractAttachment> _attachments;
-
-  Attachmentable(this._attachments);
+mixin Attachmentable {
+  List<AbstractAttachment> get attachments;
 
   /// The function checks if the required attachment type is in the list
   bool hasAttachments([AttachmentType? type]) {
-    if (type == null) return _attachments.isNotEmpty;
+    if (type == null) return attachments.isNotEmpty;
 
-    return _attachments.any((element) => element.type == type);
+    return attachments.any((element) => element.type == type);
   }
 
   /// Finds necessary attachments
   List<AbstractAttachment> getAttachments([AttachmentType? type]) {
-    if (type == null) return _attachments;
+    if (type == null) return attachments;
 
-    return _attachments.where((element) => element.type == type).toList();
+    return attachments.where((element) => element.type == type).toList();
   }
 }

@@ -16,7 +16,7 @@ PeerType getPeerType(int id) {
 ///
 /// https://dev.vk.com/reference/objects/message
 @JsonSerializable()
-class MessageModel extends AllAttachmentable {
+class MessageModel with Attachmentable, AllAttachmentable {
   /// Message ID.
   final int id;
 
@@ -76,6 +76,7 @@ class MessageModel extends AllAttachmentable {
 
   /// Message media attachments.
   @AttachmentConverter()
+  // ignore: annotate_overrides
   final List<AbstractAttachment> attachments;
 
   /// The message is marked as important.
@@ -94,6 +95,7 @@ class MessageModel extends AllAttachmentable {
 
   /// Array of forwarded messages (if any). The maximum number of elements is 100. The maximum nesting depth for forwarded messages is 45, the total maximum number in the chain, including nesting, is 500.
   @JsonKey(name: 'fwd_messages', fromJson: _toForwards)
+  // ignore: annotate_overrides
   final MessageForwardsCollection forwards;
 
   /// Are there forwarded messages
@@ -105,6 +107,7 @@ class MessageModel extends AllAttachmentable {
       );
 
   /// The message in response to which the current one was sent.
+  // ignore: annotate_overrides
   final MessageModel? replyMessage;
 
   /// Is there a reply to messages
@@ -169,11 +172,7 @@ class MessageModel extends AllAttachmentable {
     this.wasListened,
     this.pinnedAt,
     this.messageTag,
-  }) : super(
-          attachments: attachments,
-          forwards: forwards,
-          replyMessage: replyMessage,
-        );
+  });
 
   factory MessageModel.fromJson(Map<String, dynamic> json) =>
       _$MessageModelFromJson(json);

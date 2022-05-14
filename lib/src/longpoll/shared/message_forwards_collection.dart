@@ -29,6 +29,7 @@ class MessageForwardsCollection extends Iterable<MessageModel>
   MessageModel operator [](int index) => elementAt(index);
 
   /// Media attachments from all forwarded messages.
+  @override
   List<AbstractAttachment> get attachments =>
       expand((element) => element.attachments).toList();
 
