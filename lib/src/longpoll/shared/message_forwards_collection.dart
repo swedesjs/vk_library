@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:vk_library/vk_library.dart';
 
 import 'attachmentable.dart';
@@ -35,4 +36,19 @@ class MessageForwardsCollection extends DelegatingList<MessageModel>
   @override
   List<AbstractAttachment> getAttachments([AttachmentType? type]) =>
       equalize.expand((e) => e.getAttachments(type)).toList();
+}
+
+class MessageForwardsCollectionConverter
+    extends JsonConverter<MessageForwardsCollection, List<dynamic>> {
+  const MessageForwardsCollectionConverter();
+
+  @override
+  MessageForwardsCollection fromJson(List<dynamic> json) {
+    return MessageForwardsCollection(
+        json.cast<Map<String, dynamic>>().map(MessageModel.fromJson).toList());
+  }
+
+  @override
+  List<Map<String, dynamic>> toJson(MessageForwardsCollection object) =>
+      object.map((e) => e.toJson()).toList();
 }

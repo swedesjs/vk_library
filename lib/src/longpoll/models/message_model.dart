@@ -94,17 +94,13 @@ class MessageModel with Attachmentable, AllAttachmentable {
   final Map<String, dynamic>? keyboard;
 
   /// Array of forwarded messages (if any). The maximum number of elements is 100. The maximum nesting depth for forwarded messages is 45, the total maximum number in the chain, including nesting, is 500.
-  @JsonKey(name: 'fwd_messages', fromJson: _toForwards)
+  @JsonKey(name: 'fwd_messages')
+  @MessageForwardsCollectionConverter()
   // ignore: annotate_overrides
   final MessageForwardsCollection forwards;
 
   /// Are there forwarded messages
   bool get hasForwards => forwards.isNotEmpty;
-
-  static MessageForwardsCollection _toForwards(List<dynamic> array) =>
-      MessageForwardsCollection(
-        array.cast<Map<String, dynamic>>().map(MessageModel.fromJson).toList(),
-      );
 
   /// The message in response to which the current one was sent.
   // ignore: annotate_overrides
