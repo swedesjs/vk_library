@@ -392,14 +392,17 @@ class Photos {
       });
 
   /// Returns the server address for photo upload.
-  Future<Map<String, dynamic>> getUploadServer({
+  Future<res.PhotosGetUploadServer> getUploadServer({
     int? albumId,
     int? groupId,
-  }) =>
-      _api.request('photos.getUploadServer', {
-        if (albumId != null) 'album_id': albumId,
-        if (groupId != null) 'group_id': groupId,
-      });
+  }) async {
+    final response = await _api.request('photos.getUploadServer', {
+      if (albumId != null) 'album_id': albumId,
+      if (groupId != null) 'group_id': groupId,
+    });
+
+    return res.PhotosGetUploadServer.fromJson(response['response']);
+  }
 
   /// Returns a list of photos in which a user is tagged.
   Future<Map<String, dynamic>> getUserPhotos({
