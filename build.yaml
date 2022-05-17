@@ -7,6 +7,7 @@ targets:
           explicit_to_json: true
           field_rename: snake
         generate_for:
+          - lib/responses.dart
           - lib/src/api/models.dart
           - lib/src/longpoll/models.dart
           - lib/src/longpoll/models/attachments/attachment.dart

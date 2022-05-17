@@ -1,3 +1,4 @@
+import 'package:vk_library/responses.dart' as res;
 import 'package:vk_library/src/api.dart';
 
 class Photos {
@@ -334,12 +335,15 @@ class Photos {
       });
 
   /// Returns the server address for photo upload in a private message for a user.
-  Future<Map<String, dynamic>> getMessagesUploadServer({
+  Future<res.PhotosGetMessagesUploadServer> getMessagesUploadServer({
     int? peerId,
-  }) =>
-      _api.request('photos.getMessagesUploadServer', {
-        if (peerId != null) 'peer_id': peerId,
-      });
+  }) async {
+    final response = await _api.request('photos.getMessagesUploadServer', {
+      if (peerId != null) 'peer_id': peerId,
+    });
+
+    return res.PhotosGetMessagesUploadServer.fromJson(response['response']);
+  }
 
   /// Returns a list of photos with tags that have not been viewed.
   Future<Map<String, dynamic>> getNewTags({
