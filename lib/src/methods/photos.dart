@@ -1,4 +1,3 @@
-import 'package:vk_library/responses.dart' as res;
 import 'package:vk_library/src/api.dart';
 
 class Photos {
@@ -335,15 +334,12 @@ class Photos {
       });
 
   /// Returns the server address for photo upload in a private message for a user.
-  Future<res.PhotosGetMessagesUploadServer> getMessagesUploadServer({
+  Future<Map<String, dynamic>> getMessagesUploadServer({
     int? peerId,
-  }) async {
-    final response = await _api.request('photos.getMessagesUploadServer', {
-      if (peerId != null) 'peer_id': peerId,
-    });
-
-    return res.PhotosGetMessagesUploadServer.fromJson(response['response']);
-  }
+  }) =>
+      _api.request('photos.getMessagesUploadServer', {
+        if (peerId != null) 'peer_id': peerId,
+      });
 
   /// Returns a list of photos with tags that have not been viewed.
   Future<Map<String, dynamic>> getNewTags({
@@ -392,17 +388,14 @@ class Photos {
       });
 
   /// Returns the server address for photo upload.
-  Future<res.PhotosGetUploadServer> getUploadServer({
+  Future<Map<String, dynamic>> getUploadServer({
     int? albumId,
     int? groupId,
-  }) async {
-    final response = await _api.request('photos.getUploadServer', {
-      if (albumId != null) 'album_id': albumId,
-      if (groupId != null) 'group_id': groupId,
-    });
-
-    return res.PhotosGetUploadServer.fromJson(response['response']);
-  }
+  }) =>
+      _api.request('photos.getUploadServer', {
+        if (albumId != null) 'album_id': albumId,
+        if (groupId != null) 'group_id': groupId,
+      });
 
   /// Returns a list of photos in which a user is tagged.
   Future<Map<String, dynamic>> getUserPhotos({
@@ -421,15 +414,12 @@ class Photos {
       });
 
   /// Returns the server address for photo upload onto a user's wall.
-  Future<res.PhotosGetWallUploadServer> getWallUploadServer({
+  Future<Map<String, dynamic>> getWallUploadServer({
     int? groupId,
-  }) async {
-    final response = await _api.request('photos.getWallUploadServer', {
-      if (groupId != null) 'group_id': groupId,
-    });
-
-    return res.PhotosGetWallUploadServer.fromJson(response['response']);
-  }
+  }) =>
+      _api.request('photos.getWallUploadServer', {
+        if (groupId != null) 'group_id': groupId,
+      });
 
   /// Makes a photo into an album cover.
   Future<Map<String, dynamic>> makeCover({
