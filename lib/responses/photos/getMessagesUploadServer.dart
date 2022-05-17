@@ -18,20 +18,20 @@ class PhotosGetMessagesUploadServer {
   Map<String, dynamic> toJson() => _$PhotosGetMessagesUploadServerToJson(this);
 }
 
-@JsonSerializable()
-class PhotosUploadMessagesServer {
-  final int server;
-  final String photo;
-  final String hash;
-
-  PhotosUploadMessagesServer({
-    required this.server,
-    required this.photo,
-    required this.hash,
-  });
-
-  factory PhotosUploadMessagesServer.fromJson(Map<String, dynamic> json) =>
-      _$PhotosUploadMessagesServerFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PhotosUploadMessagesServerToJson(this);
-}
+// @JsonSerializable()
+// class PhotosUploadMessagesServer {
+//   final int server;
+//   final String photo;
+//   final String hash;
+//
+//   PhotosUploadMessagesServer({
+//     required this.server,
+//     required this.photo,
+//     required this.hash,
+//   });
+//
+//   factory PhotosUploadMessagesServer.fromJson(Map<String, dynamic> json) =>
+//       _$PhotosUploadMessagesServerFromJson(json);
+//
+//   Map<String, dynamic> toJson() => _$PhotosUploadMessagesServerToJson(this);
+// }

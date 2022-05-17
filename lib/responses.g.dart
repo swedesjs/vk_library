@@ -21,19 +21,3 @@ Map<String, dynamic> _$PhotosGetMessagesUploadServerToJson(
       'upload_url': instance.uploadUrl,
       'user_id': instance.userId,
     };
-
-PhotosUploadMessagesServer _$PhotosUploadMessagesServerFromJson(
-        Map<String, dynamic> json) =>
-    PhotosUploadMessagesServer(
-      server: json['server'] as int,
-      photo: json['photo'] as String,
-      hash: json['hash'] as String,
-    );
-
-Map<String, dynamic> _$PhotosUploadMessagesServerToJson(
-        PhotosUploadMessagesServer instance) =>
-    <String, dynamic>{
-      'server': instance.server,
-      'photo': instance.photo,
-      'hash': instance.hash,
-    };
