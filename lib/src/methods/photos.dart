@@ -421,12 +421,15 @@ class Photos {
       });
 
   /// Returns the server address for photo upload onto a user's wall.
-  Future<Map<String, dynamic>> getWallUploadServer({
+  Future<res.PhotosGetWallUploadServer> getWallUploadServer({
     int? groupId,
-  }) =>
-      _api.request('photos.getWallUploadServer', {
-        if (groupId != null) 'group_id': groupId,
-      });
+  }) async {
+    final response = await _api.request('photos.getWallUploadServer', {
+      if (groupId != null) 'group_id': groupId,
+    });
+
+    return res.PhotosGetWallUploadServer.fromJson(response['response']);
+  }
 
   /// Makes a photo into an album cover.
   Future<Map<String, dynamic>> makeCover({
