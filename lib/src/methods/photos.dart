@@ -559,6 +559,7 @@ class Photos {
     num? latitude,
     num? longitude,
     String? caption,
+    int? aid,
   }) =>
       _api.request('photos.save', {
         if (albumId != null) 'album_id': albumId,
@@ -569,6 +570,7 @@ class Photos {
         if (latitude != null) 'latitude': latitude,
         if (longitude != null) 'longitude': longitude,
         if (caption != null) 'caption': caption,
+        if (aid != null) 'aid': aid,
       });
 
   /// Saves market album photos after successful uploading.
