@@ -207,4 +207,20 @@ class Upload {
   Future docMessage({required String file}) async {
     throw UnimplementedError();
   }
+
+  Future groupCover({required String file}) async {
+    throw UnimplementedError();
+  }
+
+  Future audioMessage({required String file}) async {
+    throw UnimplementedError();
+  }
+
+  Future storiesPhoto({required String file}) async {
+    throw UnimplementedError();
+  }
+
+  Future storiesVideo({required String file}) async {
+    throw UnimplementedError();
+  }
 }
