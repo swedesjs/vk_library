@@ -559,7 +559,6 @@ class Photos {
     num? latitude,
     num? longitude,
     String? caption,
-    int? aid,
   }) =>
       _api.request('photos.save', {
         if (albumId != null) 'album_id': albumId,
@@ -570,7 +569,6 @@ class Photos {
         if (latitude != null) 'latitude': latitude,
         if (longitude != null) 'longitude': longitude,
         if (caption != null) 'caption': caption,
-        if (aid != null) 'aid': aid,
       });
 
   /// Saves market album photos after successful uploading.
@@ -629,7 +627,7 @@ class Photos {
 
   /// Saves a profile or community photo. Upload URL can be got with the [Photos.getOwnerPhotoUploadServer] method.
   Future<Map<String, dynamic>> saveOwnerPhoto({
-    String? server,
+    int? server,
     String? hash,
     String? photo,
   }) =>
