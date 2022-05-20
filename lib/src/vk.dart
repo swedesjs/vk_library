@@ -1,3 +1,4 @@
+import 'package:vk_library/src/upload/upload.dart';
 import 'package:vk_library/vk_library.dart';
 
 export 'api.dart';
@@ -7,5 +8,9 @@ class VK {
   final VKOptions options;
   final API api;
 
-  VK({required this.options}) : api = API(options);
+  late final Upload upload;
+
+  VK({required this.options}) : api = API(options) {
+    upload = Upload(api);
+  }
 }
