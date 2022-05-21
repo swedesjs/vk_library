@@ -180,12 +180,56 @@ class Upload {
     return photo;
   }
 
-  Future<PhotoAttachment> photoMarket({required String file}) async {
-    throw UnimplementedError();
+  Future<PhotoAttachment> photoMarket({
+    required String file,
+    required int groupId,
+    bool? mainPhoto,
+    int? cropX,
+    int? cropY,
+    int? cropWidth,
+  }) async {
+    final photo = await fetch<List<dynamic>>(
+      field: 'file',
+      params: {
+        'groupId': groupId,
+        'mainPhoto': mainPhoto,
+        'cropX': cropX,
+        'cropY': cropY,
+        'cropWidth': cropWidth
+      },
+      getServer: _api.photos.getMarketUploadServer,
+      serverParams: const [
+        'groupId',
+        'mainPhoto',
+        'cropX',
+        'cropY',
+        'cropWidth'
+      ],
+      saveFiles: _api.photos.saveMarketPhoto,
+      saveParams: const ['groupId'],
+      maxFiles: 1,
+      files: [file],
+    );
+
+    return PhotoAttachment.fromJson(photo[0]);
   }
 
-  Future<PhotoAttachment> photoMarketAlbum({required String file}) async {
-    throw UnimplementedError();
+  Future<PhotoAttachment> photoMarketAlbum({
+    required String file,
+    required int groupId,
+  }) async {
+    final photo = await fetch<List<dynamic>>(
+      field: 'file',
+      params: {'groupId': groupId},
+      getServer: _api.photos.getMarketAlbumUploadServer,
+      serverParams: const ['groupId'],
+      saveFiles: _api.photos.saveMarketAlbumPhoto,
+      saveParams: const ['groupId'],
+      maxFiles: 1,
+      files: [file],
+    );
+
+    return PhotoAttachment.fromJson(photo[0]);
   }
 
   Future<AudioAttachment> audio({required String file}) async {
